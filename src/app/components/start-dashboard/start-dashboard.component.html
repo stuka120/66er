@@ -1,0 +1,55 @@
+<img
+  src="http://test1.66er.net/wp-content/uploads/2019/03/titelbild.jpg"
+  class="d-block w-100"
+  alt="..."
+  style="height: 30rem; object-fit: cover;"
+/>
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-xl-10 col-12">
+      <div
+        *ngFor="let post of posts$ | async"
+        class="card"
+        style="margin-bottom: 1rem; alignment: center;"
+      >
+        <ngb-carousel>
+          <ng-template
+            ngbSlide
+            *ngIf="post.full_picture && post.attachments?.data == null"
+          >
+            <div class="picsum-img-wrapper">
+              <img
+                class="d-block w-100"
+                [src]="post.full_picture"
+                alt="Random first slide"
+              />
+            </div>
+          </ng-template>
+          <ng-template
+            ngbSlide
+            *ngFor="
+              let image of (post.attachments?.data)[0].subattachments?.data
+            "
+          >
+            <div class="picsum-img-wrapper">
+              <img
+                class="d-block w-100"
+                [src]="image.media.image.src"
+                alt="Random first slide"
+              />
+            </div>
+          </ng-template>
+        </ngb-carousel>
+        <div class="card-body">
+          <h5 *ngIf="post.attachments" class="card-title">
+            {{ post.attachments.data[0].title }}
+          </h5>
+          <p class="card-text">
+            {{ post.message }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
