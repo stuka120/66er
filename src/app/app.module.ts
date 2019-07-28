@@ -7,11 +7,13 @@ import { FacebookService } from "./services/facebook.service";
 import { StartDashboardComponent } from "./components/start-dashboard/start-dashboard.component";
 import { HttpClientModule } from "@angular/common/http";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { DownloadsComponent } from "./components/downloads/downloads.component";
+import { WordpressService } from "./services/wordpress.service";
 
 @NgModule({
-  declarations: [AppComponent, StartDashboardComponent],
+  declarations: [AppComponent, StartDashboardComponent, DownloadsComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule],
-  providers: [FacebookService],
+  providers: [FacebookService, WordpressService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
