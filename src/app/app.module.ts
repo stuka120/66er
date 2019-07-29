@@ -6,16 +6,47 @@ import { AppComponent } from "./app.component";
 import { MyFacebookService } from "./services/my-facebook.service";
 import { StartDashboardComponent } from "./components/start-dashboard/start-dashboard.component";
 import { HttpClientModule } from "@angular/common/http";
-import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { NgbModalModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { DownloadsComponent } from "./components/downloads/downloads.component";
 import { WordpressService } from "./services/wordpress.service";
-import { FacebookModule } from 'ngx-facebook';
-import { NewsCardComponent } from './components/news-card/news-card.component';
-import { StufenCardComponent } from './components/stufen-card/stufen-card.component';
+import { FacebookModule } from "ngx-facebook";
+import { NewsCardComponent } from "./components/news-card/news-card.component";
+import { StufenCardComponent } from "./components/stufen-card/stufen-card.component";
+import { NewsCardCollectionComponent } from "./components/news-card-collection/news-card-collection.component";
+import { StufenCardCollectionComponent } from "./components/stufen-card-collection/stufen-card-collection.component";
+import { CalendarDashboardComponent } from "./components/calendar-dashboard/calendar-dashboard.component";
+import { CalendarModule, DateAdapter } from "angular-calendar";
+import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
+import { FormsModule } from "@angular/forms";
+import { FlatpickrModule } from "angularx-flatpickr";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
-  declarations: [AppComponent, StartDashboardComponent, DownloadsComponent, NewsCardComponent, StufenCardComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule, NgbModule, FacebookModule.forRoot()],
+  declarations: [
+    AppComponent,
+    StartDashboardComponent,
+    DownloadsComponent,
+    NewsCardComponent,
+    StufenCardComponent,
+    NewsCardCollectionComponent,
+    StufenCardCollectionComponent,
+    CalendarDashboardComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    FlatpickrModule.forRoot(),
+    BrowserAnimationsModule,
+    NgbModalModule,
+    AppRoutingModule,
+    HttpClientModule,
+    NgbModule,
+    FacebookModule.forRoot(),
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
+  ],
   providers: [MyFacebookService, WordpressService],
   bootstrap: [AppComponent]
 })

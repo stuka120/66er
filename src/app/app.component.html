@@ -1,31 +1,56 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-      <div class="d-flex flex-grow-1">
-          <span class="w-100 d-lg-none d-block"><!-- hidden spacer to center brand on mobile --></span>
-          <a class="navbar-brand d-none d-lg-inline-block" href="#">
-              <img src="http://test3.66er.net/wp-content/uploads/2019/03/cropped-logo_66er-2.jpg" style="height: 3rem;"/>
-          </a>
-          <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
-              <img src="http://test3.66er.net/wp-content/uploads/2019/03/cropped-logo_66er-2.jpg" style="height: 3rem;"/>
-          </a>
-          <div class="w-100 text-right">
-              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar">
-                  <span class="navbar-toggler-icon"></span>
-              </button>
-          </div>
+    <div class="d-flex flex-grow-1">
+      <span class="w-100 d-lg-none d-block"
+        ><!-- hidden spacer to center brand on mobile --></span
+      >
+      <a class="navbar-brand d-none d-lg-inline-block" href="#">
+        <img
+          src="http://test3.66er.net/wp-content/uploads/2019/03/cropped-logo_66er-2.jpg"
+          style="height: 3rem;"
+        />
+      </a>
+      <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
+        <img
+          src="http://test3.66er.net/wp-content/uploads/2019/03/cropped-logo_66er-2.jpg"
+          style="height: 3rem;"
+        />
+      </a>
+      <div class="w-100 text-right">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#myNavbar"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
       </div>
-      <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
-          <ul class="navbar-nav ml-auto flex-nowrap">
-              <li class="nav-item">
-                  <a class="nav-link m-2 menu-item nav-active" [routerLink]="['']">News</a>
-              </li>
-              <li class="nav-item">
-                  <a class="nav-link m-2 menu-item nav-active" [routerLink]="['/downloads']">Downloads</a>
-              </li>
-          </ul>
-      </div>
+    </div>
+    <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
+      <ul class="navbar-nav ml-auto flex-nowrap">
+        <li class="nav-item">
+          <a class="nav-link m-2 menu-item nav-active" [routerLink]="['']"
+            >News</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link m-2 menu-item nav-active"
+            [routerLink]="['/kalender']"
+            >Kalender</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link m-2 menu-item nav-active"
+            [routerLink]="['/downloads']"
+            >Downloads</a
+          >
+        </li>
+      </ul>
+    </div>
   </div>
-    
 </nav>
 
 <router-outlet></router-outlet>

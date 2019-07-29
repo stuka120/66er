@@ -1,0 +1,9 @@
+<div class="container-fluid mb-2 mt-2" *ngIf="stufenModels">
+  <div class="row justify-content-center">
+    <app-stufen-card
+      *ngFor="let stufenCardModel of stufenModels"
+      class="col-sm-10 col-md-4 mb-3"
+      [stufenCardModel]="stufenCardModel"
+    ></app-stufen-card>
+  </div>
+</div>

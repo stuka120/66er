@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { StartDashboardComponent } from "./components/start-dashboard/start-dashboard.component";
 import { DownloadsComponent } from "./components/downloads/downloads.component";
+import { CalendarDashboardComponent } from "./components/calendar-dashboard/calendar-dashboard.component";
 
 const routes: Routes = [
   {
@@ -13,6 +14,11 @@ const routes: Routes = [
     path: "downloads",
     pathMatch: "full",
     component: DownloadsComponent
+  },
+  {
+    path: "kalender",
+    pathMatch: "full",
+    component: CalendarDashboardComponent
   }
 ];
 
