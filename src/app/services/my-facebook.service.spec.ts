@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { FacebookService } from './facebook.service';
+import { MyFacebookService } from './my-facebook.service';
 
 describe('FacebookService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: FacebookService = TestBed.get(FacebookService);
+    const service: MyFacebookService = TestBed.get(MyFacebookService);
     expect(service).toBeTruthy();
   });
 });
