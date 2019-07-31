@@ -1,10 +1,18 @@
 import { Component, OnInit } from "@angular/core";
-import { combineLatest, Observable } from "rxjs";
+import { combineLatest, Observable, throwError } from "rxjs";
 import { Post } from "../../model/post.model";
 import { MyFacebookService } from "../../services/my-facebook.service";
 import { WordpressService } from "src/app/services/wordpress.service";
 import { StufenCardModel } from "src/app/model/stufen-card.model";
-import { map } from "rxjs/operators";
+import { catchError, filter, map, switchMap, tap } from "rxjs/operators";
+import { Store } from "@ngrx/store";
+import { StartDashboardState } from "../../root-store/start-dashboard-store";
+import {
+  loadNewsAction,
+  loadNewsErrorAction,
+  loadNewsSuccessAction
+} from "src/app/root-store/start-dashboard-store/actions";
+import { selectStartDashboardNeedsPosts } from "../../root-store/start-dashboard-store/selectors";
 
 @Component({
   selector: "app-start-dashboard",
@@ -17,69 +25,26 @@ export class StartDashboardComponent implements OnInit {
 
   constructor(
     private myFacebookService: MyFacebookService,
-    private wordpressService: WordpressService
+    private wordpressService: WordpressService,
+    private store$: Store<StartDashboardState.State>
   ) {}
 
   ngOnInit(): void {
-    this.posts$ = this.myFacebookService.getPosts$();
-    this.stufenCardModels$ = combineLatest([
-      this.wordpressService.getPage$(6).pipe(
-        map(
-          page =>
-            <StufenCardModel>{
-              title: page.title.rendered,
-              description: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
-              imgUrl:
-                "http://test3.66er.net/wp-content/uploads/2019/03/biber_herz.jpg"
-            }
+    this.posts$ = this.store$.select(selectStartDashboardNeedsPosts).pipe(
+      filter(needsPosts => needsPosts),
+      tap(() => this.store$.dispatch(loadNewsAction())),
+      switchMap(() => this.myFacebookService.getPosts$()),
+      tap(posts =>
+        this.store$.dispatch(
+          loadNewsSuccessAction({ payload: { posts: posts } })
         )
       ),
-      this.wordpressService.getPage$(14).pipe(
-        map(
-          page =>
-            <StufenCardModel>{
-              title: page.title.rendered,
-              description: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
-              imgUrl:
-                "http://test3.66er.net/wp-content/uploads/2019/03/Download.png"
-            }
-        )
-      ),
-      this.wordpressService.getPage$(26).pipe(
-        map(
-          page =>
-            <StufenCardModel>{
-              title: page.title.rendered,
-              description: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
-              imgUrl:
-                "http://test3.66er.net/wp-content/uploads/2019/03/gusp_logo.png"
-            }
-        )
-      ),
-      this.wordpressService.getPage$(28).pipe(
-        map(
-          page =>
-            <StufenCardModel>{
-              title: page.title.rendered,
-              description: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
-              imgUrl:
-                "http://test3.66er.net/wp-content/uploads/2019/03/caexlogo1-300x165.jpg"
-            }
-        )
-      ),
-      this.wordpressService.getPage$(30).pipe(
-        map(
-          page =>
-            <StufenCardModel>{
-              title: page.title.rendered,
-              description: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
-              imgUrl:
-                "http://test3.66er.net/wp-content/uploads/2019/03/biber_herz.jpg"
-            }
-        )
-      )
-    ]).pipe(
-      map(([biber, wiwo, gusp, caex, raro]) => [biber, wiwo, gusp, caex, raro])
+      catchError(err => {
+        loadNewsErrorAction({ payload: { error: err } });
+        return throwError(err);
+      })
     );
+
+    this.stufenCardModels$ = this.wordpressService.getStufenInfos$();
   }
 }

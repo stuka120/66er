@@ -20,6 +20,7 @@ import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
 import { FormsModule } from "@angular/forms";
 import { FlatpickrModule } from "angularx-flatpickr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RootStoreModule } from './root-store/root-store.module';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
-    })
+    }),
+    RootStoreModule
   ],
   providers: [MyFacebookService, WordpressService],
   bootstrap: [AppComponent]
