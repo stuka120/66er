@@ -1,11 +1,11 @@
 import { createSelector } from "@ngrx/store";
 import {
-  selectStartDashboardError,
+  selectPostsError,
   selectStartDashboardIsLoading
-} from "./start-dashboard-store/selectors";
+} from "./posts-store/selectors";
 
 export const selectHasErrors = createSelector(
-  selectStartDashboardError,
+  selectPostsError,
   startDashboardError => startDashboardError
 );
 

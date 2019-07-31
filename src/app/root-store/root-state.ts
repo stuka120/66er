@@ -1,5 +1,7 @@
-import { StartDashboardState } from './start-dashboard-store';
+import { PostsState } from "./posts-store";
+import { StufenInfoState } from "./stufen-info-store";
 
 export interface RootState {
-  startDashboard: StartDashboardState.State
+  startDashboard: PostsState.State;
+  stufenInfos: StufenInfoState.State;
 }

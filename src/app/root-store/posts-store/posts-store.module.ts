@@ -5,6 +5,6 @@ import { reducer } from "./reducer";
 
 @NgModule({
   declarations: [],
-  imports: [CommonModule, StoreModule.forFeature("startDashboard", reducer)]
+  imports: [CommonModule, StoreModule.forFeature("posts", reducer)]
 })
-export class StartDashboardStoreModule {}
+export class PostsStoreModule {}

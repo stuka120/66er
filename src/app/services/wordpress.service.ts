@@ -7,7 +7,11 @@ import {
   WordpressFileModel
 } from "../model/wordpress-media.model";
 import { map } from "rxjs/operators";
-import { StufenCardModel } from "../model/stufen-card.model";
+import {
+  StufenCardCollection,
+  StufenCardModel
+} from "../model/stufen-card.model";
+import { StufenInfoStoreModule } from "../root-store/stufen-info-store";
 
 @Injectable()
 export class WordpressService {
@@ -55,7 +59,7 @@ export class WordpressService {
     );
   }
 
-  public getStufenInfos$(): Observable<StufenCardModel[]> {
+  public getStufenInfos$(): Observable<StufenCardCollection> {
     return combineLatest([
       this.getPage$(6).pipe(
         map(
@@ -113,7 +117,16 @@ export class WordpressService {
         )
       )
     ]).pipe(
-      map(([biber, wiwo, gusp, caex, raro]) => [biber, wiwo, gusp, caex, raro])
+      map(
+        ([biber, wiwoe, gusp, caex, raro]) =>
+          ({
+            biber,
+            wiwoe,
+            gusp,
+            caex,
+            raro
+          } as StufenCardCollection)
+      )
     );
   }
 }

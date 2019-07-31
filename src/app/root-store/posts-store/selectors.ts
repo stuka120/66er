@@ -5,28 +5,31 @@ import { Post } from "../../model/post.model";
 const getError = (state: State): string => state.error;
 const getIsLoading = (state: State): boolean => state.isLoading;
 const getPosts = (state: State): Post[] => state.posts;
-const getNeedsPosts = (state: State): boolean => state.needPosts;
+const getNeedPosts = (state: State): boolean => state.needPosts;
 
-const selectStartDashboardFeatureSelector = createFeatureSelector(
-  "startDashboard"
-);
+const selectStartDashboardFeatureSelector = createFeatureSelector("posts");
 
 export const selectStartDashboardIsLoading = createSelector(
   selectStartDashboardFeatureSelector,
   getIsLoading
 );
 
-export const selectStartDashboardPosts = createSelector(
+export const selectPostsPosts = createSelector(
   selectStartDashboardFeatureSelector,
   getPosts
 );
 
-export const selectStartDashboardError = createSelector(
+export const selectPostsError = createSelector(
   selectStartDashboardFeatureSelector,
   getError
 );
 
-export const selectStartDashboardNeedsPosts = createSelector(
+export const selectPostsNeedPosts = createSelector(
   selectStartDashboardFeatureSelector,
-  getNeedsPosts
+  getNeedPosts
+);
+
+export const selectPostsIsLoading = createSelector(
+  selectStartDashboardFeatureSelector,
+  getIsLoading
 );

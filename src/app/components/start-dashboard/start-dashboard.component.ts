@@ -1,18 +1,42 @@
 import { Component, OnInit } from "@angular/core";
-import { combineLatest, Observable, throwError } from "rxjs";
+import { Observable, throwError } from "rxjs";
 import { Post } from "../../model/post.model";
 import { MyFacebookService } from "../../services/my-facebook.service";
 import { WordpressService } from "src/app/services/wordpress.service";
-import { StufenCardModel } from "src/app/model/stufen-card.model";
-import { catchError, filter, map, switchMap, tap } from "rxjs/operators";
+import {
+  StufenCardCollection,
+  StufenCardModel
+} from "src/app/model/stufen-card.model";
+import {
+  catchError,
+  delay,
+  filter,
+  map,
+  startWith,
+  switchMap,
+  tap
+} from "rxjs/operators";
 import { Store } from "@ngrx/store";
-import { StartDashboardState } from "../../root-store/start-dashboard-store";
 import {
   loadNewsAction,
   loadNewsErrorAction,
   loadNewsSuccessAction
-} from "src/app/root-store/start-dashboard-store/actions";
-import { selectStartDashboardNeedsPosts } from "../../root-store/start-dashboard-store/selectors";
+} from "src/app/root-store/posts-store/actions";
+import {
+  selectPostsIsLoading,
+  selectPostsNeedPosts
+} from "../../root-store/posts-store/selectors";
+import { RootState } from "../../root-store/root-state";
+import {
+  selectStufenInfosAll,
+  selectStufenInfosIsLoading,
+  selectStufenInfosNeedStufenInfos
+} from "../../root-store/stufen-info-store/selectors";
+import {
+  loadAllStufenAction,
+  loadAllStufenErrorAction,
+  loadAllStufenSuccessAction
+} from "../../root-store/stufen-info-store/actions";
 
 @Component({
   selector: "app-start-dashboard",
@@ -22,16 +46,21 @@ import { selectStartDashboardNeedsPosts } from "../../root-store/start-dashboard
 export class StartDashboardComponent implements OnInit {
   posts$: Observable<Post[]>;
   stufenCardModels$: Observable<StufenCardModel[]>;
+  isLoadingPosts$: Observable<boolean>;
+  isLoadingStufenInfos$: Observable<boolean>;
 
   constructor(
     private myFacebookService: MyFacebookService,
     private wordpressService: WordpressService,
-    private store$: Store<StartDashboardState.State>
+    private store$: Store<RootState>
   ) {}
 
   ngOnInit(): void {
-    this.posts$ = this.store$.select(selectStartDashboardNeedsPosts).pipe(
-      filter(needsPosts => needsPosts),
+    this.isLoadingPosts$ = this.store$.select(selectPostsIsLoading);
+    this.isLoadingStufenInfos$ = this.store$.select(selectStufenInfosIsLoading);
+
+    this.posts$ = this.store$.select(selectPostsNeedPosts).pipe(
+      filter(needPosts => needPosts),
       tap(() => this.store$.dispatch(loadNewsAction())),
       switchMap(() => this.myFacebookService.getPosts$()),
       tap(posts =>
@@ -45,6 +74,32 @@ export class StartDashboardComponent implements OnInit {
       })
     );
 
-    this.stufenCardModels$ = this.wordpressService.getStufenInfos$();
+    this.stufenCardModels$ = this.store$
+      .select(selectStufenInfosNeedStufenInfos)
+      .pipe(
+        filter(needStufenInfos => needStufenInfos),
+        tap(() => this.store$.dispatch(loadAllStufenAction())),
+        switchMap(() => this.wordpressService.getStufenInfos$()),
+        tap(stufenInfos =>
+          this.store$.dispatch(
+            loadAllStufenSuccessAction({
+              payload: {
+                ...stufenInfos
+              }
+            })
+          )
+        ),
+        map(stufenInfos => [
+          stufenInfos.biber,
+          stufenInfos.wiwoe,
+          stufenInfos.gusp,
+          stufenInfos.caex,
+          stufenInfos.raro
+        ]),
+        catchError(err => {
+          this.store$.dispatch(loadAllStufenErrorAction(err));
+          return throwError(err);
+        })
+      );
   }
 }
