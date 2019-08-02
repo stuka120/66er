@@ -2,7 +2,7 @@
   <div class="container">
     <div class="d-flex flex-grow-1">
       <span class="w-100 d-lg-none d-block"
-        ><!-- hidden spacer to center brand on mobile --></span
+      ><!-- hidden spacer to center brand on mobile --></span
       >
       <a class="navbar-brand d-none d-lg-inline-block" href="#">
         <img
@@ -22,30 +22,34 @@
           type="button"
           data-toggle="collapse"
           data-target="#myNavbar"
+          aria-controls="myNavbar"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
     </div>
-    <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
+    <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar"
+         [ngbCollapse]="collapsed">
       <ul class="navbar-nav ml-auto flex-nowrap">
         <li class="nav-item">
           <a class="nav-link m-2 menu-item nav-active" [routerLink]="['']"
-            >News</a
+          >News</a
           >
         </li>
         <li class="nav-item">
           <a
             class="nav-link m-2 menu-item nav-active"
             [routerLink]="['/kalender']"
-            >Kalender</a
+          >Kalender</a
           >
         </li>
         <li class="nav-item">
           <a
             class="nav-link m-2 menu-item nav-active"
             [routerLink]="['/downloads']"
-            >Downloads</a
+          >Downloads</a
           >
         </li>
       </ul>

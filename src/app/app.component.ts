@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { FacebookService } from 'ngx-facebook';
+import {Component, OnInit} from "@angular/core";
+import {FacebookService} from 'ngx-facebook';
 
 @Component({
   selector: "app-root",
@@ -10,7 +10,8 @@ export class AppComponent implements OnInit {
   title = "ng-wordpress";
   applicationId: string;
 
-  constructor(private fbService: FacebookService) {}
+  constructor(private fbService: FacebookService) {
+  }
 
   ngOnInit(): void {
     let self = this;
@@ -30,8 +31,11 @@ export class AppComponent implements OnInit {
 
     (function (d, s, id) {
       let js, fjs = d.getElementsByTagName(s)[0];
-      if (d.getElementById(id)) { return; }
-      js = d.createElement(s); js.id = id;
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
       js.src = "//connect.facebook.net/en_US/sdk.js";
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-js-sdk'));

@@ -1,8 +1,8 @@
-import { NgModule } from "@angular/core";
-import { Routes, RouterModule } from "@angular/router";
-import { StartDashboardComponent } from "./components/start-dashboard/start-dashboard.component";
-import { DownloadsComponent } from "./components/downloads/downloads.component";
-import { CalendarDashboardComponent } from "./components/calendar-dashboard/calendar-dashboard.component";
+import {NgModule} from "@angular/core";
+import {Routes, RouterModule} from "@angular/router";
+import {StartDashboardComponent} from "./components/start-dashboard/start-dashboard.component";
+import {DownloadsComponent} from "./components/downloads/downloads.component";
+import {CalendarDashboardComponent} from "./components/calendar-dashboard/calendar-dashboard.component";
 
 const routes: Routes = [
   {
@@ -23,7 +23,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    scrollPositionRestoration: "enabled",
+    anchorScrolling: "enabled",
+    onSameUrlNavigation: "reload"
+  })],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule {
+}
