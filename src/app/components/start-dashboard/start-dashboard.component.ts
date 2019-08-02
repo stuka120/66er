@@ -1,22 +1,19 @@
-import { Component, OnInit } from "@angular/core";
-import { Observable, throwError } from "rxjs";
-import { Post } from "../../model/post.model";
-import { MyFacebookService } from "../../services/my-facebook.service";
-import { WordpressService } from "src/app/services/wordpress.service";
+import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from "@angular/core";
+import {Observable, throwError} from "rxjs";
+import {Post} from "../../model/post.model";
+import {MyFacebookService} from "../../services/my-facebook.service";
+import {WordpressService} from "src/app/services/wordpress.service";
 import {
-  StufenCardCollection,
   StufenCardModel
 } from "src/app/model/stufen-card.model";
 import {
   catchError,
-  delay,
   filter,
   map,
-  startWith,
   switchMap,
   tap
 } from "rxjs/operators";
-import { Store } from "@ngrx/store";
+import {Store} from "@ngrx/store";
 import {
   loadNewsAction,
   loadNewsErrorAction,
@@ -26,9 +23,8 @@ import {
   selectPostsIsLoading,
   selectPostsNeedPosts
 } from "../../root-store/posts-store/selectors";
-import { RootState } from "../../root-store/root-state";
+import {RootState} from "../../root-store/root-state";
 import {
-  selectStufenInfosAll,
   selectStufenInfosIsLoading,
   selectStufenInfosNeedStufenInfos
 } from "../../root-store/stufen-info-store/selectors";
@@ -43,17 +39,33 @@ import {
   templateUrl: "./start-dashboard.component.html",
   styleUrls: ["./start-dashboard.component.css"]
 })
-export class StartDashboardComponent implements OnInit {
+export class StartDashboardComponent implements OnInit, AfterViewInit {
+
   posts$: Observable<Post[]>;
   stufenCardModels$: Observable<StufenCardModel[]>;
   isLoadingPosts$: Observable<boolean>;
   isLoadingStufenInfos$: Observable<boolean>;
 
+  // @ts-ignore
+  @ViewChild("morphextElement")
+  nativeMorphextContainer: ElementRef;
+  morphextText: any;
+
   constructor(
     private myFacebookService: MyFacebookService,
     private wordpressService: WordpressService,
     private store$: Store<RootState>
-  ) {}
+  ) {
+  }
+
+  ngAfterViewInit(): void {
+    this.morphextText = $(this.nativeMorphextContainer.nativeElement)
+    this.morphextText.Morphext({
+      animation: "fadeIn", // Overrides default "bounceIn"
+      separator: ",", // Overrides default ","
+      speed: 3000 // Overrides default 2000
+    });
+  }
 
   ngOnInit(): void {
     this.isLoadingPosts$ = this.store$.select(selectPostsIsLoading);
@@ -65,11 +77,11 @@ export class StartDashboardComponent implements OnInit {
       switchMap(() => this.myFacebookService.getPosts$()),
       tap(posts =>
         this.store$.dispatch(
-          loadNewsSuccessAction({ payload: { posts: posts } })
+          loadNewsSuccessAction({payload: {posts}})
         )
       ),
       catchError(err => {
-        loadNewsErrorAction({ payload: { error: err } });
+        loadNewsErrorAction({payload: {error: err}});
         return throwError(err);
       })
     );
