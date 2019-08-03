@@ -1,9 +1,10 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { PostsStoreModule } from "./posts-store/posts-store.module";
-import { StoreModule } from "@ngrx/store";
-import { StoreDevtoolsModule } from "@ngrx/store-devtools";
-import { StufenInfoStoreModule } from './stufen-info-store/stufen-info-store.module';
+import {NgModule} from "@angular/core";
+import {CommonModule} from "@angular/common";
+import {PostsStoreModule} from "./posts-store/posts-store.module";
+import {StoreModule} from "@ngrx/store";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {StufenInfoStoreModule} from './stufen-info-store/stufen-info-store.module';
+import {CalendarStoreModule} from "./calendar-store";
 
 @NgModule({
   declarations: [],
@@ -14,7 +15,9 @@ import { StufenInfoStoreModule } from './stufen-info-store/stufen-info-store.mod
     StoreDevtoolsModule.instrument({
       maxAge: 10
     }),
-    StufenInfoStoreModule
+    StufenInfoStoreModule,
+    CalendarStoreModule
   ]
 })
-export class RootStoreModule {}
+export class RootStoreModule {
+}

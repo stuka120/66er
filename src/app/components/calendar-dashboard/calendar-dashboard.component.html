@@ -1,4 +1,4 @@
-<div class="row text-center" *ngIf="events$ | async as eve">
+<div class="row text-center" *ngIf="events$ | async">
   <div class="col-md-4">
     <div class="btn-group">
       <div
@@ -57,7 +57,7 @@
     </div>
   </div>
 </div>
-<br />
+<br/>
 <div [ngSwitch]="view" *ngIf="events$ | async as eve">
   <mwl-calendar-month-view
     *ngSwitchCase="CalendarView.Month"

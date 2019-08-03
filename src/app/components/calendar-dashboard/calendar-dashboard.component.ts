@@ -15,17 +15,21 @@ import {
   isSameMonth,
   addHours
 } from "date-fns";
-import { Observable, Subject } from "rxjs";
-import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import {combineLatest, Observable, Subject} from "rxjs";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {
   CalendarEvent,
   CalendarEventAction,
-  CalendarEventTimesChangedEvent,
   CalendarView
 } from "angular-calendar";
-import { GoogleCalenderService } from "../../services/google-calender.service";
-import { first, flatMap, map } from "rxjs/operators";
+import {GoogleCalenderService} from "../../services/google-calender.service";
+import {distinctUntilChanged, filter, first, flatMap, map, share, startWith, switchMap, tap} from "rxjs/operators";
 import RRule from "rrule";
+import {Store} from "@ngrx/store";
+import {selectCalendarEvents, selectCalendarNeedEvents} from "../../root-store/calendar-store/selectors";
+import {loadEventsAction, loadEventsSuccessAction} from "../../root-store/calendar-store/actions";
+import {CalenderEventDtoModel, CalenderEventModel} from "../../model/calender-event.model";
+import {RootState} from "../../root-store/root-state";
 
 const colors: any = {
   red: {
@@ -49,8 +53,9 @@ const colors: any = {
   templateUrl: "calendar-dashboard.component.html"
 })
 export class CalendarDashboardComponent implements OnInit {
-  @ViewChild("modalContent", { static: true }) modalContent: TemplateRef<any>;
+  @ViewChild("modalContent", {static: true}) modalContent: TemplateRef<any>;
 
+  needEvents$: Observable<any>;
   events$: Observable<CalendarEvent[]>;
 
   view: CalendarView = CalendarView.Month;
@@ -64,73 +69,20 @@ export class CalendarDashboardComponent implements OnInit {
     event: CalendarEvent;
   };
 
-  actions: CalendarEventAction[] = [
-    {
-      label: '<i class="fa fa-fw fa-pencil"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.handleEvent("Edited", event);
-      }
-    },
-    {
-      label: '<i class="fa fa-fw fa-times"></i>',
-      onClick: ({ event }: { event: CalendarEvent }): void => {
-        this.events = this.events.filter(iEvent => iEvent !== event);
-        this.handleEvent("Deleted", event);
-      }
-    }
-  ];
+  actions: CalendarEventAction[] = [];
 
   refresh: Subject<any> = new Subject();
-
-  events: CalendarEvent[] = [
-    {
-      start: subDays(startOfDay(new Date()), 1),
-      end: addDays(new Date(), 1),
-      title: "A 3 day event",
-      color: colors.red,
-      actions: this.actions,
-      allDay: true,
-      resizable: {
-        beforeStart: false,
-        afterEnd: false
-      },
-      draggable: false
-    },
-    {
-      start: startOfDay(new Date()),
-      title: "An event with no end date",
-      color: colors.yellow,
-      actions: this.actions
-    },
-    {
-      start: subDays(endOfMonth(new Date()), 3),
-      end: addDays(endOfMonth(new Date()), 3),
-      title: "A long event that spans 2 months",
-      color: colors.blue,
-      allDay: true
-    },
-    {
-      start: addHours(startOfDay(new Date()), 2),
-      end: new Date(),
-      title: "A draggable and resizable event",
-      color: colors.yellow,
-      actions: this.actions,
-      resizable: {
-        beforeStart: false,
-        afterEnd: false
-      },
-      draggable: false
-    }
-  ];
 
   activeDayIsOpen: boolean = true;
 
   constructor(
     private modal: NgbModal,
-    private googleCalenderService: GoogleCalenderService
-  ) {}
+    private googleCalenderService: GoogleCalenderService,
+    private store$: Store<RootState>
+  ) {
+  }
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+  dayClicked({date, events}: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
@@ -145,8 +97,8 @@ export class CalendarDashboardComponent implements OnInit {
   }
 
   handleEvent(action: string, event: CalendarEvent): void {
-    this.modalData = { event, action };
-    this.modal.open(this.modalContent, { size: "lg" });
+    this.modalData = {event, action};
+    this.modal.open(this.modalContent, {size: "lg"});
   }
 
   setView(view: CalendarView) {
@@ -157,17 +109,42 @@ export class CalendarDashboardComponent implements OnInit {
     this.activeDayIsOpen = false;
   }
 
-  /*
   ngOnInit(): void {
-    this.events$ = this.googleCalenderService.getEvents$().pipe(
-      map(event => event.items),
-      map(items => {
-        return {
-          singleEvents: items
-            .filter(item => !item.recurrence)
-            .map(
-              item =>
-                <CalendarEvent> {
+    this.needEvents$ = this.store$.select(selectCalendarNeedEvents).pipe(
+      filter(needEvents => needEvents),
+      tap(() => this.store$.dispatch(loadEventsAction())),
+      switchMap(() => this.googleCalenderService.getEvents$()),
+      tap(items => this.store$.dispatch(loadEventsSuccessAction({payload: {events: items}}))),
+      share()
+    );
+
+    this.events$ = this.muteFirst(
+      this.needEvents$.pipe(startWith(null)),
+      this.store$.select(selectCalendarEvents).pipe(
+        map(items => {
+            let result = [] as CalendarEvent[];
+            items.forEach(item => {
+              if (item.recurrence) {
+                item.recurrence.forEach(rec => {
+                  const rule = RRule.fromString(rec);
+                  rule.options.dtstart = new Date(item.start.dateTime);
+
+                  result = result.concat((
+                    rule
+                      .between(
+                        new Date(Date.UTC(2019, 6, 1)),
+                        new Date(Date.UTC(2019, 6, 31))
+                      )
+                      .map(date => {
+                        return {
+                          title: item.summary,
+                          start: date
+                        } as CalendarEvent;
+                      })
+                  ) as CalendarEvent[]);
+                });
+              } else {
+                result.push({
                   start: new Date(item.start.dateTime),
                   end: new Date(item.end.dateTime),
                   draggable: false,
@@ -175,77 +152,18 @@ export class CalendarDashboardComponent implements OnInit {
                   resizable: false,
                   allDay: false,
                   title: item.summary
-                }
-            ),
-          recurringEvents: <RRule[]> items
-            .filter(item => item.recurrence)
-            .map(item => {
-              let rule = RRule.fromString(item.recurrence[0]);
-              rule.options.dtstart = new Date(item.start.dateTime);
-              return rule;
-            })
-        };
-      }),
-      map(events => {
-        let result = events.singleEvents;
-        events.recurringEvents.forEach(rec =>
-          rec
-            .between(
-              new Date(Date.UTC(2019, 6, 1)),
-              new Date(Date.UTC(2019, 6, 31))
-            )
-            .forEach(date => {
-              result.push({
-                title:,
-                start: date
-              });
-            })
-        );
-        return result;
-      })
-    );
-  }
-   */
-
-  ngOnInit(): void {
-    this.events$ = this.googleCalenderService.getEvents$().pipe(
-      map(event => event.items),
-      map(items => {
-        let result = [] as CalendarEvent[];
-        items.forEach(item => {
-          if (item.recurrence) {
-            item.recurrence.forEach(rec => {
-              let rule = RRule.fromString(rec);
-              rule.options.dtstart = new Date(item.start.dateTime);
-
-              result = result.concat(<CalendarEvent[]>(
-                rule
-                  .between(
-                    new Date(Date.UTC(2019, 6, 1)),
-                    new Date(Date.UTC(2019, 6, 31))
-                  )
-                  .map(date => {
-                    return <CalendarEvent>{
-                      title: item.summary,
-                      start: date
-                    };
-                  })
-              ));
+                } as CalendarEvent);
+              }
             });
-          } else {
-            result.push(<CalendarEvent>{
-              start: new Date(item.start.dateTime),
-              end: new Date(item.end.dateTime),
-              draggable: false,
-              actions: this.actions,
-              resizable: false,
-              allDay: false,
-              title: item.summary
-            });
+            return result;
           }
-        });
-        return result;
-      })
+        )
+      )
     );
   }
+
+  public muteFirst = <T, R>(first$: Observable<T>, second$: Observable<R>) => combineLatest([first$, second$]).pipe(
+    map(([first, second]) => second),
+    distinctUntilChanged()
+  )
 }
