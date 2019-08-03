@@ -20,6 +20,12 @@ export interface Post {
       };
     }[];
   };
+  comments: {
+    data: {
+      message: string;
+      like_count: number;
+    }[];
+  };
 }
 
 export interface PostResponse {

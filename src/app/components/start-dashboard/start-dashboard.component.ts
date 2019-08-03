@@ -41,7 +41,7 @@ import {
   templateUrl: "./start-dashboard.component.html",
   styleUrls: ["./start-dashboard.component.css"]
 })
-export class StartDashboardComponent implements OnInit, AfterViewInit {
+export class StartDashboardComponent implements OnInit {
 
   posts$: Observable<Post[]>;
   requirePosts$: Observable<Post[]>;
@@ -51,25 +51,11 @@ export class StartDashboardComponent implements OnInit, AfterViewInit {
   isLoadingPosts$: Observable<boolean>;
   isLoadingStufenInfos$: Observable<boolean>;
 
-  // @ts-ignore
-  @ViewChild("morphextElement")
-  nativeMorphextContainer: ElementRef;
-  morphextText: any;
-
   constructor(
     private myFacebookService: MyFacebookService,
     private wordpressService: WordpressService,
     private store$: Store<RootState>
   ) {
-  }
-
-  ngAfterViewInit(): void {
-    this.morphextText = $(this.nativeMorphextContainer.nativeElement);
-    this.morphextText.Morphext({
-      animation: "fadeIn", // Overrides default "bounceIn"
-      separator: ",", // Overrides default ","
-      speed: 3000 // Overrides default 2000
-    });
   }
 
   ngOnInit(): void {
