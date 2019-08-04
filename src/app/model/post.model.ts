@@ -20,11 +20,16 @@ export interface Post {
       };
     }[];
   };
-  comments: {
-    data: {
+  comments?: {
+    data?: {
+      id: string;
       message: string;
       like_count: number;
+      created_time: Date;
     }[];
+  };
+  shares: {
+    count: number;
   };
 }
 

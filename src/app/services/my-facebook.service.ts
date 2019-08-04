@@ -15,7 +15,7 @@ export class MyFacebookService {
   public getPosts$(): Observable<Post[]> {
     return this.httpClient
       .get<PostResponse>(
-        `https://graph.facebook.com/v4.0/pfadfindergruppe66/feed?fields=message%2Ccreated_time%2Cfull_picture%2Cattachments%7Btitle%2Cmedia%2Cdescription%2Csubattachments%7D&limit=7&access_token=${this.siteAccessKey}`
+        `https://graph.facebook.com/v4.0/pfadfindergruppe66/feed?fields=message,created_time,full_picture,attachments{title,media,description,subattachments},comments,shares&limit=7&access_token=${this.siteAccessKey}`
       )
       .pipe(map(postReponse => postReponse.data));
   }

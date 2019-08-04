@@ -9,6 +9,7 @@
         <img
           class="d-block w-100"
           [src]="post.full_picture"
+          style="max-height: 40rem; object-fit: contain;"
           alt="Random first slide"
         />
       </div>
@@ -23,6 +24,7 @@
         <img
           class="d-block w-100"
           [src]="image.media.image.src"
+          style="max-height: 40rem; object-fit: contain;"
           alt="Random first slide"
         />
       </div>
@@ -35,5 +37,25 @@
     <p class="card-text" style="white-space: pre-wrap;">
       {{ post.message }}
     </p>
+  </div>
+  <div class="card-footer" data-toggle="collapse" href="#multiCollapseExample1">
+    <div class="d-flex">
+      <div class="card-link"><i class="fa fa-comment"></i> {{post.comments?.data ? post.comments.data.length : 0}}
+        Kommentar{{post.comments?.data && post.comments.data.length == 1 ? '' : 'e'}}
+      </div>
+      <div class="card-link mr-auto"><i class="fa fa-mail-forward"></i> {{post.shares ? post.shares.count : 0}}
+        Share{{post.shares && post.shares.count == 1 ? '' : 's'}}
+      </div>
+      <div *ngIf="post.comments?.data" class="card-link">
+        <button class=" btn border-0 fa fa-angle-down"></button>
+      </div>
+    </div>
+
+  </div>
+  <div *ngIf="post.comments?.data" class="collapse multi-collapse" id="multiCollapseExample1">
+    <div class="card-footer "
+         *ngFor="let comment of post.comments.data">
+      {{comment.message}}
+    </div>
   </div>
 </div>
