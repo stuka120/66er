@@ -3,6 +3,7 @@ import {Routes, RouterModule} from "@angular/router";
 import {StartDashboardComponent} from "./components/start-dashboard/start-dashboard.component";
 import {DownloadsComponent} from "./components/downloads/downloads.component";
 import {CalendarDashboardComponent} from "./components/calendar-dashboard/calendar-dashboard.component";
+import {StufenOverviewDashboardComponent} from "./components/stufen-overview-dashboard/stufen-overview-dashboard.component";
 
 const routes: Routes = [
   {
@@ -19,6 +20,11 @@ const routes: Routes = [
     path: "kalender",
     pathMatch: "full",
     component: CalendarDashboardComponent
+  },
+  {
+    path: "stufe/:name",
+    pathMatch: "full",
+    component: StufenOverviewDashboardComponent
   }
 ];
 

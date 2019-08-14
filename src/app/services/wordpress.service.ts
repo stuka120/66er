@@ -1,21 +1,22 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable, combineLatest } from "rxjs";
-import { WordpressPageModel } from "../model/wordpress-page.model";
+import {Injectable} from "@angular/core";
+import {HttpClient} from "@angular/common/http";
+import {Observable, combineLatest} from "rxjs";
+import {WordpressPageModel} from "../model/wordpress-page.model";
 import {
   WordpressMediaModel,
   WordpressFileModel
 } from "../model/wordpress-media.model";
-import { map } from "rxjs/operators";
+import {map} from "rxjs/operators";
 import {
   StufenCardCollection,
   StufenCardModel
 } from "../model/stufen-card.model";
-import { StufenInfoStoreModule } from "../root-store/stufen-info-store";
+import {StufenInfoStoreModule} from "../root-store/stufen-info-store";
 
 @Injectable()
 export class WordpressService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) {
+  }
 
   public getPage$(id: number): Observable<WordpressPageModel> {
     return this.httpClient.get<WordpressPageModel>(
@@ -39,7 +40,7 @@ export class WordpressService {
     return this.getMedia$().pipe(
       map(medias =>
         medias
-          .filter(media => media.media_type == "file")
+          .filter(media => media.media_type === "file")
           .map(
             media =>
               <WordpressFileModel>{
@@ -66,7 +67,8 @@ export class WordpressService {
           page =>
             <StufenCardModel>{
               title: page.title.rendered,
-              description: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
+              shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
+              fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),
               imgUrl:
                 "http://test3.66er.net/wp-content/uploads/2019/03/biber_herz.jpg"
             }
@@ -77,7 +79,8 @@ export class WordpressService {
           page =>
             <StufenCardModel>{
               title: page.title.rendered,
-              description: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
+              shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
+              fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),
               imgUrl:
                 "http://test3.66er.net/wp-content/uploads/2019/03/Download.png"
             }
@@ -88,7 +91,8 @@ export class WordpressService {
           page =>
             <StufenCardModel>{
               title: page.title.rendered,
-              description: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
+              shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
+              fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),
               imgUrl:
                 "http://test3.66er.net/wp-content/uploads/2019/03/gusp_logo.png"
             }
@@ -99,7 +103,8 @@ export class WordpressService {
           page =>
             <StufenCardModel>{
               title: page.title.rendered,
-              description: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
+              shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
+              fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),
               imgUrl:
                 "http://test3.66er.net/wp-content/uploads/2019/03/caexlogo1-300x165.jpg"
             }
@@ -110,7 +115,8 @@ export class WordpressService {
           page =>
             <StufenCardModel>{
               title: page.title.rendered,
-              description: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
+              shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
+              fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),
               imgUrl:
                 "http://test3.66er.net/wp-content/uploads/2019/03/biber_herz.jpg"
             }

@@ -22,6 +22,7 @@ import { FlatpickrModule } from "angularx-flatpickr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RootStoreModule } from './root-store/root-store.module';
 import { HeroBannerComponent } from './components/hero-banner/hero-banner.component';
+import { StufenOverviewDashboardComponent } from './components/stufen-overview-dashboard/stufen-overview-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { HeroBannerComponent } from './components/hero-banner/hero-banner.compon
     NewsCardCollectionComponent,
     StufenCardCollectionComponent,
     CalendarDashboardComponent,
-    HeroBannerComponent
+    HeroBannerComponent,
+    StufenOverviewDashboardComponent
   ],
   imports: [
     BrowserModule,

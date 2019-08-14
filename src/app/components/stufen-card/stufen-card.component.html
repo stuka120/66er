@@ -9,12 +9,12 @@
     />
     <div class="media-body">
       <h5 class="mt-0">{{ stufenCardModel.title }}</h5>
-      <div [innerHtml]="stufenCardModel.description"></div>
+      <div [innerHtml]="stufenCardModel.shortDescription"></div>
     </div>
   </div>
   <!-- <img class="align-self-center rounded float-left card-img-top w-25" *ngIf="stufenCardModel.imgUrl" [src]="stufenCardModel.imgUrl" alt="Card image cap">
   <div class="card-body w-75">
       <h5 class="card-title" *ngIf="stufenCardModel.title">{{stufenCardModel.title}}</h5>
-      <p class="card-text" style="white-space: pre-wrap; text-overflow: ellipsis" *ngIf="stufenCardModel.description" [innerHtml]="stufenCardModel.description"></p>
+      <p class="card-text" style="white-space: pre-wrap; text-overflow: ellipsis" *ngIf="stufenCardModel.fullDescription" [innerHtml]="stufenCardModel.fullDescription"></p>
   </div> -->
 </div>

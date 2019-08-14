@@ -1,7 +1,8 @@
 export interface StufenCardModel {
   imgUrl: string;
   title: string;
-  description: string;
+  shortDescription: string;
+  fullDescription: string;
 }
 
 export interface StufenCardCollection {
