@@ -1,4 +1,5 @@
-import {AfterViewInit, Component, ElementRef, OnInit, ViewChild} from "@angular/core";
+import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
+import {HeroBannerModel} from "./hero-banner.model";
 
 @Component({
   selector: "app-hero-banner",
@@ -14,6 +15,9 @@ export class HeroBannerComponent implements OnInit, AfterViewInit {
   @ViewChild("morphextElement")
   nativeMorphextContainer: ElementRef;
   morphextText: any;
+
+  @Input()
+  model: HeroBannerModel;
 
   ngAfterViewInit(): void {
     this.morphextText = $(this.nativeMorphextContainer.nativeElement);

@@ -9,12 +9,10 @@ Image credits: unsplash.com
 /********************************/
 .fade-carousel {
   position: relative;
-  height: 35rem;
   object-fit: cover;
 }
 
 .fade-carousel .carousel-inner .item {
-  height: 35rem;
   object-fit: cover;
 }
 
@@ -110,15 +108,16 @@ Image credits: unsplash.com
 .fade-carousel .slides .slide-1,
 .fade-carousel .slides .slide-2,
 .fade-carousel .slides .slide-3 {
-  height: 35rem;
   object-fit: cover;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
 }
 
-.fade-carousel .slides .slide-1 {
-  background-image: url(http://test3.66er.net/wp-content/uploads/2019/03/titelbild.jpg);
+.hero-image {
+  height: inherit;
+  width: 100%;
+  object-fit: cover;
 }
 
 /********************************/

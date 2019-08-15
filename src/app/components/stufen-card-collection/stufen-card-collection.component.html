@@ -4,6 +4,7 @@
       *ngFor="let stufenCardModel of stufenModels"
       class="col-sm-10 col-md-6 col-lg-4 mb-3"
       [stufenCardModel]="stufenCardModel"
+      [routerLink]="stufenCardModel.stufenUri"
     ></app-stufen-card>
   </div>
 </div>

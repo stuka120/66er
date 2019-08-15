@@ -66,6 +66,7 @@ export class WordpressService {
         map(
           page =>
             <StufenCardModel>{
+              stufenUri: ["stufe", "biber"],
               title: page.title.rendered,
               shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
               fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),
@@ -78,6 +79,7 @@ export class WordpressService {
         map(
           page =>
             <StufenCardModel>{
+              stufenUri: ["stufe", "wiwoe"],
               title: page.title.rendered,
               shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
               fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),
@@ -90,6 +92,7 @@ export class WordpressService {
         map(
           page =>
             <StufenCardModel>{
+              stufenUri: ["stufe", "gusp"],
               title: page.title.rendered,
               shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
               fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),
@@ -102,6 +105,7 @@ export class WordpressService {
         map(
           page =>
             <StufenCardModel>{
+              stufenUri: ["stufe", "caex"],
               title: page.title.rendered,
               shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
               fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),
@@ -114,6 +118,7 @@ export class WordpressService {
         map(
           page =>
             <StufenCardModel>{
+              stufenUri: ["stufe", "raro"],
               title: page.title.rendered,
               shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
               fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),

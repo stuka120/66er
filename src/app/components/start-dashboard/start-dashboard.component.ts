@@ -35,6 +35,7 @@ import {
   loadAllStufenErrorAction,
   loadAllStufenSuccessAction
 } from "../../root-store/stufen-info-store/actions";
+import {HeroBannerModel} from "../hero-banner/hero-banner.model";
 
 @Component({
   selector: "app-start-dashboard",
@@ -50,6 +51,13 @@ export class StartDashboardComponent implements OnInit {
   stufenCardModels$: Observable<StufenCardModel[]>;
   isLoadingPosts$: Observable<boolean>;
   isLoadingStufenInfos$: Observable<boolean>;
+
+  heroBannerModel: HeroBannerModel = {
+    imageUrl: 'http://test3.66er.net/wp-content/uploads/2019/03/titelbild.jpg',
+    buttonText: 'Aktuelles',
+    morphextPrefix: 'Wir sind ',
+    morpext: 'Biber, WiWö, GuSp, CaEx, RaRo, die 66er!'
+  };
 
   constructor(
     private myFacebookService: MyFacebookService,
