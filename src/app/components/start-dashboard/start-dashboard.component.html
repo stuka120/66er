@@ -1,27 +1,4 @@
 <app-hero-banner [model]="heroBannerModel"></app-hero-banner>
-<!--<div class="container-fluid">-->
-<!--  <div class="row">-->
-<!--    <div class="col-12" style="padding: 0px;">-->
-<!--      <img-->
-<!--        [src]="'http://test3.66er.net/wp-content/uploads/2019/03/titelbild.jpg'"-->
-<!--        class="d-block w-100 thumbnail"-->
-<!--        alt="..."-->
-<!--        style="height: 30rem; object-fit: cover; background-color: rgba(0, 0, 0, 0.3); filter: brightness(50%);"-->
-<!--      />-->
-<!--      <div class="caption hero-content-style1" style="padding: 10% 0px;">-->
-<!--        <h1>Wir sind <span #morphextElement>Biber, WiWö, GuSp, CaEx, RaRo</span></h1>-->
-<!--        <button type="button" class="btn btn-outline-light" [routerLink]="['']" [fragment]="'nachrichten'"-->
-<!--                skipLocationChange>Aktuelles-->
-<!--        </button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
-
-<div>
-
-</div>
 
 <div class="container mt-5 mb-5">
   <div class="row justify-content-center">
@@ -30,17 +7,6 @@
     </div>
   </div>
 </div>
-
-<!--<div class="d-flex justify-content-center">-->
-<!--  <div-->
-<!--    *ngIf="isLoadingStufenInfos$ | async"-->
-<!--    class="spinner-border text-primary"-->
-<!--    style="width: 3rem; height: 3rem;"-->
-<!--    role="status"-->
-<!--  >-->
-<!--    <span class="sr-only">Loading...</span>-->
-<!--  </div>-->
-<!--</div>-->
 
 <app-stufen-card-collection
   [stufenModels]="stufenCardModels$ | async"
@@ -53,15 +19,5 @@
     </div>
   </div>
 </div>
-
-<!--<div *ngIf="isLoadingPosts$ | async" class="d-flex justify-content-center">-->
-<!--  <div-->
-<!--    class="spinner-border text-primary"-->
-<!--    style="width: 3rem; height: 3rem;"-->
-<!--    role="status"-->
-<!--  >-->
-<!--    <span class="sr-only">Loading...</span>-->
-<!--  </div>-->
-<!--</div>-->
 
 <app-news-card-collection [posts]="posts$ | async"></app-news-card-collection>

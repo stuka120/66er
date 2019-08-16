@@ -5,6 +5,8 @@ import {Observable} from "rxjs";
 import {selectWiWoeStufenInfos} from "../../root-store/stufen-info-store/selectors";
 import {map} from "rxjs/operators";
 import {HeroBannerModel} from "../hero-banner/hero-banner.model";
+import { StufenInfoFacade } from '../../facades/stufen-info.facade';
+import { StufenCardModel } from '../../model/stufen-card.model';
 
 @Component({
   selector: 'app-stufen-overview-dashboard',
@@ -22,13 +24,14 @@ export class StufenOverviewDashboardComponent implements OnInit {
     imageHeight: 20
   };
 
-  constructor(private store$: Store<RootState>) {
+  stufenInfoWiWoe$: Observable<StufenCardModel>;
+
+  constructor(private store$: Store<RootState>,
+              private stufenInfoFacade: StufenInfoFacade) {
   }
 
   ngOnInit() {
-    this.stufenText$ = this.store$.select(selectWiWoeStufenInfos).pipe(
-      map(stufenInfo => stufenInfo.fullDescription)
-    );
+    this.stufenInfoWiWoe$ = this.stufenInfoFacade.stufenInfoWiWoe$;
   }
 
 }

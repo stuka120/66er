@@ -1,15 +1,22 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from "@angular/core";
-import {HeroBannerModel} from "./hero-banner.model";
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild
+} from "@angular/core";
+import { HeroBannerModel } from "./hero-banner.model";
 
 @Component({
   selector: "app-hero-banner",
   templateUrl: "./hero-banner.component.html",
   styleUrls: ["./hero-banner.component.css"]
 })
-export class HeroBannerComponent implements OnInit, AfterViewInit {
-
-  constructor() {
-  }
+export class HeroBannerComponent
+  implements OnInit, AfterViewInit, AfterViewChecked {
+  constructor() {}
 
   // @ts-ignore
   @ViewChild("morphextElement")
@@ -18,6 +25,8 @@ export class HeroBannerComponent implements OnInit, AfterViewInit {
 
   @Input()
   model: HeroBannerModel;
+
+  morphextInitialized = false;
 
   ngAfterViewInit(): void {
     this.morphextText = $(this.nativeMorphextContainer.nativeElement);
@@ -28,8 +37,9 @@ export class HeroBannerComponent implements OnInit, AfterViewInit {
     });
   }
 
+  ngOnInit() {}
 
-  ngOnInit() {
+  ngAfterViewChecked(): void {
+    this.morphextInitialized = true;
   }
-
 }

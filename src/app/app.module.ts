@@ -20,9 +20,10 @@ import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
 import { FormsModule } from "@angular/forms";
 import { FlatpickrModule } from "angularx-flatpickr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { RootStoreModule } from './root-store/root-store.module';
-import { HeroBannerComponent } from './components/hero-banner/hero-banner.component';
-import { StufenOverviewDashboardComponent } from './components/stufen-overview-dashboard/stufen-overview-dashboard.component';
+import { RootStoreModule } from "./root-store/root-store.module";
+import { HeroBannerComponent } from "./components/hero-banner/hero-banner.component";
+import { StufenOverviewDashboardComponent } from "./components/stufen-overview-dashboard/stufen-overview-dashboard.component";
+import { StufenInfoFacade } from "./facades/stufen-info.facade";
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { StufenOverviewDashboardComponent } from './components/stufen-overview-d
     }),
     RootStoreModule
   ],
-  providers: [MyFacebookService, WordpressService],
+  providers: [MyFacebookService, WordpressService, StufenInfoFacade],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
