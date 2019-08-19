@@ -24,6 +24,7 @@ import { RootStoreModule } from "./root-store/root-store.module";
 import { HeroBannerComponent } from "./components/hero-banner/hero-banner.component";
 import { StufenOverviewDashboardComponent } from "./components/stufen-overview-dashboard/stufen-overview-dashboard.component";
 import { StufenInfoFacade } from "./facades/stufen-info.facade";
+import { MyFacebookFacade } from "./facades/my-facebook.facade";
 
 @NgModule({
   declarations: [
@@ -54,7 +55,12 @@ import { StufenInfoFacade } from "./facades/stufen-info.facade";
     }),
     RootStoreModule
   ],
-  providers: [MyFacebookService, WordpressService, StufenInfoFacade],
+  providers: [
+    MyFacebookService,
+    WordpressService,
+    StufenInfoFacade,
+    MyFacebookFacade
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

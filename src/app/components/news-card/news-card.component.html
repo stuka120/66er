@@ -1,6 +1,9 @@
 <div class="card mb-3 rounded-0 shadow">
-  <ngb-carousel [showNavigationArrows]="post.full_picture" [showNavigationIndicators]="post.full_picture"
-                [interval]="0">
+  <ngb-carousel
+    [showNavigationArrows]="post.full_picture"
+    [showNavigationIndicators]="post.full_picture"
+    [interval]="0"
+  >
     <ng-template
       ngbSlide
       *ngIf="post.full_picture && post.attachments?.data == null"
@@ -16,9 +19,7 @@
     </ng-template>
     <ng-template
       ngbSlide
-      *ngFor="
-              let image of (post.attachments?.data)[0].subattachments?.data
-            "
+      *ngFor="let image of (post.attachments?.data)[0].subattachments?.data"
     >
       <div class="picsum-img-wrapper">
         <img
@@ -38,24 +39,36 @@
       {{ post.message }}
     </p>
   </div>
-  <div class="card-footer" data-toggle="collapse" href="#multiCollapseExample1">
+  <div
+    class="card-footer"
+    data-toggle="collapse"
+    [attr.href]="'#commandsOfPost' + cardId"
+  >
     <div class="d-flex">
-      <div class="card-link"><i class="fa fa-comment"></i> {{post.comments?.data ? post.comments.data.length : 0}}
-        Kommentar{{post.comments?.data && post.comments.data.length == 1 ? '' : 'e'}}
+      <div class="card-link">
+        <i class="fa fa-comment"></i>
+        {{ post.comments?.data ? post.comments.data.length : 0 }} Kommentar{{
+          post.comments?.data && post.comments.data.length == 1 ? "" : "e"
+        }}
       </div>
-      <div class="card-link mr-auto"><i class="fa fa-mail-forward"></i> {{post.shares ? post.shares.count : 0}}
-        Share{{post.shares && post.shares.count == 1 ? '' : 's'}}
+      <div class="card-link mr-auto">
+        <i class="fa fa-mail-forward"></i>
+        {{ post.shares ? post.shares.count : 0 }} Share{{
+          post.shares && post.shares.count == 1 ? "" : "s"
+        }}
       </div>
       <div *ngIf="post.comments?.data" class="card-link">
         <button class=" btn border-0 fa fa-angle-down"></button>
       </div>
     </div>
-
   </div>
-  <div *ngIf="post.comments?.data" class="collapse multi-collapse" id="multiCollapseExample1">
-    <div class="card-footer "
-         *ngFor="let comment of post.comments.data">
-      {{comment.message}}
+  <div
+    *ngIf="post.comments?.data"
+    class="collapse multi-collapse"
+    [attr.id]="'commandsOfPost' + cardId"
+  >
+    <div class="card-footer " *ngFor="let comment of post.comments.data">
+      {{ comment.message }}
     </div>
   </div>
 </div>

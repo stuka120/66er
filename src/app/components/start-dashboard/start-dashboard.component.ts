@@ -49,6 +49,7 @@ import {
 } from "../../root-store/stufen-info-store/actions";
 import { HeroBannerModel } from "../hero-banner/hero-banner.model";
 import { StufenInfoFacade } from "../../facades/stufen-info.facade";
+import { MyFacebookFacade } from "../../facades/my-facebook.facade";
 
 @Component({
   selector: "app-start-dashboard",
@@ -71,7 +72,7 @@ export class StartDashboardComponent implements OnInit {
   };
 
   constructor(
-    private myFacebookService: MyFacebookService,
+    private myFacebookFacade: MyFacebookFacade,
     private wordpressService: WordpressService,
     private store$: Store<RootState>,
     private stufenInfoFacade: StufenInfoFacade
@@ -81,31 +82,8 @@ export class StartDashboardComponent implements OnInit {
     this.isLoadingPosts$ = this.store$.select(selectPostsIsLoading);
     this.isLoadingStufenInfos$ = this.store$.select(selectStufenInfosIsLoading);
 
-    this.requirePosts$ = this.store$.select(selectPostsNeedPosts).pipe(
-      filter(needPosts => needPosts),
-      tap(() => this.store$.dispatch(loadNewsAction())),
-      switchMap(() => this.myFacebookService.getPosts$()),
-      tap(posts =>
-        this.store$.dispatch(loadNewsSuccessAction({ payload: { posts } }))
-      ),
-      catchError(err => {
-        loadNewsErrorAction({ payload: { error: err } });
-        return throwError(err);
-      }),
-      share()
-    );
-
-    this.posts$ = this.muteFirst(
-      this.requirePosts$.pipe(startWith(null)),
-      this.store$.select(selectPostsPosts)
-    );
-
+    // ngrx injections
+    this.posts$ = this.myFacebookFacade.posts$;
     this.stufenCardModels$ = this.stufenInfoFacade.stufenInfosAll$;
   }
-
-  public muteFirst = <T, R>(first$: Observable<T>, second$: Observable<R>) =>
-    combineLatest([first$, second$]).pipe(
-      map(([first, second]) => second),
-      distinctUntilChanged()
-    );
 }
