@@ -25,7 +25,7 @@ import { HeroBannerComponent } from "./components/hero-banner/hero-banner.compon
 import { StufenOverviewDashboardComponent } from "./components/stufen-overview-dashboard/stufen-overview-dashboard.component";
 import { StufenInfoFacade } from "./facades/stufen-info.facade";
 import { MyFacebookFacade } from "./facades/my-facebook.facade";
-import { TimeCardComponent } from './components/time-card/time-card.component';
+import { StickyNoteComponent } from './components/time-card/sticky-note.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +39,7 @@ import { TimeCardComponent } from './components/time-card/time-card.component';
     CalendarDashboardComponent,
     HeroBannerComponent,
     StufenOverviewDashboardComponent,
-    TimeCardComponent
+    StickyNoteComponent
   ],
   imports: [
     BrowserModule,

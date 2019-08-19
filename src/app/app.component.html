@@ -2,17 +2,17 @@
   <div class="container">
     <div class="d-flex flex-grow-1">
       <span class="w-100 d-lg-none d-block"
-      ><!-- hidden spacer to center brand on mobile --></span
+        ><!-- hidden spacer to center brand on mobile --></span
       >
       <a class="navbar-brand d-none d-lg-inline-block" href="#">
         <img
-          src="http://test3.66er.net/wp-content/uploads/2019/03/cropped-logo_66er-2.jpg"
+          src="http://test3.66er.net/wp-content/uploads/logo.svg"
           style="height: 3rem;"
         />
       </a>
       <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
         <img
-          src="http://test3.66er.net/wp-content/uploads/2019/03/cropped-logo_66er-2.jpg"
+          src="http://test3.66er.net/wp-content/uploads/logo.svg"
           style="height: 3rem;"
         />
       </a>
@@ -31,30 +31,36 @@
       <ul class="navbar-nav ml-auto flex-nowrap">
         <li class="nav-item">
           <a class="nav-link m-2 menu-item nav-active" [routerLink]="['']"
-          >News</a
+            >News</a
           >
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle m-2" href="#" id="navbarDropdown" data-toggle="dropdown"
-             aria-haspopup="true" aria-expanded="false">
+          <a
+            class="nav-link dropdown-toggle m-2"
+            href="#"
+            id="navbarDropdown"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
             Stufen
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" [routerLink]="['stufe','wiwoe']">WiWö</a>
+            <a class="dropdown-item" [routerLink]="['stufe', 'wiwoe']">WiWö</a>
           </div>
         </li>
         <li class="nav-item">
           <a
             class="nav-link m-2 menu-item nav-active"
             [routerLink]="['/kalender']"
-          >Kalender</a
+            >Kalender</a
           >
         </li>
         <li class="nav-item">
           <a
             class="nav-link m-2 menu-item nav-active"
             [routerLink]="['/downloads']"
-          >Downloads</a
+            >Downloads</a
           >
         </li>
       </ul>
