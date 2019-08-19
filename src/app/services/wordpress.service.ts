@@ -1,22 +1,21 @@
-import {Injectable} from "@angular/core";
-import {HttpClient} from "@angular/common/http";
-import {Observable, combineLatest} from "rxjs";
-import {WordpressPageModel} from "../model/wordpress-page.model";
+import { Injectable } from "@angular/core";
+import { HttpClient } from "@angular/common/http";
+import { Observable, combineLatest } from "rxjs";
+import { WordpressPageModel } from "../model/wordpress-page.model";
 import {
   WordpressMediaModel,
   WordpressFileModel
 } from "../model/wordpress-media.model";
-import {map} from "rxjs/operators";
+import { map } from "rxjs/operators";
 import {
   StufenCardCollection,
   StufenCardModel
 } from "../model/stufen-card.model";
-import {StufenInfoStoreModule} from "../root-store/stufen-info-store";
+import { StufenInfoStoreModule } from "../root-store/stufen-info-store";
 
 @Injectable()
 export class WordpressService {
-  constructor(private httpClient: HttpClient) {
-  }
+  constructor(private httpClient: HttpClient) {}
 
   public getPage$(id: number): Observable<WordpressPageModel> {
     return this.httpClient.get<WordpressPageModel>(
@@ -70,8 +69,7 @@ export class WordpressService {
               title: page.title.rendered,
               shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
               fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),
-              imgUrl:
-                "http://test3.66er.net/wp-content/uploads/2019/03/biber_herz.jpg"
+              imgUrl: "http://test3.66er.net/wp-content/uploads/biber.jpg"
             }
         )
       ),
@@ -83,8 +81,7 @@ export class WordpressService {
               title: page.title.rendered,
               shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
               fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),
-              imgUrl:
-                "http://test3.66er.net/wp-content/uploads/2019/03/Download.png"
+              imgUrl: "http://test3.66er.net/wp-content/uploads/wiwoe.jpg"
             }
         )
       ),
@@ -96,8 +93,7 @@ export class WordpressService {
               title: page.title.rendered,
               shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
               fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),
-              imgUrl:
-                "http://test3.66er.net/wp-content/uploads/2019/03/gusp_logo.png"
+              imgUrl: "http://test3.66er.net/wp-content/uploads/gusp.png"
             }
         )
       ),
@@ -109,8 +105,7 @@ export class WordpressService {
               title: page.title.rendered,
               shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
               fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),
-              imgUrl:
-                "http://test3.66er.net/wp-content/uploads/2019/03/caexlogo1-300x165.jpg"
+              imgUrl: "http://test3.66er.net/wp-content/uploads/caex.jpg"
             }
         )
       ),
@@ -122,8 +117,7 @@ export class WordpressService {
               title: page.title.rendered,
               shortDescription: page.excerpt.rendered.replace(/<[^>]+>/gm, ""),
               fullDescription: page.content.rendered.replace(/<[^>]+>/gm, ""),
-              imgUrl:
-                "http://test3.66er.net/wp-content/uploads/2019/03/biber_herz.jpg"
+              imgUrl: "http://test3.66er.net/wp-content/uploads/raro.png"
             }
         )
       )

@@ -2,12 +2,16 @@
 
 <div class="container-fluid">
   <img
-    class="img-fluid"
+    class="img-fluid stufen-overview-image"
     src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9785cce5-f242-4108-a82f-bd86c768f5fa/d55wkf5-a1d5f541-4fe6-4652-82e3-2d2552d347e7.jpg/v1/fill/w_763,h_1047,q_70,strp/cork_02_by_purpledragon42_stock_d55wkf5-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTIzNSIsInBhdGgiOiJcL2ZcLzk3ODVjY2U1LWYyNDItNDEwOC1hODJmLWJkODZjNzY4ZjVmYVwvZDU1d2tmNS1hMWQ1ZjU0MS00ZmU2LTQ2NTItODJlMy0yZDI1NTJkMzQ3ZTcuanBnIiwid2lkdGgiOiI8PTkwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.ktmwGTCloWl5P888H6CU2gKP70y1GEfjQvhfKR0_vjc"
   />
 </div>
-<div
-  class="container"
-  style="white-space: pre-wrap;"
-  [innerHTML]="(stufenInfoWiWoe$ | async)?.fullDescription"
-></div>
+<div class="container">
+  <div class="card rounded-0">
+    <div
+      class="card-body"
+      style="white-space: pre-wrap;"
+      [innerHTML]="(stufenInfoWiWoe$ | async)?.fullDescription"
+    ></div>
+  </div>
+</div>

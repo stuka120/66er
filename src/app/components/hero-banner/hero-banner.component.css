@@ -20,7 +20,7 @@ Image credits: unsplash.com
   margin: 0 2px;
   background-color: #f39c12;
   border-color: #f39c12;
-  opacity: .7;
+  opacity: 0.7;
 }
 
 .fade-carousel .carousel-indicators > li.active {
@@ -40,7 +40,7 @@ Image credits: unsplash.com
   color: #fff;
   text-align: center;
   text-transform: uppercase;
-  text-shadow: 1px 1px 0 rgba(0, 0, 0, .75);
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.75);
   -webkit-transform: translate3d(-50%, -50%, 0);
   -moz-transform: translate3d(-50%, -50%, 0);
   -ms-transform: translate3d(-50%, -50%, 0);
@@ -57,20 +57,20 @@ Image credits: unsplash.com
 
 .fade-carousel .carousel-inner .item .hero {
   opacity: 0;
-  -webkit-transition: 2s all ease-in-out .1s;
-  -moz-transition: 2s all ease-in-out .1s;
-  -ms-transition: 2s all ease-in-out .1s;
-  -o-transition: 2s all ease-in-out .1s;
-  transition: 2s all ease-in-out .1s;
+  -webkit-transition: 2s all ease-in-out 0.1s;
+  -moz-transition: 2s all ease-in-out 0.1s;
+  -ms-transition: 2s all ease-in-out 0.1s;
+  -o-transition: 2s all ease-in-out 0.1s;
+  transition: 2s all ease-in-out 0.1s;
 }
 
 .fade-carousel .carousel-inner .item.active .hero {
   opacity: 1;
-  -webkit-transition: 2s all ease-in-out .1s;
-  -moz-transition: 2s all ease-in-out .1s;
-  -ms-transition: 2s all ease-in-out .1s;
-  -o-transition: 2s all ease-in-out .1s;
-  transition: 2s all ease-in-out .1s;
+  -webkit-transition: 2s all ease-in-out 0.1s;
+  -moz-transition: 2s all ease-in-out 0.1s;
+  -ms-transition: 2s all ease-in-out 0.1s;
+  -o-transition: 2s all ease-in-out 0.1s;
+  transition: 2s all ease-in-out 0.1s;
 }
 
 /********************************/
@@ -81,8 +81,8 @@ Image credits: unsplash.com
   width: 100%;
   height: 100%;
   z-index: 2;
-  background-color: #080d15;
-  opacity: .7;
+  background-color: #080d158c;
+  opacity: 0.7;
 }
 
 /********************************/

@@ -1,0 +1,7 @@
+.stufen-overview-image {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: -webkit-fill-available;
+  z-index: -1;
+}
