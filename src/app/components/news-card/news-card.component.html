@@ -1,12 +1,10 @@
 <div class="card mb-3 rounded-0 shadow">
-  <ngb-carousel
-    [showNavigationArrows]="post.full_picture"
-    [showNavigationIndicators]="post.full_picture"
-    [interval]="0"
-  >
+
+  <ngb-carousel [showNavigationArrows]="post.full_picture && post.attachments?.data[0]?.subattachments?.data.length > 1" [showNavigationIndicators]="post.full_picture"
+                [interval]="0">
     <ng-template
       ngbSlide
-      *ngIf="post.full_picture && post.attachments?.data == null"
+      *ngIf="!(post.attachments?.data)[0]?.subattachments?.data || (post.attachments?.data)[0]?.subattachments?.data.length == 1"
     >
       <div class="picsum-img-wrapper">
         <img
@@ -32,7 +30,7 @@
     </ng-template>
   </ngb-carousel>
   <div class="card-body">
-    <h5 *ngIf="post.attachments" class="card-title">
+    <h5 *ngIf="post.attachments?.data[0]" class="card-title">
       {{ post.attachments.data[0].title }}
     </h5>
     <p class="card-text" style="white-space: pre-wrap;">
