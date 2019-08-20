@@ -25,7 +25,8 @@ import { HeroBannerComponent } from "./components/hero-banner/hero-banner.compon
 import { StufenOverviewDashboardComponent } from "./components/stufen-overview-dashboard/stufen-overview-dashboard.component";
 import { StufenInfoFacade } from "./facades/stufen-info.facade";
 import { MyFacebookFacade } from "./facades/my-facebook.facade";
-import { StickyNoteComponent } from './components/time-card/sticky-note.component';
+import { StickyNoteComponent } from './components/sticky-note/sticky-note.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { StickyNoteComponent } from './components/time-card/sticky-note.componen
   ],
   imports: [
     BrowserModule,
+    AngularFontAwesomeModule,
     FormsModule,
     FlatpickrModule.forRoot(),
     BrowserAnimationsModule,
