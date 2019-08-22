@@ -27,6 +27,8 @@ import { StufenInfoFacade } from "./facades/stufen-info.facade";
 import { MyFacebookFacade } from "./facades/my-facebook.facade";
 import { StickyNoteComponent } from './components/sticky-note/sticky-note.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
+import { TeamCardComponent } from './components/team-card/team-card.component';
+import { TeamCardCollectionComponent } from './components/team-card-collection/team-card-collection.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { AngularFontAwesomeModule } from 'angular-font-awesome';
     CalendarDashboardComponent,
     HeroBannerComponent,
     StufenOverviewDashboardComponent,
-    StickyNoteComponent
+    StickyNoteComponent,
+    TeamCardComponent,
+    TeamCardCollectionComponent
   ],
   imports: [
     BrowserModule,

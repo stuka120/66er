@@ -1,0 +1,14 @@
+<div class="container content" *ngIf="model">
+  <div class="heading" *ngIf="model.headerText">
+    <h2>{{ model.headerText }}</h2>
+  </div>
+
+  <div class="row justify-content-center">
+    <div
+      class="col-xs-12 col-sm-6 col-md-4 col-md-2"
+      *ngFor="let teamMember of model.teamMembers"
+    >
+      <app-team-card [model]="teamMember"></app-team-card>
+    </div>
+  </div>
+</div>

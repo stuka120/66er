@@ -1,34 +1,37 @@
 <app-hero-banner [model]="heroBannerModel"></app-hero-banner>
 
-<div class="container-fluid">
-  <img
-    class="img-fluid stufen-overview-image"
-    src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9785cce5-f242-4108-a82f-bd86c768f5fa/d55wkf5-a1d5f541-4fe6-4652-82e3-2d2552d347e7.jpg/v1/fill/w_763,h_1047,q_70,strp/cork_02_by_purpledragon42_stock_d55wkf5-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTIzNSIsInBhdGgiOiJcL2ZcLzk3ODVjY2U1LWYyNDItNDEwOC1hODJmLWJkODZjNzY4ZjVmYVwvZDU1d2tmNS1hMWQ1ZjU0MS00ZmU2LTQ2NTItODJlMy0yZDI1NTJkMzQ3ZTcuanBnIiwid2lkdGgiOiI8PTkwMCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.ktmwGTCloWl5P888H6CU2gKP70y1GEfjQvhfKR0_vjc"
-  />
-</div>
+<div class="container-fluid" style="background-color: aliceblue">
+  <div class="row align-items-center justify-content-between">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-6 col-sm-12">
+      <app-sticky-note>
+        <div
+          body
+          class="card-body"
+          style="white-space: pre-wrap;"
+          [innerHTML]="(stufenInfoWiWoe$ | async)?.fullDescription"
+        ></div>
+      </app-sticky-note>
+    </div>
 
-<div class="container">
-  <div class="d-flex">
-      <app-sticky-note class="container">
-          <div
-            body
-            class="card-body"
-            style="white-space: pre-wrap;"
-            [innerHTML]="(stufenInfoWiWoe$ | async)?.fullDescription"
-          ></div>
-        </app-sticky-note>
-        
-        <app-sticky-note [isRotated]=true [isZoomingOnHover]=true [backgroundColor]="'lightblue'">
-          <div header>
-            <h4>Heimstunden</h4>
-          </div>
-          <div body>
-            <fa name="cog" animation="spin"></fa>
-            Mittwoch: 18:00 - 19:30
-          </div>
-        </app-sticky-note>
+    <div class="col-lg-4 col-sm-12">
+      <app-sticky-note
+        [isRotated]="true"
+        [isZoomingOnHover]="false"
+        [backgroundColor]="'lightblue'"
+      >
+        <div header>
+          <h4>Heimstunden</h4>
+        </div>
+        <div body>
+          <fa name="cog" animation="spin"></fa>
+          Mittwoch: 18:00 - 19:30
+        </div>
+      </app-sticky-note>
+    </div>
   </div>
-
+  <app-team-card-collection
+    *ngIf="teamMembers$ | async as teamMembers"
+    [model]="teamMembers"
+  ></app-team-card-collection>
 </div>
-
-

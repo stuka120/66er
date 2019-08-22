@@ -12,6 +12,7 @@ import {
   StufenCardModel
 } from "../model/stufen-card.model";
 import { StufenInfoStoreModule } from "../root-store/stufen-info-store";
+import { WordpressPostResponseModel } from "./WordpressResponseModel.model";
 
 @Injectable()
 export class WordpressService {
@@ -23,9 +24,17 @@ export class WordpressService {
     );
   }
 
-  public getPages$(): Observable<WordpressPageModel[]> {
-    return this.httpClient.get<WordpressPageModel[]>(
-      "http://test3.66er.net/wp-json/wp/v2/pages"
+  public getPost$(postId: number): Observable<WordpressPostResponseModel> {
+    return this.httpClient.get<WordpressPostResponseModel>(
+      `http://test3.66er.net/wp-json/wp/v2/posts/${postId}?_embed`
+    );
+  }
+
+  public getPostsByCategoryId$(
+    categoryId: number
+  ): Observable<WordpressPostResponseModel[]> {
+    return this.httpClient.get<WordpressPostResponseModel[]>(
+      `http://test3.66er.net/wp-json/wp/v2/posts/?_embed&categories=${categoryId}`
     );
   }
 

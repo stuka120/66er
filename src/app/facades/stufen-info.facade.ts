@@ -31,6 +31,9 @@ import {
 import { RootState } from "../root-store/root-state";
 import { Store } from "@ngrx/store";
 import { WordpressService } from "../services/wordpress.service";
+import { WordpressPostResponseModel } from "../services/WordpressResponseModel.model";
+import { TeamCardModel } from "../components/team-card/team-card.model";
+import { TeamCardCollectionModel } from "../components/team-card-collection/team-card-collection.model";
 
 @Injectable()
 export class StufenInfoFacade {
@@ -105,5 +108,26 @@ export class StufenInfoFacade {
   public stufenInfoRaRo$ = this.muteFirst(
     this.requireStufenCardModels$.pipe(startWith(null)),
     this.store$.select(selectRaRoStufenInfos)
+  );
+
+  public teamPostsWiWoe$: Observable<
+    TeamCardCollectionModel
+  > = this.wordpressService.getPostsByCategoryId$(9).pipe(
+    map(
+      posts =>
+        ({
+          headerText: "Das WiWö Team",
+          teamMembers: posts.map(
+            post =>
+              ({
+                name: post.title.rendered,
+                domain: post.content.rendered,
+                imgUrl:
+                  post._embedded["wp:featuredmedia"][0].media_details.sizes
+                    .large.source_url
+              } as TeamCardModel)
+          )
+        } as TeamCardCollectionModel)
+    )
   );
 }

@@ -5,6 +5,7 @@ import { Observable } from "rxjs";
 import { HeroBannerModel } from "../hero-banner/hero-banner.model";
 import { StufenInfoFacade } from "../../facades/stufen-info.facade";
 import { StufenCardModel } from "../../model/stufen-card.model";
+import { TeamCardCollectionModel } from "../team-card-collection/team-card-collection.model";
 
 @Component({
   selector: "app-stufen-overview-dashboard",
@@ -12,7 +13,6 @@ import { StufenCardModel } from "../../model/stufen-card.model";
   styleUrls: ["./stufen-overview-dashboard.component.css"]
 })
 export class StufenOverviewDashboardComponent implements OnInit {
-  stufenText$: Observable<string>;
   heroBannerModel: HeroBannerModel = {
     imageUrl: "http://test3.66er.net/wp-content/uploads/2019/03/titelbild.jpg",
     buttonText: null,
@@ -23,6 +23,8 @@ export class StufenOverviewDashboardComponent implements OnInit {
 
   stufenInfoWiWoe$: Observable<StufenCardModel>;
 
+  teamMembers$: Observable<TeamCardCollectionModel>;
+
   constructor(
     private store$: Store<RootState>,
     private stufenInfoFacade: StufenInfoFacade
@@ -30,5 +32,6 @@ export class StufenOverviewDashboardComponent implements OnInit {
 
   ngOnInit() {
     this.stufenInfoWiWoe$ = this.stufenInfoFacade.stufenInfoWiWoe$;
+    this.teamMembers$ = this.stufenInfoFacade.teamPostsWiWoe$;
   }
 }
