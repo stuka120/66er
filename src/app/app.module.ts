@@ -7,7 +7,7 @@ import { MyFacebookService } from "./services/my-facebook.service";
 import { StartDashboardComponent } from "./components/start-dashboard/start-dashboard.component";
 import { HttpClientModule } from "@angular/common/http";
 import { NgbModalModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { DownloadsComponent } from "./components/downloads/downloads.component";
+import { DownloadsDashboardComponent } from "./components/downloads-dashboard/downloads-dashboard.component";
 import { WordpressService } from "./services/wordpress.service";
 import { FacebookModule } from "ngx-facebook";
 import { NewsCardComponent } from "./components/news-card/news-card.component";
@@ -25,16 +25,18 @@ import { HeroBannerComponent } from "./components/hero-banner/hero-banner.compon
 import { StufenOverviewDashboardComponent } from "./components/stufen-overview-dashboard/stufen-overview-dashboard.component";
 import { StufenInfoFacade } from "./facades/stufen-info.facade";
 import { MyFacebookFacade } from "./facades/my-facebook.facade";
-import { StickyNoteComponent } from './components/sticky-note/sticky-note.component';
-import { AngularFontAwesomeModule } from 'angular-font-awesome';
-import { TeamCardComponent } from './components/team-card/team-card.component';
-import { TeamCardCollectionComponent } from './components/team-card-collection/team-card-collection.component';
+import { StickyNoteComponent } from "./components/sticky-note/sticky-note.component";
+import { AngularFontAwesomeModule } from "angular-font-awesome";
+import { TeamCardComponent } from "./components/team-card/team-card.component";
+import { TeamCardCollectionComponent } from "./components/team-card-collection/team-card-collection.component";
+import { DownloadsFacade } from "./facades/downloads.facade";
+import { RemoveHtmlPipe } from "./pipes/remove-html.pipe";
 
 @NgModule({
   declarations: [
     AppComponent,
     StartDashboardComponent,
-    DownloadsComponent,
+    DownloadsDashboardComponent,
     NewsCardComponent,
     StufenCardComponent,
     NewsCardCollectionComponent,
@@ -44,7 +46,8 @@ import { TeamCardCollectionComponent } from './components/team-card-collection/t
     StufenOverviewDashboardComponent,
     StickyNoteComponent,
     TeamCardComponent,
-    TeamCardCollectionComponent
+    TeamCardCollectionComponent,
+    RemoveHtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -67,7 +70,9 @@ import { TeamCardCollectionComponent } from './components/team-card-collection/t
     MyFacebookService,
     WordpressService,
     StufenInfoFacade,
-    MyFacebookFacade
+    MyFacebookFacade,
+    DownloadsFacade,
+    RemoveHtmlPipe
   ],
   bootstrap: [AppComponent]
 })

@@ -1,9 +1,0 @@
-<div *ngIf="fileGroups && files">
-    <div *ngFor="let group of fileGroups">
-        <h1>{{group}}</h1>
-        <div *ngFor="let file of getFilegroupFiles(group)">
-            <a [href]="file.source_url">{{file.title}}</a>
-        </div>
-    </div>
-</div>
-

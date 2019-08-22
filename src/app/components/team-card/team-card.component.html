@@ -10,6 +10,6 @@
   </div>
   <div class="team-desc">
     <h4>{{ model.name }}</h4>
-    <span>{{ model.description }}</span>
+    <span>{{ model.description | removeHtml }}</span>
   </div>
 </div>

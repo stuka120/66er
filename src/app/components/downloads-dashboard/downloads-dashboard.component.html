@@ -1,0 +1,8 @@
+<div *ngIf="currentDownloads$ | async as currentDownloads">
+  <h1>Aktuelle Downloads</h1>
+  <div *ngFor="let download of currentDownloads">
+    <div *ngIf="download.isVisible">
+      <a [href]="download.source_url">{{ download.title }}</a>
+    </div>
+  </div>
+</div>

@@ -121,7 +121,7 @@ export class StufenInfoFacade {
             post =>
               ({
                 name: post.title.rendered,
-                domain: post.content.rendered,
+                description: post.content.rendered,
                 imgUrl:
                   post._embedded["wp:featuredmedia"][0].media_details.sizes
                     .large.source_url
