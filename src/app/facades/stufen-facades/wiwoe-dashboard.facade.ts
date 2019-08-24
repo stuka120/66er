@@ -6,11 +6,12 @@ import { DownloadsFacade } from "../downloads.facade";
 import { TeamCardCollectionModel } from "../../components/team-card-collection/team-card-collection.model";
 import { DownloadsCardModel } from "../../components/downloads-card/downloads-card.model";
 import { map } from "rxjs/operators";
+import { StufenFacadeInterface } from "./stufen-facade.interface";
 
 @Injectable({
   providedIn: "root"
 })
-export class WiwoeDashboardFacade {
+export class WiwoeDashboardFacade implements StufenFacadeInterface {
   constructor(
     private downloadFacade: DownloadsFacade,
     private stufenFacade: StufenInfoFacade

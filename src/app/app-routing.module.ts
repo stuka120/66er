@@ -1,9 +1,10 @@
-import {NgModule} from "@angular/core";
-import {Routes, RouterModule} from "@angular/router";
-import {StartDashboardComponent} from "./components/start-dashboard/start-dashboard.component";
-import {DownloadsDashboardComponent} from "./components/downloads-dashboard/downloads-dashboard.component";
-import {CalendarDashboardComponent} from "./components/calendar-dashboard/calendar-dashboard.component";
-import {StufenOverviewDashboardComponent} from "./components/stufen-overview-dashboard/stufen-overview-dashboard.component";
+import { NgModule } from "@angular/core";
+import { Routes, RouterModule } from "@angular/router";
+import { StartDashboardComponent } from "./components/start-dashboard/start-dashboard.component";
+import { DownloadsDashboardComponent } from "./components/downloads-dashboard/downloads-dashboard.component";
+import { CalendarDashboardComponent } from "./components/calendar-dashboard/calendar-dashboard.component";
+import { StufenOverviewDashboardComponent } from "./components/stufen-overview-dashboard/stufen-overview-dashboard.component";
+import { WiwoeDashboardFacade } from "./facades/stufen-facades/wiwoe-dashboard.facade";
 
 const routes: Routes = [
   {
@@ -22,19 +23,25 @@ const routes: Routes = [
     component: CalendarDashboardComponent
   },
   {
-    path: "stufe/:name",
-    pathMatch: "full",
-    component: StufenOverviewDashboardComponent
+    path: "stufe",
+    children: [
+      {
+        path: "wiwoe",
+        component: StufenOverviewDashboardComponent,
+        data: {requiredService: WiwoeDashboardFacade}
+      }
+    ]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    scrollPositionRestoration: "enabled",
-    anchorScrolling: "enabled",
-    onSameUrlNavigation: "reload"
-  })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      scrollPositionRestoration: "enabled",
+      anchorScrolling: "enabled",
+      onSameUrlNavigation: "reload"
+    })
+  ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {
-}
+export class AppRoutingModule {}
