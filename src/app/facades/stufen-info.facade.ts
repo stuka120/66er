@@ -1,16 +1,19 @@
 import { Injectable } from "@angular/core";
 import { combineLatest, Observable, throwError } from "rxjs";
+import { StufenCardCollection } from "../model/stufen-card.model";
 import {
-  StufenCardCollection,
-  StufenCardModel
-} from "../model/stufen-card.model";
-import {
+  selectBiberHeimstundenInfos,
   selectBiberStufenInfos,
+  selectCaExHeimstundenInfos,
   selectCaExStufenInfos,
+  selectGuSpHeimstundenInfos,
   selectGuSpStufenInfos,
+  selectRaRoHeimstundenInfos,
   selectRaRoStufenInfos,
   selectStufenInfosAll,
+  selectStufenInfosNeedHeimstundenInfos,
   selectStufenInfosNeedStufenInfos,
+  selectWiWoeHeimstundenInfos,
   selectWiWoeStufenInfos
 } from "../root-store/stufen-info-store/selectors";
 import {
@@ -24,6 +27,8 @@ import {
   tap
 } from "rxjs/operators";
 import {
+  loadAllHeimstundenAction,
+  loadAllHeimstundenSuccessAction,
   loadAllStufenAction,
   loadAllStufenErrorAction,
   loadAllStufenSuccessAction
@@ -31,28 +36,25 @@ import {
 import { RootState } from "../root-store/root-state";
 import { Store } from "@ngrx/store";
 import { WordpressService } from "../services/wordpress.service";
-import { WordpressPostResponseModel } from "../services/WordpressResponseModel.model";
 import { TeamCardModel } from "../components/team-card/team-card.model";
 import { TeamCardCollectionModel } from "../components/team-card-collection/team-card-collection.model";
 import { WordpressDictionary } from "../dictionary/wordpress.dictionary";
 import { HeimstundenTimeModel } from "../components/stufen-overview-dashboard/stufen-overview-dashboard.component";
-import { RemoveHtmlPipe } from "../pipes/remove-html.pipe";
 
 @Injectable()
 export class StufenInfoFacade {
   constructor(
     private store$: Store<RootState>,
-    private wordpressService: WordpressService,
-    private removeHtmlPipe: RemoveHtmlPipe
+    private wordpressService: WordpressService
   ) {}
 
   public muteFirst = <T, R>(first$: Observable<T>, second$: Observable<R>) =>
     combineLatest([first$, second$]).pipe(
-      map(([first, second]) => second),
+      map(([, second]) => second),
       distinctUntilChanged()
     );
 
-  private requireStufenCardModels$: Observable<
+  private requireStufenInfos$: Observable<
     StufenCardCollection
   > = this.store$.select(selectStufenInfosNeedStufenInfos).pipe(
     filter(needStufenInfos => needStufenInfos),
@@ -75,7 +77,7 @@ export class StufenInfoFacade {
   );
 
   public stufenInfosAll$ = this.muteFirst(
-    this.requireStufenCardModels$.pipe(startWith(null)),
+    this.requireStufenInfos$.pipe(startWith(null)),
     this.store$
       .select(selectStufenInfosAll)
       .pipe(
@@ -90,27 +92,27 @@ export class StufenInfoFacade {
   );
 
   public stufenInfoBiber$ = this.muteFirst(
-    this.requireStufenCardModels$.pipe(startWith(null)),
+    this.requireStufenInfos$.pipe(startWith(null)),
     this.store$.select(selectBiberStufenInfos)
   );
 
   public stufenInfoWiWoe$ = this.muteFirst(
-    this.requireStufenCardModels$.pipe(startWith(null)),
+    this.requireStufenInfos$.pipe(startWith(null)),
     this.store$.select(selectWiWoeStufenInfos)
   );
 
   public stufenInfoGuSp$ = this.muteFirst(
-    this.requireStufenCardModels$.pipe(startWith(null)),
+    this.requireStufenInfos$.pipe(startWith(null)),
     this.store$.select(selectGuSpStufenInfos)
   );
 
   public stufenInfoCaEx$ = this.muteFirst(
-    this.requireStufenCardModels$.pipe(startWith(null)),
+    this.requireStufenInfos$.pipe(startWith(null)),
     this.store$.select(selectCaExStufenInfos)
   );
 
   public stufenInfoRaRo$ = this.muteFirst(
-    this.requireStufenCardModels$.pipe(startWith(null)),
+    this.requireStufenInfos$.pipe(startWith(null)),
     this.store$.select(selectRaRoStufenInfos)
   );
 
@@ -230,98 +232,50 @@ export class StufenInfoFacade {
       )
     );
 
-  heimstundenBiber$: Observable<
-    HeimstundenTimeModel
-  > = this.wordpressService
-    .getPostByCategoryIdAndTagId$(
-      WordpressDictionary.categories.biber.content,
-      WordpressDictionary.tags.time
-    )
+  private requireHeimstundenInfos$ = this.store$
+    .select(selectStufenInfosNeedHeimstundenInfos)
     .pipe(
-      map(
-        post =>
-          ({
-            title: this.removeHtmlPipe.transform(post.title.rendered),
-            timeDescription: this.removeHtmlPipe.transform(
-              post.content.rendered
-            )
-          } as HeimstundenTimeModel)
-      )
+      filter(needHeimstundenInfos => needHeimstundenInfos),
+      tap(() => this.store$.dispatch(loadAllHeimstundenAction())),
+      switchMap(() => this.wordpressService.getHeimstundenInfos$()),
+      tap(heimstundenInfos =>
+        this.store$.dispatch(
+          loadAllHeimstundenSuccessAction({
+            payload: {
+              heimstundenInfos: heimstundenInfos
+            }
+          })
+        )
+      ),
+      catchError(err => {
+        this.store$.dispatch(loadAllStufenErrorAction(err));
+        return throwError(err);
+      }),
+      share()
     );
 
-  heimstundenWiWoe$: Observable<
-    HeimstundenTimeModel
-  > = this.wordpressService
-    .getPostByCategoryIdAndTagId$(
-      WordpressDictionary.categories.wiwoe.content,
-      WordpressDictionary.tags.time
-    )
-    .pipe(
-      map(
-        post =>
-          ({
-            title: this.removeHtmlPipe.transform(post.title.rendered),
-            timeDescription: this.removeHtmlPipe.transform(
-              post.content.rendered
-            )
-          } as HeimstundenTimeModel)
-      )
-    );
+  public heimstundenBiber$ = this.muteFirst(
+    this.requireHeimstundenInfos$.pipe(startWith(null)),
+    this.store$.select(selectBiberHeimstundenInfos)
+  );
 
-  heimstundenGuSp$: Observable<
-    HeimstundenTimeModel
-  > = this.wordpressService
-    .getPostByCategoryIdAndTagId$(
-      WordpressDictionary.categories.gusp.content,
-      WordpressDictionary.tags.time
-    )
-    .pipe(
-      map(
-        post =>
-          ({
-            title: this.removeHtmlPipe.transform(post.title.rendered),
-            timeDescription: this.removeHtmlPipe.transform(
-              post.content.rendered
-            )
-          } as HeimstundenTimeModel)
-      )
-    );
+  heimstundenWiWoe$: Observable<HeimstundenTimeModel> = this.muteFirst(
+    this.requireHeimstundenInfos$.pipe(startWith(null)),
+    this.store$.select(selectWiWoeHeimstundenInfos)
+  );
 
-  heimstundenCaEx$: Observable<
-    HeimstundenTimeModel
-  > = this.wordpressService
-    .getPostByCategoryIdAndTagId$(
-      WordpressDictionary.categories.caex.content,
-      WordpressDictionary.tags.time
-    )
-    .pipe(
-      map(
-        post =>
-          ({
-            title: this.removeHtmlPipe.transform(post.title.rendered),
-            timeDescription: this.removeHtmlPipe.transform(
-              post.content.rendered
-            )
-          } as HeimstundenTimeModel)
-      )
-    );
+  heimstundenGuSp$: Observable<HeimstundenTimeModel> = this.muteFirst(
+    this.requireHeimstundenInfos$.pipe(startWith(null)),
+    this.store$.select(selectGuSpHeimstundenInfos)
+  );
 
-  heimstundenRaRo$: Observable<
-    HeimstundenTimeModel
-  > = this.wordpressService
-    .getPostByCategoryIdAndTagId$(
-      WordpressDictionary.categories.raro.content,
-      WordpressDictionary.tags.time
-    )
-    .pipe(
-      map(
-        post =>
-          ({
-            title: this.removeHtmlPipe.transform(post.title.rendered),
-            timeDescription: this.removeHtmlPipe.transform(
-              post.content.rendered
-            )
-          } as HeimstundenTimeModel)
-      )
-    );
+  heimstundenCaEx$: Observable<HeimstundenTimeModel> = this.muteFirst(
+    this.requireHeimstundenInfos$.pipe(startWith(null)),
+    this.store$.select(selectCaExHeimstundenInfos)
+  );
+
+  heimstundenRaRo$: Observable<HeimstundenTimeModel> = this.muteFirst(
+    this.requireHeimstundenInfos$.pipe(startWith(null)),
+    this.store$.select(selectRaRoHeimstundenInfos)
+  );
 }

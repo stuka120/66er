@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { StufenCardModel } from "../../model/stufen-card.model";
+import { StufenHeimstundenCollection, StufenInfoState } from "./state";
 
 export const loadAllStufenAction = createAction(
   "[StufenInfo] Load stufen-infos"
@@ -9,16 +9,34 @@ export const loadAllStufenSuccessAction = createAction(
   "[StufenInfo] Load stufen-infos success",
   props<{
     payload: {
-      biber: StufenCardModel;
-      wiwoe: StufenCardModel;
-      gusp: StufenCardModel;
-      caex: StufenCardModel;
-      raro: StufenCardModel;
+      biber: StufenInfoState;
+      wiwoe: StufenInfoState;
+      gusp: StufenInfoState;
+      caex: StufenInfoState;
+      raro: StufenInfoState;
     };
   }>()
 );
 
 export const loadAllStufenErrorAction = createAction(
   "[StufenInfo] Load stufen-infos error",
+  props<{ payload: { error: string } }>()
+);
+
+export const loadAllHeimstundenAction = createAction(
+  "[StufenInfo] Load stufen heimstunden"
+);
+
+export const loadAllHeimstundenSuccessAction = createAction(
+  "[StufenInfo] Load stufen heimstunden success",
+  props<{
+    payload: {
+      heimstundenInfos: StufenHeimstundenCollection;
+    };
+  }>()
+);
+
+export const loadAllHeimstundenErrorAction = createAction(
+  "[StufenInfo] Load stufen heimstunden fail",
   props<{ payload: { error: string } }>()
 );

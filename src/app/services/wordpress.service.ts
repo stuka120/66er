@@ -11,6 +11,10 @@ import {
 import { WordpressPostResponseModel } from "./WordpressResponseModel.model";
 import { WordpressDictionary } from "../dictionary/wordpress.dictionary";
 import { RemoveHtmlPipe } from "../pipes/remove-html.pipe";
+import {
+  StufenHeimstundenCollection,
+  StufenHeimstundenInfoState
+} from "../root-store/stufen-info-store/state";
 
 @Injectable()
 export class WordpressService {
@@ -61,7 +65,83 @@ export class WordpressService {
     );
   }
 
-  public getStufenInfos$(): Observable<StufenCardCollection> {
+  public getHeimstundenInfos$(): Observable<StufenHeimstundenCollection> {
+    return combineLatest([
+      this.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.biber.content,
+        WordpressDictionary.tags.time
+      ).pipe(
+        map(
+          post =>
+            ({
+              title: post.title.rendered,
+              timeDescription: post.content.rendered
+            } as StufenHeimstundenInfoState)
+        )
+      ),
+      this.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.wiwoe.content,
+        WordpressDictionary.tags.time
+      ).pipe(
+        map(
+          post =>
+            ({
+              title: post.title.rendered,
+              timeDescription: post.content.rendered
+            } as StufenHeimstundenInfoState)
+        )
+      ),
+      this.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.gusp.content,
+        WordpressDictionary.tags.time
+      ).pipe(
+        map(
+          post =>
+            ({
+              title: post.title.rendered,
+              timeDescription: post.content.rendered
+            } as StufenHeimstundenInfoState)
+        )
+      ),
+      this.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.caex.content,
+        WordpressDictionary.tags.time
+      ).pipe(
+        map(
+          post =>
+            ({
+              title: post.title.rendered,
+              timeDescription: post.content.rendered
+            } as StufenHeimstundenInfoState)
+        )
+      ),
+      this.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.raro.content,
+        WordpressDictionary.tags.time
+      ).pipe(
+        map(
+          post =>
+            ({
+              title: post.title.rendered,
+              timeDescription: post.content.rendered
+            } as StufenHeimstundenInfoState)
+        )
+      )
+    ]).pipe(
+      map(
+        ([biber, wiwoe, gusp, caex, raro]) =>
+          ({
+            biber,
+            wiwoe,
+            gusp,
+            caex,
+            raro
+          } as StufenHeimstundenCollection)
+      )
+    );
+  }
+
+  public getStufenInfos$() {
     return combineLatest([
       this.getPostByCategoryIdAndTagId$(
         WordpressDictionary.categories.biber.content,

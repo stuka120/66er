@@ -1,25 +1,57 @@
-import { StufenCardModel } from "../../model/stufen-card.model";
-
 export interface State {
   needStufenInfos: boolean;
-  biberStufenInfo?: StufenCardModel;
-  wiwoeStufenInfo?: StufenCardModel;
-  guspStufenInfo?: StufenCardModel;
-  caexStufenInfo?: StufenCardModel;
-  raroStufenInfo?: StufenCardModel;
+  stufenInfos: {
+    biber?: StufenInfoState;
+    wiwoe?: StufenInfoState;
+    gusp?: StufenInfoState;
+    caex?: StufenInfoState;
+    raro?: StufenInfoState;
+  };
+  needHeimstundenInfos: boolean;
+  heimstundenInfos: StufenHeimstundenCollection;
 
   isLoading: boolean;
   error: string | null;
 }
 
+export interface StufenInfoState {
+  stufenUri: string[];
+  imgUrl: string;
+  title: string;
+  shortDescription: string;
+  fullDescription: string;
+}
+
+export interface StufenHeimstundenCollection {
+  biber?: StufenHeimstundenInfoState;
+  wiwoe?: StufenHeimstundenInfoState;
+  gusp?: StufenHeimstundenInfoState;
+  caex?: StufenHeimstundenInfoState;
+  raro?: StufenHeimstundenInfoState;
+}
+
+export interface StufenHeimstundenInfoState {
+  title: string;
+  timeDescription: string;
+}
+
 export const initialState: State = {
   needStufenInfos: true,
-
-  biberStufenInfo: null,
-  wiwoeStufenInfo: null,
-  guspStufenInfo: null,
-  caexStufenInfo: null,
-  raroStufenInfo: null,
+  stufenInfos: {
+    biber: null,
+    wiwoe: null,
+    gusp: null,
+    caex: null,
+    raro: null
+  },
+  needHeimstundenInfos: true,
+  heimstundenInfos: {
+    biber: null,
+    wiwoe: null,
+    gusp: null,
+    caex: null,
+    raro: null
+  },
 
   isLoading: false,
   error: null
