@@ -6,12 +6,16 @@ export interface WordpressMediaResponseDto {
   title: {
     rendered: string;
   };
+  caption: {
+    rendered: string;
+  };
 }
 
 export interface DownloadModel {
   id: number;
   mime_type: string;
   source_url: string;
+  fileName: string;
   title: string;
   isVisible: boolean;
 }

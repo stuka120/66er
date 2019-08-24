@@ -1,0 +1,12 @@
+<div class="card rounded-0 shadow-sm h-100" *ngIf="model?.downloads">
+  <div class="card-body">
+    <h4 *ngIf="model.title">
+      {{ model.title }}
+    </h4>
+    <div class="row" *ngFor="let download of model.downloads">
+      <div class="col">
+        <app-downloads-card-item [model]="download"></app-downloads-card-item>
+      </div>
+    </div>
+  </div>
+</div>

@@ -3,9 +3,10 @@ import { Store } from "@ngrx/store";
 import { RootState } from "../../root-store/root-state";
 import { Observable } from "rxjs";
 import { HeroBannerModel } from "../hero-banner/hero-banner.model";
-import { StufenInfoFacade } from "../../facades/stufen-info.facade";
 import { StufenCardModel } from "../../model/stufen-card.model";
 import { TeamCardCollectionModel } from "../team-card-collection/team-card-collection.model";
+import { DownloadsCardModel } from "../downloads-card/downloads-card.model";
+import { WiwoeDashboardFacade } from "../../facades/stufen-facades/wiwoe-dashboard.facade";
 
 @Component({
   selector: "app-stufen-overview-dashboard",
@@ -22,16 +23,17 @@ export class StufenOverviewDashboardComponent implements OnInit {
   };
 
   stufenInfoWiWoe$: Observable<StufenCardModel>;
-
   teamMembers$: Observable<TeamCardCollectionModel>;
+  downloads$: Observable<DownloadsCardModel>;
 
   constructor(
     private store$: Store<RootState>,
-    private stufenInfoFacade: StufenInfoFacade
+    private wiwoeFacade: WiwoeDashboardFacade
   ) {}
 
   ngOnInit() {
-    this.stufenInfoWiWoe$ = this.stufenInfoFacade.stufenInfoWiWoe$;
-    this.teamMembers$ = this.stufenInfoFacade.teamPostsWiWoe$;
+    this.stufenInfoWiWoe$ = this.wiwoeFacade.stufenInfo$;
+    this.teamMembers$ = this.wiwoeFacade.stufenTeam$;
+    this.downloads$ = this.wiwoeFacade.stufenDownloads$;
   }
 }

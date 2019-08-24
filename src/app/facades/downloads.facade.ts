@@ -6,24 +6,33 @@ import {
   WordpressMediaResponseDto
 } from "../model/wordpress-media-response.dto";
 import { map } from "rxjs/operators";
+import { RemoveHtmlPipe } from "../pipes/remove-html.pipe";
 
 @Injectable({
   providedIn: "root"
 })
 export class DownloadsFacade {
-  constructor(private wordpressService: WordpressService) {}
+  constructor(
+    private wordpressService: WordpressService,
+    private removeHtmlPipe: RemoveHtmlPipe
+  ) {}
 
-  currentDownloads$: Observable<
-    DownloadModel[]
-  > = this.wordpressService
-    .getMedia$("downloads_aktuell")
-    .pipe(map(dtos => dtos.map(dto => this.getDownloadModel(dto))));
+  getDownloadsByTagName(tagName: string): Observable<DownloadModel[]> {
+    return this.wordpressService
+      .getMedia$(tagName)
+      .pipe(map(dtos => dtos.map(dto => this.mapToDownloadModel(dto))));
+  }
 
-  private getDownloadModel(dto: WordpressMediaResponseDto): DownloadModel {
+  currentDownloads$: Observable<DownloadModel[]> = this.getDownloadsByTagName(
+    "downloads_aktuell"
+  );
+
+  private mapToDownloadModel(dto: WordpressMediaResponseDto): DownloadModel {
     return {
       id: dto.id,
       isVisible: true,
-      title: dto.title.rendered,
+      fileName: this.removeHtmlPipe.transform(dto.title.rendered),
+      title: this.removeHtmlPipe.transform(dto.caption.rendered),
       mime_type: dto.mime_type,
       source_url: dto.source_url
     };

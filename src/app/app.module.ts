@@ -20,7 +20,7 @@ import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
 import { FormsModule } from "@angular/forms";
 import { FlatpickrModule } from "angularx-flatpickr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { RootStoreModule } from "./root-store/root-store.module";
+import { RootStoreModule } from "./root-store";
 import { HeroBannerComponent } from "./components/hero-banner/hero-banner.component";
 import { StufenOverviewDashboardComponent } from "./components/stufen-overview-dashboard/stufen-overview-dashboard.component";
 import { StufenInfoFacade } from "./facades/stufen-info.facade";
@@ -31,6 +31,9 @@ import { TeamCardComponent } from "./components/team-card/team-card.component";
 import { TeamCardCollectionComponent } from "./components/team-card-collection/team-card-collection.component";
 import { DownloadsFacade } from "./facades/downloads.facade";
 import { RemoveHtmlPipe } from "./pipes/remove-html.pipe";
+import { DownloadsCardComponent } from "./components/downloads-card/downloads-card.component";
+import { DownloadsCardItemComponent } from "./components/downloads-card-item/downloads-card-item.component";
+import { WiwoeDashboardFacade } from "./facades/stufen-facades/wiwoe-dashboard.facade";
 
 @NgModule({
   declarations: [
@@ -47,7 +50,9 @@ import { RemoveHtmlPipe } from "./pipes/remove-html.pipe";
     StickyNoteComponent,
     TeamCardComponent,
     TeamCardCollectionComponent,
-    RemoveHtmlPipe
+    RemoveHtmlPipe,
+    DownloadsCardComponent,
+    DownloadsCardItemComponent
   ],
   imports: [
     BrowserModule,
@@ -70,6 +75,9 @@ import { RemoveHtmlPipe } from "./pipes/remove-html.pipe";
     MyFacebookService,
     WordpressService,
     StufenInfoFacade,
+
+    WiwoeDashboardFacade,
+
     MyFacebookFacade,
     DownloadsFacade,
     RemoveHtmlPipe
