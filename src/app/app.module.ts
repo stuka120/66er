@@ -34,6 +34,10 @@ import { RemoveHtmlPipe } from "./pipes/remove-html.pipe";
 import { DownloadsCardComponent } from "./components/downloads-card/downloads-card.component";
 import { DownloadsCardItemComponent } from "./components/downloads-card-item/downloads-card-item.component";
 import { WiwoeDashboardFacade } from "./facades/stufen-facades/wiwoe-dashboard.facade";
+import { BiberDashboardFacade } from "./facades/stufen-facades/biber-dashboard.facade";
+import { GuspDashboardFacade } from "./facades/stufen-facades/gusp-dashboard.facade";
+import { CaexDashboardFacade } from "./facades/stufen-facades/caex-dashboard.facade";
+import { RaroDashboardFacade } from "./facades/stufen-facades/raro-dashboard.facade";
 
 @NgModule({
   declarations: [
@@ -74,9 +78,13 @@ import { WiwoeDashboardFacade } from "./facades/stufen-facades/wiwoe-dashboard.f
   providers: [
     MyFacebookService,
     WordpressService,
-    StufenInfoFacade,
 
+    StufenInfoFacade,
+    BiberDashboardFacade,
     WiwoeDashboardFacade,
+    GuspDashboardFacade,
+    CaexDashboardFacade,
+    RaroDashboardFacade,
 
     MyFacebookFacade,
     DownloadsFacade,

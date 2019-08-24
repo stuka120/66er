@@ -1,4 +1,4 @@
-<div class="container content" *ngIf="model">
+<div class="container content" *ngIf="model && model.teamMembers?.length > 0">
   <div class="heading" *ngIf="model.headerText">
     <h2>{{ model.headerText }}</h2>
   </div>

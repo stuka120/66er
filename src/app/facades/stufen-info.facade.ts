@@ -34,12 +34,16 @@ import { WordpressService } from "../services/wordpress.service";
 import { WordpressPostResponseModel } from "../services/WordpressResponseModel.model";
 import { TeamCardModel } from "../components/team-card/team-card.model";
 import { TeamCardCollectionModel } from "../components/team-card-collection/team-card-collection.model";
+import { WordpressDictionary } from "../dictionary/wordpress.dictionary";
+import { HeimstundenTimeModel } from "../components/stufen-overview-dashboard/stufen-overview-dashboard.component";
+import { RemoveHtmlPipe } from "../pipes/remove-html.pipe";
 
 @Injectable()
 export class StufenInfoFacade {
   constructor(
     private store$: Store<RootState>,
-    private wordpressService: WordpressService
+    private wordpressService: WordpressService,
+    private removeHtmlPipe: RemoveHtmlPipe
   ) {}
 
   public muteFirst = <T, R>(first$: Observable<T>, second$: Observable<R>) =>
@@ -110,24 +114,214 @@ export class StufenInfoFacade {
     this.store$.select(selectRaRoStufenInfos)
   );
 
+  public teamPostsBiber$: Observable<
+    TeamCardCollectionModel
+  > = this.wordpressService
+    .getPostsByCategoryId$(WordpressDictionary.categories.biber.team)
+    .pipe(
+      filter(posts => !!posts && posts.length > 0),
+      map(
+        posts =>
+          ({
+            headerText: "Das Biber Team",
+            teamMembers: posts.map(
+              post =>
+                ({
+                  name: post.title.rendered,
+                  description: post.content.rendered,
+                  imgUrl:
+                    post._embedded["wp:featuredmedia"][0].media_details.sizes
+                      .large.source_url
+                } as TeamCardModel)
+            )
+          } as TeamCardCollectionModel)
+      )
+    );
+
   public teamPostsWiWoe$: Observable<
     TeamCardCollectionModel
-  > = this.wordpressService.getPostsByCategoryId$(9).pipe(
-    map(
-      posts =>
-        ({
-          headerText: "Das WiWö Team",
-          teamMembers: posts.map(
-            post =>
-              ({
-                name: post.title.rendered,
-                description: post.content.rendered,
-                imgUrl:
-                  post._embedded["wp:featuredmedia"][0].media_details.sizes
-                    .large.source_url
-              } as TeamCardModel)
-          )
-        } as TeamCardCollectionModel)
+  > = this.wordpressService
+    .getPostsByCategoryId$(WordpressDictionary.categories.wiwoe.team)
+    .pipe(
+      map(
+        posts =>
+          ({
+            headerText: "Das WiWö Team",
+            teamMembers: posts.map(
+              post =>
+                ({
+                  name: post.title.rendered,
+                  description: post.content.rendered,
+                  imgUrl:
+                    post._embedded["wp:featuredmedia"][0].media_details.sizes
+                      .large.source_url
+                } as TeamCardModel)
+            )
+          } as TeamCardCollectionModel)
+      )
+    );
+
+  public teamPostsGuSp$: Observable<
+    TeamCardCollectionModel
+  > = this.wordpressService
+    .getPostsByCategoryId$(WordpressDictionary.categories.gusp.team)
+    .pipe(
+      map(
+        posts =>
+          ({
+            headerText: "Das GuSp Team",
+            teamMembers: posts.map(
+              post =>
+                ({
+                  name: post.title.rendered,
+                  description: post.content.rendered,
+                  imgUrl:
+                    post._embedded["wp:featuredmedia"][0].media_details.sizes
+                      .large.source_url
+                } as TeamCardModel)
+            )
+          } as TeamCardCollectionModel)
+      )
+    );
+
+  public teamPostsCaEx$: Observable<
+    TeamCardCollectionModel
+  > = this.wordpressService
+    .getPostsByCategoryId$(WordpressDictionary.categories.caex.team)
+    .pipe(
+      map(
+        posts =>
+          ({
+            headerText: "Das CaEx Team",
+            teamMembers: posts.map(
+              post =>
+                ({
+                  name: post.title.rendered,
+                  description: post.content.rendered,
+                  imgUrl:
+                    post._embedded["wp:featuredmedia"][0].media_details.sizes
+                      .large.source_url
+                } as TeamCardModel)
+            )
+          } as TeamCardCollectionModel)
+      )
+    );
+
+  public teamPostsRaRo$: Observable<
+    TeamCardCollectionModel
+  > = this.wordpressService
+    .getPostsByCategoryId$(WordpressDictionary.categories.raro.team)
+    .pipe(
+      map(
+        posts =>
+          ({
+            headerText: "Das RaRo Team",
+            teamMembers: posts.map(
+              post =>
+                ({
+                  name: post.title.rendered,
+                  description: post.content.rendered,
+                  imgUrl:
+                    post._embedded["wp:featuredmedia"][0].media_details.sizes
+                      .large.source_url
+                } as TeamCardModel)
+            )
+          } as TeamCardCollectionModel)
+      )
+    );
+
+  heimstundenBiber$: Observable<
+    HeimstundenTimeModel
+  > = this.wordpressService
+    .getPostByCategoryIdAndTagId$(
+      WordpressDictionary.categories.biber.content,
+      WordpressDictionary.tags.time
     )
-  );
+    .pipe(
+      map(
+        post =>
+          ({
+            title: this.removeHtmlPipe.transform(post.title.rendered),
+            timeDescription: this.removeHtmlPipe.transform(
+              post.content.rendered
+            )
+          } as HeimstundenTimeModel)
+      )
+    );
+
+  heimstundenWiWoe$: Observable<
+    HeimstundenTimeModel
+  > = this.wordpressService
+    .getPostByCategoryIdAndTagId$(
+      WordpressDictionary.categories.wiwoe.content,
+      WordpressDictionary.tags.time
+    )
+    .pipe(
+      map(
+        post =>
+          ({
+            title: this.removeHtmlPipe.transform(post.title.rendered),
+            timeDescription: this.removeHtmlPipe.transform(
+              post.content.rendered
+            )
+          } as HeimstundenTimeModel)
+      )
+    );
+
+  heimstundenGuSp$: Observable<
+    HeimstundenTimeModel
+  > = this.wordpressService
+    .getPostByCategoryIdAndTagId$(
+      WordpressDictionary.categories.gusp.content,
+      WordpressDictionary.tags.time
+    )
+    .pipe(
+      map(
+        post =>
+          ({
+            title: this.removeHtmlPipe.transform(post.title.rendered),
+            timeDescription: this.removeHtmlPipe.transform(
+              post.content.rendered
+            )
+          } as HeimstundenTimeModel)
+      )
+    );
+
+  heimstundenCaEx$: Observable<
+    HeimstundenTimeModel
+  > = this.wordpressService
+    .getPostByCategoryIdAndTagId$(
+      WordpressDictionary.categories.caex.content,
+      WordpressDictionary.tags.time
+    )
+    .pipe(
+      map(
+        post =>
+          ({
+            title: this.removeHtmlPipe.transform(post.title.rendered),
+            timeDescription: this.removeHtmlPipe.transform(
+              post.content.rendered
+            )
+          } as HeimstundenTimeModel)
+      )
+    );
+
+  heimstundenRaRo$: Observable<
+    HeimstundenTimeModel
+  > = this.wordpressService
+    .getPostByCategoryIdAndTagId$(
+      WordpressDictionary.categories.raro.content,
+      WordpressDictionary.tags.time
+    )
+    .pipe(
+      map(
+        post =>
+          ({
+            title: this.removeHtmlPipe.transform(post.title.rendered),
+            timeDescription: this.removeHtmlPipe.transform(
+              post.content.rendered
+            )
+          } as HeimstundenTimeModel)
+      )
+    );
 }

@@ -5,7 +5,7 @@ import {
   DownloadModel,
   WordpressMediaResponseDto
 } from "../model/wordpress-media-response.dto";
-import { map } from "rxjs/operators";
+import { filter, map } from "rxjs/operators";
 import { RemoveHtmlPipe } from "../pipes/remove-html.pipe";
 
 @Injectable({
@@ -18,9 +18,10 @@ export class DownloadsFacade {
   ) {}
 
   getDownloadsByTagName(tagName: string): Observable<DownloadModel[]> {
-    return this.wordpressService
-      .getMedia$(tagName)
-      .pipe(map(dtos => dtos.map(dto => this.mapToDownloadModel(dto))));
+    return this.wordpressService.getMedia$(tagName).pipe(
+      filter(dtos => !!dtos && dtos.length > 0),
+      map(dtos => dtos.map(dto => this.mapToDownloadModel(dto)))
+    );
   }
 
   currentDownloads$: Observable<DownloadModel[]> = this.getDownloadsByTagName(

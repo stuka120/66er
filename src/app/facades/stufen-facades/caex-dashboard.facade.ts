@@ -8,38 +8,36 @@ import { DownloadsCardModel } from "../../components/downloads-card/downloads-ca
 import { map } from "rxjs/operators";
 import { StufenFacadeInterface } from "./stufen-facade.interface";
 import { HeimstundenTimeModel } from "../../components/stufen-overview-dashboard/stufen-overview-dashboard.component";
-import { WordpressDictionary } from "../../dictionary/wordpress.dictionary";
+import { WordpressDictionary } from '../../dictionary/wordpress.dictionary';
 
 @Injectable({
   providedIn: "root"
 })
-export class WiwoeDashboardFacade implements StufenFacadeInterface {
+export class CaexDashboardFacade implements StufenFacadeInterface {
   constructor(
     private downloadFacade: DownloadsFacade,
     private stufenFacade: StufenInfoFacade
   ) {}
 
-  stufenName: string = "WiWö";
+  stufenName: string = "CaEx";
 
-  stufenInfo$: Observable<StufenCardModel> = this.stufenFacade.stufenInfoWiWoe$;
+  stufenInfo$: Observable<StufenCardModel> = this.stufenFacade.stufenInfoCaEx$;
 
   stufenHeimstunden$: Observable<HeimstundenTimeModel> = this.stufenFacade
-    .heimstundenWiWoe$;
+    .heimstundenCaEx$;
 
   stufenTeam$: Observable<TeamCardCollectionModel> = this.stufenFacade
-    .teamPostsWiWoe$;
+    .teamPostsCaEx$;
 
   stufenDownloads$: Observable<
     DownloadsCardModel
-  > = this.downloadFacade
-    .getDownloadsByTagName(WordpressDictionary.downloads.wiwoe)
-    .pipe(
-      map(
-        downloads =>
-          ({
-            title: "WiWö Downloads",
-            downloads: downloads
-          } as DownloadsCardModel)
-      )
-    );
+  > = this.downloadFacade.getDownloadsByTagName(WordpressDictionary.downloads.caex).pipe(
+    map(
+      downloads =>
+        ({
+          title: "CaEx Downloads",
+          downloads: downloads
+        } as DownloadsCardModel)
+    )
+  );
 }

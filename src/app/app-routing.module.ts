@@ -5,6 +5,10 @@ import { DownloadsDashboardComponent } from "./components/downloads-dashboard/do
 import { CalendarDashboardComponent } from "./components/calendar-dashboard/calendar-dashboard.component";
 import { StufenOverviewDashboardComponent } from "./components/stufen-overview-dashboard/stufen-overview-dashboard.component";
 import { WiwoeDashboardFacade } from "./facades/stufen-facades/wiwoe-dashboard.facade";
+import { BiberDashboardFacade } from "./facades/stufen-facades/biber-dashboard.facade";
+import { GuspDashboardFacade } from "./facades/stufen-facades/gusp-dashboard.facade";
+import { CaexDashboardFacade } from "./facades/stufen-facades/caex-dashboard.facade";
+import { RaroDashboardFacade } from './facades/stufen-facades/raro-dashboard.facade';
 
 const routes: Routes = [
   {
@@ -26,9 +30,29 @@ const routes: Routes = [
     path: "stufe",
     children: [
       {
+        path: "biber",
+        component: StufenOverviewDashboardComponent,
+        data: { requiredService: BiberDashboardFacade }
+      },
+      {
         path: "wiwoe",
         component: StufenOverviewDashboardComponent,
-        data: {requiredService: WiwoeDashboardFacade}
+        data: { requiredService: WiwoeDashboardFacade }
+      },
+      {
+        path: "gusp",
+        component: StufenOverviewDashboardComponent,
+        data: { requiredService: GuspDashboardFacade }
+      },
+      {
+        path: "caex",
+        component: StufenOverviewDashboardComponent,
+        data: { requiredService: CaexDashboardFacade }
+      },
+      {
+        path: "raro",
+        component: StufenOverviewDashboardComponent,
+        data: { requiredService: RaroDashboardFacade }
       }
     ]
   }

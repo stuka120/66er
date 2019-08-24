@@ -8,28 +8,29 @@
       <app-downloads-card [model]="downloads$ | async"></app-downloads-card>
     </div>
     <div class="col-lg-6 offset-sm-0 col-sm-9">
-      <app-sticky-note>
+      <app-sticky-note *ngIf="stufenInfo$ | async as stufenInfo">
         <div
           body
           class="card-body"
           style="white-space: pre-wrap;"
-          [innerHTML]="(stufenInfoWiWoe$ | async)?.fullDescription"
+          [innerHTML]="stufenInfo.fullDescription"
         ></div>
       </app-sticky-note>
     </div>
 
     <div class="col-lg-3 col-sm-12">
       <app-sticky-note
+        *ngIf="heimstunden$ | async as heimstunden"
         [isRotated]="true"
         [isZoomingOnHover]="false"
         [backgroundColor]="'lightblue'"
       >
         <div header>
-          <h4>Heimstunden</h4>
+          <h4>{{ heimstunden.title }}</h4>
         </div>
-        <div body>
-          <fa name="cog" animation="spin"></fa>
-          Mittwoch: 18:00 - 19:30
+        <div body class="d-flex">
+          <fa name="cog" animation="spin" class="mr-2"></fa>
+          <div [innerHTML]="heimstunden.timeDescription"></div>
         </div>
       </app-sticky-note>
     </div>

@@ -15,19 +15,13 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./stufen-overview-dashboard.component.css"]
 })
 export class StufenOverviewDashboardComponent implements OnInit {
-  heroBannerModel: HeroBannerModel = {
-    imageUrl: "http://test3.66er.net/wp-content/uploads/2019/03/titelbild.jpg",
-    buttonText: null,
-    morpext: null,
-    morphextPrefix: "Wir sind die WiWö",
-    imageHeight: 20
-  };
-
   stufenFacade: StufenFacadeInterface;
 
-  stufenInfoWiWoe$: Observable<StufenCardModel>;
+  heroBannerModel: HeroBannerModel;
+  stufenInfo$: Observable<StufenCardModel>;
   teamMembers$: Observable<TeamCardCollectionModel>;
   downloads$: Observable<DownloadsCardModel>;
+  heimstunden$: Observable<HeimstundenTimeModel>;
 
   constructor(
     private store$: Store<RootState>,
@@ -40,8 +34,23 @@ export class StufenOverviewDashboardComponent implements OnInit {
       this.route.snapshot.data["requiredService"]
     );
 
-    this.stufenInfoWiWoe$ = this.stufenFacade.stufenInfo$;
+    this.heroBannerModel = {
+      imageUrl:
+        "http://test3.66er.net/wp-content/uploads/2019/03/titelbild.jpg",
+      buttonText: null,
+      morpext: null,
+      morphextPrefix: `Wir sind die ${this.stufenFacade.stufenName}`,
+      imageHeight: 20
+    };
+
+    this.stufenInfo$ = this.stufenFacade.stufenInfo$;
+    this.heimstunden$ = this.stufenFacade.stufenHeimstunden$;
     this.teamMembers$ = this.stufenFacade.stufenTeam$;
     this.downloads$ = this.stufenFacade.stufenDownloads$;
   }
+}
+
+export interface HeimstundenTimeModel {
+  title: string;
+  timeDescription: string;
 }
