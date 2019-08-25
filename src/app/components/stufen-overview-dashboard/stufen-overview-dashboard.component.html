@@ -13,7 +13,7 @@
           body
           class="card-body"
           style="white-space: pre-wrap;"
-          [innerHTML]="stufenInfo.fullDescription"
+          [innerHTML]="stufenInfo.fullDescription | removeMultipleBreaks"
         ></div>
       </app-sticky-note>
     </div>

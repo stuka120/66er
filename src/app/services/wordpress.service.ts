@@ -153,9 +153,7 @@ export class WordpressService {
               stufenUri: ["stufe", "biber"],
               title: post.title.rendered,
               shortDescription: post.excerpt.rendered,
-              fullDescription: this.removeHtmlPipe.transform(
-                post.content.rendered
-              ),
+              fullDescription: post.content.rendered,
               imgUrl: "http://test3.66er.net/wp-content/uploads/biber.jpg"
             }
         )
@@ -170,9 +168,7 @@ export class WordpressService {
               stufenUri: ["stufe", "wiwoe"],
               title: post.title.rendered,
               shortDescription: post.excerpt.rendered,
-              fullDescription: this.removeHtmlPipe.transform(
-                post.content.rendered
-              ),
+              fullDescription: post.content.rendered,
               imgUrl: "http://test3.66er.net/wp-content/uploads/wiwoe.jpg"
             }
         )
@@ -187,9 +183,7 @@ export class WordpressService {
               stufenUri: ["stufe", "gusp"],
               title: post.title.rendered,
               shortDescription: post.excerpt.rendered,
-              fullDescription: this.removeHtmlPipe.transform(
-                post.content.rendered
-              ),
+              fullDescription: post.content.rendered,
               imgUrl: "http://test3.66er.net/wp-content/uploads/gusp.png"
             }
         )
@@ -204,9 +198,7 @@ export class WordpressService {
               stufenUri: ["stufe", "caex"],
               title: post.title.rendered,
               shortDescription: post.excerpt.rendered,
-              fullDescription: this.removeHtmlPipe.transform(
-                post.content.rendered
-              ),
+              fullDescription: post.content.rendered,
               imgUrl: "http://test3.66er.net/wp-content/uploads/caex.jpg"
             }
         )
@@ -221,9 +213,7 @@ export class WordpressService {
               stufenUri: ["stufe", "raro"],
               title: post.title.rendered,
               shortDescription: post.excerpt.rendered,
-              fullDescription: this.removeHtmlPipe.transform(
-                post.content.rendered
-              ),
+              fullDescription: post.content.rendered,
               imgUrl: "http://test3.66er.net/wp-content/uploads/raro.png"
             }
         )

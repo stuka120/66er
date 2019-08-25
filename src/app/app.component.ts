@@ -7,7 +7,7 @@ import { FacebookService } from "ngx-facebook";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  title = "ng-wordpress";
+  title = "Pfadfindergruppe 66";
   applicationId: string;
 
   constructor(private fbService: FacebookService) {}

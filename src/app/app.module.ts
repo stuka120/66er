@@ -37,6 +37,7 @@ import { BiberDashboardFacade } from "./facades/stufen-facades/biber-dashboard.f
 import { GuspDashboardFacade } from "./facades/stufen-facades/gusp-dashboard.facade";
 import { CaexDashboardFacade } from "./facades/stufen-facades/caex-dashboard.facade";
 import { RaroDashboardFacade } from "./facades/stufen-facades/raro-dashboard.facade";
+import { RemoveMultipleBreaksPipe } from "./pipes/remove-multiple-breaks.pipe";
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { RaroDashboardFacade } from "./facades/stufen-facades/raro-dashboard.fac
     TeamCardCollectionComponent,
     RemoveHtmlPipe,
     DownloadsCardComponent,
-    DownloadsCardItemComponent
+    DownloadsCardItemComponent,
+    RemoveMultipleBreaksPipe
   ],
   imports: [
     BrowserModule,
@@ -84,7 +86,9 @@ import { RaroDashboardFacade } from "./facades/stufen-facades/raro-dashboard.fac
 
     MyFacebookFacade,
     DownloadsFacade,
-    RemoveHtmlPipe
+
+    RemoveHtmlPipe,
+    RemoveMultipleBreaksPipe
   ],
   bootstrap: [AppComponent]
 })

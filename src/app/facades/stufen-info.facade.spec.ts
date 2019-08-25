@@ -1,7 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 
-import { StufenInfoService } from './stufen-info.service';
-
 describe('StufenInfoService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
