@@ -8,6 +8,7 @@ import { StartDashboardComponent } from "./components/start-dashboard/start-dash
 import { HttpClientModule } from "@angular/common/http";
 import { NgbModalModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { DownloadsDashboardComponent } from "./components/downloads-dashboard/downloads-dashboard.component";
+import { FullCalendarModule } from "@fullcalendar/angular";
 import { WordpressService } from "./services/wordpress.service";
 import { FacebookModule } from "ngx-facebook";
 import { NewsCardComponent } from "./components/news-card/news-card.component";
@@ -15,8 +16,6 @@ import { StufenCardComponent } from "./components/stufen-card/stufen-card.compon
 import { NewsCardCollectionComponent } from "./components/news-card-collection/news-card-collection.component";
 import { StufenCardCollectionComponent } from "./components/stufen-card-collection/stufen-card-collection.component";
 import { CalendarDashboardComponent } from "./components/calendar-dashboard/calendar-dashboard.component";
-import { CalendarModule, DateAdapter } from "angular-calendar";
-import { adapterFactory } from "angular-calendar/date-adapters/date-fns";
 import { FormsModule } from "@angular/forms";
 import { FlatpickrModule } from "angularx-flatpickr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -69,10 +68,7 @@ import { RaroDashboardFacade } from "./facades/stufen-facades/raro-dashboard.fac
     HttpClientModule,
     NgbModule,
     FacebookModule.forRoot(),
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory
-    }),
+    FullCalendarModule,
     RootStoreModule
   ],
   providers: [
