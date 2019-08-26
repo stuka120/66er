@@ -84,6 +84,6 @@ export class StartDashboardComponent implements OnInit {
 
     // ngrx injections
     this.posts$ = this.myFacebookFacade.posts$;
-    this.stufenCardModels$ = this.stufenInfoFacade.stufenInfosAll$;
+    this.stufenCardModels$ = this.stufenInfoFacade.stufenTeasersAll$;
   }
 }

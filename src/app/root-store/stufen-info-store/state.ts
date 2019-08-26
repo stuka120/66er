@@ -7,6 +7,14 @@ export interface State {
     caex?: StufenInfoState;
     raro?: StufenInfoState;
   };
+  needStufenTeaser: boolean;
+  stufenTeaser: {
+    biber?: StufenInfoState;
+    wiwoe?: StufenInfoState;
+    gusp?: StufenInfoState;
+    caex?: StufenInfoState;
+    raro?: StufenInfoState;
+  };
   needHeimstundenInfos: boolean;
   heimstundenInfos: StufenHeimstundenCollection;
 
@@ -38,6 +46,14 @@ export interface StufenHeimstundenInfoState {
 export const initialState: State = {
   needStufenInfos: true,
   stufenInfos: {
+    biber: null,
+    wiwoe: null,
+    gusp: null,
+    caex: null,
+    raro: null
+  },
+  needStufenTeaser: true,
+  stufenTeaser: {
     biber: null,
     wiwoe: null,
     gusp: null,

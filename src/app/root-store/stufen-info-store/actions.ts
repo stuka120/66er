@@ -23,6 +23,28 @@ export const loadAllStufenErrorAction = createAction(
   props<{ payload: { error: string } }>()
 );
 
+export const loadAllStufenTeasersAction = createAction(
+  "[StufenInfo] Load stufen-teasers"
+);
+
+export const loadAllStufenTeasersSuccessAction = createAction(
+  "[StufenInfo] Load stufen-teasers success",
+  props<{
+    payload: {
+      biber: StufenInfoState;
+      wiwoe: StufenInfoState;
+      gusp: StufenInfoState;
+      caex: StufenInfoState;
+      raro: StufenInfoState;
+    };
+  }>()
+);
+
+export const loadAllStufenTeasersErrorAction = createAction(
+  "[StufenInfo] Load stufen-teasers error",
+  props<{ payload: { error: string } }>()
+);
+
 export const loadAllHeimstundenAction = createAction(
   "[StufenInfo] Load stufen heimstunden"
 );

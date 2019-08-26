@@ -6,7 +6,10 @@ import {
   loadAllHeimstundenSuccessAction,
   loadAllStufenAction,
   loadAllStufenErrorAction,
-  loadAllStufenSuccessAction
+  loadAllStufenSuccessAction,
+  loadAllStufenTeasersAction,
+  loadAllStufenTeasersSuccessAction,
+  loadAllStufenTeasersErrorAction
 } from "./actions";
 
 export const reducer = createReducer(
@@ -36,6 +39,32 @@ export const reducer = createReducer(
     isLoading: false,
     error: action.payload.error,
     needStufenInfos: false
+  })),
+  on(loadAllStufenTeasersAction, state => ({
+    ...state,
+    isLoading: true,
+    error: undefined,
+    needStufenTeaser: true
+  })),
+  on(loadAllStufenTeasersSuccessAction, (state, action) => ({
+    ...state,
+    stufenTeaser: {
+      biber: action.payload.biber,
+      wiwoe: action.payload.wiwoe,
+      gusp: action.payload.gusp,
+      caex: action.payload.caex,
+      raro: action.payload.raro
+    },
+    needStufenTeaser: false,
+
+    isLoading: false,
+    error: null
+  })),
+  on(loadAllStufenTeasersErrorAction, (state, action) => ({
+    ...state,
+    isLoading: false,
+    error: action.payload.error,
+    needStufenTeaser: false
   })),
   on(loadAllHeimstundenAction, state => ({
     ...state,

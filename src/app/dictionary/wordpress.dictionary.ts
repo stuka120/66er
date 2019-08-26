@@ -23,7 +23,8 @@ export const WordpressDictionary = {
   },
   tags: {
     time: 16,
-    content: 15
+    content: 15,
+    teaser: 32
   },
   downloads: {
     biber: "downloads_biber",
