@@ -96,7 +96,7 @@ export class StufenInfoFacade {
   private getStufenInfos$() {
     return combineLatest([
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.biber.content,
+        WordpressDictionary.categories.biber,
         WordpressDictionary.tags.content
       ).pipe(
         map(
@@ -113,7 +113,7 @@ export class StufenInfoFacade {
         )
       ),
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.wiwoe.content,
+        WordpressDictionary.categories.wiwoe,
         WordpressDictionary.tags.content
       ).pipe(
         map(
@@ -130,7 +130,7 @@ export class StufenInfoFacade {
         )
       ),
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.gusp.content,
+        WordpressDictionary.categories.gusp,
         WordpressDictionary.tags.content
       ).pipe(
         map(
@@ -147,7 +147,7 @@ export class StufenInfoFacade {
         )
       ),
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.caex.content,
+        WordpressDictionary.categories.caex,
         WordpressDictionary.tags.content
       ).pipe(
         map(
@@ -164,7 +164,7 @@ export class StufenInfoFacade {
         )
       ),
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.raro.content,
+        WordpressDictionary.categories.raro,
         WordpressDictionary.tags.content
       ).pipe(
         map(
@@ -263,7 +263,7 @@ export class StufenInfoFacade {
   private getStufenTeasers$() {
     return combineLatest([
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.biber.content,
+        WordpressDictionary.categories.biber,
         WordpressDictionary.tags.teaser
       ).pipe(
         map(
@@ -280,7 +280,7 @@ export class StufenInfoFacade {
         )
       ),
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.wiwoe.content,
+        WordpressDictionary.categories.wiwoe,
         WordpressDictionary.tags.teaser
       ).pipe(
         map(
@@ -297,7 +297,7 @@ export class StufenInfoFacade {
         )
       ),
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.gusp.content,
+        WordpressDictionary.categories.gusp,
         WordpressDictionary.tags.teaser
       ).pipe(
         map(
@@ -314,7 +314,7 @@ export class StufenInfoFacade {
         )
       ),
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.caex.content,
+        WordpressDictionary.categories.caex,
         WordpressDictionary.tags.teaser
       ).pipe(
         map(
@@ -331,7 +331,7 @@ export class StufenInfoFacade {
         )
       ),
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.raro.content,
+        WordpressDictionary.categories.raro,
         WordpressDictionary.tags.teaser
       ).pipe(
         map(
@@ -408,7 +408,7 @@ export class StufenInfoFacade {
   teamPostsBiber$: Observable<
     TeamCardCollectionModel
   > = this.wordpressService
-    .getPostsByCategoryId$(WordpressDictionary.categories.biber.team)
+    .getPostsByCategoryIdAndTagId$(WordpressDictionary.categories.biber, WordpressDictionary.tags.team)
     .pipe(
       filter(posts => !!posts && posts.length > 0),
       map(
@@ -432,7 +432,7 @@ export class StufenInfoFacade {
   teamPostsWiWoe$: Observable<
     TeamCardCollectionModel
   > = this.wordpressService
-    .getPostsByCategoryId$(WordpressDictionary.categories.wiwoe.team)
+  .getPostsByCategoryIdAndTagId$(WordpressDictionary.categories.wiwoe, WordpressDictionary.tags.team)
     .pipe(
       map(
         posts =>
@@ -455,7 +455,7 @@ export class StufenInfoFacade {
   teamPostsGuSp$: Observable<
     TeamCardCollectionModel
   > = this.wordpressService
-    .getPostsByCategoryId$(WordpressDictionary.categories.gusp.team)
+    .getPostsByCategoryIdAndTagId$(WordpressDictionary.categories.gusp, WordpressDictionary.tags.team)
     .pipe(
       map(
         posts =>
@@ -478,7 +478,7 @@ export class StufenInfoFacade {
   teamPostsCaEx$: Observable<
     TeamCardCollectionModel
   > = this.wordpressService
-    .getPostsByCategoryId$(WordpressDictionary.categories.caex.team)
+    .getPostsByCategoryIdAndTagId$(WordpressDictionary.categories.caex, WordpressDictionary.tags.team)
     .pipe(
       map(
         posts =>
@@ -501,7 +501,7 @@ export class StufenInfoFacade {
   teamPostsRaRo$: Observable<
     TeamCardCollectionModel
   > = this.wordpressService
-    .getPostsByCategoryId$(WordpressDictionary.categories.raro.team)
+    .getPostsByCategoryIdAndTagId$(WordpressDictionary.categories.raro, WordpressDictionary.tags.team)
     .pipe(
       map(
         posts =>
@@ -549,7 +549,7 @@ export class StufenInfoFacade {
   private getHeimstundenInfos$(): Observable<StufenHeimstundenCollection> {
     return combineLatest([
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.biber.content,
+        WordpressDictionary.categories.biber,
         WordpressDictionary.tags.time
       ).pipe(
         map(
@@ -561,7 +561,7 @@ export class StufenInfoFacade {
         )
       ),
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.wiwoe.content,
+        WordpressDictionary.categories.wiwoe,
         WordpressDictionary.tags.time
       ).pipe(
         map(
@@ -573,7 +573,7 @@ export class StufenInfoFacade {
         )
       ),
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.gusp.content,
+        WordpressDictionary.categories.gusp,
         WordpressDictionary.tags.time
       ).pipe(
         map(
@@ -585,7 +585,7 @@ export class StufenInfoFacade {
         )
       ),
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.caex.content,
+        WordpressDictionary.categories.caex,
         WordpressDictionary.tags.time
       ).pipe(
         map(
@@ -597,7 +597,7 @@ export class StufenInfoFacade {
         )
       ),
       this.wordpressService.getPostByCategoryIdAndTagId$(
-        WordpressDictionary.categories.raro.content,
+        WordpressDictionary.categories.raro,
         WordpressDictionary.tags.time
       ).pipe(
         map(

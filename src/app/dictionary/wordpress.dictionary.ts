@@ -1,30 +1,16 @@
 export const WordpressDictionary = {
   categories: {
-    biber: {
-      content: 24,
-      team: 28
-    },
-    wiwoe: {
-      content: 13,
-      team: 9
-    },
-    gusp: {
-      content: 25,
-      team: 29
-    },
-    caex: {
-      content: 26,
-      team: 30
-    },
-    raro: {
-      content: 27,
-      team: 31
-    }
+    biber: 20,
+    wiwoe: 12,
+    gusp: 21,
+    caex: 22,
+    raro: 23
   },
   tags: {
     time: 16,
     content: 15,
-    teaser: 32
+    teaser: 32,
+    team: 33
   },
   downloads: {
     biber: "downloads_biber",

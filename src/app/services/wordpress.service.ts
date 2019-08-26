@@ -43,6 +43,19 @@ export class WordpressService {
     );
   }
 
+  public getPostsByCategoryIdAndTagId$(
+    categoryId: number,
+    tagId: number
+  ): Observable<WordpressPostResponseModel[]> {
+    return this.httpClient
+      .get<WordpressPostResponseModel[]>(
+        `http://test3.66er.net/wp-json/wp/v2/posts/?_embed&categories=${categoryId}&tags=${tagId}`
+      )
+      .pipe(
+        filter(posts => !!posts && posts.length > 0)
+      );
+  }
+
   public getPostByCategoryIdAndTagId$(
     categoryId: number,
     tagId: number
