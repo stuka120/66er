@@ -275,7 +275,7 @@ export class StufenInfoFacade {
               fullDescription: this.removeHtmlPipe.transform(
                 post.content.rendered
               ),
-              imgUrl: post._embedded["wp:featuredmedia"][0].media_details.sizes.thumbnail.source_url
+              imgUrl: post._embedded["wp:featuredmedia"][0].source_url
             }
         )
       ),
@@ -292,7 +292,7 @@ export class StufenInfoFacade {
               fullDescription: this.removeHtmlPipe.transform(
                 post.content.rendered
               ),
-              imgUrl: post._embedded["wp:featuredmedia"][0].media_details.sizes.thumbnail.source_url
+              imgUrl: post._embedded["wp:featuredmedia"][0].source_url
             }
         )
       ),
@@ -309,7 +309,7 @@ export class StufenInfoFacade {
               fullDescription: this.removeHtmlPipe.transform(
                 post.content.rendered
               ),
-              imgUrl: post._embedded["wp:featuredmedia"][0].media_details.sizes.thumbnail.source_url
+              imgUrl: post._embedded["wp:featuredmedia"][0].source_url
             }
         )
       ),
@@ -326,7 +326,7 @@ export class StufenInfoFacade {
               fullDescription: this.removeHtmlPipe.transform(
                 post.content.rendered
               ),
-              imgUrl: post._embedded["wp:featuredmedia"][0].media_details.sizes.thumbnail.source_url
+              imgUrl: post._embedded["wp:featuredmedia"][0].source_url
             }
         )
       ),
@@ -343,7 +343,7 @@ export class StufenInfoFacade {
               fullDescription: this.removeHtmlPipe.transform(
                 post.content.rendered
               ),
-              imgUrl: post._embedded["wp:featuredmedia"][0].media_details.sizes.thumbnail.source_url
+              imgUrl: post._embedded["wp:featuredmedia"][0].source_url
             }
         )
       )

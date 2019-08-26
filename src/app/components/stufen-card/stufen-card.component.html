@@ -1,4 +1,4 @@
-<div class="card shadow w-100 h-100 rounded-0" *ngIf="stufenCardModel">
+<!-- <div class="card shadow w-100 h-100 rounded-0" *ngIf="stufenCardModel">
   <div class="media">
     <img
       class="align-self-center mr-3"
@@ -16,5 +16,16 @@
   <div class="card-body w-75">
       <h5 class="card-title" *ngIf="stufenCardModel.title">{{stufenCardModel.title}}</h5>
       <p class="card-text" style="white-space: pre-wrap; text-overflow: ellipsis" *ngIf="stufenCardModel.fullDescription" [innerHtml]="stufenCardModel.fullDescription"></p>
-  </div> -->
+  </div>
+</div> 
+-->
+
+<div class="service-item shadow border">
+  <div class="service-image icon-image">
+    <img [src]="stufenCardModel.imgUrl" alt="">
+  </div>                                    
+  <div class="service-content">
+    <h4 class="service-title">{{ stufenCardModel.title }}</h4>
+    <p [innerHtml]="stufenCardModel.shortDescription"></p>
+  </div>
 </div>
