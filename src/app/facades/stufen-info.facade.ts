@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { combineLatest, Observable, throwError } from "rxjs";
-import { StufenCardCollection } from "../model/stufen-card.model";
+import { StufenCardCollection, StufenCardModel } from "../model/stufen-card.model";
 import {
   selectBiberHeimstundenInfos,
   selectBiberStufenInfos,
@@ -14,7 +14,14 @@ import {
   selectStufenInfosNeedHeimstundenInfos,
   selectStufenInfosNeedStufenInfos,
   selectWiWoeHeimstundenInfos,
-  selectWiWoeStufenInfos
+  selectWiWoeStufenInfos,
+  selectStufenInfosNeedTeaser,
+  selectTeasersAll,
+  selectBiberTeaser,
+  selectWiWoeTeaser,
+  selectGuSpTeaser,
+  selectCaExTeaser,
+  selectRaRoTeaser
 } from "../root-store/stufen-info-store/selectors";
 import {
   catchError,
@@ -31,7 +38,10 @@ import {
   loadAllHeimstundenSuccessAction,
   loadAllStufenAction,
   loadAllStufenErrorAction,
-  loadAllStufenSuccessAction
+  loadAllStufenSuccessAction,
+  loadAllStufenTeasersAction,
+  loadAllStufenTeasersSuccessAction,
+  loadAllStufenTeasersErrorAction
 } from "../root-store/stufen-info-store/actions";
 import { RootState } from "../root-store/root-state";
 import { Store } from "@ngrx/store";
@@ -40,12 +50,15 @@ import { TeamCardModel } from "../components/team-card/team-card.model";
 import { TeamCardCollectionModel } from "../components/team-card-collection/team-card-collection.model";
 import { WordpressDictionary } from "../dictionary/wordpress.dictionary";
 import { HeimstundenTimeModel } from "../components/stufen-overview-dashboard/stufen-overview-dashboard.component";
+import { StufenHeimstundenCollection, StufenHeimstundenInfoState } from '../root-store/stufen-info-store/state';
+import { RemoveHtmlPipe } from '../pipes/remove-html.pipe';
 
 @Injectable()
 export class StufenInfoFacade {
   constructor(
     private store$: Store<RootState>,
-    private wordpressService: WordpressService
+    private wordpressService: WordpressService,
+    private removeHtmlPipe: RemoveHtmlPipe
   ) {}
 
   public muteFirst = <T, R>(first$: Observable<T>, second$: Observable<R>) =>
@@ -54,12 +67,16 @@ export class StufenInfoFacade {
       distinctUntilChanged()
     );
 
+  ////////////////////////////////////
+  ///////// Stufen Infos /////////////
+  ////////////////////////////////////
+
   private requireStufenInfos$: Observable<
     StufenCardCollection
   > = this.store$.select(selectStufenInfosNeedStufenInfos).pipe(
     filter(needStufenInfos => needStufenInfos),
     tap(() => this.store$.dispatch(loadAllStufenAction())),
-    switchMap(() => this.wordpressService.getStufenInfos$()),
+    switchMap(() => this.getStufenInfos$()),
     tap(stufenInfos =>
       this.store$.dispatch(
         loadAllStufenSuccessAction({
@@ -75,6 +92,107 @@ export class StufenInfoFacade {
     }),
     share()
   );
+
+  private getStufenInfos$() {
+    return combineLatest([
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.biber,
+        WordpressDictionary.tags.content
+      ).pipe(
+        map(
+          post =>
+            <StufenCardModel>{
+              stufenUri: ["stufe", "biber"],
+              title: post.title.rendered,
+              shortDescription: post.excerpt.rendered,
+              fullDescription: this.removeHtmlPipe.transform(
+                post.content.rendered
+              ),
+              imgUrl: "http://test3.66er.net/wp-content/uploads/biber.jpg"
+            }
+        )
+      ),
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.wiwoe,
+        WordpressDictionary.tags.content
+      ).pipe(
+        map(
+          post =>
+            <StufenCardModel>{
+              stufenUri: ["stufe", "wiwoe"],
+              title: post.title.rendered,
+              shortDescription: post.excerpt.rendered,
+              fullDescription: this.removeHtmlPipe.transform(
+                post.content.rendered
+              ),
+              imgUrl: "http://test3.66er.net/wp-content/uploads/wiwoe.jpg"
+            }
+        )
+      ),
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.gusp,
+        WordpressDictionary.tags.content
+      ).pipe(
+        map(
+          post =>
+            <StufenCardModel>{
+              stufenUri: ["stufe", "gusp"],
+              title: post.title.rendered,
+              shortDescription: post.excerpt.rendered,
+              fullDescription: this.removeHtmlPipe.transform(
+                post.content.rendered
+              ),
+              imgUrl: "http://test3.66er.net/wp-content/uploads/gusp.png"
+            }
+        )
+      ),
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.caex,
+        WordpressDictionary.tags.content
+      ).pipe(
+        map(
+          post =>
+            <StufenCardModel>{
+              stufenUri: ["stufe", "caex"],
+              title: post.title.rendered,
+              shortDescription: post.excerpt.rendered,
+              fullDescription: this.removeHtmlPipe.transform(
+                post.content.rendered
+              ),
+              imgUrl: "http://test3.66er.net/wp-content/uploads/caex.jpg"
+            }
+        )
+      ),
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.raro,
+        WordpressDictionary.tags.content
+      ).pipe(
+        map(
+          post =>
+            <StufenCardModel>{
+              stufenUri: ["stufe", "raro"],
+              title: post.title.rendered,
+              shortDescription: post.excerpt.rendered,
+              fullDescription: this.removeHtmlPipe.transform(
+                post.content.rendered
+              ),
+              imgUrl: "http://test3.66er.net/wp-content/uploads/raro.png"
+            }
+        )
+      )
+    ]).pipe(
+      map(
+        ([biber, wiwoe, gusp, caex, raro]) =>
+          ({
+            biber,
+            wiwoe,
+            gusp,
+            caex,
+            raro
+          } as StufenCardCollection)
+      )
+    );
+  }
 
   public stufenInfosAll$ = this.muteFirst(
     this.requireStufenInfos$.pipe(startWith(null)),
@@ -116,10 +234,181 @@ export class StufenInfoFacade {
     this.store$.select(selectRaRoStufenInfos)
   );
 
-  public teamPostsBiber$: Observable<
+  ////////////////////////////////////
+  ///////// Stufen Teasers /////////////
+  ////////////////////////////////////
+
+  private requireStufenTeasers$: Observable<
+    StufenCardCollection
+  > = this.store$.select(selectStufenInfosNeedTeaser).pipe(
+    filter(needTeasers => needTeasers),
+    tap(() => this.store$.dispatch(loadAllStufenTeasersAction())),
+    switchMap(() => this.getStufenTeasers$()),
+    tap(stufenTeasers =>
+      this.store$.dispatch(
+        loadAllStufenTeasersSuccessAction({
+          payload: {
+            ...stufenTeasers
+          }
+        })
+      )
+    ),
+    catchError(err => {
+      this.store$.dispatch(loadAllStufenTeasersErrorAction(err));
+      return throwError(err);
+    }),
+    share()
+  );
+
+  private getStufenTeasers$() {
+    return combineLatest([
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.biber,
+        WordpressDictionary.tags.teaser
+      ).pipe(
+        map(
+          post =>
+            <StufenCardModel>{
+              stufenUri: ["stufe", "biber"],
+              title: post.title.rendered,
+              shortDescription: post.excerpt.rendered,
+              fullDescription: this.removeHtmlPipe.transform(
+                post.content.rendered
+              ),
+              imgUrl: post._embedded["wp:featuredmedia"][0].source_url
+            }
+        )
+      ),
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.wiwoe,
+        WordpressDictionary.tags.teaser
+      ).pipe(
+        map(
+          post =>
+            <StufenCardModel>{
+              stufenUri: ["stufe", "wiwoe"],
+              title: post.title.rendered,
+              shortDescription: post.excerpt.rendered,
+              fullDescription: this.removeHtmlPipe.transform(
+                post.content.rendered
+              ),
+              imgUrl: post._embedded["wp:featuredmedia"][0].source_url
+            }
+        )
+      ),
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.gusp,
+        WordpressDictionary.tags.teaser
+      ).pipe(
+        map(
+          post =>
+            <StufenCardModel>{
+              stufenUri: ["stufe", "gusp"],
+              title: post.title.rendered,
+              shortDescription: post.excerpt.rendered,
+              fullDescription: this.removeHtmlPipe.transform(
+                post.content.rendered
+              ),
+              imgUrl: post._embedded["wp:featuredmedia"][0].source_url
+            }
+        )
+      ),
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.caex,
+        WordpressDictionary.tags.teaser
+      ).pipe(
+        map(
+          post =>
+            <StufenCardModel>{
+              stufenUri: ["stufe", "caex"],
+              title: post.title.rendered,
+              shortDescription: post.excerpt.rendered,
+              fullDescription: this.removeHtmlPipe.transform(
+                post.content.rendered
+              ),
+              imgUrl: post._embedded["wp:featuredmedia"][0].source_url
+            }
+        )
+      ),
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.raro,
+        WordpressDictionary.tags.teaser
+      ).pipe(
+        map(
+          post =>
+            <StufenCardModel>{
+              stufenUri: ["stufe", "raro"],
+              title: post.title.rendered,
+              shortDescription: post.excerpt.rendered,
+              fullDescription: this.removeHtmlPipe.transform(
+                post.content.rendered
+              ),
+              imgUrl: post._embedded["wp:featuredmedia"][0].source_url
+            }
+        )
+      )
+    ]).pipe(
+      map(
+        ([biber, wiwoe, gusp, caex, raro]) =>
+          ({
+            biber,
+            wiwoe,
+            gusp,
+            caex,
+            raro
+          } as StufenCardCollection)
+      )
+    );
+  }
+
+  public stufenTeasersAll$ = this.muteFirst(
+    this.requireStufenTeasers$.pipe(startWith(null)),
+    this.store$
+      .select(selectTeasersAll)
+      .pipe(
+        map(stufenTeasers => [
+          stufenTeasers.biber,
+          stufenTeasers.wiwoe,
+          stufenTeasers.gusp,
+          stufenTeasers.caex,
+          stufenTeasers.raro
+        ])
+      )
+  );
+
+  public stufenTeaserBiber$ = this.muteFirst(
+    this.requireStufenInfos$.pipe(startWith(null)),
+    this.store$.select(selectBiberTeaser)
+  );
+
+  public stufenTeaserWiWoe$ = this.muteFirst(
+    this.requireStufenInfos$.pipe(startWith(null)),
+    this.store$.select(selectWiWoeTeaser)
+  );
+
+  public stufenTeaserGuSp$ = this.muteFirst(
+    this.requireStufenInfos$.pipe(startWith(null)),
+    this.store$.select(selectGuSpTeaser)
+  );
+
+  public stufenTeaserCaEx$ = this.muteFirst(
+    this.requireStufenInfos$.pipe(startWith(null)),
+    this.store$.select(selectCaExTeaser)
+  );
+
+  public stufenTeaserRaRo$ = this.muteFirst(
+    this.requireStufenInfos$.pipe(startWith(null)),
+    this.store$.select(selectRaRoTeaser)
+  );
+
+  ////////////////////////////////////
+  ///////////// TeamPosts ////////////
+  ////////////////////////////////////
+
+  teamPostsBiber$: Observable<
     TeamCardCollectionModel
   > = this.wordpressService
-    .getPostsByCategoryId$(WordpressDictionary.categories.biber.team)
+    .getPostsByCategoryIdAndTagId$(WordpressDictionary.categories.biber, WordpressDictionary.tags.team)
     .pipe(
       filter(posts => !!posts && posts.length > 0),
       map(
@@ -140,10 +429,10 @@ export class StufenInfoFacade {
       )
     );
 
-  public teamPostsWiWoe$: Observable<
+  teamPostsWiWoe$: Observable<
     TeamCardCollectionModel
   > = this.wordpressService
-    .getPostsByCategoryId$(WordpressDictionary.categories.wiwoe.team)
+  .getPostsByCategoryIdAndTagId$(WordpressDictionary.categories.wiwoe, WordpressDictionary.tags.team)
     .pipe(
       map(
         posts =>
@@ -163,10 +452,10 @@ export class StufenInfoFacade {
       )
     );
 
-  public teamPostsGuSp$: Observable<
+  teamPostsGuSp$: Observable<
     TeamCardCollectionModel
   > = this.wordpressService
-    .getPostsByCategoryId$(WordpressDictionary.categories.gusp.team)
+    .getPostsByCategoryIdAndTagId$(WordpressDictionary.categories.gusp, WordpressDictionary.tags.team)
     .pipe(
       map(
         posts =>
@@ -186,10 +475,10 @@ export class StufenInfoFacade {
       )
     );
 
-  public teamPostsCaEx$: Observable<
+  teamPostsCaEx$: Observable<
     TeamCardCollectionModel
   > = this.wordpressService
-    .getPostsByCategoryId$(WordpressDictionary.categories.caex.team)
+    .getPostsByCategoryIdAndTagId$(WordpressDictionary.categories.caex, WordpressDictionary.tags.team)
     .pipe(
       map(
         posts =>
@@ -209,10 +498,10 @@ export class StufenInfoFacade {
       )
     );
 
-  public teamPostsRaRo$: Observable<
+  teamPostsRaRo$: Observable<
     TeamCardCollectionModel
   > = this.wordpressService
-    .getPostsByCategoryId$(WordpressDictionary.categories.raro.team)
+    .getPostsByCategoryIdAndTagId$(WordpressDictionary.categories.raro, WordpressDictionary.tags.team)
     .pipe(
       map(
         posts =>
@@ -231,13 +520,16 @@ export class StufenInfoFacade {
           } as TeamCardCollectionModel)
       )
     );
+  ////////////////////////////////////
+  ///////// HeimstundenInfos /////////
+  ////////////////////////////////////
 
   private requireHeimstundenInfos$ = this.store$
     .select(selectStufenInfosNeedHeimstundenInfos)
     .pipe(
       filter(needHeimstundenInfos => needHeimstundenInfos),
       tap(() => this.store$.dispatch(loadAllHeimstundenAction())),
-      switchMap(() => this.wordpressService.getHeimstundenInfos$()),
+      switchMap(() => this.getHeimstundenInfos$()),
       tap(heimstundenInfos =>
         this.store$.dispatch(
           loadAllHeimstundenSuccessAction({
@@ -254,7 +546,83 @@ export class StufenInfoFacade {
       share()
     );
 
-  public heimstundenBiber$ = this.muteFirst(
+  private getHeimstundenInfos$(): Observable<StufenHeimstundenCollection> {
+    return combineLatest([
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.biber,
+        WordpressDictionary.tags.time
+      ).pipe(
+        map(
+          post =>
+            ({
+              title: post.title.rendered,
+              timeDescription: post.content.rendered
+            } as StufenHeimstundenInfoState)
+        )
+      ),
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.wiwoe,
+        WordpressDictionary.tags.time
+      ).pipe(
+        map(
+          post =>
+            ({
+              title: post.title.rendered,
+              timeDescription: post.content.rendered
+            } as StufenHeimstundenInfoState)
+        )
+      ),
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.gusp,
+        WordpressDictionary.tags.time
+      ).pipe(
+        map(
+          post =>
+            ({
+              title: post.title.rendered,
+              timeDescription: post.content.rendered
+            } as StufenHeimstundenInfoState)
+        )
+      ),
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.caex,
+        WordpressDictionary.tags.time
+      ).pipe(
+        map(
+          post =>
+            ({
+              title: post.title.rendered,
+              timeDescription: post.content.rendered
+            } as StufenHeimstundenInfoState)
+        )
+      ),
+      this.wordpressService.getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.raro,
+        WordpressDictionary.tags.time
+      ).pipe(
+        map(
+          post =>
+            ({
+              title: post.title.rendered,
+              timeDescription: post.content.rendered
+            } as StufenHeimstundenInfoState)
+        )
+      )
+    ]).pipe(
+      map(
+        ([biber, wiwoe, gusp, caex, raro]) =>
+          ({
+            biber,
+            wiwoe,
+            gusp,
+            caex,
+            raro
+          } as StufenHeimstundenCollection)
+      )
+    );
+  }
+
+  heimstundenBiber$ = this.muteFirst(
     this.requireHeimstundenInfos$.pipe(startWith(null)),
     this.store$.select(selectBiberHeimstundenInfos)
   );

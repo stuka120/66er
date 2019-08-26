@@ -7,7 +7,7 @@ import {
   loadNewsSuccessAction
 } from "./actions";
 
-export const reducer = createReducer(
+const myReducer = createReducer(
   initialState,
   on(loadNewsAction, state => ({
     ...state,
@@ -31,3 +31,7 @@ export const reducer = createReducer(
     needPosts: false
   }))
 );
+
+export function reducer(state, action) {
+  return myReducer(state, action);
+}

@@ -6,7 +6,7 @@ import {
   loadEventsSuccessAction
 } from "./actions";
 
-export const reducer = createReducer(
+const myReducer = createReducer(
   initialState,
   on(loadEventsAction, state => ({
     ...state,
@@ -30,3 +30,7 @@ export const reducer = createReducer(
     needEvents: false
   }))
 );
+
+export function reducer(state, action) {
+  return myReducer(state, action);
+}
