@@ -12,7 +12,7 @@ import {
   loadAllStufenTeasersErrorAction
 } from "./actions";
 
-export const reducer = createReducer(
+const myReducer = createReducer(
   initialState,
   on(loadAllStufenAction, state => ({
     ...state,
@@ -92,3 +92,7 @@ export const reducer = createReducer(
     needHeimstundenInfos: false
   }))
 );
+
+export function reducer(state, action) {
+  return myReducer(state, action);
+}
