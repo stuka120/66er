@@ -31,6 +31,9 @@ import { RootState } from "../../root-store/root-state";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { EventInput } from "@fullcalendar/core";
 import bootstrapPlugin from "@fullcalendar/bootstrap";
+import rrulePlugin from "@fullcalendar/rrule";
+import momentPlugin from "@fullcalendar/moment";
+import momentTimezonePlugin from "@fullcalendar/moment-timezone";
 import {
   ButtonTextCompoundInput,
   ToolbarInput
@@ -46,7 +49,13 @@ import { FormatterInput } from "@fullcalendar/core/datelib/formatting";
 export class CalendarDashboardComponent implements OnInit {
   @ViewChild("modalContent", { static: true }) modalContent: TemplateRef<any>;
 
-  calendarPlugins = [dayGridPlugin, bootstrapPlugin]; // important!
+  calendarPlugins = [
+    dayGridPlugin,
+    bootstrapPlugin,
+    rrulePlugin,
+    momentPlugin,
+    momentTimezonePlugin
+  ]; // important!
   header: ToolbarInput = {
     left: "prev,next",
     center: "title",
@@ -55,13 +64,22 @@ export class CalendarDashboardComponent implements OnInit {
   buttonText: ButtonTextCompoundInput = {
     day: "Tag",
     month: "Monat",
-    next: "Weiter",
+    next: "",
     nextYear: "Nächstes Jahr",
-    prev: "Zurück",
+    prev: "",
     prevYear: "Vorriges Jahr",
     today: "Heute",
     week: "Woche"
   };
+  dayNames: [
+    "Sonntag",
+    "Montag",
+    "Dienstag",
+    "Mittwoch",
+    "Donnerstag",
+    "Freitag",
+    "Samstag"
+  ];
   eventTimeFormat: FormatterInput = {
     hour: "2-digit",
     minute: "2-digit",
@@ -94,42 +112,36 @@ export class CalendarDashboardComponent implements OnInit {
     this.events$ = this.muteFirst(
       this.needEvents$.pipe(startWith(null)),
       this.store$.select(selectCalendarEvents).pipe(
-        map(items => {
-          let result = [] as EventInput[];
-          items.forEach(item => {
-            if (item.recurrence) {
-              item.recurrence.forEach(rec => {
-                const rule = RRule.fromString(rec);
-                rule.options.dtstart = new Date(item.start.dateTime);
-
-                result = result.concat(rule
-                  .between(
-                    new Date(Date.UTC(2019, 6, 1)),
-                    new Date(Date.UTC(2019, 8, 31))
+        map(items =>
+          items.map(item => {
+            let event = {
+              //start: item.start.dateTime,
+              //end: item.end.dateTime,
+              title: item.summary
+            } as EventInput;
+            if (item.recurrence && item.recurrence[0]) {
+              let rrule = RRule.fromString(item.recurrence[0]);
+              if (!rrule.origOptions.dtstart) {
+                let startDateTime = new Date(item.start.dateTime);
+                rrule.origOptions.dtstart = new Date(
+                  new Date(
+                    startDateTime.getFullYear(),
+                    startDateTime.getMonth(),
+                    startDateTime.getDay(),
+                    startDateTime.getHours() + 1, //Hotfix for hour problem
+                    startDateTime.getMinutes()
                   )
-                  .map(date => {
-                    date.setHours(new Date(item.start.dateTime).getHours());
-                    date.setMinutes(new Date(item.start.dateTime).getMinutes());
-                    date.setSeconds(new Date(item.start.dateTime).getSeconds());
-                    return {
-                      title: item.summary,
-                      start: date.toISOString()
-                    } as EventInput;
-                  }) as EventInput[]);
-              });
+                );
+              }
+              event.rrule = rrule.origOptions;
             } else {
-              result.push({
-                title: item.summary,
-                start: item.start.dateTime,
-                end: item.end.dateTime,
-                draggable: false,
-                resizable: false,
-                allDay: false
-              } as EventInput);
+              event.start = item.start.dateTime;
+              event.end = item.end.dateTime;
             }
-          });
-          return result;
-        })
+
+            return event;
+          })
+        )
       )
     );
   }

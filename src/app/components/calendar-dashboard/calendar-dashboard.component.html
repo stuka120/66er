@@ -8,10 +8,13 @@
         defaultView="dayGridMonth"
         [plugins]="calendarPlugins"
         [events]="events"
+        [timeZone]="false"
         [themeSystem]="'bootstrap'"
         [height]="'parent'"
         [header]="header"
+        [locale]="'de'"
         [buttonText]="buttonText"
+        [firstDay]="1"
         [eventTimeFormat]="eventTimeFormat"
       ></full-calendar>
     </div>
