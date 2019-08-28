@@ -8,6 +8,7 @@ import { TeamCardCollectionModel } from "../team-card-collection/team-card-colle
 import { DownloadsCardModel } from "../downloads-card/downloads-card.model";
 import { StufenFacadeInterface } from "../../facades/stufen-facades/stufen-facade.interface";
 import { ActivatedRoute } from "@angular/router";
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: "app-stufen-overview-dashboard",
@@ -22,6 +23,8 @@ export class StufenOverviewDashboardComponent implements OnInit {
   teamMembers$: Observable<TeamCardCollectionModel>;
   downloads$: Observable<DownloadsCardModel>;
   heimstunden$: Observable<HeimstundenTimeModel>;
+
+  faCog = faCog;
 
   constructor(
     private store$: Store<RootState>,

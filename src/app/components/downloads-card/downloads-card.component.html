@@ -1,11 +1,14 @@
-<div class="card rounded-0 shadow-sm h-100" *ngIf="model?.downloads">
-  <div class="card-body">
-    <h4 *ngIf="model.title">
-      {{ model.title }}
-    </h4>
-    <div class="row" *ngFor="let download of model.downloads">
-      <div class="col">
-        <app-downloads-card-item [model]="download"></app-downloads-card-item>
+<div class="card" *ngIf="model">
+  <div class="media card-body rounded-0 shadow-sm">
+    <fa-icon [icon]="faInfoCircle" size="lg" class="mr-2"></fa-icon>
+    <div class="media-body">
+      <h5 class="mt-0" *ngIf="model.title">
+        {{ model.title }}
+      </h5>
+      <div class="row" *ngFor="let download of model.downloads">
+        <div class="col">
+          <app-downloads-card-item [model]="download"></app-downloads-card-item>
+        </div>
       </div>
     </div>
   </div>

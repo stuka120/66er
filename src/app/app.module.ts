@@ -25,7 +25,6 @@ import { StufenOverviewDashboardComponent } from "./components/stufen-overview-d
 import { StufenInfoFacade } from "./facades/stufen-info.facade";
 import { MyFacebookFacade } from "./facades/my-facebook.facade";
 import { StickyNoteComponent } from "./components/sticky-note/sticky-note.component";
-import { AngularFontAwesomeModule } from "angular-font-awesome";
 import { TeamCardComponent } from "./components/team-card/team-card.component";
 import { TeamCardCollectionComponent } from "./components/team-card-collection/team-card-collection.component";
 import { DownloadsFacade } from "./facades/downloads.facade";
@@ -38,6 +37,7 @@ import { GuspDashboardFacade } from "./facades/stufen-facades/gusp-dashboard.fac
 import { CaexDashboardFacade } from "./facades/stufen-facades/caex-dashboard.facade";
 import { RaroDashboardFacade } from "./facades/stufen-facades/raro-dashboard.facade";
 import { RemoveMultipleBreaksPipe } from "./pipes/remove-multiple-breaks.pipe";
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -61,8 +61,8 @@ import { RemoveMultipleBreaksPipe } from "./pipes/remove-multiple-breaks.pipe";
   ],
   imports: [
     BrowserModule,
-    AngularFontAwesomeModule,
     FormsModule,
+    FontAwesomeModule,
     FlatpickrModule.forRoot(),
     BrowserAnimationsModule,
     NgbModalModule,

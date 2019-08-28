@@ -50,6 +50,8 @@ import {
 import { HeroBannerModel } from "../hero-banner/hero-banner.model";
 import { StufenInfoFacade } from "../../facades/stufen-info.facade";
 import { MyFacebookFacade } from "../../facades/my-facebook.facade";
+import { DownloadsCardModel } from "../downloads-card/downloads-card.model";
+import { DownloadModel } from "../../model/wordpress-media-response.dto";
 
 @Component({
   selector: "app-start-dashboard",
@@ -69,6 +71,16 @@ export class StartDashboardComponent implements OnInit {
     buttonText: "Aktuelles",
     morphextPrefix: "Wir sind ",
     morpext: "Biber, WiWö, GuSp, CaEx, RaRo, die 66er!"
+  };
+
+  downloadsCardModel: DownloadsCardModel = {
+    title: "Downloads",
+    downloads: [
+      {
+        title: "Test",
+        source_url: "https://www.google.at"
+      } as DownloadModel
+    ]
   };
 
   constructor(

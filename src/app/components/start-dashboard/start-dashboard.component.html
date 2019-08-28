@@ -15,9 +15,20 @@
 <div id="nachrichten" class="container mt-5 mb-5">
   <div class="row justify-content-center">
     <div class="col text-center">
-      <h1>Nachrichten</h1>
+      <h1>Aktuelles</h1>
     </div>
   </div>
 </div>
 
-<app-news-card-collection [posts]="posts$ | async"></app-news-card-collection>
+<div class="container-fluid">
+  <div class="row">
+    <div class="offset-xs-0 offset-lg-2 col-lg-6 col-sm-12">
+      <app-news-card-collection
+        [posts]="posts$ | async"
+      ></app-news-card-collection>
+    </div>
+    <div class="offset-1 col-lg-2">
+      <app-downloads-card [model]="downloadsCardModel"></app-downloads-card>
+    </div>
+  </div>
+</div>

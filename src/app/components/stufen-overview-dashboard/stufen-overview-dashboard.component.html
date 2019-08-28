@@ -29,7 +29,7 @@
           <h4>{{ heimstunden.title }}</h4>
         </div>
         <div body class="d-flex">
-          <fa name="cog" animation="spin" class="mr-2"></fa>
+          <fa-icon [icon]="faCog" [spin]="true" class="mr-2"></fa-icon>
           <div [innerHTML]="heimstunden.timeDescription"></div>
         </div>
       </app-sticky-note>

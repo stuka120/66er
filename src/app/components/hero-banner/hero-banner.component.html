@@ -25,11 +25,9 @@
       </div>
       <div class="hero">
         <div>
-          <h1>
+          <h1 [hidden]="!morphextInitialized">
             {{ model.morphextPrefix
-            }}<span #morphextElement [hidden]="!morphextInitialized">{{
-              model.morpext
-            }}</span>
+            }}<span #morphextElement>{{ model.morpext }}</span>
           </h1>
         </div>
 
