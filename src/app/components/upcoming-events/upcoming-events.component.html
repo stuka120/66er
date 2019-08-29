@@ -1,0 +1,41 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title">
+      <fa-icon [icon]="faCalendarCheck" [spin]="true" class="mr-2"></fa-icon>
+      Kommende Termine
+    </h5>
+  </div>
+  <div class="card-body">
+    <div class="media-list">
+      <div class="media">
+        <div class="media-left mr-2">
+          <div class="card text-center date">
+            <div class="card-header month">
+              <span class="card-title strong">
+                Mar
+              </span>
+            </div>
+            <div class="card-body day text-danger">
+              23
+            </div>
+          </div>
+        </div>
+        <div class="media-body">
+          <h4 class="media-heading">
+            Pulvinar Mauris Eu
+          </h4>
+          <p>
+            Vivamus pulvinar mauris eu placerat blandit. In euismod tellus vel
+            ex vestibulum congue.
+          </p>
+        </div>
+      </div>
+    </div>
+    <a
+      href="#"
+      class="btn btn-outline-info btn-block"
+      [routerLink]="['kalender']"
+      >Zum Kalender »</a
+    >
+  </div>
+</div>

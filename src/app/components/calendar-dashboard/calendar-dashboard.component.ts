@@ -64,9 +64,9 @@ export class CalendarDashboardComponent implements OnInit {
   buttonText: ButtonTextCompoundInput = {
     day: "Tag",
     month: "Monat",
-    next: "",
+    next: ">",
     nextYear: "Nächstes Jahr",
-    prev: "",
+    prev: "<",
     prevYear: "Vorriges Jahr",
     today: "Heute",
     week: "Woche"

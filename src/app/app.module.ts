@@ -38,6 +38,7 @@ import { CaexDashboardFacade } from "./facades/stufen-facades/caex-dashboard.fac
 import { RaroDashboardFacade } from "./facades/stufen-facades/raro-dashboard.facade";
 import { RemoveMultipleBreaksPipe } from "./pipes/remove-multiple-breaks.pipe";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { UpcomingEventsComponent } from './components/upcoming-events/upcoming-events.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RemoveHtmlPipe,
     DownloadsCardComponent,
     DownloadsCardItemComponent,
-    RemoveMultipleBreaksPipe
+    RemoveMultipleBreaksPipe,
+    UpcomingEventsComponent
   ],
   imports: [
     BrowserModule,

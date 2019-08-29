@@ -27,8 +27,21 @@
         [posts]="posts$ | async"
       ></app-news-card-collection>
     </div>
-    <div class="offset-1 col-lg-2">
-      <app-downloads-card [model]="downloadsCardModel"></app-downloads-card>
+    <div class="col-lg-3 col-12">
+      <div class="container-fluid sticky-top" style="top: 1rem;">
+        <div class="row">
+          <div class="col">
+            <app-downloads-card
+              [model]="downloadsCardModel"
+            ></app-downloads-card>
+          </div>
+        </div>
+        <div class="row mt-3">
+          <div class="col">
+            <app-upcoming-events></app-upcoming-events>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

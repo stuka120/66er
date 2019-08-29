@@ -1,57 +1,18 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  OnInit,
-  ViewChild
-} from "@angular/core";
-import { combineLatest, Observable, throwError } from "rxjs";
+import { Component, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
 import { Post } from "../../model/post.model";
-import { MyFacebookService } from "../../services/my-facebook.service";
 import { WordpressService } from "src/app/services/wordpress.service";
-import {
-  StufenCardCollection,
-  StufenCardModel
-} from "src/app/model/stufen-card.model";
-import {
-  catchError,
-  distinctUntilChanged,
-  filter,
-  map,
-  share,
-  shareReplay,
-  startWith,
-  switchMap,
-  tap,
-  withLatestFrom
-} from "rxjs/operators";
+import { StufenCardModel } from "src/app/model/stufen-card.model";
 import { Store } from "@ngrx/store";
-import {
-  loadNewsAction,
-  loadNewsErrorAction,
-  loadNewsSuccessAction
-} from "src/app/root-store/posts-store/actions";
-import {
-  selectPostsIsLoading,
-  selectPostsNeedPosts,
-  selectPostsPosts
-} from "../../root-store/posts-store/selectors";
+import { selectPostsIsLoading } from "../../root-store/posts-store/selectors";
 import { RootState } from "../../root-store/root-state";
-import {
-  selectStufenInfosAll,
-  selectStufenInfosIsLoading,
-  selectStufenInfosNeedStufenInfos
-} from "../../root-store/stufen-info-store/selectors";
-import {
-  loadAllStufenAction,
-  loadAllStufenErrorAction,
-  loadAllStufenSuccessAction
-} from "../../root-store/stufen-info-store/actions";
+import { selectStufenInfosIsLoading } from "../../root-store/stufen-info-store/selectors";
 import { HeroBannerModel } from "../hero-banner/hero-banner.model";
 import { StufenInfoFacade } from "../../facades/stufen-info.facade";
 import { MyFacebookFacade } from "../../facades/my-facebook.facade";
 import { DownloadsCardModel } from "../downloads-card/downloads-card.model";
 import { DownloadModel } from "../../model/wordpress-media-response.dto";
+import { faArrowCircleDown } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-start-dashboard",
@@ -75,6 +36,7 @@ export class StartDashboardComponent implements OnInit {
 
   downloadsCardModel: DownloadsCardModel = {
     title: "Downloads",
+    icon: faArrowCircleDown,
     downloads: [
       {
         title: "Test",

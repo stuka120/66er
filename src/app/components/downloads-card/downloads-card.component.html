@@ -1,6 +1,11 @@
 <div class="card" *ngIf="model">
   <div class="media card-body rounded-0 shadow-sm">
-    <fa-icon [icon]="faInfoCircle" size="lg" class="mr-2"></fa-icon>
+    <fa-icon
+      *ngIf="model.icon"
+      [icon]="model.icon"
+      size="lg"
+      class="mr-2"
+    ></fa-icon>
     <div class="media-body">
       <h5 class="mt-0" *ngIf="model.title">
         {{ model.title }}

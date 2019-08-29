@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { DownloadsCardModel } from "./downloads-card.model";
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: "app-downloads-card",
@@ -10,8 +9,6 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 export class DownloadsCardComponent implements OnInit {
   @Input()
   model: DownloadsCardModel;
-
-  faInfoCircle = faInfoCircle;
 
   constructor() {}
 

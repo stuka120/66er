@@ -1,0 +1,22 @@
+/* Using panels to display blog date */
+.card.date {
+  margin: 0;
+  width: 60px;
+  text-align: center;
+}
+
+h5.card-title {
+  margin-bottom: 0;
+}
+
+.card.date .month {
+  padding: 2px 0;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.card.date .day {
+  padding: 3px 0;
+  font-weight: 700;
+  font-size: 1.5em;
+}
