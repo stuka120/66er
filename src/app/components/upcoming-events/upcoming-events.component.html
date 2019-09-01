@@ -1,41 +1,33 @@
-<div class="card">
-  <div class="card-header">
-    <h5 class="card-title">
-      <fa-icon [icon]="faCalendarCheck" [spin]="true" class="mr-2"></fa-icon>
-      Kommende Termine
-    </h5>
-  </div>
-  <div class="card-body">
-    <div class="media-list">
-      <div class="media">
-        <div class="media-left mr-2">
-          <div class="card text-center date">
-            <div class="card-header month">
-              <span class="card-title strong">
-                Mar
-              </span>
-            </div>
-            <div class="card-body day text-danger">
-              23
-            </div>
-          </div>
-        </div>
-        <div class="media-body">
-          <h4 class="media-heading">
-            Pulvinar Mauris Eu
-          </h4>
-          <p>
-            Vivamus pulvinar mauris eu placerat blandit. In euismod tellus vel
-            ex vestibulum congue.
-          </p>
-        </div>
+<div class="container" *ngIf="model">
+  <ng-container *ngFor="let event of model">
+    <div class="row row-striped">
+      <div class="col-2 col-sm-3 text-right">
+        <h1 class="display-5">
+          <span class="badge badge-secondary">{{
+            event.dateTime | date: "dd"
+          }}</span>
+        </h1>
+        <h5 class="mb-0">{{ event.dateTime | date: "MMM" }}</h5>
+      </div>
+      <div class="col-10 col-sm-9">
+        <h5 class="text-uppercase">
+          <strong>{{ event.title }}</strong>
+        </h5>
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item">
+            {{ event.dateTime | date: "EEEE" }}
+          </li>
+          <li class="list-inline-item">
+            <i class="fa fa-clock-o" aria-hidden="true"></i>
+            {{ event.dateTime | date: "HH:mm" }}
+          </li>
+          <li class="list-inline-item">
+            <fa-icon [icon]="faLocationArrow" class="mr-2"></fa-icon>
+            <i class="fa fa-location-arrow" aria-hidden="true"></i
+            >{{ event.place }}
+          </li>
+        </ul>
       </div>
     </div>
-    <a
-      href="#"
-      class="btn btn-outline-info btn-block"
-      [routerLink]="['kalender']"
-      >Zum Kalender »</a
-    >
-  </div>
+  </ng-container>
 </div>

@@ -1,5 +1,6 @@
-import { Component, OnInit } from "@angular/core";
-import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
+import { Component, Input, OnInit } from "@angular/core";
+import { faLocationArrow } from "@fortawesome/free-solid-svg-icons";
+import { UpcomingEventModel } from "./upcoming-event.model";
 
 @Component({
   selector: "app-upcoming-events",
@@ -7,7 +8,9 @@ import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ["./upcoming-events.component.css"]
 })
 export class UpcomingEventsComponent implements OnInit {
-  faCalendarCheck = faCalendarCheck;
+  @Input()
+  model: UpcomingEventModel[];
+  faLocationArrow = faLocationArrow;
 
   constructor() {}
 

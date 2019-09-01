@@ -37,8 +37,9 @@ import { GuspDashboardFacade } from "./facades/stufen-facades/gusp-dashboard.fac
 import { CaexDashboardFacade } from "./facades/stufen-facades/caex-dashboard.facade";
 import { RaroDashboardFacade } from "./facades/stufen-facades/raro-dashboard.facade";
 import { RemoveMultipleBreaksPipe } from "./pipes/remove-multiple-breaks.pipe";
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { UpcomingEventsComponent } from './components/upcoming-events/upcoming-events.component';
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { UpcomingEventsComponent } from "./components/upcoming-events/upcoming-events.component";
+import { EventsFacade } from "./facades/events.facade";
 
 @NgModule({
   declarations: [
@@ -88,6 +89,7 @@ import { UpcomingEventsComponent } from './components/upcoming-events/upcoming-e
 
     MyFacebookFacade,
     DownloadsFacade,
+    EventsFacade,
 
     RemoveHtmlPipe,
     RemoveMultipleBreaksPipe

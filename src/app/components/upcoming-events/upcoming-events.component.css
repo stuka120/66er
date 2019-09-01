@@ -1,22 +1,13 @@
-/* Using panels to display blog date */
-.card.date {
-  margin: 0;
-  width: 60px;
-  text-align: center;
+.row-striped:nth-of-type(odd) {
+  background-color: #efefef;
+  border-left: 4px #000000 solid;
 }
 
-h5.card-title {
-  margin-bottom: 0;
+.row-striped:nth-of-type(even) {
+  background-color: #ffffff;
+  border-left: 4px #efefef solid;
 }
 
-.card.date .month {
-  padding: 2px 0;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-
-.card.date .day {
-  padding: 3px 0;
-  font-weight: 700;
-  font-size: 1.5em;
+.row-striped {
+  padding: 4px 0;
 }

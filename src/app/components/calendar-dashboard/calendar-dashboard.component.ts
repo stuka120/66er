@@ -5,24 +5,13 @@ import {
   TemplateRef,
   OnInit
 } from "@angular/core";
-import { combineLatest, Observable } from "rxjs";
+import { Observable } from "rxjs";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
 import { GoogleCalenderService } from "../../services/google-calender.service";
-import {
-  distinctUntilChanged,
-  filter,
-  map,
-  share,
-  startWith,
-  switchMap,
-  tap
-} from "rxjs/operators";
+import { filter, map, share, switchMap, tap } from "rxjs/operators";
 import RRule from "rrule";
 import { Store } from "@ngrx/store";
-import {
-  selectCalendarEvents,
-  selectCalendarNeedEvents
-} from "../../root-store/calendar-store/selectors";
+import { selectCalendarNeedEvents } from "../../root-store/calendar-store/selectors";
 import {
   loadEventsAction,
   loadEventsSuccessAction
@@ -39,6 +28,7 @@ import {
   ToolbarInput
 } from "@fullcalendar/core/types/input-types";
 import { FormatterInput } from "@fullcalendar/core/datelib/formatting";
+import { EventsFacade } from "../../facades/events.facade";
 
 @Component({
   selector: "mwl-demo-component",
@@ -93,7 +83,8 @@ export class CalendarDashboardComponent implements OnInit {
   constructor(
     private modal: NgbModal,
     private googleCalenderService: GoogleCalenderService,
-    private store$: Store<RootState>
+    private store$: Store<RootState>,
+    private eventsFacade: EventsFacade
   ) {}
 
   ngOnInit(): void {
@@ -109,46 +100,35 @@ export class CalendarDashboardComponent implements OnInit {
       share()
     );
 
-    this.events$ = this.muteFirst(
-      this.needEvents$.pipe(startWith(null)),
-      this.store$.select(selectCalendarEvents).pipe(
-        map(items =>
-          items.map(item => {
-            let event = {
-              //start: item.start.dateTime,
-              //end: item.end.dateTime,
-              title: item.summary
-            } as EventInput;
-            if (item.recurrence && item.recurrence[0]) {
-              let rrule = RRule.fromString(item.recurrence[0]);
-              if (!rrule.origOptions.dtstart) {
-                let startDateTime = new Date(item.start.dateTime);
-                rrule.origOptions.dtstart = new Date(
-                  new Date(
-                    startDateTime.getFullYear(),
-                    startDateTime.getMonth(),
-                    startDateTime.getDay(),
-                    startDateTime.getHours() + 1, //Hotfix for hour problem
-                    startDateTime.getMinutes()
-                  )
-                );
-              }
-              event.rrule = rrule.origOptions;
-            } else {
-              event.start = item.start.dateTime;
-              event.end = item.end.dateTime;
+    this.events$ = this.eventsFacade.googleCalendarEvents$.pipe(
+      map(items =>
+        items.map(item => {
+          let event = {
+            title: item.summary
+          } as EventInput;
+          if (item.recurrence && item.recurrence[0]) {
+            let rrule = RRule.fromString(item.recurrence[0]);
+            if (!rrule.origOptions.dtstart) {
+              let startDateTime = new Date(item.start.dateTime);
+              rrule.origOptions.dtstart = new Date(
+                new Date(
+                  startDateTime.getFullYear(),
+                  startDateTime.getMonth(),
+                  startDateTime.getDay(),
+                  startDateTime.getHours() + 1, //Hotfix for hour problem
+                  startDateTime.getMinutes()
+                )
+              );
             }
+            event.rrule = rrule.origOptions;
+          } else {
+            event.start = item.start.dateTime;
+            event.end = item.end.dateTime;
+          }
 
-            return event;
-          })
-        )
+          return event;
+        })
       )
     );
   }
-
-  public muteFirst = <T, R>(first$: Observable<T>, second$: Observable<R>) =>
-    combineLatest([first$, second$]).pipe(
-      map(([, second]) => second),
-      distinctUntilChanged()
-    );
 }
