@@ -1,18 +1,26 @@
-<div class="card" *ngIf="model">
-  <div class="media card-body rounded-0 shadow-sm">
-    <fa-icon
-      *ngIf="model.icon"
-      [icon]="model.icon"
-      size="lg"
-      class="mr-2"
-    ></fa-icon>
-    <div class="media-body">
-      <h5 class="mt-0" *ngIf="model.title">
-        {{ model.title }}
-      </h5>
-      <div class="row" *ngFor="let download of model.downloads">
-        <div class="col">
-          <app-downloads-card-item [model]="download"></app-downloads-card-item>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="card rounded-0 shadow-sm" *ngIf="model">
+        <div class="media card-body">
+          <fa-icon
+            *ngIf="model.icon"
+            [icon]="model.icon"
+            size="lg"
+            class="mr-2"
+          ></fa-icon>
+          <div class="media-body">
+            <h5 class="mt-0" *ngIf="model.title">
+              {{ model.title }}
+            </h5>
+            <div class="row" *ngFor="let download of model.downloads">
+              <div class="col">
+                <app-downloads-card-item
+                  [model]="download"
+                ></app-downloads-card-item>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

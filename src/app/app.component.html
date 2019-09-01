@@ -4,13 +4,16 @@
       <span class="w-100 d-lg-none d-block"
         ><!-- hidden spacer to center brand on mobile --></span
       >
-      <a class="navbar-brand d-none d-lg-inline-block" href="#">
+      <a class="navbar-brand d-none d-lg-inline-block" [routerLink]="['']">
         <img
           src="http://test3.66er.net/wp-content/uploads/logo.svg"
           style="height: 3rem;"
         />
       </a>
-      <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" href="#">
+      <a
+        class="navbar-brand-two mx-auto d-lg-none d-inline-block"
+        [routerLink]="['']"
+      >
         <img
           src="http://test3.66er.net/wp-content/uploads/logo.svg"
           style="height: 3rem;"
@@ -37,7 +40,7 @@
         <li class="nav-item dropdown">
           <a
             class="nav-link dropdown-toggle m-2"
-            href="#"
+            [routerLink]="['']"
             id="navbarDropdown"
             data-toggle="dropdown"
             aria-haspopup="true"
