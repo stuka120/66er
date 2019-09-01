@@ -58,4 +58,10 @@ export class EventsFacade {
     distinctUntilChanged(),
     share()
   );
+
+  public getGoogleCalenderEventsUntil(
+    maxDate: Date
+  ): Observable<CalenderEventModel[]> {
+    return this.googleCalendarService.getEventsTill(maxDate);
+  }
 }

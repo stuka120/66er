@@ -7,7 +7,9 @@
             event.dateTime | date: "dd"
           }}</span>
         </h1>
-        <h5 class="mb-0">{{ event.dateTime | date: "MMM" }}</h5>
+        <h5 class="mb-0">
+          {{ event.dateTime | date: "MMM":undefined:"de-AT" }}
+        </h5>
       </div>
       <div class="col-10 col-sm-9">
         <h5 class="text-uppercase">
@@ -15,13 +17,13 @@
         </h5>
         <ul class="list-inline mb-0">
           <li class="list-inline-item">
-            {{ event.dateTime | date: "EEEE" }}
+            <fa-icon [icon]="faClock"></fa-icon>
+            {{ event.dateTime | date: "EEEE":undefined:"de-AT" }}
           </li>
           <li class="list-inline-item">
-            <i class="fa fa-clock-o" aria-hidden="true"></i>
             {{ event.dateTime | date: "HH:mm" }}
           </li>
-          <li class="list-inline-item">
+          <li *ngIf="event.place">
             <fa-icon [icon]="faLocationArrow" class="mr-2"></fa-icon>
             <i class="fa fa-location-arrow" aria-hidden="true"></i
             >{{ event.place }}

@@ -40,6 +40,10 @@ import { RemoveMultipleBreaksPipe } from "./pipes/remove-multiple-breaks.pipe";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { UpcomingEventsComponent } from "./components/upcoming-events/upcoming-events.component";
 import { EventsFacade } from "./facades/events.facade";
+import { registerLocaleData } from "@angular/common";
+import localeDeAt from "@angular/common/locales/de-AT";
+
+registerLocaleData(localeDeAt, "de-AT");
 
 @NgModule({
   declarations: [
