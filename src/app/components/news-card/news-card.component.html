@@ -14,7 +14,7 @@
         (post.attachments?.data)[0]?.subattachments?.data.length == 1
       "
     >
-      <div class="picsum-img-wrapper">
+      <div *ngIf="post.full_picture" class="picsum-img-wrapper">
         <img
           class="d-block w-100"
           [src]="post.full_picture"

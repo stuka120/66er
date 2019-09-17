@@ -23,9 +23,20 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div
-      class="col-12 col-lg-8 col-xl-6 offset-lg-0 offset-xl-2  order-1 order-lg-0 mt-3"
-    >
+    <div class="col-lg-2 d-none d-xl-block mt-3">
+      <div
+        class="container-fluid sticky-top text-center"
+        style="top: 1rem; bottom: 1rem;"
+      >
+        <img alt="WAGGGS-Logo" src="assets/WAGGGS.svg" class="img-fluid w-75" />
+        <img
+          alt="WOSM-Logo"
+          src="assets/WOSM.svg"
+          class="img-fluid w-75 mt-3"
+        />
+      </div>
+    </div>
+    <div class="col-12 col-lg-8 col-xl-6 offset-lg-0 order-1 order-lg-0 mt-3">
       <app-news-card-collection
         [posts]="posts$ | async"
       ></app-news-card-collection>
