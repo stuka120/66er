@@ -1,7 +1,7 @@
 <div class="container" *ngIf="model">
   <ng-container *ngFor="let event of model">
     <div class="row row-striped">
-      <div class="col-2 col-sm-3 text-right">
+      <div class="col-3 text-right">
         <h1 class="display-5">
           <span class="badge badge-secondary">{{
             event.dateTime | date: "dd"
@@ -11,7 +11,7 @@
           {{ event.dateTime | date: "MMM":undefined:"de-AT" }}
         </h5>
       </div>
-      <div class="col-10 col-sm-9">
+      <div class="col-9">
         <h5 class="text-uppercase">
           <strong>{{ event.title }}</strong>
         </h5>
