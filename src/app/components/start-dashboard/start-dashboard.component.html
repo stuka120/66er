@@ -1,5 +1,6 @@
 <app-hero-banner [model]="heroBannerModel"></app-hero-banner>
 
+<!--
 <div class="container mt-5 mb-5">
   <div class="row justify-content-center">
     <div class="col text-center">
@@ -12,6 +13,12 @@
   *ngIf="stufenCardModels$ | async as stufenCardModels"
   [stufenModels]="stufenCardModels"
 ></app-stufen-card-collection>
+-->
+
+<app-stufen-slide-swiper
+  *ngIf="stufenCardModels$ | async as stufenCardModels"
+  [stufenModels]="stufenCardModels">
+</app-stufen-slide-swiper>
 
 <div id="nachrichten" class="container mt-5 mb-5">
   <div class="row justify-content-center">

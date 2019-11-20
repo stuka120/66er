@@ -1,5 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
+import { SwiperModule, SWIPER_CONFIG, SwiperConfigInterface } from 'ngx-swiper-wrapper';
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -16,6 +17,8 @@ import { StufenCardComponent } from "./components/stufen-card/stufen-card.compon
 import { NewsCardCollectionComponent } from "./components/news-card-collection/news-card-collection.component";
 import { StufenCardCollectionComponent } from "./components/stufen-card-collection/stufen-card-collection.component";
 import { CalendarDashboardComponent } from "./components/calendar-dashboard/calendar-dashboard.component";
+import { StufenSlideComponent } from './components/stufen-slide/stufen-slide.component';
+import { StufenSlideSwiperComponent } from './components/stufen-slide-swiper/stufen-slide-swiper.component';
 import { FormsModule } from "@angular/forms";
 import { FlatpickrModule } from "angularx-flatpickr";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -44,6 +47,14 @@ import { registerLocaleData } from "@angular/common";
 import localeDeAt from "@angular/common/locales/de-AT";
 
 registerLocaleData(localeDeAt, "de-AT");
+const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
+  direction: 'horizontal',
+  slidesPerView: 'auto',
+  keyboard: true,
+  mousewheel: true,
+  navigation: true,
+  speed: 300,
+}
 
 @NgModule({
   declarations: [
@@ -64,7 +75,9 @@ registerLocaleData(localeDeAt, "de-AT");
     DownloadsCardComponent,
     DownloadsCardItemComponent,
     RemoveMultipleBreaksPipe,
-    UpcomingEventsComponent
+    UpcomingEventsComponent,
+    StufenSlideComponent,
+    StufenSlideSwiperComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +91,8 @@ registerLocaleData(localeDeAt, "de-AT");
     NgbModule,
     FacebookModule.forRoot(),
     FullCalendarModule,
-    RootStoreModule
+    RootStoreModule,
+    SwiperModule
   ],
   providers: [
     MyFacebookService,
@@ -96,7 +110,11 @@ registerLocaleData(localeDeAt, "de-AT");
     EventsFacade,
 
     RemoveHtmlPipe,
-    RemoveMultipleBreaksPipe
+    RemoveMultipleBreaksPipe,
+    {
+      provide: SWIPER_CONFIG,
+      useValue: DEFAULT_SWIPER_CONFIG
+    }
   ],
   bootstrap: [AppComponent]
 })
