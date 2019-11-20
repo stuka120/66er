@@ -16,7 +16,9 @@ import { HeroBannerModel } from "./hero-banner.model";
 })
 export class HeroBannerComponent
   implements OnInit, AfterViewInit, AfterViewChecked {
-  constructor() {}
+  constructor() {
+    this.morphextInitialized = true;
+  }
 
   // @ts-ignore
   @ViewChild("morphextElement")
@@ -40,6 +42,6 @@ export class HeroBannerComponent
   ngOnInit() {}
 
   ngAfterViewChecked(): void {
-    this.morphextInitialized = true;
+    //this.morphextInitialized = true; bugfix see https://stackoverflow.com/a/48216423
   }
 }

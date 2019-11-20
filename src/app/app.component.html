@@ -1,5 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-collapse navbar-light bg-light">
-  <div class="container">
+<nav class="navbar navbar-expand-lg navbar-collapse navbar-light bg-light fixed-top">
+  <!-- adding stickiness -->
+  <div class="container"
+  #stickyMenu
+  [class.sticky] = "sticky">
     <div class="d-flex flex-grow-1">
       <span class="w-100 d-lg-none d-block"
         ><!-- hidden spacer to center brand on mobile --></span

@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, ViewChild, ElementRef, HostListener} from "@angular/core";
 import { FacebookService } from "ngx-facebook";
 
 @Component({
@@ -9,6 +9,23 @@ import { FacebookService } from "ngx-facebook";
 export class AppComponent implements OnInit {
   title = "Pfadfindergruppe 66";
   applicationId: string;
+  sticky: boolean = false;
+  menuPosition: any;
+
+  @ViewChild('stickyMenu', {static:false}) menuElement: ElementRef;
+
+  /**
+  * see https://medium.com/@chiodigiovanni1/a-simple-on-scroll-sticky-menu-with-angular-and-bulma-66fafc7fc7b9
+  * did not use position:fixed in css, makes it kaputt
+  */
+  @HostListener('window:scroll', ['$event']) handleScroll() {
+    const windowScroll = window.pageYOffset;
+        if(windowScroll >= this.menuPosition){
+            this.sticky = true;
+        } else {
+            this.sticky = false;
+        }
+  }
 
   constructor(private fbService: FacebookService) {}
 
@@ -16,6 +33,10 @@ export class AppComponent implements OnInit {
     let self = this;
     self.applicationId = "2404142946530814"; // **Enter your Created FB App's ID**
     self.loadFBSDK();
+  }
+
+  ngAfterViewInit(){
+      this.menuPosition = this.menuElement.nativeElement.offsetTop
   }
 
   loadFBSDK() {
