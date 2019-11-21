@@ -1,5 +1,9 @@
 @import '~swiper/dist/css/swiper.min.css';
 
-.swiper-container{
+.swiper-container {
   padding: 10px;
+}
+
+.swiper-slide {
+  height: auto;
 }

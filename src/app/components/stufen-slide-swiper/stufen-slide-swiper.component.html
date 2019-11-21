@@ -1,15 +1,14 @@
+<div class="swiper-container" [swiper]="config">
+  <div class="swiper-wrapper">
+    <app-stufen-slide
+      *ngFor="let stufe of stufenModels"
+      class="swiper-slide col-12 col-md-6 col-lg-4 col-xl-3"
+      [stufenCardModel]="stufe">
+    </app-stufen-slide>
+  </div>
 
-<div class="container swiper-container" [swiper]="config">
-    <div class="swiper-wrapper">
-      <app-stufen-slide
-        *ngFor="let stufe of stufenModels"
-        class="swiper-slide col-lg-6 col-sm-12"
-        [stufenCardModel]="stufe">
-      </app-stufen-slide>
-    </div>
+  <div class="swiper-pagination"></div>
 
-    <div class="swiper-pagination"></div>
-
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
 </div>

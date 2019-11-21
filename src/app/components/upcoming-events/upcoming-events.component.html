@@ -1,11 +1,11 @@
-<div class="container" *ngIf="model">
+<div *ngIf="model">
   <ng-container *ngFor="let event of model">
     <div class="row row-striped">
       <div class="col-3 text-right">
         <h1 class="display-5">
           <span class="badge badge-secondary">{{
-            event.dateTime | date: "dd"
-          }}</span>
+              event.dateTime | date: "dd"
+            }}</span>
         </h1>
         <h5 class="mb-0">
           {{ event.dateTime | date: "MMM":undefined:"de-AT" }}
