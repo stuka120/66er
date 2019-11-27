@@ -5,6 +5,9 @@ import {
   SwiperConfigInterface,
   SwiperDirective
 } from "ngx-swiper-wrapper";
+import {Observable} from "rxjs";
+import {BreakpointService} from "../../services/breakpoint.service";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: "app-stufen-slide-swiper",
@@ -16,7 +19,12 @@ export class StufenSlideSwiperComponent implements OnInit {
 
   @ViewChild(SwiperDirective, {static: false}) directiveRef?: SwiperDirective;
 
-  constructor(@Inject(SWIPER_CONFIG) public config: SwiperConfigInterface) {
+  config$: Observable<SwiperConfigInterface>;
+
+  constructor(@Inject(SWIPER_CONFIG) public config: SwiperConfigInterface, private breakpointService: BreakpointService) {
+    this.config$ = this.breakpointService.isBreakpointMatched("md-down").pipe(
+      map(isMatched => ({...config, autoplay: isMatched} as SwiperConfigInterface))
+    );
   }
 
   ngOnInit() {

@@ -1,4 +1,4 @@
-<div class="swiper-container" [swiper]="config">
+<div class="swiper-container" [swiper]="config$ | async">
   <div class="swiper-wrapper">
     <app-stufen-slide
       *ngFor="let stufe of stufenModels"

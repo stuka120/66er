@@ -1,6 +1,6 @@
 import {BrowserModule} from "@angular/platform-browser";
 import {NgModule} from "@angular/core";
-import {SwiperModule, SWIPER_CONFIG, SwiperConfigInterface} from 'ngx-swiper-wrapper';
+import {SwiperModule, SWIPER_CONFIG, SwiperConfigInterface} from "ngx-swiper-wrapper";
 
 import {AppRoutingModule} from "./app-routing.module";
 import {AppComponent} from "./app.component";
@@ -17,8 +17,8 @@ import {StufenCardComponent} from "./components/stufen-card/stufen-card.componen
 import {NewsCardCollectionComponent} from "./components/news-card-collection/news-card-collection.component";
 import {StufenCardCollectionComponent} from "./components/stufen-card-collection/stufen-card-collection.component";
 import {CalendarDashboardComponent} from "./components/calendar-dashboard/calendar-dashboard.component";
-import {StufenSlideComponent} from './components/stufen-slide/stufen-slide.component';
-import {StufenSlideSwiperComponent} from './components/stufen-slide-swiper/stufen-slide-swiper.component';
+import {StufenSlideComponent} from "./components/stufen-slide/stufen-slide.component";
+import {StufenSlideSwiperComponent} from "./components/stufen-slide-swiper/stufen-slide-swiper.component";
 import {FormsModule} from "@angular/forms";
 import {FlatpickrModule} from "angularx-flatpickr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
@@ -45,6 +45,8 @@ import {UpcomingEventsComponent} from "./components/upcoming-events/upcoming-eve
 import {EventsFacade} from "./facades/events.facade";
 import {registerLocaleData} from "@angular/common";
 import localeDeAt from "@angular/common/locales/de-AT";
+import {BreakpointPipe} from "./pipes/breakpoint.pipe";
+import {BreakpointService} from "./services/breakpoint.service";
 
 registerLocaleData(localeDeAt, "de-AT");
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -103,6 +105,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
   providers: [
     MyFacebookService,
     WordpressService,
+    BreakpointService,
 
     StufenInfoFacade,
     BiberDashboardFacade,
@@ -117,6 +120,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 
     RemoveHtmlPipe,
     RemoveMultipleBreaksPipe,
+    BreakpointPipe,
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
