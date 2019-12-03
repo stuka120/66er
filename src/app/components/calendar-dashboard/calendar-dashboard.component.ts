@@ -29,6 +29,7 @@ import {
 } from "@fullcalendar/core/types/input-types";
 import { FormatterInput } from "@fullcalendar/core/datelib/formatting";
 import { EventsFacade } from "../../facades/events.facade";
+import { EventClickedModalComponent } from "../modal/event-clicked-modal/event-clicked-modal.component";
 
 @Component({
   selector: "mwl-demo-component",
@@ -130,5 +131,17 @@ export class CalendarDashboardComponent implements OnInit {
         })
       )
     );
+  }
+
+  eventClicked($event: any) {
+    let openedModal = this.modal.open(EventClickedModalComponent, {
+      centered: true
+    });
+    let componentInstance = openedModal.componentInstance as EventClickedModalComponent;
+    componentInstance.model = {
+      title: $event.event.title,
+      scheduledDateTime: $event.event.start,
+      location: ""
+    };
   }
 }
