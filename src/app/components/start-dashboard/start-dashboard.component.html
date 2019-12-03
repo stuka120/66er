@@ -1,23 +1,9 @@
-<app-hero-banner [model]="heroBannerModel"></app-hero-banner>
-
-<!--
-<div class="container mt-5 mb-5">
-  <div class="row justify-content-center">
-    <div class="col text-center">
-      <h1>Altersstufen</h1>
-    </div>
-  </div>
-</div>
-
-<app-stufen-card-collection
-  *ngIf="stufenCardModels$ | async as stufenCardModels"
-  [stufenModels]="stufenCardModels"
-></app-stufen-card-collection>
--->
+<app-hero-banner [model]="heroBannerModel | async"></app-hero-banner>
 
 <app-stufen-slide-swiper
   *ngIf="stufenCardModels$ | async as stufenCardModels"
-  [stufenModels]="stufenCardModels">
+  [stufenModels]="stufenCardModels"
+>
 </app-stufen-slide-swiper>
 
 <div id="nachrichten" class="container my-3">
@@ -38,7 +24,9 @@
     <div class="col-12 col-lg-4 col-xl-3 order-0 order-lg-1 mt-3">
       <div class="container-fluid sticky-top" style="top: 6rem; bottom: 1rem;">
         <div class="row">
-          <div class="d-none d-md-block col-md-6 col-lg-12 mt-3 mt-md-0 mt-lg-0">
+          <div
+            class="d-none d-md-block col-md-6 col-lg-12 mt-3 mt-md-0 mt-lg-0"
+          >
             <app-downloads-card
               [model]="downloadsCardModel"
             ></app-downloads-card>

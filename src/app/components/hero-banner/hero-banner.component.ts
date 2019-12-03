@@ -28,6 +28,13 @@ export class HeroBannerComponent
   @Input()
   model: HeroBannerModel;
 
+  /**
+   * If you set this, you can override the image url from the model
+   * This is required so that morphext does work.
+   */
+  @Input()
+  imageUrl: string;
+
   morphextInitialized = false;
 
   ngAfterViewInit(): void {

@@ -9,6 +9,8 @@ import { BiberDashboardFacade } from "./facades/stufen-facades/biber-dashboard.f
 import { GuspDashboardFacade } from "./facades/stufen-facades/gusp-dashboard.facade";
 import { CaexDashboardFacade } from "./facades/stufen-facades/caex-dashboard.facade";
 import { RaroDashboardFacade } from './facades/stufen-facades/raro-dashboard.facade';
+import { ImprintDashboardComponent } from './components/imprint-dashboard/imprint-dashboard.component';
+import { DatenschutzDashboardComponent } from './components/datenschutz-dashboard/datenschutz-dashboard.component';
 
 const routes: Routes = [
   {
@@ -55,6 +57,14 @@ const routes: Routes = [
         data: { requiredService: RaroDashboardFacade }
       }
     ]
+  },
+  {
+    path: 'impressum',
+    component: ImprintDashboardComponent
+  },
+  {
+    path: 'datenschutz',
+    component: DatenschutzDashboardComponent
   }
 ];
 

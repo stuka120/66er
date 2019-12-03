@@ -10,7 +10,6 @@ import { NgbModalModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { DownloadsDashboardComponent } from "./components/downloads-dashboard/downloads-dashboard.component";
 import { FullCalendarModule } from "@fullcalendar/angular";
 import { WordpressService } from "./services/wordpress.service";
-import { FacebookModule } from "ngx-facebook";
 import { NewsCardComponent } from "./components/news-card/news-card.component";
 import { StufenCardComponent } from "./components/stufen-card/stufen-card.component";
 import { NewsCardCollectionComponent } from "./components/news-card-collection/news-card-collection.component";
@@ -52,6 +51,9 @@ import {
   SwiperConfigInterface,
   SwiperModule
 } from "ngx-swiper-wrapper";
+import { FooterComponent } from "./components/footer/footer.component";
+import { ImprintDashboardComponent } from "./components/imprint-dashboard/imprint-dashboard.component";
+import { DatenschutzDashboardComponent } from './components/datenschutz-dashboard/datenschutz-dashboard.component';
 
 registerLocaleData(localeDeAt, "de-AT");
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -91,7 +93,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     UpcomingEventsComponent,
     StufenSlideComponent,
     StufenSlideSwiperComponent,
-    EventClickedModalComponent
+    EventClickedModalComponent,
+    FooterComponent,
+    ImprintDashboardComponent,
+    DatenschutzDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -103,7 +108,6 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     AppRoutingModule,
     HttpClientModule,
     NgbModule,
-    FacebookModule.forRoot(),
     FullCalendarModule,
     RootStoreModule,
     SwiperModule

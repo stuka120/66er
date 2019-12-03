@@ -15,7 +15,9 @@ import { DownloadModel } from "../../model/wordpress-media-response.dto";
 import { faArrowCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { UpcomingEventModel } from "../upcoming-events/upcoming-event.model";
 import { EventsFacade } from "../../facades/events.facade";
-import { map } from "rxjs/operators";
+import { map, startWith } from "rxjs/operators";
+import { WordpressDictionary } from "../../dictionary/wordpress.dictionary";
+import { MyWordpressFacade } from "../../facades/my-wordpress.facade";
 
 @Component({
   selector: "app-start-dashboard",
@@ -30,12 +32,8 @@ export class StartDashboardComponent implements OnInit {
   isLoadingPosts$: Observable<boolean>;
   isLoadingStufenInfos$: Observable<boolean>;
 
-  heroBannerModel: HeroBannerModel = {
-    imageUrl: "http://test1.66er.net/wp-content/uploads/2019/03/titelbild.jpg",
-    buttonText: "Aktuelles",
-    morphextPrefix: "Wir sind ",
-    morpext: "Biber, WiWö, GuSp, CaEx, RaRo, die 66er!"
-  };
+  heroBannerModel: Observable<HeroBannerModel>;
+  heroBannerUrl$: Observable<string>;
 
   downloadsCardModel: DownloadsCardModel = {
     title: "Downloads",
@@ -55,12 +53,21 @@ export class StartDashboardComponent implements OnInit {
     private wordpressService: WordpressService,
     private store$: Store<RootState>,
     private stufenInfoFacade: StufenInfoFacade,
-    private eventsFacade: EventsFacade
+    private eventsFacade: EventsFacade,
+    private wordpressFacade: MyWordpressFacade
   ) {}
 
   ngOnInit(): void {
     this.isLoadingPosts$ = this.store$.select(selectPostsIsLoading);
     this.isLoadingStufenInfos$ = this.store$.select(selectStufenInfosIsLoading);
+    this.heroBannerUrl$ = this.wordpressService
+      .getPostByCategoryIdAndTagId$(
+        WordpressDictionary.categories.startseite,
+        WordpressDictionary.tags.bannerImage
+      )
+      .pipe(map(post => post._embedded["wp:featuredmedia"][0].source_url));
+
+    this.heroBannerModel = this.wordpressFacade.getStartseiteBanner$();
 
     this.posts$ = this.myFacebookFacade.posts$;
     this.stufenCardModels$ = this.stufenInfoFacade.stufenTeasersAll$;

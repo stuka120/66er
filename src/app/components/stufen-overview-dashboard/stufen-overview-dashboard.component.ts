@@ -8,7 +8,10 @@ import { TeamCardCollectionModel } from "../team-card-collection/team-card-colle
 import { DownloadsCardModel } from "../downloads-card/downloads-card.model";
 import { StufenFacadeInterface } from "../../facades/stufen-facades/stufen-facade.interface";
 import { ActivatedRoute } from "@angular/router";
-import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faCog } from "@fortawesome/free-solid-svg-icons";
+import { MyWordpressFacade } from "../../facades/my-wordpress.facade";
+import { WordpressDictionary } from "../../dictionary/wordpress.dictionary";
+import { map, startWith } from "rxjs/operators";
 
 @Component({
   selector: "app-stufen-overview-dashboard",
@@ -18,7 +21,7 @@ import { faCog } from '@fortawesome/free-solid-svg-icons';
 export class StufenOverviewDashboardComponent implements OnInit {
   stufenFacade: StufenFacadeInterface;
 
-  heroBannerModel: HeroBannerModel;
+  heroBannerModel$: Observable<HeroBannerModel>;
   stufenInfo$: Observable<StufenCardModel>;
   teamMembers$: Observable<TeamCardCollectionModel>;
   downloads$: Observable<DownloadsCardModel>;
@@ -29,7 +32,8 @@ export class StufenOverviewDashboardComponent implements OnInit {
   constructor(
     private store$: Store<RootState>,
     private route: ActivatedRoute,
-    private injector: Injector
+    private injector: Injector,
+    private myWordpressFacade: MyWordpressFacade
   ) {}
 
   ngOnInit() {
@@ -37,15 +41,7 @@ export class StufenOverviewDashboardComponent implements OnInit {
       this.route.snapshot.data["requiredService"]
     );
 
-    this.heroBannerModel = {
-      imageUrl:
-        "http://test1.66er.net/wp-content/uploads/2019/03/titelbild.jpg",
-      buttonText: null,
-      morpext: null,
-      morphextPrefix: `Wir sind die ${this.stufenFacade.stufenName}`,
-      imageHeight: 20
-    };
-
+    this.heroBannerModel$ = this.stufenFacade.stufenBannerModel$;
     this.stufenInfo$ = this.stufenFacade.stufenInfo$;
     this.heimstunden$ = this.stufenFacade.stufenHeimstunden$;
     this.teamMembers$ = this.stufenFacade.stufenTeam$;

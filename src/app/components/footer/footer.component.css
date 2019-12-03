@@ -1,0 +1,50 @@
+.footer {
+  background: #0d2a3a;
+  color: #cccccc;
+}
+
+span {
+  padding-right: 15px;
+}
+
+h4 {
+  font-size: 15px;
+  text-transform: uppercase;
+}
+
+ul {
+  font-size: 13px;
+  padding-left: 0;
+  list-style: none;
+  padding-top: 10px;
+}
+
+.f-b {
+  font-size: 12px;
+  text-align: center;
+}
+
+.fa {
+  font-size: 19px;
+  color: #cccccc;
+}
+
+.fa-youtube-play:hover {
+  color: red;
+}
+
+.fa-facebook-official:hover {
+  color: #002fff;
+}
+
+.fa-twitter:hover {
+  color: #00aeff;
+}
+
+.fa-instagram:hover {
+  color: rgb(133, 9, 9);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}

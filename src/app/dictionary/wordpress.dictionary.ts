@@ -4,13 +4,15 @@ export const WordpressDictionary = {
     wiwoe: 8,
     gusp: 11,
     caex: 10,
-    raro: 12
+    raro: 12,
+    startseite: 17
   },
   tags: {
     time: 16,
     content: 13,
     teaser: 15,
-    team: 14
+    team: 14,
+    bannerImage: 18
   },
   downloads: {
     aktuelles: "downloads_aktuelles",
