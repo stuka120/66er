@@ -39,7 +39,7 @@ export class StufenOverviewDashboardComponent implements OnInit {
 
     this.heroBannerModel = {
       imageUrl:
-        "http://test3.66er.net/wp-content/uploads/2019/03/titelbild.jpg",
+        "http://test1.66er.net/wp-content/uploads/2019/03/titelbild.jpg",
       buttonText: null,
       morpext: null,
       morphextPrefix: `Wir sind die ${this.stufenFacade.stufenName}`,

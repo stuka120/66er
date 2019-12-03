@@ -31,7 +31,7 @@ export class StartDashboardComponent implements OnInit {
   isLoadingStufenInfos$: Observable<boolean>;
 
   heroBannerModel: HeroBannerModel = {
-    imageUrl: "http://test3.66er.net/wp-content/uploads/2019/03/titelbild.jpg",
+    imageUrl: "http://test1.66er.net/wp-content/uploads/2019/03/titelbild.jpg",
     buttonText: "Aktuelles",
     morphextPrefix: "Wir sind ",
     morpext: "Biber, WiWö, GuSp, CaEx, RaRo, die 66er!"

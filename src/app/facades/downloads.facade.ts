@@ -7,6 +7,7 @@ import {
 } from "../model/wordpress-media-response.dto";
 import { filter, map } from "rxjs/operators";
 import { RemoveHtmlPipe } from "../pipes/remove-html.pipe";
+import { WordpressDictionary } from "../dictionary/wordpress.dictionary";
 
 @Injectable({
   providedIn: "root"
@@ -25,7 +26,7 @@ export class DownloadsFacade {
   }
 
   currentDownloads$: Observable<DownloadModel[]> = this.getDownloadsByTagName(
-    "downloads_aktuell"
+    WordpressDictionary.downloads.aktuelles
   );
 
   private mapToDownloadModel(dto: WordpressMediaResponseDto): DownloadModel {

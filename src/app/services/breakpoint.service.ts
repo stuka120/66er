@@ -1,14 +1,19 @@
-import {Injectable} from "@angular/core";
-import {fromEvent, Observable} from "rxjs";
-import {distinctUntilChanged, map, shareReplay, startWith} from "rxjs/operators";
-import {BreakpointMatches} from "../pipes/breakpoint.pipe";
+import { Injectable } from "@angular/core";
+import { fromEvent, Observable } from "rxjs";
+import {
+  distinctUntilChanged,
+  map,
+  shareReplay,
+  startWith
+} from "rxjs/operators";
+import { BreakpointMatches } from "../pipes/breakpoint.pipe";
 
 const QUERY: Map<"xs" | "sm" | "md" | "lg" | "xl", string> = new Map([
   ["xl", "(min-width: 1200px)"],
   ["lg", "(min-width: 992px)"],
   ["md", "(min-width: 768px)"],
   ["sm", "(min-width: 576px)"],
-  ["xs", "(min-width: 0px)"],
+  ["xs", "(min-width: 0px)"]
 ]);
 
 @Injectable()
@@ -17,15 +22,14 @@ export class BreakpointService {
   private readonly _size$: Observable<"xs" | "sm" | "md" | "lg" | "xl">;
 
   constructor() {
-    this._size$ = fromEvent(window, "resize")
-      .pipe(
-        startWith(this._getScreenSize()),
-        map(() => {
-          return this._getScreenSize();
-        }),
-        distinctUntilChanged(),
-        shareReplay(1)
-      );
+    this._size$ = fromEvent(window, "resize").pipe(
+      startWith(this._getScreenSize()),
+      map(() => {
+        return this._getScreenSize();
+      }),
+      distinctUntilChanged(),
+      shareReplay(1)
+    );
   }
 
   public get size$(): Observable<"xs" | "sm" | "md" | "lg" | "xl"> {
@@ -37,7 +41,9 @@ export class BreakpointService {
       map(size => {
         switch (breakpoint) {
           case "sm-up":
-            return size === "sm" || size === "md" || size === "lg" || size === "xl";
+            return (
+              size === "sm" || size === "md" || size === "lg" || size === "xl"
+            );
           case "md-up":
             return size === "md" || size === "lg" || size === "xl";
           case "lg-up":
@@ -45,13 +51,21 @@ export class BreakpointService {
           case "xl-up":
             return size === "xl";
           case "sm-down":
-            return size === "sm";
+            return size === "xs" || size === "sm";
           case "md-down":
-            return size === "sm" || size === "md";
+            return size === "xs" || size === "sm" || size === "md";
           case "lg-down":
-            return size === "sm" || size === "md" || size === "lg";
+            return (
+              size === "xs" || size === "sm" || size === "md" || size === "lg"
+            );
           case "xl-down":
-            return size === "sm" || size === "md" || size === "lg" || size === "xl";
+            return (
+              size === "xs" ||
+              size === "sm" ||
+              size === "md" ||
+              size === "lg" ||
+              size === "xl"
+            );
         }
       }),
       distinctUntilChanged()
@@ -59,8 +73,9 @@ export class BreakpointService {
   }
 
   private _getScreenSize(): "xs" | "sm" | "md" | "lg" | "xl" {
-    const [[newSize = "xs"]] = Array.from(QUERY.entries())
-      .filter(([, mediaQuery]) => window.matchMedia(mediaQuery).matches);
+    const [[newSize = "xs"]] = Array.from(QUERY.entries()).filter(
+      ([, mediaQuery]) => window.matchMedia(mediaQuery).matches
+    );
     return newSize as "xs" | "sm" | "md" | "lg" | "xl";
   }
 }
