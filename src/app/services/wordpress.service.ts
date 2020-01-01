@@ -16,13 +16,13 @@ export class WordpressService {
 
   public getPage$(id: number): Observable<WordpressPageModel> {
     return this.httpClient.get<WordpressPageModel>(
-      `http://test1.66er.net/wp-json/wp/v2/pages/${id}`
+      `https://www.66er.net/wp-json/wp/v2/pages/${id}`
     );
   }
 
   public getPost$(postId: number): Observable<WordpressPostResponseModel> {
     return this.httpClient.get<WordpressPostResponseModel>(
-      `http://test1.66er.net/wp-json/wp/v2/posts/${postId}?_embed`
+      `https://www.66er.net/wp-json/wp/v2/posts/${postId}?_embed`
     );
   }
 
@@ -30,7 +30,7 @@ export class WordpressService {
     categoryId: number
   ): Observable<WordpressPostResponseModel[]> {
     return this.httpClient.get<WordpressPostResponseModel[]>(
-      `http://test1.66er.net/wp-json/wp/v2/posts/?_embed&categories=${categoryId}`
+      `https://www.66er.net/wp-json/wp/v2/posts/?_embed&categories=${categoryId}`
     );
   }
 
@@ -40,7 +40,7 @@ export class WordpressService {
   ): Observable<WordpressPostResponseModel[]> {
     return this.httpClient
       .get<WordpressPostResponseModel[]>(
-        `http://test1.66er.net/wp-json/wp/v2/posts/?_embed&categories=${categoryId}&tags=${tagId}`
+        `https://www.66er.net/wp-json/wp/v2/posts/?_embed&categories=${categoryId}&tags=${tagId}`
       )
       .pipe(filter(posts => !!posts && posts.length > 0));
   }
@@ -51,7 +51,7 @@ export class WordpressService {
   ): Observable<WordpressPostResponseModel> {
     return this.httpClient
       .get<WordpressPostResponseModel[]>(
-        `http://test1.66er.net/wp-json/wp/v2/posts/?_embed&categories=${categoryId}&tags=${tagId}`
+        `https://www.66er.net/wp-json/wp/v2/posts/?_embed&categories=${categoryId}&tags=${tagId}`
       )
       .pipe(
         filter(posts => !!posts && posts.length > 0),
@@ -63,7 +63,7 @@ export class WordpressService {
     categoryName: string
   ): Observable<WordpressMediaResponseDto[]> {
     return this.httpClient.get<WordpressMediaResponseDto[]>(
-      `http://test1.66er.net/wp-json/wp/v2/media?search=${categoryName}`
+      `https://www.66er.net/wp-json/wp/v2/media?search=${categoryName}`
     );
   }
 }

@@ -118,7 +118,7 @@ export class StufenInfoFacade {
                 fullDescription: this.removeMultipleBreaks.transform(
                   post.content.rendered
                 ),
-                imgUrl: "http://test1.66er.net/wp-content/uploads/biber.jpg"
+                imgUrl: "https://www.66er.net/wp-content/uploads/biber.jpg"
               }
           )
         ),
@@ -137,7 +137,7 @@ export class StufenInfoFacade {
                 fullDescription: this.removeMultipleBreaks.transform(
                   post.content.rendered
                 ),
-                imgUrl: "http://test1.66er.net/wp-content/uploads/wiwoe.jpg"
+                imgUrl: "https://www.66er.net/wp-content/uploads/wiwoe.jpg"
               }
           )
         ),
@@ -156,7 +156,7 @@ export class StufenInfoFacade {
                 fullDescription: this.removeMultipleBreaks.transform(
                   post.content.rendered
                 ),
-                imgUrl: "http://test1.66er.net/wp-content/uploads/gusp.png"
+                imgUrl: "https://www.66er.net/wp-content/uploads/gusp.png"
               }
           )
         ),
@@ -175,7 +175,7 @@ export class StufenInfoFacade {
                 fullDescription: this.removeMultipleBreaks.transform(
                   post.content.rendered
                 ),
-                imgUrl: "http://test1.66er.net/wp-content/uploads/caex.jpg"
+                imgUrl: "https://www.66er.net/wp-content/uploads/caex.jpg"
               }
           )
         ),
@@ -194,7 +194,7 @@ export class StufenInfoFacade {
                 fullDescription: this.removeMultipleBreaks.transform(
                   post.content.rendered
                 ),
-                imgUrl: "http://test1.66er.net/wp-content/uploads/raro.png"
+                imgUrl: "https://www.66er.net/wp-content/uploads/raro.png"
               }
           )
         )
