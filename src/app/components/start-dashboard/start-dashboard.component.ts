@@ -86,7 +86,7 @@ export class StartDashboardComponent implements OnInit {
                 endDateTime: event.end.dateTime,
                 place: event.location
               })
-          )
+          ).sort((a, b) => new Date(a.dateTime).valueOf() - new Date(b.dateTime).valueOf())
         )
       );
   }
