@@ -80,10 +80,12 @@ export class StartDashboardComponent implements OnInit {
         map(events =>
           events.map(
             event =>
-              ({
+              ( <UpcomingEventModel> {
                 title: event.summary,
-                dateTime: event.start.dateTime
-              } as UpcomingEventModel)
+                dateTime: event.start.dateTime,
+                endDateTime: event.end.dateTime,
+                place: event.location
+              })
           )
         )
       );

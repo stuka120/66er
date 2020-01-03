@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { faClock, faLocationArrow } from '@fortawesome/free-solid-svg-icons';
 import { UpcomingEventModel } from "./upcoming-event.model";
 
 @Component({
@@ -10,8 +9,6 @@ import { UpcomingEventModel } from "./upcoming-event.model";
 export class UpcomingEventsComponent implements OnInit {
   @Input()
   model: UpcomingEventModel[];
-  faClock = faClock;
-  faLocationArrow = faLocationArrow;
 
   constructor() {}
 

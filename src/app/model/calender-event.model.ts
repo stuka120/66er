@@ -16,4 +16,5 @@ export interface CalenderEventModel {
     timeZone: string;
   };
   recurrence: string[];
+  location: string;
 }

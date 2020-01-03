@@ -26,15 +26,15 @@
     >
       <div class="container-fluid sticky-top" style="top: 6rem; bottom: 1rem;">
         <div class="row">
+<!--          <div-->
+<!--            class="d-none d-md-block col-md-6 col-lg-12 mt-3 mt-md-0 mt-lg-0"-->
+<!--          >-->
+<!--            <app-downloads-card-->
+<!--              [model]="downloadsCardModel"-->
+<!--            ></app-downloads-card>-->
+<!--          </div>-->
           <div
-            class="d-none d-md-block col-md-6 col-lg-12 mt-3 mt-md-0 mt-lg-0"
-          >
-            <app-downloads-card
-              [model]="downloadsCardModel"
-            ></app-downloads-card>
-          </div>
-          <div
-            class="col-12 col-md-6 col-lg-12 mt-3 mt-md-0 mt-lg-3"
+            class="col-12 col-md-6 col-lg-12"
             *ngIf="upcomingEvents$ | async as upcomingEvents"
           >
             <app-upcoming-events [model]="upcomingEvents"></app-upcoming-events>

@@ -17,7 +17,7 @@ export class GoogleCalenderService {
     return this.httpClient
       .get<CalenderEventDtoModel>(
         // tslint:disable-next-line:max-line-length
-        "https://www.googleapis.com/calendar/v3/calendars/pu12ae6vgt369s2034bb38l34o@group.calendar.google.com/events?key=AIzaSyAr6dDbBmPq0jjED62RLVbirS9_6nP9_Zw"
+        "https://www.66er.net/wp-json/calendar/v1/allEvents"
       )
       .pipe(map(dto => dto.items));
   }
@@ -26,7 +26,7 @@ export class GoogleCalenderService {
     return this.httpClient
       .get<CalenderEventDtoModel>(
         // tslint:disable-next-line:max-line-length
-        `https://www.googleapis.com/calendar/v3/calendars/pu12ae6vgt369s2034bb38l34o@group.calendar.google.com/events?key=AIzaSyAr6dDbBmPq0jjED62RLVbirS9_6nP9_Zw&singleEvents=true&timeMax=${maxDate.toISOString()}&timeMin=${new Date().toISOString()}`
+        `https://www.66er.net/wp-json/calendar/v1/events?from=${new Date().toISOString()}&to=${maxDate.toISOString()}`
       )
       .pipe(map(dto => dto.items));
   }

@@ -54,6 +54,7 @@ import {
 import { FooterComponent } from "./components/footer/footer.component";
 import { ImprintDashboardComponent } from "./components/imprint-dashboard/imprint-dashboard.component";
 import { DatenschutzDashboardComponent } from './components/datenschutz-dashboard/datenschutz-dashboard.component';
+import {UpcomingEventComponent} from "./components/upcoming-event/upcoming-event.component";
 
 registerLocaleData(localeDeAt, "de-AT");
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -91,6 +92,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     DownloadsCardItemComponent,
     RemoveMultipleBreaksPipe,
     UpcomingEventsComponent,
+    UpcomingEventComponent,
     StufenSlideComponent,
     StufenSlideSwiperComponent,
     EventClickedModalComponent,
