@@ -37,7 +37,7 @@
             class="col-12 col-md-6 col-lg-12"
             *ngIf="upcomingEvents$ | async as upcomingEvents"
           >
-            <app-upcoming-events [model]="upcomingEvents"></app-upcoming-events>
+            <app-upcoming-event-collection [model]="upcomingEvents"></app-upcoming-event-collection>
           </div>
         </div>
       </div>

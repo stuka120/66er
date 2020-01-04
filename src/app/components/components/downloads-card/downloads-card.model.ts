@@ -1,4 +1,4 @@
-import { DownloadModel } from "../../model/wordpress-media-response.dto";
+import { DownloadModel } from "../../../model/wordpress-media-response.dto";
 import { IconDefinition } from "@fortawesome/fontawesome-common-types";
 
 export interface DownloadsCardModel {

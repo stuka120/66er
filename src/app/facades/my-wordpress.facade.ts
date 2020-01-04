@@ -3,7 +3,7 @@ import { WordpressDictionary } from "../dictionary/wordpress.dictionary";
 import { catchError, filter, map, startWith } from "rxjs/operators";
 import { WordpressService } from "../services/wordpress.service";
 import { Observable, of } from "rxjs";
-import { HeroBannerModel } from "../components/hero-banner/hero-banner.model";
+import { HeroBannerModel } from "../components/components/hero-banner/hero-banner.model";
 import { Post } from "../model/post.model";
 import { WordpressPostResponseModel } from "../services/WordpressResponseModel.model";
 

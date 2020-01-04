@@ -7,16 +7,16 @@ import {
 } from "@angular/core";
 import { Observable } from "rxjs";
 import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
-import { GoogleCalenderService } from "../../services/google-calender.service";
+import { GoogleCalenderService } from "../../../services/google-calender.service";
 import { filter, map, share, switchMap, tap } from "rxjs/operators";
 import RRule from "rrule";
 import { Store } from "@ngrx/store";
-import { selectCalendarNeedEvents } from "../../root-store/calendar-store/selectors";
+import { selectCalendarNeedEvents } from "../../../root-store/calendar-store/selectors";
 import {
   loadEventsAction,
   loadEventsSuccessAction
-} from "../../root-store/calendar-store/actions";
-import { RootState } from "../../root-store/root-state";
+} from "../../../root-store/calendar-store/actions";
+import { RootState } from "../../../root-store/root-state";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import { EventInput } from "@fullcalendar/core";
 import bootstrapPlugin from "@fullcalendar/bootstrap";
@@ -28,8 +28,8 @@ import {
   ToolbarInput
 } from "@fullcalendar/core/types/input-types";
 import { FormatterInput } from "@fullcalendar/core/datelib/formatting";
-import { EventsFacade } from "../../facades/events.facade";
-import { EventClickedModalComponent } from "../modal/event-clicked-modal/event-clicked-modal.component";
+import { EventsFacade } from "../../../facades/events.facade";
+import { EventClickedModalComponent } from "../../components/modal/event-clicked-modal/event-clicked-modal.component";
 
 @Component({
   selector: "mwl-demo-component",

@@ -1,23 +1,23 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
-import { Post } from "../../model/post.model";
+import { Post } from "../../../model/post.model";
 import { WordpressService } from "src/app/services/wordpress.service";
 import { StufenCardModel } from "src/app/model/stufen-card.model";
 import { Store } from "@ngrx/store";
-import { selectPostsIsLoading } from "../../root-store/posts-store/selectors";
-import { RootState } from "../../root-store/root-state";
-import { selectStufenInfosIsLoading } from "../../root-store/stufen-info-store/selectors";
-import { HeroBannerModel } from "../hero-banner/hero-banner.model";
-import { StufenInfoFacade } from "../../facades/stufen-info.facade";
-import { MyFacebookFacade } from "../../facades/my-facebook.facade";
-import { DownloadsCardModel } from "../downloads-card/downloads-card.model";
-import { DownloadModel } from "../../model/wordpress-media-response.dto";
+import { selectPostsIsLoading } from "../../../root-store/posts-store/selectors";
+import { RootState } from "../../../root-store/root-state";
+import { selectStufenInfosIsLoading } from "../../../root-store/stufen-info-store/selectors";
+import { HeroBannerModel } from "../../components/hero-banner/hero-banner.model";
+import { StufenInfoFacade } from "../../../facades/stufen-info.facade";
+import { MyFacebookFacade } from "../../../facades/my-facebook.facade";
+import { DownloadsCardModel } from "../../components/downloads-card/downloads-card.model";
+import { DownloadModel } from "../../../model/wordpress-media-response.dto";
 import { faArrowCircleDown } from "@fortawesome/free-solid-svg-icons";
-import { UpcomingEventModel } from "../upcoming-events/upcoming-event.model";
-import { EventsFacade } from "../../facades/events.facade";
+import { UpcomingEventModel } from "../../components/upcoming-event-collection/upcoming-event.model";
+import { EventsFacade } from "../../../facades/events.facade";
 import { map, startWith } from "rxjs/operators";
-import { WordpressDictionary } from "../../dictionary/wordpress.dictionary";
-import { MyWordpressFacade } from "../../facades/my-wordpress.facade";
+import { WordpressDictionary } from "../../../dictionary/wordpress.dictionary";
+import { MyWordpressFacade } from "../../../facades/my-wordpress.facade";
 
 @Component({
   selector: "app-start-dashboard",

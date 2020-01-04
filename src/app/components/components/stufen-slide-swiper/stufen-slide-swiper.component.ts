@@ -1,12 +1,12 @@
 import {Component, OnInit, Input, ViewChild, Inject} from "@angular/core";
-import {StufenCardModel} from "../../model/stufen-card.model";
+import {StufenCardModel} from "../../../model/stufen-card.model";
 import {
   SWIPER_CONFIG,
   SwiperConfigInterface,
   SwiperDirective
 } from "ngx-swiper-wrapper";
 import {Observable} from "rxjs";
-import {BreakpointService} from "../../services/breakpoint.service";
+import {BreakpointService} from "../../../services/breakpoint.service";
 import {map} from "rxjs/operators";
 
 @Component({

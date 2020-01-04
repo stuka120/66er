@@ -3,13 +3,13 @@ import { StufenInfoFacade } from "../stufen-info.facade";
 import { Observable } from "rxjs";
 import { StufenCardModel } from "../../model/stufen-card.model";
 import { DownloadsFacade } from "../downloads.facade";
-import { TeamCardCollectionModel } from "../../components/team-card-collection/team-card-collection.model";
-import { DownloadsCardModel } from "../../components/downloads-card/downloads-card.model";
+import { TeamCardCollectionModel } from "../../components/components/team-card-collection/team-card-collection.model";
+import { DownloadsCardModel } from "../../components/components/downloads-card/downloads-card.model";
 import { map, startWith } from 'rxjs/operators';
 import { StufenFacadeInterface } from "./stufen-facade.interface";
-import { HeimstundenTimeModel } from "../../components/stufen-overview-dashboard/stufen-overview-dashboard.component";
+import { HeimstundenTimeModel } from "../../components/routing-views/stufen-overview/stufen-overview-dashboard.component";
 import { WordpressDictionary } from '../../dictionary/wordpress.dictionary';
-import { HeroBannerModel } from '../../components/hero-banner/hero-banner.model';
+import { HeroBannerModel } from '../../components/components/hero-banner/hero-banner.model';
 import { MyWordpressFacade } from '../my-wordpress.facade';
 
 @Injectable({

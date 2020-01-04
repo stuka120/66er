@@ -1,7 +1,10 @@
-import {ChangeDetectorRef, PipeTransform} from "@angular/core";
+import {ChangeDetectorRef, Pipe, PipeTransform} from "@angular/core";
 import {BreakpointService} from "../services/breakpoint.service";
 import {AsyncPipe} from "@angular/common";
 
+@Pipe({
+  name: "breakpoint"
+})
 export class BreakpointPipe implements PipeTransform {
   private asyncPipe: AsyncPipe;
 

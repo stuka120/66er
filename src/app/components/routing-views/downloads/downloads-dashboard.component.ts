@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { DownloadModel } from "src/app/model/wordpress-media-response.dto";
 import { Observable } from "rxjs";
-import { DownloadsFacade } from "../../facades/downloads.facade";
+import { DownloadsFacade } from "../../../facades/downloads.facade";
 
 @Component({
   selector: "app-downloads",

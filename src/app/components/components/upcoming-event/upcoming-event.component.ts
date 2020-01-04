@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {UpcomingEventModel} from "../upcoming-events/upcoming-event.model";
+import {UpcomingEventModel} from "../upcoming-event-collection/upcoming-event.model";
 import { faClock, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 
 @Component({

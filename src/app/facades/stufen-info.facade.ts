@@ -49,10 +49,10 @@ import {
 import { RootState } from "../root-store/root-state";
 import { Store } from "@ngrx/store";
 import { WordpressService } from "../services/wordpress.service";
-import { TeamCardModel } from "../components/team-card/team-card.model";
-import { TeamCardCollectionModel } from "../components/team-card-collection/team-card-collection.model";
+import { TeamCardModel } from "../components/components/team-card/team-card.model";
+import { TeamCardCollectionModel } from "../components/components/team-card-collection/team-card-collection.model";
 import { WordpressDictionary } from "../dictionary/wordpress.dictionary";
-import { HeimstundenTimeModel } from "../components/stufen-overview-dashboard/stufen-overview-dashboard.component";
+import { HeimstundenTimeModel } from "../components/routing-views/stufen-overview/stufen-overview-dashboard.component";
 import {
   StufenHeimstundenCollection,
   StufenHeimstundenInfoState

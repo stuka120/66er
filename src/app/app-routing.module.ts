@@ -1,16 +1,16 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { StartDashboardComponent } from "./components/start-dashboard/start-dashboard.component";
-import { DownloadsDashboardComponent } from "./components/downloads-dashboard/downloads-dashboard.component";
-import { CalendarDashboardComponent } from "./components/calendar-dashboard/calendar-dashboard.component";
-import { StufenOverviewDashboardComponent } from "./components/stufen-overview-dashboard/stufen-overview-dashboard.component";
+import { StartDashboardComponent } from "./components/routing-views/start/start-dashboard.component";
+import { DownloadsDashboardComponent } from "./components/routing-views/downloads/downloads-dashboard.component";
+import { CalendarDashboardComponent } from "./components/routing-views/calendar/calendar-dashboard.component";
+import { StufenOverviewDashboardComponent } from "./components/routing-views/stufen-overview/stufen-overview-dashboard.component";
 import { WiwoeDashboardFacade } from "./facades/stufen-facades/wiwoe-dashboard.facade";
 import { BiberDashboardFacade } from "./facades/stufen-facades/biber-dashboard.facade";
 import { GuspDashboardFacade } from "./facades/stufen-facades/gusp-dashboard.facade";
 import { CaexDashboardFacade } from "./facades/stufen-facades/caex-dashboard.facade";
-import { RaroDashboardFacade } from './facades/stufen-facades/raro-dashboard.facade';
-import { ImprintDashboardComponent } from './components/imprint-dashboard/imprint-dashboard.component';
-import { DatenschutzDashboardComponent } from './components/datenschutz-dashboard/datenschutz-dashboard.component';
+import { RaroDashboardFacade } from "./facades/stufen-facades/raro-dashboard.facade";
+import { ImprintDashboardComponent } from "./components/routing-views/imprint/imprint-dashboard.component";
+import { DatenschutzDashboardComponent } from "./components/routing-views/datenschutz/datenschutz-dashboard.component";
 
 const routes: Routes = [
   {
@@ -59,11 +59,11 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'impressum',
+    path: "impressum",
     component: ImprintDashboardComponent
   },
   {
-    path: 'datenschutz',
+    path: "datenschutz",
     component: DatenschutzDashboardComponent
   }
 ];

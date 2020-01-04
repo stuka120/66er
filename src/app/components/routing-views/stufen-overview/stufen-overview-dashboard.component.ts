@@ -1,16 +1,16 @@
 import { Component, Injector, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
-import { RootState } from "../../root-store/root-state";
+import { RootState } from "../../../root-store/root-state";
 import { Observable } from "rxjs";
-import { HeroBannerModel } from "../hero-banner/hero-banner.model";
-import { StufenCardModel } from "../../model/stufen-card.model";
-import { TeamCardCollectionModel } from "../team-card-collection/team-card-collection.model";
-import { DownloadsCardModel } from "../downloads-card/downloads-card.model";
-import { StufenFacadeInterface } from "../../facades/stufen-facades/stufen-facade.interface";
+import { HeroBannerModel } from "../../components/hero-banner/hero-banner.model";
+import { StufenCardModel } from "../../../model/stufen-card.model";
+import { TeamCardCollectionModel } from "../../components/team-card-collection/team-card-collection.model";
+import { DownloadsCardModel } from "../../components/downloads-card/downloads-card.model";
+import { StufenFacadeInterface } from "../../../facades/stufen-facades/stufen-facade.interface";
 import { ActivatedRoute } from "@angular/router";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
-import { MyWordpressFacade } from "../../facades/my-wordpress.facade";
-import { WordpressDictionary } from "../../dictionary/wordpress.dictionary";
+import { MyWordpressFacade } from "../../../facades/my-wordpress.facade";
+import { WordpressDictionary } from "../../../dictionary/wordpress.dictionary";
 import { map, startWith } from "rxjs/operators";
 
 @Component({

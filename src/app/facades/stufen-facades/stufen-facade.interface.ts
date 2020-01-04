@@ -1,9 +1,9 @@
 import { Observable } from "rxjs";
 import { StufenCardModel } from "../../model/stufen-card.model";
-import { TeamCardCollectionModel } from "../../components/team-card-collection/team-card-collection.model";
-import { DownloadsCardModel } from "../../components/downloads-card/downloads-card.model";
-import { HeimstundenTimeModel } from "../../components/stufen-overview-dashboard/stufen-overview-dashboard.component";
-import { HeroBannerModel } from '../../components/hero-banner/hero-banner.model';
+import { TeamCardCollectionModel } from "../../components/components/team-card-collection/team-card-collection.model";
+import { DownloadsCardModel } from "../../components/components/downloads-card/downloads-card.model";
+import { HeimstundenTimeModel } from "../../components/routing-views/stufen-overview/stufen-overview-dashboard.component";
+import { HeroBannerModel } from '../../components/components/hero-banner/hero-banner.model';
 
 export interface StufenFacadeInterface {
   stufenName: string;

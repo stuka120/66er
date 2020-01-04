@@ -40,7 +40,7 @@
       >
         <ul class="navbar-nav ml-auto flex-nowrap">
           <li class="nav-item">
-            <a class="nav-link m-2 menu-item nav-active" [routerLink]="['']"
+            <a class="nav-link m-2 menu-item nav-active" [routerLink]="['']" (click)="isMenuCollapsed = !isMenuCollapsed"
               >News</a
             >
           </li>
@@ -105,7 +105,7 @@
           <li class="nav-item">
             <a
               class="nav-link m-2 menu-item nav-active"
-              href="https://www.flickr.com/photos/134252608@N05/albums"
+              href="https://www.flickr.com/photos/134252608@N05/"
               target="_blank"
               (click)="isMenuCollapsed = true"
               >Fotos</a
