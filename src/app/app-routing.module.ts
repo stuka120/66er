@@ -11,6 +11,7 @@ import { CaexDashboardFacade } from "./facades/stufen-facades/caex-dashboard.fac
 import { RaroDashboardFacade } from "./facades/stufen-facades/raro-dashboard.facade";
 import { ImprintDashboardComponent } from "./components/routing-views/imprint/imprint-dashboard.component";
 import { DatenschutzDashboardComponent } from "./components/routing-views/datenschutz/datenschutz-dashboard.component";
+import { ContactViewComponent } from "./components/routing-views/contact/contact-view.component";
 
 const routes: Routes = [
   {
@@ -65,6 +66,10 @@ const routes: Routes = [
   {
     path: "datenschutz",
     component: DatenschutzDashboardComponent
+  },
+  {
+    path: 'kontakt',
+    component: ContactViewComponent
   }
 ];
 

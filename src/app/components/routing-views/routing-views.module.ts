@@ -1,5 +1,4 @@
 import {NgModule} from "@angular/core";
-import {AboutUsDashboardComponent} from "./about-us/about-us-dashboard.component";
 import {CalendarDashboardComponent} from "./calendar/calendar-dashboard.component";
 import {DatenschutzDashboardComponent} from "./datenschutz/datenschutz-dashboard.component";
 import {ImprintDashboardComponent} from "./imprint/imprint-dashboard.component";
@@ -11,6 +10,7 @@ import {CommonModule} from "@angular/common";
 import {ComponentsModule} from "../components/components.module";
 import {PipeModule} from "../../pipes/pipe.module";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
+import {ContactViewComponent} from "./contact/contact-view.component";
 
 @NgModule({
   imports: [
@@ -21,8 +21,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     FontAwesomeModule
   ],
   declarations: [
-    AboutUsDashboardComponent,
     CalendarDashboardComponent,
+    ContactViewComponent,
     DatenschutzDashboardComponent,
     DownloadsDashboardComponent,
     ImprintDashboardComponent,
@@ -30,8 +30,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
     StufenOverviewDashboardComponent
   ],
   exports: [
-    AboutUsDashboardComponent,
     CalendarDashboardComponent,
+    ContactViewComponent,
     DatenschutzDashboardComponent,
     DownloadsDashboardComponent,
     ImprintDashboardComponent,

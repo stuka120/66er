@@ -22,6 +22,7 @@ import {SwiperModule} from "ngx-swiper-wrapper";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {RouterModule} from "@angular/router";
 import {PipeModule} from "../../pipes/pipe.module";
+import {IframeComponent} from "./iframe/iframe.component";
 
 @NgModule({
   imports: [
@@ -49,7 +50,8 @@ import {PipeModule} from "../../pipes/pipe.module";
     StufenSlideComponent,
     StufenSlideSwiperComponent,
     EventClickedModalComponent,
-    FooterComponent
+    FooterComponent,
+    IframeComponent
   ],
   exports: [
     NewsCardComponent,
@@ -67,7 +69,8 @@ import {PipeModule} from "../../pipes/pipe.module";
     StufenSlideComponent,
     StufenSlideSwiperComponent,
     EventClickedModalComponent,
-    FooterComponent
+    FooterComponent,
+    IframeComponent
   ]
 })
 export class ComponentsModule {}
