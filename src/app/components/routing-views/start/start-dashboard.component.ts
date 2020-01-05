@@ -15,7 +15,7 @@ import { DownloadModel } from "../../../model/wordpress-media-response.dto";
 import { faArrowCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { UpcomingEventModel } from "../../components/upcoming-event-collection/upcoming-event.model";
 import { EventsFacade } from "../../../facades/events.facade";
-import {delay, map, startWith} from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { WordpressDictionary } from "../../../dictionary/wordpress.dictionary";
 import { MyWordpressFacade } from "../../../facades/my-wordpress.facade";
 
@@ -32,7 +32,7 @@ export class StartDashboardComponent implements OnInit {
   isLoadingPosts$: Observable<boolean>;
   isLoadingStufenInfos$: Observable<boolean>;
 
-  heroBannerModel: Observable<HeroBannerModel>;
+  heroBannerModel$: Observable<HeroBannerModel>;
   heroBannerUrl$: Observable<string>;
 
   downloadsCardModel: DownloadsCardModel = {
@@ -67,7 +67,7 @@ export class StartDashboardComponent implements OnInit {
       )
       .pipe(map(post => post._embedded["wp:featuredmedia"][0].source_url));
 
-    this.heroBannerModel = this.wordpressFacade.getStartseiteBanner$();
+    this.heroBannerModel$ = this.wordpressFacade.getStartseiteBanner$();
 
     this.posts$ = this.myFacebookFacade.posts$;
     this.stufenCardModels$ = this.stufenInfoFacade.stufenTeasersAll$;

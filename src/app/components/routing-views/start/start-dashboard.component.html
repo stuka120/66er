@@ -1,4 +1,4 @@
-<app-hero-banner [model]="heroBannerModel | async"></app-hero-banner>
+<app-hero-banner [model]="heroBannerModel$ | async"></app-hero-banner>
 <div class="text-center">
 
 <app-stufen-slide-swiper
@@ -18,7 +18,7 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-12 col-lg-6 col-xl-6 offset-lg-2 order-1 order-lg-0 mt-3 text-center">
+    <div class="col-12 col-lg-6 col-xl-6 offset-lg-2 order-1 order-lg-0 mt-3">
       <app-news-card-collection *isLoading="posts$ | async as posts"
         [posts]="posts"
       ></app-news-card-collection>
@@ -36,7 +36,7 @@
 <!--            ></app-downloads-card>-->
 <!--          </div>-->
           <div
-            class="col-12 col-md-6 col-lg-12 text-center"
+            class="col-12 col-md-6 col-lg-12"
           >
             <app-upcoming-event-collection *isLoading="upcomingEvents$ | async as upcomingEvents" [model]="upcomingEvents"></app-upcoming-event-collection>
           </div>
