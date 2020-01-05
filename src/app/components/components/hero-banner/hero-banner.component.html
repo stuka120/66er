@@ -17,7 +17,7 @@
     <div class="item slides active">
       <div class="slide-1">
         <img
-          *ngIf="imageUrl || model.imageUrl"
+          *isLoading="imageUrl || model.imageUrl"
           [src]="imageUrl ? imageUrl : model.imageUrl"
           [style.height.rem]="model.imageHeight ? model.imageHeight : 35"
           class="hero-image"

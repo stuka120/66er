@@ -15,7 +15,7 @@ import { DownloadModel } from "../../../model/wordpress-media-response.dto";
 import { faArrowCircleDown } from "@fortawesome/free-solid-svg-icons";
 import { UpcomingEventModel } from "../../components/upcoming-event-collection/upcoming-event.model";
 import { EventsFacade } from "../../../facades/events.facade";
-import { map, startWith } from "rxjs/operators";
+import {delay, map, startWith} from "rxjs/operators";
 import { WordpressDictionary } from "../../../dictionary/wordpress.dictionary";
 import { MyWordpressFacade } from "../../../facades/my-wordpress.facade";
 

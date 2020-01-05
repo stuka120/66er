@@ -23,6 +23,8 @@ import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {RouterModule} from "@angular/router";
 import {PipeModule} from "../../pipes/pipe.module";
 import {IframeComponent} from "./iframe/iframe.component";
+import {LoadingSpinner} from "./loading-spinner/loading-spinner.component";
+import {DirectivesModule} from "../../directives/directives.module";
 
 @NgModule({
   imports: [
@@ -32,7 +34,8 @@ import {IframeComponent} from "./iframe/iframe.component";
     SwiperModule,
     NgbModule,
     FontAwesomeModule,
-    PipeModule
+    PipeModule,
+    DirectivesModule
   ],
   declarations: [
     NewsCardComponent,
@@ -51,7 +54,8 @@ import {IframeComponent} from "./iframe/iframe.component";
     StufenSlideSwiperComponent,
     EventClickedModalComponent,
     FooterComponent,
-    IframeComponent
+    IframeComponent,
+    LoadingSpinner
   ],
   exports: [
     NewsCardComponent,
@@ -70,7 +74,8 @@ import {IframeComponent} from "./iframe/iframe.component";
     StufenSlideSwiperComponent,
     EventClickedModalComponent,
     FooterComponent,
-    IframeComponent
+    IframeComponent,
+    LoadingSpinner
   ]
 })
 export class ComponentsModule {}

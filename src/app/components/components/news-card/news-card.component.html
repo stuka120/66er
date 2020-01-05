@@ -9,12 +9,12 @@
   >
     <ng-template
       ngbSlide
-      *ngIf="
+      *isLoading="
         !(post.attachments?.data)[0]?.subattachments?.data ||
         (post.attachments?.data)[0]?.subattachments?.data.length == 1
       "
     >
-      <div *ngIf="post.full_picture" class="picsum-img-wrapper">
+      <div *isLoading="post.full_picture" class="picsum-img-wrapper">
         <img
           class="d-block w-100"
           [src]="post.full_picture"
@@ -38,7 +38,7 @@
     </ng-template>
   </ngb-carousel>
   <div class="card-body">
-    <h5 *ngIf="(post.attachments?.data)[0]" class="card-title">
+    <h5 *isLoading="(post.attachments?.data)[0]" class="card-title">
       {{ post.attachments.data[0].title }}
     </h5>
     <p class="card-text" style="white-space: pre-wrap;">

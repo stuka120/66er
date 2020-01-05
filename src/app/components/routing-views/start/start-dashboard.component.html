@@ -1,12 +1,14 @@
 <app-hero-banner [model]="heroBannerModel | async"></app-hero-banner>
+<div class="text-center">
 
 <app-stufen-slide-swiper
-  *ngIf="stufenCardModels$ | async as stufenCardModels"
+  *isLoading="stufenCardModels$ | async as stufenCardModels"
   [stufenModels]="stufenCardModels"
 >
 </app-stufen-slide-swiper>
+</div>
 
-<div id="nachrichten" class="container my-3">
+<div *ngIf="posts$ | async" id="nachrichten" class="container my-3">
   <div class="row justify-content-center">
     <div class="col text-center">
       <h1>Aktuelles</h1>
@@ -16,9 +18,9 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-12 col-lg-6 col-xl-6 offset-lg-2 order-1 order-lg-0 mt-3">
-      <app-news-card-collection
-        [posts]="posts$ | async"
+    <div class="col-12 col-lg-6 col-xl-6 offset-lg-2 order-1 order-lg-0 mt-3 text-center">
+      <app-news-card-collection *isLoading="posts$ | async as posts"
+        [posts]="posts"
       ></app-news-card-collection>
     </div>
     <div
@@ -34,10 +36,9 @@
 <!--            ></app-downloads-card>-->
 <!--          </div>-->
           <div
-            class="col-12 col-md-6 col-lg-12"
-            *ngIf="upcomingEvents$ | async as upcomingEvents"
+            class="col-12 col-md-6 col-lg-12 text-center"
           >
-            <app-upcoming-event-collection [model]="upcomingEvents"></app-upcoming-event-collection>
+            <app-upcoming-event-collection *isLoading="upcomingEvents$ | async as upcomingEvents" [model]="upcomingEvents"></app-upcoming-event-collection>
           </div>
         </div>
       </div>

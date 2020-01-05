@@ -11,6 +11,7 @@ import {ComponentsModule} from "../components/components.module";
 import {PipeModule} from "../../pipes/pipe.module";
 import {FontAwesomeModule} from "@fortawesome/angular-fontawesome";
 import {ContactViewComponent} from "./contact/contact-view.component";
+import {DirectivesModule} from "../../directives/directives.module";
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import {ContactViewComponent} from "./contact/contact-view.component";
     FullCalendarModule,
     ComponentsModule,
     PipeModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DirectivesModule
   ],
   declarations: [
     CalendarDashboardComponent,

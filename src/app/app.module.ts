@@ -29,6 +29,7 @@ import {
 } from "ngx-swiper-wrapper";
 import {RoutingViewsModule} from "./components/routing-views/routing-views.module";
 import {ComponentsModule} from "./components/components/components.module";
+import {LoadingSpinner} from "./components/components/loading-spinner/loading-spinner.component";
 
 registerLocaleData(localeDeAt, "de-AT");
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -83,6 +84,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
       useValue: DEFAULT_SWIPER_CONFIG
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [LoadingSpinner]
 })
 export class AppModule {}
