@@ -8,7 +8,7 @@
       <app-downloads-card [model]="downloads$ | async"></app-downloads-card>
     </div>
     <div class="col-lg-6 offset-sm-0 col-sm-9">
-      <app-sticky-note *ngIf="stufenInfo$ | async as stufenInfo">
+      <app-sticky-note *isLoading="stufenInfo$ | async as stufenInfo">
         <div
           body
           class="card-body"
@@ -36,7 +36,7 @@
     </div>
   </div>
   <app-team-card-collection
-    *ngIf="teamMembers$ | async as teamMembers"
+    *isLoading="teamMembers$ | async as teamMembers"
     [model]="teamMembers"
   ></app-team-card-collection>
 </div>

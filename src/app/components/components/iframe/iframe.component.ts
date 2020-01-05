@@ -7,7 +7,7 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
   styleUrls: ["./iframe.component.css"]
 })
 export class IframeComponent {
-  private safeResourceUrl: SafeResourceUrl;
+  safeResourceUrl: SafeResourceUrl;
 
   @Input()
   set url(value: string) {
