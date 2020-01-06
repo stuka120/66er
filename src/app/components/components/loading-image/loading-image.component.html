@@ -1,0 +1,12 @@
+<div [style.height.rem]="height" [style.width.rem]="width" class="d-flex justify-content-center">
+  <img
+    *ngIf="src"
+    [src]="src"
+    (load)="imageLoaded = true;"
+    class="w-100 h-100"
+    [style.object-fit]="objectFit"
+    [class.d-none]="!imageLoaded">
+  <app-loading-spinner *ngIf="!imageLoaded">
+
+  </app-loading-spinner>
+</div>

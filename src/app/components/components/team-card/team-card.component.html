@@ -1,12 +1,10 @@
 <div class="team-members" *ngIf="model">
   <div class="team-avatar">
-    <img
-      class="img-responsive"
+    <app-loading-image
       [src]="model.imgUrl ? model.imgUrl : 'assets/empty-team-member.png'"
+      [objectFit]="'fill'"
       alt=""
-      style="width: 100%;
-      height: auto;"
-    />
+    ></app-loading-image>
   </div>
   <div class="team-desc">
     <h4>{{ model.name }}</h4>

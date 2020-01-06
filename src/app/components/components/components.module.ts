@@ -25,6 +25,7 @@ import {PipeModule} from "../../pipes/pipe.module";
 import {IframeComponent} from "./iframe/iframe.component";
 import {LoadingSpinner} from "./loading-spinner/loading-spinner.component";
 import {DirectivesModule} from "../../directives/directives.module";
+import {LoadingImage} from "./loading-image/loading-image.component";
 
 @NgModule({
   imports: [
@@ -55,7 +56,8 @@ import {DirectivesModule} from "../../directives/directives.module";
     EventClickedModalComponent,
     FooterComponent,
     IframeComponent,
-    LoadingSpinner
+    LoadingSpinner,
+    LoadingImage
   ],
   exports: [
     NewsCardComponent,
@@ -75,7 +77,8 @@ import {DirectivesModule} from "../../directives/directives.module";
     EventClickedModalComponent,
     FooterComponent,
     IframeComponent,
-    LoadingSpinner
+    LoadingSpinner,
+    LoadingImage
   ]
 })
 export class ComponentsModule {}

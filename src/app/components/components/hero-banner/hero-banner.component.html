@@ -16,12 +16,12 @@
   >
     <div class="item slides active">
       <div class="slide-1">
-        <img
-          *ngIf="imageUrl || model.imageUrl"
+        <app-loading-image
           [src]="imageUrl ? imageUrl : model.imageUrl"
-          [style.height.rem]="model.imageHeight ? model.imageHeight : 35"
+          [height]="model.imageHeight ? model.imageHeight : 35"
+          [objectFit]="'cover'"
           class="hero-image"
-        />
+        ></app-loading-image>
       </div>
       <div class="hero">
         <div>

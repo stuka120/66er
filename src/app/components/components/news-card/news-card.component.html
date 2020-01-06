@@ -15,12 +15,12 @@
       "
     >
       <div *isLoading="post.full_picture" class="picsum-img-wrapper">
-        <img
-          class="d-block w-100"
+        <app-loading-image class="d-block w-100"
+          [height]="30"
+          [objectFit]="'contain'"
           [src]="post.full_picture"
-          style="max-height: 30rem; object-fit: contain;"
           alt="Random first slide"
-        />
+        ></app-loading-image>
       </div>
     </ng-template>
     <ng-template
@@ -28,12 +28,13 @@
       *ngFor="let image of (post.attachments?.data)[0].subattachments?.data"
     >
       <div class="picsum-img-wrapper">
-        <img
+        <app-loading-image
           class="d-block w-100"
+          [height]="30"
+          [objectFit]="'contain'"
           [src]="image.media.image.src"
-          style="max-height: 30rem; object-fit: contain;"
           alt="Random first slide"
-        />
+        ></app-loading-image>
       </div>
     </ng-template>
   </ngb-carousel>
