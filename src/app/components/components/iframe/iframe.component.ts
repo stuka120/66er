@@ -1,4 +1,4 @@
-import {Component, Input} from "@angular/core";
+import {AfterViewInit, Component, ElementRef, Input, ViewChild} from "@angular/core";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 @Component({
@@ -6,7 +6,12 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
   templateUrl: "./iframe.component.html",
   styleUrls: ["./iframe.component.css"]
 })
-export class IframeComponent {
+export class IframeComponent implements AfterViewInit {
+  @ViewChild("contentIframe", {static: false})
+  iframeContent: ElementRef;
+
+  iframeLoaded = false;
+
   safeResourceUrl: SafeResourceUrl;
 
   @Input()
@@ -24,6 +29,9 @@ export class IframeComponent {
   @Input()
   height = 450;
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private sanitizer: DomSanitizer) {}
+
+  ngAfterViewInit(): void {
+    this.iframeContent.nativeElement.onload = () => this.iframeLoaded = true;
   }
 }

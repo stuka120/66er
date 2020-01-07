@@ -1,1 +1,4 @@
-<iframe [src]="safeResourceUrl" [height]="height" [width]="width" [frameBorder]="0"></iframe>
+<div *ngIf="!iframeLoaded" class="d-flex justify-content-center align-items-center" [style.height.px]="height" [style.width.px]="width">
+  <app-loading-spinner></app-loading-spinner>
+</div>
+<iframe #contentIframe [class.d-none]="!iframeLoaded" [src]="safeResourceUrl" [height]="height" [width]="width" [frameBorder]="0"></iframe>
