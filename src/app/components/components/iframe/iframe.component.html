@@ -1,4 +1,4 @@
-<div *ngIf="!iframeLoaded" class="d-flex justify-content-center align-items-center" [style.height.px]="height" [style.width.px]="width">
+<div *ngIf="!iframeLoaded" class="d-flex justify-content-center align-items-center" [style.height.px]="height" [style.width.%]="100">
   <app-loading-spinner></app-loading-spinner>
 </div>
-<iframe #contentIframe [class.d-none]="!iframeLoaded" [src]="safeResourceUrl" [height]="height" [width]="width" [frameBorder]="0"></iframe>
+<iframe #contentIframe [class.d-none]="!iframeLoaded" [src]="safeResourceUrl" [height]="height" [width]="'100%'" [frameBorder]="0"></iframe>

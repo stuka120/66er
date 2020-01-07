@@ -1,3 +1,20 @@
-<div class="d-flex justify-content-center h-100 w-100">
-  <app-iframe [url]="googleLocationUrl"></app-iframe>
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <div class="d-flex align-items-center justify-content-center justify-content-md-start h-100 container">
+        <div>
+          <h3>Adresse</h3>
+          <p>Wienerfeldgasse 11<br>
+            A-1100 Wien<br>
+            E-Mail: <a href="mailto:mail@66er.net">mail@66er.net</a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="d-flex justify-content-center h-100 w-100">
+        <app-iframe [url]="googleLocationUrl"></app-iframe>
+      </div>
+    </div>
+  </div>
 </div>
