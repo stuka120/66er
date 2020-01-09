@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-wordpress": {
+    "ng-66er": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ng-wordpress",
+            "outputPath": "dist/ng-66er",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -65,11 +65,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-wordpress:build"
+            "browserTarget": "ng-66er:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng-wordpress:build:production"
+              "browserTarget": "ng-66er:build:production"
             }
           }
         },
