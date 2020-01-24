@@ -22,14 +22,12 @@ import { EventsFacade } from "./facades/events.facade";
 import { registerLocaleData } from "@angular/common";
 import localeDeAt from "@angular/common/locales/de-AT";
 import { BreakpointService } from "./services/breakpoint.service";
-import { EventClickedModalComponent } from "./components/components/modal/event-clicked-modal/event-clicked-modal.component";
-import {
-  SWIPER_CONFIG,
-  SwiperConfigInterface
-} from "ngx-swiper-wrapper";
-import {RoutingViewsModule} from "./components/routing-views/routing-views.module";
-import {ComponentsModule} from "./components/components/components.module";
-import {LoadingSpinner} from "./components/components/loading-spinner/loading-spinner.component";
+import { SWIPER_CONFIG, SwiperConfigInterface } from "ngx-swiper-wrapper";
+import { RoutingViewsModule } from "./components/routing-views/routing-views.module";
+import { ComponentsModule } from "./components/components/components.module";
+import { LoadingSpinner } from "./components/components/loading-spinner/loading-spinner.component";
+import { SidebarModule } from "ng-sidebar";
+import { EntriesModule } from "./components/entries/entries.module";
 
 registerLocaleData(localeDeAt, "de-AT");
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -59,10 +57,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     RootStoreModule,
     ComponentsModule,
     RoutingViewsModule,
+    EntriesModule,
+    SidebarModule.forRoot()
   ],
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   providers: [
     MyFacebookService,
     WordpressService,

@@ -1,127 +1,18 @@
-<div class="d-flex flex-column" style="min-height: 100%!important;">
-  <nav
-    class="navbar navbar-expand-lg navbar-collapse navbar-light bg-light sticky-top flex-grow-0"
+<ng-sidebar-container style="height: 100vh !important;">
+  <ng-sidebar
+    [closeOnClickBackdrop]="true"
+    [closeOnClickOutside]="true"
+    [(opened)]="sidebarOpened"
   >
-    <!-- adding stickiness -->
-    <div class="container">
-      <div class="d-flex flex-grow-1">
-        <span class="w-100 d-lg-none d-block"
-          ><!-- hidden spacer to center brand on mobile --></span
-        >
-        <a class="navbar-brand d-none d-lg-inline-block" [routerLink]="['']">
-          <img
-            src="https://www.66er.net/wp-content/uploads/logo.svg"
-            style="height: 3rem;"
-          />
-        </a>
-        <a
-          class="navbar-brand-two mx-auto d-lg-none d-inline-block"
-          [routerLink]="['']"
-        >
-          <img
-            src="https://www.66er.net/wp-content/uploads/logo.svg"
-            style="height: 3rem;"
-          />
-        </a>
-        <div class="w-100 text-right">
-          <button
-            class="navbar-toggler"
-            type="button"
-            (click)="isMenuCollapsed = !isMenuCollapsed"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-        </div>
+    <app-sidebar (sidebarCloseClicked)="sidebarOpened = false"></app-sidebar>
+  </ng-sidebar>
+  <div class="h-100" ng-sidebar-content>
+    <div class="d-flex flex-column" style="min-height: 100%!important;">
+      <app-navbar (calendarButtonClicked)="toggleSidebar()"></app-navbar>
+      <div class="flex-grow-1">
+        <router-outlet></router-outlet>
       </div>
-      <div
-        [ngbCollapse]="isMenuCollapsed"
-        class="collapse navbar-collapse flex-grow-1 text-right"
-        id="myNavbar"
-      >
-        <ul class="navbar-nav ml-auto flex-nowrap">
-          <li class="nav-item">
-            <a class="nav-link m-2 menu-item nav-active" [routerLink]="['']" (click)="isMenuCollapsed = !isMenuCollapsed"
-              >News</a
-            >
-          </li>
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle m-2"
-              [routerLink]="null"
-              id="navbarDropdown"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Stufen
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a
-                class="dropdown-item"
-                [routerLink]="['stufe', 'biber']"
-                (click)="isMenuCollapsed = true"
-                >Biber</a
-              >
-              <a
-                class="dropdown-item"
-                [routerLink]="['stufe', 'wiwoe']"
-                (click)="isMenuCollapsed = true"
-                >WiWö</a
-              >
-              <a
-                class="dropdown-item"
-                [routerLink]="['stufe', 'gusp']"
-                (click)="isMenuCollapsed = true"
-                >GuSp</a
-              >
-              <a
-                class="dropdown-item"
-                [routerLink]="['stufe', 'caex']"
-                (click)="isMenuCollapsed = true"
-                >CaEx</a
-              >
-              <a
-                class="dropdown-item"
-                [routerLink]="['stufe', 'raro']"
-                (click)="isMenuCollapsed = true"
-                >RaRo</a
-              >
-            </div>
-          </li>
-          <!--          <li class="nav-item">-->
-          <!--            <a-->
-          <!--              class="nav-link m-2 menu-item nav-active"-->
-          <!--              [routerLink]="['/kalender']"-->
-          <!--              >Kalender</a-->
-          <!--            >-->
-          <!--          </li>-->
-          <!--          <li class="nav-item">-->
-          <!--            <a-->
-          <!--              class="nav-link m-2 menu-item nav-active"-->
-          <!--              [routerLink]="['/downloads']"-->
-          <!--              >Downloads</a-->
-          <!--            >-->
-          <!--          </li>-->
-          <li class="nav-item">
-            <a class="nav-link m-2 menu-item nav-active" [routerLink]="['kontakt']" (click)="isMenuCollapsed = !isMenuCollapsed"
-            >Kontakt</a
-            >
-          </li>
-          <li class="nav-item">
-            <a
-              class="nav-link m-2 menu-item nav-active"
-              href="https://www.flickr.com/photos/134252608@N05/"
-              target="_blank"
-              (click)="isMenuCollapsed = true"
-              >Fotos</a
-            >
-          </li>
-        </ul>
-      </div>
+      <app-footer class="flex-grow-0"></app-footer>
     </div>
-  </nav>
-  <div class="flex-grow-1">
-    <router-outlet></router-outlet>
   </div>
-  <app-footer class="flex-grow-0"></app-footer>
-</div>
+</ng-sidebar-container>

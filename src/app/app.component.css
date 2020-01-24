@@ -1,3 +1,8 @@
 :host {
   min-height: 100% !important;
 }
+
+::ng-deep .ng-sidebar {
+  background-color: white !important;
+  z-index: 10001 !important;
+}

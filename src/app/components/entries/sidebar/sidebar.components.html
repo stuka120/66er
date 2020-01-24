@@ -1,0 +1,14 @@
+<div class="w-100 d-flex align-items-center">
+  <fa-icon
+    class="mx-2"
+    [icon]="faArrowLeft"
+    [size]="'2x'"
+    (click)="sidebarCloseClicked.emit()"
+  ></fa-icon>
+  <h1>Aktuelle Termine</h1>
+</div>
+
+<app-upcoming-event-collection
+  *isLoading="upcomingEvents$ | async as upcomingEvents"
+  [model]="upcomingEvents"
+></app-upcoming-event-collection>
