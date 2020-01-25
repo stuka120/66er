@@ -59,6 +59,7 @@ import {
 } from "../root-store/stufen-info-store/state";
 import { RemoveHtmlPipe } from "../pipes/remove-html.pipe";
 import { RemoveMultipleBreaksPipe } from "../pipes/remove-multiple-breaks.pipe";
+import { WordpressPostResponseModel } from "../services/WordpressResponseModel.model";
 
 @Injectable()
 export class StufenInfoFacade {
@@ -451,10 +452,7 @@ export class StufenInfoFacade {
                 ({
                   name: post.title.rendered,
                   description: post.content.rendered,
-                  imgUrl: post._embedded["wp:featuredmedia"]
-                    ? post._embedded["wp:featuredmedia"][0].media_details.sizes
-                        .large.source_url
-                    : undefined
+                  imgUrl: this.getPostBeitragsbild(post, "medium")
                 } as TeamCardModel)
             )
           } as TeamCardCollectionModel)
@@ -478,10 +476,7 @@ export class StufenInfoFacade {
                 ({
                   name: post.title.rendered,
                   description: post.content.rendered,
-                  imgUrl: post._embedded["wp:featuredmedia"]
-                    ? post._embedded["wp:featuredmedia"][0].media_details.sizes
-                        .large.source_url
-                    : undefined
+                  imgUrl: this.getPostBeitragsbild(post, "medium")
                 } as TeamCardModel)
             )
           } as TeamCardCollectionModel)
@@ -505,10 +500,7 @@ export class StufenInfoFacade {
                 ({
                   name: post.title.rendered,
                   description: post.content.rendered,
-                  imgUrl: post._embedded["wp:featuredmedia"]
-                    ? post._embedded["wp:featuredmedia"][0].media_details.sizes
-                        .large.source_url
-                    : undefined
+                  imgUrl: this.getPostBeitragsbild(post, "medium")
                 } as TeamCardModel)
             )
           } as TeamCardCollectionModel)
@@ -532,10 +524,7 @@ export class StufenInfoFacade {
                 ({
                   name: post.title.rendered,
                   description: post.content.rendered,
-                  imgUrl: post._embedded["wp:featuredmedia"]
-                    ? post._embedded["wp:featuredmedia"][0].media_details.sizes
-                        .large.source_url
-                    : undefined
+                  imgUrl: this.getPostBeitragsbild(post, "large")
                 } as TeamCardModel)
             )
           } as TeamCardCollectionModel)
@@ -559,10 +548,7 @@ export class StufenInfoFacade {
                 ({
                   name: post.title.rendered,
                   description: post.content.rendered,
-                  imgUrl: post._embedded["wp:featuredmedia"]
-                    ? post._embedded["wp:featuredmedia"][0].media_details.sizes
-                        .large.source_url
-                    : undefined
+                  imgUrl: this.getPostBeitragsbild(post, "medium")
                 } as TeamCardModel)
             )
           } as TeamCardCollectionModel)
@@ -704,4 +690,43 @@ export class StufenInfoFacade {
     this.requireHeimstundenInfos$.pipe(startWith(null)),
     this.store$.select(selectRaRoHeimstundenInfos)
   );
+
+  /**
+   * Returns a image url of a post image (Beitragsbild) whereas the size is the preferred size
+   * If the preferred size is not available, the last available property from wordpress is used (normally this is 'full')
+   * @param wordpressPost the wordress post
+   * @param size the preferred size to use
+   */
+  private getPostBeitragsbild(
+    wordpressPost: WordpressPostResponseModel,
+    size: ImageSize = "large"
+  ): string {
+    let featuredMedia =
+      wordpressPost &&
+      wordpressPost._embedded &&
+      wordpressPost._embedded["wp:featuredmedia"] &&
+      wordpressPost._embedded["wp:featuredmedia"][0];
+
+    if (featuredMedia) {
+      let sizesAvailable = Object.keys(featuredMedia.media_details.sizes);
+      if (sizesAvailable.find(sizes => sizes === size)) {
+        return featuredMedia.media_details.sizes[size].source_url;
+      }
+      let defaultSize = sizesAvailable[sizesAvailable.length - 1];
+      if (defaultSize !== undefined) {
+        return featuredMedia.media_details.sizes[defaultSize].source_url;
+      }
+    }
+
+    return undefined;
+  }
 }
+
+export type ImageSize =
+  | "thumbnail"
+  | "medium"
+  | "onepress-blog-small"
+  | "onepress-small"
+  | "full"
+  | "large"
+  | "original";

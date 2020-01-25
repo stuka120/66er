@@ -1,10 +1,17 @@
-<div class="service-item shadow-sm border h-100 my-0" *ngIf="stufenCardModel">
+<div
+  class="service-item shadow-sm border h-100 my-0"
+  *ngIf="stufenCardModel"
+  [routerLink]="stufenCardModel.stufenUri"
+  [ngClass]="{ 'cursor-pointer': stufenCardModel.imgUrl }"
+>
   <div class="service-image icon-image">
-    <img [src]="stufenCardModel.imgUrl" alt=""/>
+    <img [src]="stufenCardModel.imgUrl" alt="" />
   </div>
   <div class="service-content">
     <h4 class="service-title">{{ stufenCardModel.title }}</h4>
-    <div class="service-description" [innerHTML]="stufenCardModel.shortDescription">
-    </div>
+    <div
+      class="service-description"
+      [innerHTML]="stufenCardModel.shortDescription"
+    ></div>
   </div>
 </div>
