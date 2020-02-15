@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { StartDashboardComponent } from "./components/routing-views/start/start-dashboard.component";
 import { DownloadsDashboardComponent } from "./components/routing-views/downloads/downloads-dashboard.component";
-import { CalendarDashboardComponent } from "./components/routing-views/calendar/calendar-dashboard.component";
 import { StufenOverviewDashboardComponent } from "./components/routing-views/stufen-overview/stufen-overview-dashboard.component";
 import { WiwoeDashboardFacade } from "./facades/stufen-facades/wiwoe-dashboard.facade";
 import { BiberDashboardFacade } from "./facades/stufen-facades/biber-dashboard.facade";
@@ -23,11 +22,6 @@ const routes: Routes = [
     path: "downloads",
     pathMatch: "full",
     component: DownloadsDashboardComponent
-  },
-  {
-    path: "kalender",
-    pathMatch: "full",
-    component: CalendarDashboardComponent
   },
   {
     path: "stufe",
@@ -68,7 +62,7 @@ const routes: Routes = [
     component: DatenschutzDashboardComponent
   },
   {
-    path: 'kontakt',
+    path: "kontakt",
     component: ContactViewComponent
   }
 ];
