@@ -7,7 +7,7 @@ import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
   styleUrls: ["./iframe.component.css"]
 })
 export class IframeComponent implements AfterViewInit {
-  @ViewChild("contentIframe", {static: false})
+  @ViewChild("contentIframe")
   iframeContent: ElementRef;
 
   iframeLoaded = false;

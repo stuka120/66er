@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ng-66er": {
+    "ng66er": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,18 +13,18 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ng-66er",
+            "outputPath": "dist/ng66er",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": [
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/morphext/dist/morphext.css",
-              "node_modules/animate.css",
+              "node_modules/animate.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -45,7 +45,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -54,6 +53,10 @@
                   "type": "initial",
                   "maximumWarning": "2mb",
                   "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
                 }
               ]
             }
@@ -62,11 +65,11 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ng-66er:build"
+            "browserTarget": "ng66er:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ng-66er:build:production"
+              "browserTarget": "ng66er:build:production"
             }
           }
         },
@@ -88,7 +91,7 @@
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/morphext/dist/morphext.css",
-              "node_modules/animate.css",
+              "node_modules/animate.css"
             ],
             "scripts": []
           }

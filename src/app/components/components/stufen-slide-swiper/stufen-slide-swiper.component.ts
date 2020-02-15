@@ -17,7 +17,7 @@ import {map} from "rxjs/operators";
 export class StufenSlideSwiperComponent implements OnInit {
   @Input() stufenModels: StufenCardModel[];
 
-  @ViewChild(SwiperDirective, {static: false}) directiveRef?: SwiperDirective;
+  @ViewChild(SwiperDirective) directiveRef?: SwiperDirective;
 
   config$: Observable<SwiperConfigInterface>;
 
