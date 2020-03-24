@@ -27,6 +27,7 @@ import { LoadingSpinner } from "./loading-spinner/loading-spinner.component";
 import { DirectivesModule } from "../../directives/directives.module";
 import { LoadingImage } from "./loading-image/loading-image.component";
 import { NavbarComponent } from "./navbar/navbar.component";
+import { AlertComponent } from "./alert/alert.component";
 
 @NgModule({
   imports: [
@@ -59,7 +60,8 @@ import { NavbarComponent } from "./navbar/navbar.component";
     IframeComponent,
     LoadingSpinner,
     LoadingImage,
-    NavbarComponent
+    NavbarComponent,
+    AlertComponent
   ],
   exports: [
     NewsCardComponent,
@@ -81,7 +83,8 @@ import { NavbarComponent } from "./navbar/navbar.component";
     IframeComponent,
     LoadingSpinner,
     LoadingImage,
-    NavbarComponent
+    NavbarComponent,
+    AlertComponent
   ]
 })
 export class ComponentsModule {}

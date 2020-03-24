@@ -1,0 +1,20 @@
+<div
+  *ngIf="model && model.isActive"
+  [class.alert-danger]="model.alertMode == 'danger'"
+  [class.alert-info]="model.alertMode == 'info'"
+  class="alert alert-dismissible rounded-0 mb-0"
+  role="alert"
+>
+  <h4 *ngIf="model.headerText" class="alert-heading text-center">
+    {{ model.headerText }}
+  </h4>
+  <p
+    *ngIf="model.bodyText"
+    style="white-space: pre-wrap"
+    [innerHTML]="model.bodyText"
+  ></p>
+  <hr *ngIf="model.footerText" />
+  <p *ngIf="model.footerText" class="mb-0">
+    {{ model.footerText }}
+  </p>
+</div>

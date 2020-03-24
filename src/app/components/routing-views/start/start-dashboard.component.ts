@@ -18,6 +18,8 @@ import { EventsFacade } from "../../../facades/events.facade";
 import { map } from "rxjs/operators";
 import { WordpressDictionary } from "../../../dictionary/wordpress.dictionary";
 import { MyWordpressFacade } from "../../../facades/my-wordpress.facade";
+import { AlertModel } from "../../components/alert/alert.model";
+import { ConfigFacade } from "../../../facades/config.facade";
 
 @Component({
   selector: "app-start-dashboard",
@@ -48,16 +50,24 @@ export class StartDashboardComponent implements OnInit {
 
   upcomingEvents$: Observable<UpcomingEventModel[]>;
 
+  /**
+   * this is the model that contains special config flags...
+   * For instance this is for enabling the special news model (corona instance f.i.)
+   */
+  alertModel$: Observable<AlertModel | undefined>;
+
   constructor(
     private myFacebookFacade: MyFacebookFacade,
     private wordpressService: WordpressService,
     private store$: Store<RootState>,
     private stufenInfoFacade: StufenInfoFacade,
     private eventsFacade: EventsFacade,
-    private wordpressFacade: MyWordpressFacade
+    private wordpressFacade: MyWordpressFacade,
+    private configFacade: ConfigFacade
   ) {}
 
   ngOnInit(): void {
+    this.alertModel$ = this.configFacade.getAlertModel$();
     this.isLoadingPosts$ = this.store$.select(selectPostsIsLoading);
     this.isLoadingStufenInfos$ = this.store$.select(selectStufenInfosIsLoading);
     this.heroBannerUrl$ = this.wordpressService
@@ -78,15 +88,20 @@ export class StartDashboardComponent implements OnInit {
       .getGoogleCalenderEventsUntil(nextMonth)
       .pipe(
         map(events =>
-          events.map(
-            event =>
-              ( <UpcomingEventModel> {
-                title: event.summary,
-                dateTime: event.start.dateTime,
-                endDateTime: event.end.dateTime,
-                place: event.location
-              })
-          ).sort((a, b) => new Date(a.dateTime).valueOf() - new Date(b.dateTime).valueOf())
+          events
+            .map(
+              event =>
+                <UpcomingEventModel>{
+                  title: event.summary,
+                  dateTime: event.start.dateTime,
+                  endDateTime: event.end.dateTime,
+                  place: event.location
+                }
+            )
+            .sort(
+              (a, b) =>
+                new Date(a.dateTime).valueOf() - new Date(b.dateTime).valueOf()
+            )
         )
       );
   }

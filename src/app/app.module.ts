@@ -1,5 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
+import { APP_INITIALIZER, NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -28,6 +28,7 @@ import { ComponentsModule } from "./components/components/components.module";
 import { LoadingSpinner } from "./components/components/loading-spinner/loading-spinner.component";
 import { SidebarModule } from "ng-sidebar";
 import { EntriesModule } from "./components/entries/entries.module";
+import { ConfigurationService } from "./services/configuration.service";
 
 registerLocaleData(localeDeAt, "de-AT");
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -44,6 +45,10 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     delay: 3000
   }
 };
+
+export function initializeApp(configurationService: ConfigurationService) {
+  return () => configurationService.loadConfig();
+}
 
 @NgModule({
   imports: [
@@ -65,6 +70,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     MyFacebookService,
     WordpressService,
     BreakpointService,
+    ConfigurationService,
 
     StufenInfoFacade,
     BiberDashboardFacade,
@@ -80,6 +86,12 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
     {
       provide: SWIPER_CONFIG,
       useValue: DEFAULT_SWIPER_CONFIG
+    },
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initializeApp,
+      deps: [ConfigurationService],
+      multi: true
     }
   ],
   bootstrap: [AppComponent],
