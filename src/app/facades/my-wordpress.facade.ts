@@ -16,13 +16,11 @@ export class MyWordpressFacade {
     return this.getBannerUrlForCategory$(WordpressCategoryEnum.Startseite).pipe(
       map(imageUrl => ({
         imageUrl: imageUrl,
-        buttonText: "Aktuelles",
         morphextPrefix: "Wir sind ",
         morpext: "Biber, WiWö, GuSp, CaEx, RaRo, die 66er!"
       })),
       startWith({
         imageUrl: undefined,
-        buttonText: "Aktuelles",
         morphextPrefix: "Wir sind ",
         morpext: "Biber, WiWö, GuSp, CaEx, RaRo, die 66er!"
       })

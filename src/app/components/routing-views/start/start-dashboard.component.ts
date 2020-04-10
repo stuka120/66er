@@ -12,10 +12,10 @@ import { MyFacebookFacade } from "../../../facades/my-facebook.facade";
 import { UpcomingEventModel } from "../../components/upcoming-event-collection/upcoming-event.model";
 import { EventsFacade } from "../../../facades/events.facade";
 import { MyWordpressFacade } from "../../../facades/my-wordpress.facade";
-import { AlertModel } from "../../components/alert/alert.model";
 import { ConfigFacade } from "../../../facades/config.facade";
 import { WordpressCategoryEnum } from "../../../dictionary/wordpress-category.enum";
 import { StufenTeaserFacade } from "../../../facades/stufen-teaser.facade";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-start-dashboard",
@@ -34,12 +34,6 @@ export class StartDashboardComponent implements OnInit {
 
   upcomingEvents$: Observable<UpcomingEventModel[]>;
 
-  /**
-   * this is the model that contains special config flags...
-   * For instance this is for enabling the special news model (corona instance f.i.)
-   */
-  alertModel$: Observable<AlertModel | undefined>;
-
   constructor(
     private myFacebookFacade: MyFacebookFacade,
     private store$: Store<RootState>,
@@ -47,11 +41,10 @@ export class StartDashboardComponent implements OnInit {
     private stufenTeaserFacade: StufenTeaserFacade,
     private eventsFacade: EventsFacade,
     private wordpressFacade: MyWordpressFacade,
-    private configFacade: ConfigFacade
+    private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.alertModel$ = this.configFacade.getAlertModel$();
     this.isLoadingPosts$ = this.store$.select(selectPostsIsLoading);
     this.isLoadingStufenInfos$ = this.store$.select(selectStufenInfosIsLoading);
     this.heroBannerUrl$ = this.wordpressFacade.getBannerUrlForCategory$(
@@ -61,5 +54,12 @@ export class StartDashboardComponent implements OnInit {
     this.posts$ = this.myFacebookFacade.posts$;
     this.stufenCardModels$ = this.stufenTeaserFacade.stufenTeasersAll$;
     this.upcomingEvents$ = this.eventsFacade.getUpomingEventsForNextMonth();
+  }
+
+  heroButtonClicked() {
+    this.router.navigate([""], {
+      fragment: "nachrichten",
+      preserveFragment: true
+    });
   }
 }

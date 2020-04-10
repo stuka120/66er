@@ -15,6 +15,11 @@ import { ContactViewComponent } from "./components/routing-views/contact/contact
 const routes: Routes = [
   {
     path: "",
+    redirectTo: "news",
+    pathMatch: "full"
+  },
+  {
+    path: "news",
     pathMatch: "full",
     component: StartDashboardComponent
   },
@@ -72,7 +77,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes, {
       scrollPositionRestoration: "enabled",
       anchorScrolling: "enabled",
-      onSameUrlNavigation: "reload"
+      scrollOffset: [0, 64]
     })
   ],
   exports: [RouterModule]

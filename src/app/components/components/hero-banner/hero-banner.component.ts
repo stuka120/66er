@@ -3,8 +3,10 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   ViewChild
 } from "@angular/core";
 import { HeroBannerModel } from "./hero-banner.model";
@@ -34,6 +36,9 @@ export class HeroBannerComponent
    */
   @Input()
   imageUrl: string;
+
+  @Output()
+  buttonClicked = new EventEmitter<void>();
 
   morphextInitialized = false;
 

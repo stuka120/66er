@@ -1,13 +1,7 @@
-<app-alert
-  *ngIf="alertModel$ | async as alertModel"
-  [model]="alertModel"
-  [class.position-absolute.align-top]="
-    alertModel.presentationMode === 'overlay'
-  "
-  class="w-100"
-  style="z-index: 5100"
-></app-alert>
-<app-hero-banner [model]="heroBannerModel$ | async"></app-hero-banner>
+<app-hero-banner
+  (buttonClicked)="heroButtonClicked()"
+  [model]="heroBannerModel$ | async"
+></app-hero-banner>
 <div class="text-center">
   <app-stufen-slide-swiper
     *isLoading="stufenCardModels$ | async as stufenCardModels"
@@ -16,13 +10,15 @@
   </app-stufen-slide-swiper>
 </div>
 
-<div *ngIf="posts$ | async" id="nachrichten" class="container my-3">
-  <div class="row justify-content-center">
-    <div class="col text-center">
-      <h1>Aktuelles</h1>
+<section [attr.id]="'nachrichten'">
+  <div *ngIf="posts$ | async" class="section container my-3">
+    <div class="row justify-content-center">
+      <div class="col text-center">
+        <h1>Aktuelles</h1>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
 <div class="container-fluid">
   <div class="row">
@@ -37,13 +33,6 @@
     >
       <div class="container-fluid sticky-top" style="top: 6rem; bottom: 1rem;">
         <div class="row">
-          <!--          <div-->
-          <!--            class="d-none d-md-block col-md-6 col-lg-12 mt-3 mt-md-0 mt-lg-0"-->
-          <!--          >-->
-          <!--            <app-downloads-card-->
-          <!--              [model]="downloadsCardModel"-->
-          <!--            ></app-downloads-card>-->
-          <!--          </div>-->
           <div class="col-12">
             <app-upcoming-event-collection
               *isLoading="upcomingEvents$ | async as upcomingEvents"

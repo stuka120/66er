@@ -24,5 +24,5 @@ export interface HeroBannerModel {
   /**
    * Der Text des Buttons. Wenn null oder undefined wird der button augeblendet.
    */
-  buttonText: string;
+  buttonText?: string;
 }

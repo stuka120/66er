@@ -32,13 +32,11 @@
         </div>
 
         <button
-          *ngIf="model.buttonText"
+          *ngIf="model.buttonText != null"
           type="button"
           role="button"
           class="btn btn-outline-light rounded-0 mt-5"
-          [routerLink]="['']"
-          [fragment]="'nachrichten'"
-          skipLocationChange
+          (click)="buttonClicked.emit()"
         >
           {{ model.buttonText }}
         </button>
