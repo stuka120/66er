@@ -10,14 +10,14 @@ import { WordpressService } from "./services/wordpress.service";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RootStoreModule } from "./root-store";
-import { StufenInfoFacade } from "./facades/stufen-info.facade";
+import { StufenDescriptionFacade } from "./facades/stufen-description-facade.service";
 import { MyFacebookFacade } from "./facades/my-facebook.facade";
 import { DownloadsFacade } from "./facades/downloads.facade";
-import { WiwoeDashboardFacade } from "./facades/stufen-facades/wiwoe-dashboard.facade";
-import { BiberDashboardFacade } from "./facades/stufen-facades/biber-dashboard.facade";
-import { GuspDashboardFacade } from "./facades/stufen-facades/gusp-dashboard.facade";
-import { CaexDashboardFacade } from "./facades/stufen-facades/caex-dashboard.facade";
-import { RaroDashboardFacade } from "./facades/stufen-facades/raro-dashboard.facade";
+import { WiwoeDashboardFacade } from "./facades/stufen-facades/impl/wiwoe-dashboard.facade";
+import { BiberDashboardFacade } from "./facades/stufen-facades/impl/biber-dashboard.facade";
+import { GuspDashboardFacade } from "./facades/stufen-facades/impl/gusp-dashboard.facade";
+import { CaexDashboardFacade } from "./facades/stufen-facades/impl/caex-dashboard.facade";
+import { RaroDashboardFacade } from "./facades/stufen-facades/impl/raro-dashboard.facade";
 import { EventsFacade } from "./facades/events.facade";
 import { registerLocaleData } from "@angular/common";
 import localeDeAt from "@angular/common/locales/de-AT";
@@ -29,6 +29,9 @@ import { LoadingSpinner } from "./components/components/loading-spinner/loading-
 import { SidebarModule } from "ng-sidebar";
 import { EntriesModule } from "./components/entries/entries.module";
 import { ConfigurationService } from "./services/configuration.service";
+import { StufenTeaserFacade } from "./facades/stufen-teaser.facade";
+import { StufenTeamPostFacade } from "./facades/stufen-team-post.facade";
+import { StufenHeimstundenTimeFacade } from "./facades/stufen-heimstunden-time.facade";
 
 registerLocaleData(localeDeAt, "de-AT");
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -72,7 +75,10 @@ export function initializeApp(configurationService: ConfigurationService) {
     BreakpointService,
     ConfigurationService,
 
-    StufenInfoFacade,
+    StufenDescriptionFacade,
+    StufenTeaserFacade,
+    StufenTeamPostFacade,
+    StufenHeimstundenTimeFacade,
     BiberDashboardFacade,
     WiwoeDashboardFacade,
     GuspDashboardFacade,

@@ -21,28 +21,6 @@ export class SidebarComponent implements OnInit {
   constructor(private eventsFacade: EventsFacade) {}
 
   ngOnInit(): void {
-    let nextMonth = new Date();
-    nextMonth.setMonth(nextMonth.getMonth() + 1);
-
-    this.upcomingEvents$ = this.eventsFacade
-      .getGoogleCalenderEventsUntil(nextMonth)
-      .pipe(
-        map(events =>
-          events
-            .map(
-              event =>
-                <UpcomingEventModel>{
-                  title: event.summary,
-                  dateTime: event.start.dateTime,
-                  endDateTime: event.end.dateTime,
-                  place: event.location
-                }
-            )
-            .sort(
-              (a, b) =>
-                new Date(a.dateTime).valueOf() - new Date(b.dateTime).valueOf()
-            )
-        )
-      );
+    this.upcomingEvents$ = this.eventsFacade.getUpomingEventsForNextMonth();
   }
 }

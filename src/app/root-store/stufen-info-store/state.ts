@@ -16,7 +16,7 @@ export interface State {
     raro?: StufenInfoState;
   };
   needHeimstundenInfos: boolean;
-  heimstundenInfos: StufenHeimstundenCollection;
+  heimstundenInfos: StufenTimeCollection;
 
   isLoading: boolean;
   error: string | null;
@@ -30,15 +30,15 @@ export interface StufenInfoState {
   fullDescription: string;
 }
 
-export interface StufenHeimstundenCollection {
-  biber?: StufenHeimstundenInfoState;
-  wiwoe?: StufenHeimstundenInfoState;
-  gusp?: StufenHeimstundenInfoState;
-  caex?: StufenHeimstundenInfoState;
-  raro?: StufenHeimstundenInfoState;
+export interface StufenTimeCollection {
+  biber?: StufenHeimstundenTimeState;
+  wiwoe?: StufenHeimstundenTimeState;
+  gusp?: StufenHeimstundenTimeState;
+  caex?: StufenHeimstundenTimeState;
+  raro?: StufenHeimstundenTimeState;
 }
 
-export interface StufenHeimstundenInfoState {
+export interface StufenHeimstundenTimeState {
   title: string;
   timeDescription: string;
 }

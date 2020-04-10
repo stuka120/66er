@@ -1,13 +1,10 @@
-import { Injectable } from "@angular/core";
-import { WordpressService } from "../services/wordpress.service";
-import { Observable } from "rxjs";
-import {
-  DownloadModel,
-  WordpressMediaResponseDto
-} from "../model/wordpress-media-response.dto";
-import { filter, map } from "rxjs/operators";
-import { RemoveHtmlPipe } from "../pipes/remove-html.pipe";
-import { WordpressDictionary } from "../dictionary/wordpress.dictionary";
+import { Injectable } from '@angular/core';
+import { WordpressService } from '../services/wordpress.service';
+import { Observable } from 'rxjs';
+import { DownloadModel, WordpressMediaResponseDto } from '../model/wordpress-media-response.dto';
+import { filter, map } from 'rxjs/operators';
+import { RemoveHtmlPipe } from '../pipes/remove-html.pipe';
+import { WordpressDownloadEnum } from '../dictionary/wordpress-download.enum';
 
 @Injectable({
   providedIn: "root"
@@ -18,7 +15,7 @@ export class DownloadsFacade {
     private removeHtmlPipe: RemoveHtmlPipe
   ) {}
 
-  getDownloadsByTagName(tagName: string): Observable<DownloadModel[]> {
+  getDownloadsByTagName(tagName: WordpressDownloadEnum): Observable<DownloadModel[]> {
     return this.wordpressService.getMedia$(tagName).pipe(
       filter(dtos => !!dtos && dtos.length > 0),
       map(dtos => dtos.map(dto => this.mapToDownloadModel(dto)))
@@ -26,7 +23,7 @@ export class DownloadsFacade {
   }
 
   currentDownloads$: Observable<DownloadModel[]> = this.getDownloadsByTagName(
-    WordpressDictionary.downloads.aktuelles
+    WordpressDownloadEnum.Aktuelles
   );
 
   private mapToDownloadModel(dto: WordpressMediaResponseDto): DownloadModel {

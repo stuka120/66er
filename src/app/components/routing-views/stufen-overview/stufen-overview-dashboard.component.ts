@@ -9,9 +9,6 @@ import { DownloadsCardModel } from "../../components/downloads-card/downloads-ca
 import { StufenFacadeInterface } from "../../../facades/stufen-facades/stufen-facade.interface";
 import { ActivatedRoute } from "@angular/router";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
-import { MyWordpressFacade } from "../../../facades/my-wordpress.facade";
-import { WordpressDictionary } from "../../../dictionary/wordpress.dictionary";
-import { map, startWith } from "rxjs/operators";
 
 @Component({
   selector: "app-stufen-overview-dashboard",
@@ -32,8 +29,7 @@ export class StufenOverviewDashboardComponent implements OnInit {
   constructor(
     private store$: Store<RootState>,
     private route: ActivatedRoute,
-    private injector: Injector,
-    private myWordpressFacade: MyWordpressFacade
+    private injector: Injector
   ) {}
 
   ngOnInit() {

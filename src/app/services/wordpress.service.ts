@@ -6,6 +6,8 @@ import { WordpressMediaResponseDto } from "../model/wordpress-media-response.dto
 import { filter, map } from "rxjs/operators";
 import { WordpressPostResponseModel } from "./WordpressResponseModel.model";
 import { RemoveHtmlPipe } from "../pipes/remove-html.pipe";
+import { WordpressCategoryEnum } from "../dictionary/wordpress-category.enum";
+import { WordpressTagEnum } from "../dictionary/wordpress-tag.enum";
 
 @Injectable()
 export class WordpressService {
@@ -35,8 +37,8 @@ export class WordpressService {
   }
 
   public getPostsByCategoryIdAndTagId$(
-    categoryId: number,
-    tagId: number
+    categoryId: WordpressCategoryEnum,
+    tagId: WordpressTagEnum
   ): Observable<WordpressPostResponseModel[]> {
     return this.httpClient
       .get<WordpressPostResponseModel[]>(
@@ -46,8 +48,8 @@ export class WordpressService {
   }
 
   public getPostByCategoryIdAndTagId$(
-    categoryId: number,
-    tagId: number
+    categoryId: WordpressCategoryEnum,
+    tagId: WordpressTagEnum
   ): Observable<WordpressPostResponseModel> {
     return this.httpClient
       .get<WordpressPostResponseModel[]>(

@@ -1,11 +1,11 @@
 import {createAction, props} from "@ngrx/store";
-import {CalenderEventModel} from "../../model/calender-event.model";
+import {GoogleCalenderEventResponseModel} from "../../model/google-calender-event-response.model";
 
 export const loadEventsAction = createAction("[Calendar] Load events");
 
 export const loadEventsSuccessAction = createAction(
   "[Calendar] Load events success",
-  props<{ payload: { events: CalenderEventModel[] } }>()
+  props<{ payload: { events: GoogleCalenderEventResponseModel[] } }>()
 );
 
 export const loadEventsErrorAction = createAction(

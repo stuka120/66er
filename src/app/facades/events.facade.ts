@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { GoogleCalenderService } from "../services/google-calender.service";
 import { combineLatest, Observable, throwError } from "rxjs";
-import { CalenderEventModel } from "../model/calender-event.model";
+import { GoogleCalenderEventResponseModel } from "../model/google-calender-event-response.model";
 import { Store } from "@ngrx/store";
 import { RootState } from "../root-store/root-state";
 import {
@@ -23,6 +23,7 @@ import {
   loadEventsErrorAction,
   loadEventsSuccessAction
 } from "../root-store/calendar-store/actions";
+import { UpcomingEventModel } from "../components/components/upcoming-event-collection/upcoming-event.model";
 
 @Injectable({
   providedIn: "root"
@@ -34,7 +35,7 @@ export class EventsFacade {
   ) {}
 
   private requireGoogleCalendarEvents$: Observable<
-    CalenderEventModel[]
+    GoogleCalenderEventResponseModel[]
   > = this.store$.select(selectCalendarNeedEvents).pipe(
     filter(needEvents => needEvents),
     tap(() => this.store$.dispatch(loadEventsAction())),
@@ -59,9 +60,39 @@ export class EventsFacade {
     share()
   );
 
-  public getGoogleCalenderEventsUntil(
+  public getUpcomingEventsSortedUntil(
     maxDate: Date
-  ): Observable<CalenderEventModel[]> {
-    return this.googleCalendarService.getEventsTill(maxDate);
+  ): Observable<UpcomingEventModel[]> {
+    return this.googleCalendarService.getEventsTill(maxDate).pipe(
+      map(events =>
+        events
+          .map(
+            event =>
+              <UpcomingEventModel>{
+                title: event.summary,
+                dateTime: event.start.dateTime,
+                endDateTime: event.end.dateTime,
+                place: event.location
+              }
+          )
+          .sort(
+            (a, b) =>
+              new Date(a.dateTime).valueOf() - new Date(b.dateTime).valueOf()
+          )
+      )
+    );
+  }
+
+  public getUpomingEventsForNextMonth(): Observable<
+    UpcomingEventModel[]
+  > {
+    function nextMonth(): Date {
+      const nextMonth = new Date();
+      nextMonth.setMonth(nextMonth.getMonth() + 1);
+
+      return nextMonth;
+    }
+
+    return this.getUpcomingEventsSortedUntil(nextMonth());
   }
 }

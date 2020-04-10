@@ -2,9 +2,9 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import {
-  CalenderEventDtoModel,
-  CalenderEventModel
-} from "../model/calender-event.model";
+  GoogleCalenderEventCollectionResponseModel,
+  GoogleCalenderEventResponseModel
+} from "../model/google-calender-event-response.model";
 import { map } from "rxjs/operators";
 
 @Injectable({
@@ -13,18 +13,18 @@ import { map } from "rxjs/operators";
 export class GoogleCalenderService {
   constructor(private httpClient: HttpClient) {}
 
-  public getEvents$(): Observable<CalenderEventModel[]> {
+  public getEvents$(): Observable<GoogleCalenderEventResponseModel[]> {
     return this.httpClient
-      .get<CalenderEventDtoModel>(
+      .get<GoogleCalenderEventCollectionResponseModel>(
         // tslint:disable-next-line:max-line-length
         "https://www.66er.net/wp-json/calendar/v1/allEvents"
       )
       .pipe(map(dto => dto.items));
   }
 
-  public getEventsTill(maxDate: Date): Observable<CalenderEventModel[]> {
+  public getEventsTill(maxDate: Date): Observable<GoogleCalenderEventResponseModel[]> {
     return this.httpClient
-      .get<CalenderEventDtoModel>(
+      .get<GoogleCalenderEventCollectionResponseModel>(
         // tslint:disable-next-line:max-line-length
         `https://www.66er.net/wp-json/calendar/v1/events?from=${new Date().toISOString()}&to=${maxDate.toISOString()}`
       )

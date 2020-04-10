@@ -1,5 +1,5 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { State, StufenHeimstundenInfoState } from "./state";
+import { State, StufenHeimstundenTimeState } from "./state";
 import { StufenCardModel } from "../../model/stufen-card.model";
 
 const getError = (state: State): string => state.error;
@@ -29,15 +29,15 @@ const getRaRoTeaser = (state: State): StufenCardModel =>
   state.stufenInfos ? state.stufenTeaser.raro : undefined;
 const getNeedTeaser = (state: State): boolean => state.needStufenTeaser;
 
-const getBiberHeimstundenInfos = (state: State): StufenHeimstundenInfoState =>
+const getBiberHeimstundenInfos = (state: State): StufenHeimstundenTimeState =>
   state.heimstundenInfos ? state.heimstundenInfos.biber : undefined;
-const getWiWoeHeimstundenInfos = (state: State): StufenHeimstundenInfoState =>
+const getWiWoeHeimstundenInfos = (state: State): StufenHeimstundenTimeState =>
   state.heimstundenInfos ? state.heimstundenInfos.wiwoe : undefined;
-const getGuSpHeimstundenInfos = (state: State): StufenHeimstundenInfoState =>
+const getGuSpHeimstundenInfos = (state: State): StufenHeimstundenTimeState =>
   state.heimstundenInfos ? state.heimstundenInfos.gusp : undefined;
-const getCaExHeimstundenInfos = (state: State): StufenHeimstundenInfoState =>
+const getCaExHeimstundenInfos = (state: State): StufenHeimstundenTimeState =>
   state.heimstundenInfos ? state.heimstundenInfos.caex : undefined;
-const getRaRoHeimstundenInfos = (state: State): StufenHeimstundenInfoState =>
+const getRaRoHeimstundenInfos = (state: State): StufenHeimstundenTimeState =>
   state.heimstundenInfos ? state.heimstundenInfos.raro : undefined;
 const getNeedHeimstundenInfos = (state: State): boolean =>
   state.needHeimstundenInfos;

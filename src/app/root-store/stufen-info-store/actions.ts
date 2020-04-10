@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { StufenHeimstundenCollection, StufenInfoState } from "./state";
+import { StufenTimeCollection, StufenInfoState } from "./state";
 
 export const loadAllStufenAction = createAction(
   "[StufenInfo] Load stufen-infos"
@@ -53,7 +53,7 @@ export const loadAllHeimstundenSuccessAction = createAction(
   "[StufenInfo] Load stufen heimstunden success",
   props<{
     payload: {
-      heimstundenInfos: StufenHeimstundenCollection;
+      heimstundenInfos: StufenTimeCollection;
     };
   }>()
 );

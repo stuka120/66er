@@ -1,8 +1,8 @@
-export interface CalenderEventDtoModel {
-  items: CalenderEventModel[];
+export interface GoogleCalenderEventCollectionResponseModel {
+  items: GoogleCalenderEventResponseModel[];
 }
 
-export interface CalenderEventModel {
+export interface GoogleCalenderEventResponseModel {
   summary: string;
   status: string;
   created: Date;
