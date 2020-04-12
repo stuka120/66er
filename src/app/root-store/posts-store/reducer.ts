@@ -1,6 +1,6 @@
 import { createReducer, on } from "@ngrx/store";
 import { initialState } from "./state";
-import { Post } from "../../model/post.model";
+import { PostResponseModel } from "../../model/responses/post.model";
 import {
   loadNewsAction,
   loadNewsErrorAction,
@@ -17,7 +17,7 @@ const myReducer = createReducer(
   })),
   on(
     loadNewsSuccessAction,
-    (state, action: { payload: { posts: Post[] } }) => ({
+    (state, action: { payload: { posts: PostResponseModel[] } }) => ({
       posts: action.payload.posts,
       isLoading: false,
       error: null,

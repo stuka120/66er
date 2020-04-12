@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { BreakpointService } from "./services/breakpoint.service";
 import { untilDestroyed } from "ngx-take-until-destroy";
 import { Observable } from "rxjs";
-import { AlertModel } from "./components/components/alert/alert.model";
+import { AlertComponentModel } from "./components/components/alert/alert.component-model";
 import { ConfigFacade } from "./facades/config.facade";
 
 @Component({
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit, OnDestroy {
    * this is the model that contains special config flags...
    * For instance this is for enabling the special news model (corona instance f.i.)
    */
-  alertModel$: Observable<AlertModel | undefined>;
+  alertModel$: Observable<AlertComponentModel | undefined>;
 
   constructor(
     private breakpointPipe: BreakpointService,

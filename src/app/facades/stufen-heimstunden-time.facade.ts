@@ -68,7 +68,7 @@ export class StufenHeimstundenTimeFacade {
       category: WordpressCategoryEnum
     ): Observable<StufenHeimstundenTimeState> => {
       return this.wordpressService
-        .getPostByCategoryIdAndTagId$(category, WordpressTagEnum.Time)
+        .getWordpressPostByCategoryAndTag$(category, WordpressTagEnum.Time)
         .pipe(
           map(
             post =>

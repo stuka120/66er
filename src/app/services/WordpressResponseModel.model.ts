@@ -1,4 +1,4 @@
-//// Post images
+//// PostResponseModel images
 export interface WordpressPostResponseModel {
   id: number;
   title: {

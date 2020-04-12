@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { catchError, map, startWith } from "rxjs/operators";
 import { WordpressService } from "../services/wordpress.service";
 import { Observable, of } from "rxjs";
-import { HeroBannerModel } from "../components/components/hero-banner/hero-banner.model";
+import { HeroBannerComponentModel } from "../components/components/hero-banner/hero-banner.component-model";
 import { WordpressCategoryEnum } from "../dictionary/wordpress-category.enum";
 import { WordpressTagEnum } from "../dictionary/wordpress-tag.enum";
 
@@ -12,7 +12,7 @@ import { WordpressTagEnum } from "../dictionary/wordpress-tag.enum";
 export class MyWordpressFacade {
   constructor(private wordpressService: WordpressService) {}
 
-  getStartseiteBanner$(): Observable<HeroBannerModel> {
+  getStartseiteBanner$(): Observable<HeroBannerComponentModel> {
     return this.getBannerUrlForCategory$(WordpressCategoryEnum.Startseite).pipe(
       map(imageUrl => ({
         imageUrl: imageUrl,
@@ -31,7 +31,7 @@ export class MyWordpressFacade {
     categoryId: WordpressCategoryEnum
   ): Observable<string | undefined> {
     return this.wordpressService
-      .getPostByCategoryIdAndTagId$(categoryId, WordpressTagEnum.BannerImage)
+      .getWordpressPostByCategoryAndTag$(categoryId, WordpressTagEnum.BannerImage)
       .pipe(
         catchError(() => of(undefined)),
         map(post =>

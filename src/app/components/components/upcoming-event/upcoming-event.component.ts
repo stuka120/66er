@@ -1,5 +1,5 @@
 import {Component, Input} from "@angular/core";
-import {UpcomingEventModel} from "../upcoming-event-collection/upcoming-event.model";
+import {UpcomingEventCollectionComponentModel} from "../upcoming-event-collection/upcoming-event-collection.component-model";
 import { faClock, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
@@ -9,7 +9,7 @@ import { faClock, faLocationArrow } from "@fortawesome/free-solid-svg-icons";
 })
 export class UpcomingEventComponent {
   @Input()
-  upcomingEvent: UpcomingEventModel;
+  upcomingEvent: UpcomingEventCollectionComponentModel;
 
   faClock = faClock;
   faLocationArrow = faLocationArrow;

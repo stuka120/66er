@@ -1,4 +1,4 @@
-export enum WordpressDownloadEnum {
+export enum WordpressDownloadTagEnum {
   Aktuelles = "downloads_aktuelles",
   Impressum = "downloads_impressum",
   Biber = "downloads_biber",

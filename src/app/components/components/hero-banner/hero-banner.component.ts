@@ -9,7 +9,7 @@ import {
   Output,
   ViewChild
 } from "@angular/core";
-import { HeroBannerModel } from "./hero-banner.model";
+import { HeroBannerComponentModel } from "./hero-banner.component-model";
 
 @Component({
   selector: "app-hero-banner",
@@ -28,7 +28,7 @@ export class HeroBannerComponent
   morphextText: any;
 
   @Input()
-  model: HeroBannerModel;
+  model: HeroBannerComponentModel;
 
   /**
    * If you set this, you can override the image url from the model

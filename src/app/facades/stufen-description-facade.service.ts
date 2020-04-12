@@ -29,19 +29,16 @@ import {
 import { RootState } from "../root-store/root-state";
 import { Store } from "@ngrx/store";
 import { WordpressService } from "../services/wordpress.service";
-import { RemoveHtmlPipe } from "../pipes/remove-html.pipe";
-import { RemoveMultipleBreaksPipe } from "../pipes/remove-multiple-breaks.pipe";
 import { WordpressCategoryEnum } from "../dictionary/wordpress-category.enum";
 import { WordpressTagEnum } from "../dictionary/wordpress-tag.enum";
 import { muteFirst } from "../utils/rxjs/mute-first.util";
+import { flatMultipleLineBreaks } from "../utils/html-string/flat-multiple-line-breaks.util";
 
 @Injectable()
 export class StufenDescriptionFacade {
   constructor(
     private store$: Store<RootState>,
-    private wordpressService: WordpressService,
-    private removeHtmlPipe: RemoveHtmlPipe,
-    private removeMultipleBreaks: RemoveMultipleBreaksPipe
+    private wordpressService: WordpressService
   ) {}
 
   private requireStufenInfos$: Observable<
@@ -73,7 +70,7 @@ export class StufenDescriptionFacade {
       imageUrl: string
     ): Observable<StufenCardModel> => {
       return this.wordpressService
-        .getPostByCategoryIdAndTagId$(category, WordpressTagEnum.Content)
+        .getWordpressPostByCategoryAndTag$(category, WordpressTagEnum.Content)
         .pipe(
           map(
             post =>
@@ -81,9 +78,7 @@ export class StufenDescriptionFacade {
                 stufenUri: link,
                 title: post.title.rendered,
                 shortDescription: post.excerpt.rendered,
-                fullDescription: this.removeMultipleBreaks.transform(
-                  post.content.rendered
-                ),
+                fullDescription: flatMultipleLineBreaks(post.content.rendered),
                 imgUrl: imageUrl
               }
           )

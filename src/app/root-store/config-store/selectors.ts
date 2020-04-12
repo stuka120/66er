@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { ConfigState, State } from "./state";
-import { Post } from "../../model/post.model";
+import { PostResponseModel } from "../../model/responses/post.model";
 import { RootStoreState } from "../index";
 
 const selectConfigFeature = createSelector(

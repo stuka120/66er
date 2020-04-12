@@ -1,4 +1,4 @@
-export interface Post {
+export interface PostResponseModel {
   id: string;
   message: string;
   created_time: Date;
@@ -33,6 +33,6 @@ export interface Post {
   };
 }
 
-export interface PostResponse {
-  data: Post[];
+export interface PostCollectionResponseModel {
+  data: PostResponseModel[];
 }

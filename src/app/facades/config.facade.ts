@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { ConfigurationService } from "../services/configuration.service";
 import { Observable } from "rxjs";
-import { AlertModel } from "../components/components/alert/alert.model";
+import { AlertComponentModel } from "../components/components/alert/alert.component-model";
 import { map } from "rxjs/operators";
 
 @Injectable({
@@ -10,7 +10,7 @@ import { map } from "rxjs/operators";
 export class ConfigFacade {
   constructor(private configurationService: ConfigurationService) {}
 
-  getAlertModel$(): Observable<AlertModel> {
+  getAlertModel$(): Observable<AlertComponentModel> {
     return this.configurationService.getConfig$().pipe(
       map(config => {
         if (!!config) {

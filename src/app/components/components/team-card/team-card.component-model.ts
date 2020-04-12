@@ -1,7 +1,7 @@
 /**
  * Model for the team-card component
  */
-export interface TeamCardModel {
+export interface TeamCardComponentModel {
   /**
    * The name of the team member
    */

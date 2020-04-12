@@ -1,9 +1,9 @@
 import { Observable } from "rxjs";
 import { StufenCardModel } from "../../model/stufen-card.model";
-import { TeamCardCollectionModel } from "../../components/components/team-card-collection/team-card-collection.model";
-import { DownloadsCardModel } from "../../components/components/downloads-card/downloads-card.model";
+import { TeamCardCollectionComponentModel } from "../../components/components/team-card-collection/team-card-collection.component-model";
+import { DownloadsCardComponentModel } from "../../components/components/downloads-card/downloads-card.component-model";
 import { HeimstundenTimeModel } from "../../components/routing-views/stufen-overview/stufen-overview-dashboard.component";
-import { HeroBannerModel } from '../../components/components/hero-banner/hero-banner.model';
+import { HeroBannerComponentModel } from '../../components/components/hero-banner/hero-banner.component-model';
 
 export interface StufenFacadeInterface {
   stufenName: string;
@@ -12,9 +12,9 @@ export interface StufenFacadeInterface {
 
   stufenHeimstunden$: Observable<HeimstundenTimeModel>;
 
-  stufenTeam$: Observable<TeamCardCollectionModel>;
+  stufenTeam$: Observable<TeamCardCollectionComponentModel>;
 
-  stufenDownloads$: Observable<DownloadsCardModel>;
+  stufenDownloads$: Observable<DownloadsCardComponentModel>;
 
-  stufenBannerModel$: Observable<HeroBannerModel>;
+  stufenBannerModel$: Observable<HeroBannerComponentModel>;
 }

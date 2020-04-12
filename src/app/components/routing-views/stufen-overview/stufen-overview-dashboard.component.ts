@@ -2,10 +2,10 @@ import { Component, Injector, OnInit } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { RootState } from "../../../root-store/root-state";
 import { Observable } from "rxjs";
-import { HeroBannerModel } from "../../components/hero-banner/hero-banner.model";
+import { HeroBannerComponentModel } from "../../components/hero-banner/hero-banner.component-model";
 import { StufenCardModel } from "../../../model/stufen-card.model";
-import { TeamCardCollectionModel } from "../../components/team-card-collection/team-card-collection.model";
-import { DownloadsCardModel } from "../../components/downloads-card/downloads-card.model";
+import { TeamCardCollectionComponentModel } from "../../components/team-card-collection/team-card-collection.component-model";
+import { DownloadsCardComponentModel } from "../../components/downloads-card/downloads-card.component-model";
 import { StufenFacadeInterface } from "../../../facades/stufen-facades/stufen-facade.interface";
 import { ActivatedRoute } from "@angular/router";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
@@ -18,10 +18,10 @@ import { faCog } from "@fortawesome/free-solid-svg-icons";
 export class StufenOverviewDashboardComponent implements OnInit {
   stufenFacade: StufenFacadeInterface;
 
-  heroBannerModel$: Observable<HeroBannerModel>;
+  heroBannerModel$: Observable<HeroBannerComponentModel>;
   stufenInfo$: Observable<StufenCardModel>;
-  teamMembers$: Observable<TeamCardCollectionModel>;
-  downloads$: Observable<DownloadsCardModel>;
+  teamMembers$: Observable<TeamCardCollectionComponentModel>;
+  downloads$: Observable<DownloadsCardComponentModel>;
   heimstunden$: Observable<HeimstundenTimeModel>;
 
   faCog = faCog;

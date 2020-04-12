@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from "@angular/core";
 import { Observable } from "rxjs";
-import { UpcomingEventModel } from "../../components/upcoming-event-collection/upcoming-event.model";
-import { EventsFacade } from "../../../facades/events.facade";
+import { UpcomingEventCollectionComponentModel } from "../../components/upcoming-event-collection/upcoming-event-collection.component-model";
+import { CalendarFacade } from "../../../facades/calendar-facade.service";
 import { map } from "rxjs/operators";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,12 +13,12 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 export class SidebarComponent implements OnInit {
   faArrowLeft = faArrowLeft;
 
-  upcomingEvents$: Observable<UpcomingEventModel[]>;
+  upcomingEvents$: Observable<UpcomingEventCollectionComponentModel[]>;
 
   @Output()
   sidebarCloseClicked = new EventEmitter<void>();
 
-  constructor(private eventsFacade: EventsFacade) {}
+  constructor(private eventsFacade: CalendarFacade) {}
 
   ngOnInit(): void {
     this.upcomingEvents$ = this.eventsFacade.getUpomingEventsForNextMonth();

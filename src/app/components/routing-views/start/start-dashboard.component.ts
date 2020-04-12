@@ -1,16 +1,16 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
-import { Post } from "../../../model/post.model";
+import { PostResponseModel } from "../../../model/responses/post.model";
 import { StufenCardModel } from "src/app/model/stufen-card.model";
 import { Store } from "@ngrx/store";
 import { selectPostsIsLoading } from "../../../root-store/posts-store/selectors";
 import { RootState } from "../../../root-store/root-state";
 import { selectStufenInfosIsLoading } from "../../../root-store/stufen-info-store/selectors";
-import { HeroBannerModel } from "../../components/hero-banner/hero-banner.model";
+import { HeroBannerComponentModel } from "../../components/hero-banner/hero-banner.component-model";
 import { StufenDescriptionFacade } from "../../../facades/stufen-description-facade.service";
 import { MyFacebookFacade } from "../../../facades/my-facebook.facade";
-import { UpcomingEventModel } from "../../components/upcoming-event-collection/upcoming-event.model";
-import { EventsFacade } from "../../../facades/events.facade";
+import { UpcomingEventCollectionComponentModel } from "../../components/upcoming-event-collection/upcoming-event-collection.component-model";
+import { CalendarFacade } from "../../../facades/calendar-facade.service";
 import { MyWordpressFacade } from "../../../facades/my-wordpress.facade";
 import { ConfigFacade } from "../../../facades/config.facade";
 import { WordpressCategoryEnum } from "../../../dictionary/wordpress-category.enum";
@@ -23,23 +23,23 @@ import { Router } from "@angular/router";
   styleUrls: ["./start-dashboard.component.css"]
 })
 export class StartDashboardComponent implements OnInit {
-  posts$: Observable<Post[]>;
+  posts$: Observable<PostResponseModel[]>;
 
   stufenCardModels$: Observable<StufenCardModel[]>;
   isLoadingPosts$: Observable<boolean>;
   isLoadingStufenInfos$: Observable<boolean>;
 
-  heroBannerModel$: Observable<HeroBannerModel>;
+  heroBannerModel$: Observable<HeroBannerComponentModel>;
   heroBannerUrl$: Observable<string>;
 
-  upcomingEvents$: Observable<UpcomingEventModel[]>;
+  upcomingEvents$: Observable<UpcomingEventCollectionComponentModel[]>;
 
   constructor(
     private myFacebookFacade: MyFacebookFacade,
     private store$: Store<RootState>,
     private stufenInfoFacade: StufenDescriptionFacade,
     private stufenTeaserFacade: StufenTeaserFacade,
-    private eventsFacade: EventsFacade,
+    private eventsFacade: CalendarFacade,
     private wordpressFacade: MyWordpressFacade,
     private router: Router
   ) {}

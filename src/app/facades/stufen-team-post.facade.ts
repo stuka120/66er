@@ -6,8 +6,8 @@ import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { WordpressCategoryEnum } from "../dictionary/wordpress-category.enum";
 import { WordpressTagEnum } from "../dictionary/wordpress-tag.enum";
-import { TeamCardCollectionModel } from "../components/components/team-card-collection/team-card-collection.model";
-import { TeamCardModel } from "../components/components/team-card/team-card.model";
+import { TeamCardCollectionComponentModel } from "../components/components/team-card-collection/team-card-collection.component-model";
+import { TeamCardComponentModel } from "../components/components/team-card/team-card.component-model";
 import { WordpressPostResponseModel } from "../services/WordpressResponseModel.model";
 import { ImageSize } from "./stufen-description-facade.service";
 
@@ -18,35 +18,35 @@ export class StufenTeamPostFacade {
     private wordpressService: WordpressService
   ) {}
   teamPostsBiber$: Observable<
-    TeamCardCollectionModel
+    TeamCardCollectionComponentModel
   > = this.getTeamCardCollectionForStufe(
     WordpressCategoryEnum.Biber,
     "Das Biber Team"
   );
 
   teamPostsWiWoe$: Observable<
-    TeamCardCollectionModel
+    TeamCardCollectionComponentModel
   > = this.getTeamCardCollectionForStufe(
     WordpressCategoryEnum.Wiwoe,
     "Das WiWö Team"
   );
 
   teamPostsGuSp$: Observable<
-    TeamCardCollectionModel
+    TeamCardCollectionComponentModel
   > = this.getTeamCardCollectionForStufe(
     WordpressCategoryEnum.Gusp,
     "Das GuSp Team"
   );
 
   teamPostsCaEx$: Observable<
-    TeamCardCollectionModel
+    TeamCardCollectionComponentModel
   > = this.getTeamCardCollectionForStufe(
     WordpressCategoryEnum.Caex,
     "Das CaEx Team"
   );
 
   teamPostsRaRo$: Observable<
-    TeamCardCollectionModel
+    TeamCardCollectionComponentModel
   > = this.getTeamCardCollectionForStufe(
     WordpressCategoryEnum.Raro,
     "Das RaRo Team"
@@ -55,9 +55,9 @@ export class StufenTeamPostFacade {
   private getTeamCardCollectionForStufe(
     stufe: WordpressCategoryEnum,
     headerText: string
-  ): Observable<TeamCardCollectionModel> {
+  ): Observable<TeamCardCollectionComponentModel> {
     return this.wordpressService
-      .getPostsByCategoryIdAndTagId$(stufe, WordpressTagEnum.Team)
+      .getPostCollectionByCategoryAndTag$(stufe, WordpressTagEnum.Team)
       .pipe(
         map(
           posts =>
@@ -69,9 +69,9 @@ export class StufenTeamPostFacade {
                     name: post.title.rendered,
                     description: post.content.rendered,
                     imgUrl: this.getPostBeitragsbild(post, "medium")
-                  } as TeamCardModel)
+                  } as TeamCardComponentModel)
               )
-            } as TeamCardCollectionModel)
+            } as TeamCardCollectionComponentModel)
         )
       );
   }

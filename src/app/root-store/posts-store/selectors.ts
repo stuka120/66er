@@ -1,10 +1,10 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { State } from "./state";
-import { Post } from "../../model/post.model";
+import { PostResponseModel } from "../../model/responses/post.model";
 
 const getError = (state: State): string => state.error;
 const getIsLoading = (state: State): boolean => state.isLoading;
-const getPosts = (state: State): Post[] => state.posts;
+const getPosts = (state: State): PostResponseModel[] => state.posts;
 const getNeedPosts = (state: State): boolean => state.needPosts;
 
 const selectStartDashboardFeatureSelector = createFeatureSelector("posts");

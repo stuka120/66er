@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { AlertModel } from "./alert.model";
+import { AlertComponentModel } from "./alert.component-model";
 
 @Component({
   selector: "app-alert",
@@ -8,5 +8,5 @@ import { AlertModel } from "./alert.model";
 })
 export class AlertComponent {
   @Input()
-  model: AlertModel;
+  model: AlertComponentModel;
 }

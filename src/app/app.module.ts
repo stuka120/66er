@@ -18,7 +18,7 @@ import { BiberDashboardFacade } from "./facades/stufen-facades/impl/biber-dashbo
 import { GuspDashboardFacade } from "./facades/stufen-facades/impl/gusp-dashboard.facade";
 import { CaexDashboardFacade } from "./facades/stufen-facades/impl/caex-dashboard.facade";
 import { RaroDashboardFacade } from "./facades/stufen-facades/impl/raro-dashboard.facade";
-import { EventsFacade } from "./facades/events.facade";
+import { CalendarFacade } from "./facades/calendar-facade.service";
 import { registerLocaleData } from "@angular/common";
 import localeDeAt from "@angular/common/locales/de-AT";
 import { BreakpointService } from "./services/breakpoint.service";
@@ -50,7 +50,7 @@ const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
 };
 
 export function initializeApp(configurationService: ConfigurationService) {
-  return () => configurationService.loadConfig();
+  return () => configurationService.loadConfigFromServer();
 }
 
 @NgModule({
@@ -87,7 +87,7 @@ export function initializeApp(configurationService: ConfigurationService) {
 
     MyFacebookFacade,
     DownloadsFacade,
-    EventsFacade,
+    CalendarFacade,
 
     {
       provide: SWIPER_CONFIG,

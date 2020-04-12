@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { combineLatest, Observable, of, throwError } from "rxjs";
-import { Post } from "../model/post.model";
+import { Observable, throwError } from "rxjs";
+import { PostResponseModel } from "../model/responses/post.model";
 import { RootState } from "../root-store/root-state";
 import { Store } from "@ngrx/store";
 import {
@@ -32,7 +32,7 @@ export class MyFacebookFacade {
     private store$: Store<RootState>
   ) {}
 
-  private requirePosts(): Observable<Post[]> {
+  private requirePostCollection(): Observable<PostResponseModel[]> {
     return this.store$.select(selectPostsNeedPosts).pipe(
       filter(needPosts => needPosts),
       tap(() => this.store$.dispatch(loadNewsAction())),
@@ -50,10 +50,10 @@ export class MyFacebookFacade {
     );
   }
 
-  posts$: Observable<Post[]> = this.requirePosts().pipe(
+  posts$: Observable<PostResponseModel[]> = this.requirePostCollection().pipe(
     startWith(null),
     withLatestFrom(this.store$.select(selectPostsPosts)),
-    map(([first, second]) => second),
+    map(([, second]) => second),
     distinctUntilChanged()
   );
 }

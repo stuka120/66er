@@ -2,8 +2,7 @@ import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { RootState } from "../root-store/root-state";
 import { WordpressService } from "../services/wordpress.service";
-import { RemoveHtmlPipe } from "../pipes/remove-html.pipe";
-import { combineLatest, forkJoin, Observable, throwError } from "rxjs";
+import { forkJoin, Observable, throwError } from "rxjs";
 import {
   catchError,
   filter,
@@ -34,13 +33,13 @@ import {
 import { WordpressCategoryEnum } from "../dictionary/wordpress-category.enum";
 import { WordpressTagEnum } from "../dictionary/wordpress-tag.enum";
 import { muteFirst } from "../utils/rxjs/mute-first.util";
+import { removeHtmlTags } from "../utils/html-string/remove-html-tags.util";
 
 @Injectable()
 export class StufenTeaserFacade {
   constructor(
     private store$: Store<RootState>,
-    private wordpressService: WordpressService,
-    private removeHtmlPipe: RemoveHtmlPipe
+    private wordpressService: WordpressService
   ) {}
 
   private requireStufenTeasers$: Observable<
@@ -71,7 +70,7 @@ export class StufenTeaserFacade {
       link: string[]
     ): Observable<StufenCardModel> => {
       return this.wordpressService
-        .getPostByCategoryIdAndTagId$(category, WordpressTagEnum.Teaser)
+        .getWordpressPostByCategoryAndTag$(category, WordpressTagEnum.Teaser)
         .pipe(
           map(
             post =>
@@ -79,9 +78,7 @@ export class StufenTeaserFacade {
                 stufenUri: link,
                 title: post.title.rendered,
                 shortDescription: post.excerpt.rendered,
-                fullDescription: this.removeHtmlPipe.transform(
-                  post.content.rendered
-                ),
+                fullDescription: removeHtmlTags(post.content.rendered),
                 imgUrl: post._embedded["wp:featuredmedia"][0].source_url
               }
           )

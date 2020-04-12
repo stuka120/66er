@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { DownloadModel } from "src/app/model/wordpress-media-response.dto";
+import { DownloadModel } from "src/app/model/responses/wordpress-media-response.model";
 import { Observable } from "rxjs";
 import { DownloadsFacade } from "../../../facades/downloads.facade";
 

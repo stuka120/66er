@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Post } from "src/app/model/post.model";
+import { PostResponseModel } from "src/app/model/responses/post.model";
 import {
   faChevronDown,
   faComment,
@@ -12,7 +12,7 @@ import {
   styleUrls: ["./news-card.component.css"]
 })
 export class NewsCardComponent implements OnInit {
-  @Input() post: Post;
+  @Input() post: PostResponseModel;
   @Input() cardId: number;
 
   faCommend = faComment;

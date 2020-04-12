@@ -1,4 +1,4 @@
-import {GoogleCalenderEventResponseModel} from "../../model/google-calender-event-response.model";
+import {GoogleCalenderEventResponseModel} from "../../model/responses/google-calender-event-response.model";
 
 export interface State {
   events: GoogleCalenderEventResponseModel[];

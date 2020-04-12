@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { TeamCardModel } from "./team-card.model";
+import { TeamCardComponentModel } from "./team-card.component-model";
 
 @Component({
   selector: "app-team-card",
@@ -8,7 +8,7 @@ import { TeamCardModel } from "./team-card.model";
 })
 export class TeamCardComponent implements OnInit {
   @Input()
-  model: TeamCardModel;
+  model: TeamCardComponentModel;
 
   constructor() {}
 

@@ -1,4 +1,4 @@
-export interface UpcomingEventModel {
+export interface UpcomingEventCollectionComponentModel {
   title: string;
   dateTime: Date;
   endDateTime: Date;

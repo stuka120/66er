@@ -16,7 +16,7 @@ import { selectConfig } from "../root-store/config-store/selectors";
 export class ConfigurationService {
   constructor(private http: HttpClient, private store$: Store<RootState>) {}
 
-  loadConfig(): Promise<AppConfig | undefined> {
+  loadConfigFromServer(): Promise<AppConfig | undefined> {
     const jsonFile = `assets/config.json`;
 
     this.store$.dispatch(loadConfigAction());
@@ -41,7 +41,7 @@ export class ConfigurationService {
       .select(selectConfig)
       .pipe(
         switchMap(config =>
-          config === undefined ? from(this.loadConfig()) : of(config)
+          config === undefined ? from(this.loadConfigFromServer()) : of(config)
         )
       );
   }

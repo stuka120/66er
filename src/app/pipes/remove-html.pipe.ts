@@ -1,14 +1,11 @@
 import { Pipe, PipeTransform } from "@angular/core";
+import { removeHtmlTags } from "../utils/html-string/remove-html-tags.util";
 
 @Pipe({
   name: "removeHtml"
 })
 export class RemoveHtmlPipe implements PipeTransform {
   transform(value: any, ...args: any[]): any {
-    return value
-      .toString()
-      .replace(/<[^>]+>/gm, "")
-      .replace(/\n\s*\n/g, "\n\n")
-      .replace(/^\s+|\s+$/g, "");
+    return removeHtmlTags(value.toString());
   }
 }

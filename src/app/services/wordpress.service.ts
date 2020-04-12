@@ -1,42 +1,17 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { WordpressPageModel } from "../model/wordpress-page.model";
-import { WordpressMediaResponseDto } from "../model/wordpress-media-response.dto";
+import { WordpressMediaResponseModel } from "../model/responses/wordpress-media-response.model";
 import { filter, map } from "rxjs/operators";
 import { WordpressPostResponseModel } from "./WordpressResponseModel.model";
-import { RemoveHtmlPipe } from "../pipes/remove-html.pipe";
 import { WordpressCategoryEnum } from "../dictionary/wordpress-category.enum";
 import { WordpressTagEnum } from "../dictionary/wordpress-tag.enum";
 
 @Injectable()
 export class WordpressService {
-  constructor(
-    private httpClient: HttpClient,
-    private removeHtmlPipe: RemoveHtmlPipe
-  ) {}
+  constructor(private httpClient: HttpClient) {}
 
-  public getPage$(id: number): Observable<WordpressPageModel> {
-    return this.httpClient.get<WordpressPageModel>(
-      `https://www.66er.net/wp-json/wp/v2/pages/${id}`
-    );
-  }
-
-  public getPost$(postId: number): Observable<WordpressPostResponseModel> {
-    return this.httpClient.get<WordpressPostResponseModel>(
-      `https://www.66er.net/wp-json/wp/v2/posts/${postId}?_embed`
-    );
-  }
-
-  public getPostsByCategoryId$(
-    categoryId: number
-  ): Observable<WordpressPostResponseModel[]> {
-    return this.httpClient.get<WordpressPostResponseModel[]>(
-      `https://www.66er.net/wp-json/wp/v2/posts/?_embed&categories=${categoryId}`
-    );
-  }
-
-  public getPostsByCategoryIdAndTagId$(
+  public getPostCollectionByCategoryAndTag$(
     categoryId: WordpressCategoryEnum,
     tagId: WordpressTagEnum
   ): Observable<WordpressPostResponseModel[]> {
@@ -47,7 +22,7 @@ export class WordpressService {
       .pipe(filter(posts => !!posts && posts.length > 0));
   }
 
-  public getPostByCategoryIdAndTagId$(
+  public getWordpressPostByCategoryAndTag$(
     categoryId: WordpressCategoryEnum,
     tagId: WordpressTagEnum
   ): Observable<WordpressPostResponseModel> {
@@ -61,10 +36,10 @@ export class WordpressService {
       );
   }
 
-  public getMedia$(
+  public getMediaCollectionForTag$(
     categoryName: string
-  ): Observable<WordpressMediaResponseDto[]> {
-    return this.httpClient.get<WordpressMediaResponseDto[]>(
+  ): Observable<WordpressMediaResponseModel[]> {
+    return this.httpClient.get<WordpressMediaResponseModel[]>(
       `https://www.66er.net/wp-json/wp/v2/media?search=${categoryName}`
     );
   }

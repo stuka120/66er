@@ -15,11 +15,6 @@ import { ContactViewComponent } from "./components/routing-views/contact/contact
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "news",
-    pathMatch: "full"
-  },
-  {
-    path: "news",
     pathMatch: "full",
     component: StartDashboardComponent
   },

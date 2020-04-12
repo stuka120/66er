@@ -1,6 +1,6 @@
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
-import {Post, PostResponse} from "../model/post.model";
+import {PostResponseModel, PostCollectionResponseModel} from "../model/responses/post.model";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 
@@ -8,9 +8,9 @@ import {map} from "rxjs/operators";
 export class MyFacebookService {
   constructor(private httpClient: HttpClient) {}
 
-  public getPosts$(): Observable<Post[]> {
+  public getPosts$(): Observable<PostResponseModel[]> {
     return this.httpClient
-      .get<PostResponse>('https://www.66er.net/wp-json/facebook/v1/posts')
+      .get<PostCollectionResponseModel>('https://www.66er.net/wp-json/facebook/v1/posts')
       .pipe(map(postReponse => postReponse.data));
   }
 }

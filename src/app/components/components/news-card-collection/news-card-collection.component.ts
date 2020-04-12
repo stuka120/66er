@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Post } from '../../../model/post.model';
+import { PostResponseModel } from '../../../model/responses/post.model';
 
 @Component({
   selector: 'app-news-card-collection',
@@ -8,7 +8,7 @@ import { Post } from '../../../model/post.model';
 })
 export class NewsCardCollectionComponent implements OnInit {
 
-  @Input() posts: Post[];
+  @Input() posts: PostResponseModel[];
 
   constructor() { }
 

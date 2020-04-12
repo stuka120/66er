@@ -1,7 +1,7 @@
 import {
   AlertModes,
   PresentationModes
-} from "../../components/components/alert/alert.model";
+} from "../../components/components/alert/alert.component-model";
 
 export interface AppConfig {
   /**

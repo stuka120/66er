@@ -1,4 +1,4 @@
-export interface WordpressMediaResponseDto {
+export interface WordpressMediaResponseModel {
   id: number;
   media_type: string;
   mime_type: string;

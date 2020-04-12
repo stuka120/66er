@@ -3,15 +3,15 @@ import { StufenDescriptionFacade } from "../../stufen-description-facade.service
 import { Observable } from "rxjs";
 import { StufenCardModel } from "../../../model/stufen-card.model";
 import { DownloadsFacade } from "../../downloads.facade";
-import { TeamCardCollectionModel } from "../../../components/components/team-card-collection/team-card-collection.model";
-import { DownloadsCardModel } from "../../../components/components/downloads-card/downloads-card.model";
+import { TeamCardCollectionComponentModel } from "../../../components/components/team-card-collection/team-card-collection.component-model";
+import { DownloadsCardComponentModel } from "../../../components/components/downloads-card/downloads-card.component-model";
 import { map, startWith } from "rxjs/operators";
 import { StufenFacadeInterface } from "../stufen-facade.interface";
 import { HeimstundenTimeModel } from "../../../components/routing-views/stufen-overview/stufen-overview-dashboard.component";
-import { HeroBannerModel } from "../../../components/components/hero-banner/hero-banner.model";
+import { HeroBannerComponentModel } from "../../../components/components/hero-banner/hero-banner.component-model";
 import { MyWordpressFacade } from "../../my-wordpress.facade";
 import { WordpressCategoryEnum } from "../../../dictionary/wordpress-category.enum";
-import { WordpressDownloadEnum } from "../../../dictionary/wordpress-download.enum";
+import { WordpressDownloadTagEnum } from "../../../dictionary/wordpress-download-tag.enum";
 import { StufenTeamPostFacade } from "../../stufen-team-post.facade";
 import { StufenHeimstundenTimeFacade } from "../../stufen-heimstunden-time.facade";
 
@@ -35,25 +35,25 @@ export class WiwoeDashboardFacade implements StufenFacadeInterface {
   stufenHeimstunden$: Observable<HeimstundenTimeModel> = this
     .stufenHeimstundenTimeFacade.heimstundenWiWoe$;
 
-  stufenTeam$: Observable<TeamCardCollectionModel> = this.stufenTeamPostFacade
+  stufenTeam$: Observable<TeamCardCollectionComponentModel> = this.stufenTeamPostFacade
     .teamPostsWiWoe$;
 
   stufenDownloads$: Observable<
-    DownloadsCardModel
+    DownloadsCardComponentModel
   > = this.downloadFacade
-    .getDownloadsByTagName(WordpressDownloadEnum.Wiwoe)
+    .getDownloadsByTagName(WordpressDownloadTagEnum.Wiwoe)
     .pipe(
       map(
         downloads =>
           ({
             title: "WiWö Downloads",
             downloads: downloads
-          } as DownloadsCardModel)
+          } as DownloadsCardComponentModel)
       )
     );
 
   stufenBannerModel$: Observable<
-    HeroBannerModel
+    HeroBannerComponentModel
   > = this.myWordpressFacade
     .getBannerUrlForCategory$(WordpressCategoryEnum.Wiwoe)
     .pipe(

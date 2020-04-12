@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { UpcomingEventModel } from "./upcoming-event.model";
+import { UpcomingEventCollectionComponentModel } from "./upcoming-event-collection.component-model";
 
 @Component({
   selector: "app-upcoming-event-collection",
@@ -8,7 +8,7 @@ import { UpcomingEventModel } from "./upcoming-event.model";
 })
 export class UpcomingEventCollectionComponent implements OnInit {
   @Input()
-  model: UpcomingEventModel[];
+  model: UpcomingEventCollectionComponentModel[];
 
   constructor() {}
 

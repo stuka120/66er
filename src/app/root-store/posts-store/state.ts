@@ -1,8 +1,8 @@
-import { Post } from "../../model/post.model";
+import { PostResponseModel } from "../../model/responses/post.model";
 
 export interface State {
   needPosts: boolean;
-  posts: Post[];
+  posts: PostResponseModel[];
   isLoading: boolean;
   error: string | null;
 }

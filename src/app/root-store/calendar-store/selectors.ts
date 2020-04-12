@@ -1,6 +1,6 @@
 import {createFeatureSelector, createSelector} from "@ngrx/store";
 import {State} from "./state";
-import {GoogleCalenderEventResponseModel} from "../../model/google-calender-event-response.model";
+import {GoogleCalenderEventResponseModel} from "../../model/responses/google-calender-event-response.model";
 
 const getError = (state: State): string => state.error;
 const getIsLoading = (state: State): boolean => state.isLoading;

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { DownloadsCardModel } from "./downloads-card.model";
+import { DownloadsCardComponentModel } from "./downloads-card.component-model";
 
 @Component({
   selector: "app-downloads-card",
@@ -8,7 +8,7 @@ import { DownloadsCardModel } from "./downloads-card.model";
 })
 export class DownloadsCardComponent implements OnInit {
   @Input()
-  model: DownloadsCardModel;
+  model: DownloadsCardComponentModel;
 
   constructor() {}
 

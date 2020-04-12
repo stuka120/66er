@@ -1,5 +1,5 @@
 import { Component, Input } from "@angular/core";
-import { EventClickedModalModel } from "./event-clicked-modal.model";
+import { EventClickedModalComponentModel } from "./event-clicked-modal.component-model";
 import {
   faCalendarDay, faClock, faHeading,
   faLocationArrow
@@ -14,5 +14,5 @@ export class EventClickedModalComponent {
   faClock = faClock;
 
   @Input()
-  model: EventClickedModalModel;
+  model: EventClickedModalComponentModel;
 }

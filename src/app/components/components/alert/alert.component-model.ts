@@ -1,4 +1,4 @@
-export interface AlertModel {
+export interface AlertComponentModel {
   isActive: boolean;
   headerText?: string;
   bodyText: string;
