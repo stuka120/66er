@@ -1,6 +1,6 @@
 {
   "dangerBanner": {
-    "active": false,
+    "active": true,
     "mode": "info",
     "presentationMode": "insert",
     "headerText": "Liebe Pfadfinder*innen! Liebe Eltern!",

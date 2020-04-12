@@ -20,8 +20,12 @@ export class CalendarFacade {
     ): UpcomingEventCollectionComponentModel {
       return {
         title: googleCalenderEventResponseModel.summary,
-        dateTime: googleCalenderEventResponseModel.start.dateTime,
-        endDateTime: googleCalenderEventResponseModel.end.dateTime,
+        dateTime: !!googleCalenderEventResponseModel.start.dateTime
+          ? googleCalenderEventResponseModel.start.dateTime
+          : googleCalenderEventResponseModel.start.date,
+        endDateTime: !!googleCalenderEventResponseModel.end.dateTime
+          ? googleCalenderEventResponseModel.end.dateTime
+          : googleCalenderEventResponseModel.end.date,
         place: googleCalenderEventResponseModel.location
       };
     }
@@ -37,7 +41,9 @@ export class CalendarFacade {
       );
   }
 
-  public getUpomingEventsForNextMonth(): Observable<UpcomingEventCollectionComponentModel[]> {
+  public getUpomingEventsForNextMonth(): Observable<
+    UpcomingEventCollectionComponentModel[]
+  > {
     return this.getUpcomingEventsSortedUntil(this.getTodayOneMonthAhead());
   }
 

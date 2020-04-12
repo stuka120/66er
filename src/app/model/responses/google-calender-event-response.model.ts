@@ -8,10 +8,12 @@ export interface GoogleCalenderEventResponseModel {
   created: Date;
   updated: Date;
   start: {
+    date: Date;
     dateTime: Date;
     timeZone: string;
   };
   end: {
+    date: Date;
     dateTime: Date;
     timeZone: string;
   };

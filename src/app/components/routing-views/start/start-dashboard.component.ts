@@ -39,7 +39,7 @@ export class StartDashboardComponent implements OnInit {
     private store$: Store<RootState>,
     private stufenInfoFacade: StufenDescriptionFacade,
     private stufenTeaserFacade: StufenTeaserFacade,
-    private eventsFacade: CalendarFacade,
+    private calendarFacade: CalendarFacade,
     private wordpressFacade: MyWordpressFacade,
     private router: Router
   ) {}
@@ -53,7 +53,7 @@ export class StartDashboardComponent implements OnInit {
     this.heroBannerModel$ = this.wordpressFacade.getStartseiteBanner$();
     this.posts$ = this.myFacebookFacade.posts$;
     this.stufenCardModels$ = this.stufenTeaserFacade.stufenTeasersAll$;
-    this.upcomingEvents$ = this.eventsFacade.getUpomingEventsForNextMonth();
+    this.upcomingEvents$ = this.calendarFacade.getUpomingEventsForNextMonth();
   }
 
   heroButtonClicked() {
