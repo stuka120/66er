@@ -8,10 +8,10 @@ export interface AppConfig {
    * The banner that can be shown on top of the page in case of some important
    * news
    */
-  dangerBanner?: IInfoBannerModel;
+  dangerBanner?: InfoBannerModel;
 }
 
-export interface IInfoBannerModel {
+export interface InfoBannerModel {
   /**
    * Enables or disables the info-banner
    */

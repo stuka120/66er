@@ -2,7 +2,6 @@ export interface AlertComponentModel {
   isActive: boolean;
   headerText?: string;
   bodyText: string;
-  footerText?: string;
   alertMode: AlertModes;
   presentationMode: PresentationModes;
 }
