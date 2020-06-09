@@ -32,6 +32,7 @@ import { ConfigurationService } from "./services/configuration.service";
 import { StufenTeaserFacade } from "./facades/stufen-teaser.facade";
 import { StufenTeamPostFacade } from "./facades/stufen-team-post.facade";
 import { StufenHeimstundenTimeFacade } from "./facades/stufen-heimstunden-time.facade";
+import {MarkdownModule, MarkedOptions} from "ngx-markdown";
 
 registerLocaleData(localeDeAt, "de-AT");
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -66,7 +67,20 @@ export function initializeApp(configurationService: ConfigurationService) {
     ComponentsModule,
     RoutingViewsModule,
     EntriesModule,
-    SidebarModule.forRoot()
+    SidebarModule.forRoot(),
+    MarkdownModule.forRoot({
+      markedOptions: {
+        provide: MarkedOptions,
+        useValue: {
+          gfm: true,
+          breaks: false,
+          pedantic: false,
+          smartLists: true,
+          smartypants: false,
+        },
+      },
+      }
+    )
   ],
   declarations: [AppComponent],
   providers: [

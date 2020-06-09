@@ -14,6 +14,8 @@ export class AlertComponent {
   @Input()
   model: AlertComponentModel;
 
+  isExpanded: boolean = false;
+
   getAlertIconForActiveMode() {
     return this.model.alertMode === "info"
       ? faInfoCircle
@@ -26,5 +28,28 @@ export class AlertComponent {
 
   getBackgroundColorClassForActiveMode() {
     return this.model.alertMode === "info" ? "bg-light" : "bg-danger";
+  }
+
+  toggleExpand() {
+    if (this.isExpanded) {
+      this.scrollToTop();
+    }
+    this.isExpanded = !this.isExpanded;
+  }
+
+  getExpandButtonText() {
+    if (this.isExpanded && !!this.model.expandableSection) {
+      return !!this.model?.expandableSection?.collapseButtonText ? this.model?.expandableSection?.collapseButtonText : "Weitere Infos!"
+    }
+
+    if (!this.isExpanded && !!this.model.expandableSection) {
+      return !!this.model.expandableSection.expandButtonText ? this.model.expandableSection.expandButtonText : "Zuklappen!";
+    }
+
+    return "Weitere Infos!";
+  }
+
+  private scrollToTop() {
+    document.getElementById("navbar").scrollIntoView();
   }
 }

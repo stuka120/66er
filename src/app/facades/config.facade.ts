@@ -23,12 +23,22 @@ export class ConfigFacade {
   mapToAlertComponentModel(
     infoBannerModel: InfoBannerModel
   ): AlertComponentModel {
-    return {
+    let alertComponentModel: AlertComponentModel = {
       isActive: infoBannerModel.active,
       alertMode: infoBannerModel.mode,
       presentationMode: infoBannerModel.presentationMode,
       bodyText: infoBannerModel.bodyText,
-      headerText: infoBannerModel.headerText
+      headlineText: infoBannerModel.headerText
     };
+
+    if (!!infoBannerModel.expandableSection) {
+      alertComponentModel.expandableSection = {
+        expandableText: infoBannerModel.expandableSection.expandableText,
+        expandButtonText: infoBannerModel.expandableSection.expandButtonText,
+        collapseButtonText: infoBannerModel.expandableSection.collapseButtonText
+      };
+    }
+
+    return alertComponentModel;
   }
 }

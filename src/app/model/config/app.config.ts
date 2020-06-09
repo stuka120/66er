@@ -27,6 +27,12 @@ export interface InfoBannerModel {
    */
   bodyText: string;
 
+  expandableSection: {
+    expandableText: string;
+    expandButtonText: string;
+    collapseButtonText: string;
+  };
+
   /**
    * The text that is shown in the footer text
    */

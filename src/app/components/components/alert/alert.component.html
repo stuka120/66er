@@ -1,24 +1,3 @@
-<!--<div-->
-<!--  *ngIf="model && model.isActive"-->
-<!--  [class.alert-danger]="model.alertMode == 'danger'"-->
-<!--  [class.alert-info]="model.alertMode == 'info'"-->
-<!--  class="alert alert-dismissible rounded-0 mb-0"-->
-<!--  role="alert"-->
-<!--&gt;-->
-<!--  <h4 *ngIf="model.headerText" class="alert-heading text-center">-->
-<!--    {{ model.headerText }}-->
-<!--  </h4>-->
-<!--  <p-->
-<!--    *ngIf="model.bodyText"-->
-<!--    style="white-space: pre-wrap"-->
-<!--    [innerHTML]="model.bodyText"-->
-<!--  ></p>-->
-<!--  <hr *ngIf="model.footerText" />-->
-<!--  <p *ngIf="model.footerText" class="mb-0">-->
-<!--    {{ model.footerText }}-->
-<!--  </p>-->
-<!--</div>-->
-
 <div
   *ngIf="!!model && model.isActive"
   class="row m-0 justify-content-center app-alert-info my-3"
@@ -34,9 +13,19 @@
           [icon]="getAlertIconForActiveMode()"
         ></fa-icon>
       </div>
-      <div class="col-12 col-sm-10 pl-sm-0 mb-2" style="white-space: pre-wrap">
-        <h4 [innerHTML]="model.headerText"></h4>
-        <p [innerHTML]="model.bodyText"></p>
+      <div class="col-12 col-sm-10 pl-sm-0 mb-2">
+        <h4 [innerHTML]="model.headlineText"></h4>
+        <markdown [data]="model.bodyText"></markdown>
+      </div>
+    </div>
+    <div class="row" *ngIf="model.expandableSection">
+      <div class="col-12 col-sm-10 offset-sm-2 pl-sm-0 mb-2">
+        <div>
+          <markdown *ngIf="isExpanded" [data]="model.expandableSection.expandableText"></markdown>
+          <button type="button" class="btn btn-outline-primary" (click)="toggleExpand()">
+            {{getExpandButtonText()}}
+          </button>
+        </div>
       </div>
     </div>
   </div>

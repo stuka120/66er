@@ -1,7 +1,12 @@
 export interface AlertComponentModel {
   isActive: boolean;
-  headerText?: string;
+  headlineText?: string;
   bodyText: string;
+  expandableSection?: {
+    expandableText: string;
+    expandButtonText: string;
+    collapseButtonText: string;
+  };
   alertMode: AlertModes;
   presentationMode: PresentationModes;
 }

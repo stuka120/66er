@@ -28,6 +28,7 @@ import { DirectivesModule } from "../../directives/directives.module";
 import { LoadingImage } from "./loading-image/loading-image.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { AlertComponent } from "./alert/alert.component";
+import {MarkdownModule} from "ngx-markdown";
 
 @NgModule({
   imports: [
@@ -38,7 +39,8 @@ import { AlertComponent } from "./alert/alert.component";
     NgbModule,
     FontAwesomeModule,
     PipeModule,
-    DirectivesModule
+    DirectivesModule,
+    MarkdownModule
   ],
   declarations: [
     NewsCardComponent,
