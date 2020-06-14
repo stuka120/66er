@@ -1,5 +1,6 @@
 <div class="card mb-3 rounded-0 shadow">
   <ngb-carousel
+    *ngIf="!!post.full_picture"
     [showNavigationArrows]="
       post.full_picture &&
       (post.attachments?.data)[0]?.subattachments?.data.length > 1
@@ -38,13 +39,8 @@
       </div>
     </ng-template>
   </ngb-carousel>
-  <div class="card-body">
-    <h5 *isLoading="(post.attachments?.data)[0]" class="card-title">
-      {{ post.attachments.data[0].title }}
-    </h5>
-    <p class="card-text" style="white-space: pre-wrap;">
-      {{ post.message }}
-    </p>
+  <div class="card-body my-n1">
+    <markdown [data]="post.message"></markdown>
   </div>
   <div
     class="card-footer"
