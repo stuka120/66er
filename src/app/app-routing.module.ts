@@ -11,6 +11,7 @@ import { RaroDashboardFacade } from "./facades/stufen-facades/impl/raro-dashboar
 import { ImprintDashboardComponent } from "./components/routing-views/imprint/imprint-dashboard.component";
 import { DatenschutzDashboardComponent } from "./components/routing-views/datenschutz/datenschutz-dashboard.component";
 import { ContactViewComponent } from "./components/routing-views/contact/contact-view.component";
+import {EventRegistrationDashboardComponent} from "./components/routing-views/event-registration/event-registration-dashboard.component";
 
 const routes: Routes = [
   {
@@ -64,6 +65,10 @@ const routes: Routes = [
   {
     path: "kontakt",
     component: ContactViewComponent
+  },
+  {
+    path: "sommer-2020",
+    component: EventRegistrationDashboardComponent
   }
 ];
 

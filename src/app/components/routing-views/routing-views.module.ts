@@ -10,6 +10,7 @@ import { PipeModule } from "../../pipes/pipe.module";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ContactViewComponent } from "./contact/contact-view.component";
 import { DirectivesModule } from "../../directives/directives.module";
+import {EventRegistrationDashboardComponent} from "./event-registration/event-registration-dashboard.component";
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import { DirectivesModule } from "../../directives/directives.module";
     DownloadsDashboardComponent,
     ImprintDashboardComponent,
     StartDashboardComponent,
-    StufenOverviewDashboardComponent
+    StufenOverviewDashboardComponent,
+    EventRegistrationDashboardComponent
   ],
   exports: [
     ContactViewComponent,
@@ -33,7 +35,8 @@ import { DirectivesModule } from "../../directives/directives.module";
     DownloadsDashboardComponent,
     ImprintDashboardComponent,
     StartDashboardComponent,
-    StufenOverviewDashboardComponent
+    StufenOverviewDashboardComponent,
+    EventRegistrationDashboardComponent
   ]
 })
 export class RoutingViewsModule {}

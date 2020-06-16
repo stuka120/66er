@@ -1,0 +1,8 @@
+b:focus {
+  outline: none;
+  color: black;
+}
+
+b:hover {
+  color: black !important;
+}

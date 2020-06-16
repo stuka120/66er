@@ -48,6 +48,15 @@
     >
       <ul class="navbar-nav ml-auto flex-nowrap">
         <li class="nav-item">
+          <b
+            class="nav-link m-2 menu-item nav-active text-black-50"
+            style="cursor: pointer"
+            [routerLink]="['sommer-2020']"
+            (click)="isMenuCollapsed = !isMenuCollapsed"
+          >Sommer 2020</b
+          >
+        </li>
+        <li class="nav-item">
           <a
             class="nav-link m-2 menu-item nav-active"
             [routerLink]="['']"

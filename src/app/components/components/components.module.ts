@@ -29,6 +29,7 @@ import { LoadingImage } from "./loading-image/loading-image.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { AlertComponent } from "./alert/alert.component";
 import {MarkdownModule} from "ngx-markdown";
+import {EventCardComponent} from "./event-card/event-card.component";
 
 @NgModule({
   imports: [
@@ -63,7 +64,8 @@ import {MarkdownModule} from "ngx-markdown";
     LoadingSpinner,
     LoadingImage,
     NavbarComponent,
-    AlertComponent
+    AlertComponent,
+    EventCardComponent
   ],
   exports: [
     NewsCardComponent,
@@ -86,7 +88,8 @@ import {MarkdownModule} from "ngx-markdown";
     LoadingSpinner,
     LoadingImage,
     NavbarComponent,
-    AlertComponent
+    AlertComponent,
+    EventCardComponent
   ]
 })
 export class ComponentsModule {}
