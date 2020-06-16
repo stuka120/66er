@@ -1,13 +1,12 @@
-<div class="card rounded-0 mb-4">
+<div class="card rounded-0 mb-4" *ngIf="model">
   <app-loading-image class="center-card-image" [objectFit]="'contain'"
-                     [src]="'//placeimg.com/290/180/any'"></app-loading-image>
+                     [src]="model.imageSrc"></app-loading-image>
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-      content.</p>
+    <h5 class="card-title">{{model.title}}</h5>
+    <p class="card-text">{{model.summary}}</p>
     <div *ngIf="isExpanded">
       <hr class="mx-n3">
-      <p class="card-text">Detailed Description</p>
+      <p class="card-text">{{model.description}}</p>
     </div>
     <div class="text-center">
       <fa-icon [icon]="isExpanded ? faChevronUp : faChevronDown" (click)="isExpanded = !isExpanded"></fa-icon>
@@ -19,19 +18,19 @@
       <div class="col px-1 border-right">
         <div class="d-flex flex-column">
           <fa-icon [icon]="faList"></fa-icon>
-          <a>WiWö GuSp CaEx RaRo</a>
+          <a>{{model.targetStufen}}</a>
         </div>
       </div>
       <div class="col-auto">
         <div class="d-flex flex-column">
           <fa-icon [icon]="faClock"></fa-icon>
-          <a>10:00 - 13:00</a>
+          <a>{{model.eventTimeFrom | date : 'HH:mm'}} - {{model.eventTimeTo | date : 'HH:mm'}}</a>
         </div>
       </div>
       <div class="col border-left">
         <div class="d-flex flex-column">
           <fa-icon [icon]="faCalendar"></fa-icon>
-          <a>16.06.2020</a>
+          <a>{{model.eventDate | date : 'dd.MM.yyyy'}}</a>
         </div>
       </div>
     </div>

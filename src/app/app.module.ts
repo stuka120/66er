@@ -33,6 +33,7 @@ import { StufenTeaserFacade } from "./facades/stufen-teaser.facade";
 import { StufenTeamPostFacade } from "./facades/stufen-team-post.facade";
 import { StufenHeimstundenTimeFacade } from "./facades/stufen-heimstunden-time.facade";
 import {MarkdownModule, MarkedOptions} from "ngx-markdown";
+import {EventService} from "./services/event.service";
 
 registerLocaleData(localeDeAt, "de-AT");
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -88,6 +89,7 @@ export function initializeApp(configurationService: ConfigurationService) {
     WordpressService,
     BreakpointService,
     ConfigurationService,
+    EventService,
 
     StufenDescriptionFacade,
     StufenTeaserFacade,

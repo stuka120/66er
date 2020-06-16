@@ -1,6 +1,7 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
 import {IconProp} from "@fortawesome/fontawesome-svg-core";
 import {faArrowDown, faCalendar, faChevronDown, faChevronUp, faClock, faList} from "@fortawesome/free-solid-svg-icons";
+import {EventCardComponentModel} from "./event-card.component-model";
 
 @Component({
   selector: "app-event-card",
@@ -9,6 +10,9 @@ import {faArrowDown, faCalendar, faChevronDown, faChevronUp, faClock, faList} fr
 })
 
 export class EventCardComponent implements OnInit {
+
+  @Input()
+  model: EventCardComponentModel;
 
   // @ts-ignore
   faList = faList;

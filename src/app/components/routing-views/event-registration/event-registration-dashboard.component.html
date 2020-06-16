@@ -1,13 +1,7 @@
-<div class="container">
+<div class="container" *ngIf="events$ | async as events">
   <div class="row">
-    <div class="col-12 col-lg-4">
-      <app-event-card></app-event-card>
-    </div>
-    <div class="col-12 col-lg-4">
-      <app-event-card></app-event-card>
-    </div>
-    <div class="col-12 col-lg-4">
-      <app-event-card></app-event-card>
+    <div *ngFor="let event of events" class="col-12 col-lg-4">
+      <app-event-card [model]="event"></app-event-card>
     </div>
   </div>
 </div>
