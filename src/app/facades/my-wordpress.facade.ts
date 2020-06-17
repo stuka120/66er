@@ -46,14 +46,16 @@ export class MyWordpressFacade {
   getEvents$(): Observable<EventCardComponentModel[]> {
     return this.eventService.getEvents$().pipe(
       map(response => response.map(item => ({
-        title: item.name,
-        summary: 'summary',
-        targetStufen: 'CaEx',
-        description: 'description',
-        imageSrc: '//placeimg.com/290/180/any',
-        eventDate: new Date(),
-        eventTimeFrom: new Date(),
-        eventTimeTo: new Date()
+        name: item.name,
+        summary: item.summary,
+        stufen: item.stufen,
+        description: item.description,
+        imageUrl: item.imageUrl,
+        eventDate: item.eventDate,
+        eventStartTime: item.eventStartTime,
+        eventEndTime: item.eventEndTime,
+        registrationFrom: item.registrationFrom,
+        registrationTo: item.registrationTo
       }))
     ));
   }

@@ -1,10 +1,12 @@
 export interface EventCardComponentModel {
-  imageSrc: string;
-  title: string;
+  name: string;
   summary: string;
   description: string;
-  targetStufen: string;
+  stufen: string;
   eventDate: Date;
-  eventTimeFrom: Date;
-  eventTimeTo: Date;
+  eventStartTime: Date;
+  eventEndTime: Date;
+  registrationFrom: Date;
+  registrationTo: Date;
+  imageUrl: string;
 }
