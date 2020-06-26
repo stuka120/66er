@@ -1,4 +1,4 @@
-export interface PostResponseModel {
+export interface WordpressPostResponseModel {
   id: string;
   message: string;
   created_time: Date;
@@ -34,5 +34,5 @@ export interface PostResponseModel {
 }
 
 export interface PostCollectionResponseModel {
-  data: PostResponseModel[];
+  data: WordpressPostResponseModel[];
 }

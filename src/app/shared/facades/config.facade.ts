@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { ConfigurationService } from "../services/configuration.service";
+import { ConfigurationService } from "../services/configuration/configuration.service";
 import { Observable } from "rxjs";
 import { AlertComponentModel } from "../../components/components/alert/alert.component-model";
 import { filter, map } from "rxjs/operators";

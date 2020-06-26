@@ -1,7 +1,7 @@
 import { createReducer, on } from "@ngrx/store";
 import { initialState } from "./state";
 import { loadNewsAction, loadNewsErrorAction, loadNewsSuccessAction } from "./actions";
-import { PostResponseModel } from "../../shared/model/responses/post.model";
+import { WordpressPostResponseModel } from "../../shared/model/responses/wordpress/wordpress-post-response.model";
 
 const myReducer = createReducer(
   initialState,
@@ -11,7 +11,7 @@ const myReducer = createReducer(
     error: undefined,
     needPosts: true
   })),
-  on(loadNewsSuccessAction, (state, action: { payload: { posts: PostResponseModel[] } }) => ({
+  on(loadNewsSuccessAction, (state, action: { payload: { posts: WordpressPostResponseModel[] } }) => ({
     posts: action.payload.posts,
     isLoading: false,
     error: null,

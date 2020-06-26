@@ -16,7 +16,7 @@ import {
 } from "../../root-store/stufen-info-store/actions";
 import { RootState } from "../../root-store/root-state";
 import { Store } from "@ngrx/store";
-import { WordpressService } from "../services/wordpress.service";
+import { WordpressService } from "../services/wordpress/wordpress.service";
 import { HeimstundenTimeModel } from "../../components/routing-views/stufen-overview/stufen-overview-dashboard.component";
 import { StufenHeimstundenTimeState, StufenTimeCollection } from "../../root-store/stufen-info-store/state";
 import { WordpressCategoryEnum } from "../dictionary/wordpress-category.enum";

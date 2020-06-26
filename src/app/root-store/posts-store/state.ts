@@ -1,8 +1,8 @@
-import { PostResponseModel } from "../../shared/model/responses/post.model";
+import { WordpressPostResponseModel } from "../../shared/model/responses/wordpress/wordpress-post-response.model";
 
 export interface State {
   needPosts: boolean;
-  posts: PostResponseModel[];
+  posts: WordpressPostResponseModel[];
   isLoading: boolean;
   error: string | null;
 }

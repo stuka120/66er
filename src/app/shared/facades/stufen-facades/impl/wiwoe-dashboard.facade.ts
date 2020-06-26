@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { StufenDescriptionFacade } from "../../stufen-description-facade.service";
 import { Observable } from "rxjs";
-import { StufenCardModel } from "../../../model/stufen-card.model";
+import { StufenCardModel } from "../../../../components/components/stufen-card/stufen-card.model";
 import { DownloadsFacade } from "../../downloads.facade";
 import { TeamCardCollectionComponentModel } from "../../../../components/components/team-card-collection/team-card-collection.component-model";
 import { DownloadsCardComponentModel } from "../../../../components/components/downloads-card/downloads-card.component-model";

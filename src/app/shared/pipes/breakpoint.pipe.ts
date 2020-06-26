@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Pipe, PipeTransform } from "@angular/core";
-import { BreakpointService } from "../services/breakpoint.service";
+import { BreakpointService } from "../services/breakpoint/breakpoint.service";
 import { AsyncPipe } from "@angular/common";
 
 @Pipe({

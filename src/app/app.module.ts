@@ -3,10 +3,10 @@ import { APP_INITIALIZER, NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { MyFacebookService } from "./shared/services/my-facebook.service";
+import { MyFacebookService } from "./shared/services/facebook/my-facebook.service";
 import { HttpClientModule } from "@angular/common/http";
 import { NgbModalModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { WordpressService } from "./shared/services/wordpress.service";
+import { WordpressService } from "./shared/services/wordpress/wordpress.service";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RootStoreModule } from "./root-store";
@@ -21,19 +21,19 @@ import { RaroDashboardFacade } from "./shared/facades/stufen-facades/impl/raro-d
 import { CalendarFacade } from "./shared/facades/calendar-facade.service";
 import { registerLocaleData } from "@angular/common";
 import localeDeAt from "@angular/common/locales/de-AT";
-import { BreakpointService } from "./shared/services/breakpoint.service";
+import { BreakpointService } from "./shared/services/breakpoint/breakpoint.service";
 import { SWIPER_CONFIG, SwiperConfigInterface } from "ngx-swiper-wrapper";
 import { RoutingViewsModule } from "./components/routing-views/routing-views.module";
 import { ComponentsModule } from "./components/components/components.module";
 import { LoadingSpinner } from "./components/components/loading-spinner/loading-spinner.component";
 import { SidebarModule } from "ng-sidebar";
 import { EntriesModule } from "./components/entries/entries.module";
-import { ConfigurationService } from "./shared/services/configuration.service";
+import { ConfigurationService } from "./shared/services/configuration/configuration.service";
 import { StufenTeaserFacade } from "./shared/facades/stufen-teaser.facade";
 import { StufenTeamPostFacade } from "./shared/facades/stufen-team-post.facade";
 import { StufenHeimstundenTimeFacade } from "./shared/facades/stufen-heimstunden-time.facade";
 import { MarkdownModule, MarkedOptions } from "ngx-markdown";
-import { EventService } from "./shared/services/event.service";
+import { SummerEventService } from "./shared/services/summer-event/summer-event.service";
 import { OverlayModule } from "./components/overlay/overlay.module";
 
 registerLocaleData(localeDeAt, "de-AT");
@@ -90,7 +90,7 @@ export function initializeApp(configurationService: ConfigurationService) {
     WordpressService,
     BreakpointService,
     ConfigurationService,
-    EventService,
+    SummerEventService,
 
     StufenDescriptionFacade,
     StufenTeaserFacade,

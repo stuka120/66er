@@ -1,14 +1,14 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { RootState } from "../../root-store/root-state";
-import { WordpressService } from "../services/wordpress.service";
+import { WordpressService } from "../services/wordpress/wordpress.service";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { WordpressCategoryEnum } from "../dictionary/wordpress-category.enum";
 import { WordpressTagEnum } from "../dictionary/wordpress-tag.enum";
 import { TeamCardCollectionComponentModel } from "../../components/components/team-card-collection/team-card-collection.component-model";
 import { TeamCardComponentModel } from "../../components/components/team-card/team-card.component-model";
-import { WordpressPostResponseModel } from "../services/WordpressResponseModel.model";
+import { WordpressPostResponseModel } from "../model/responses/wordpress/wordpress-response.model";
 import { ImageSize } from "./stufen-description-facade.service";
 
 @Injectable()

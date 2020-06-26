@@ -2,8 +2,8 @@ import { Component, OnInit, Input, ViewChild, Inject } from "@angular/core";
 import { SWIPER_CONFIG, SwiperConfigInterface, SwiperDirective } from "ngx-swiper-wrapper";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { BreakpointService } from "../../../shared/services/breakpoint.service";
-import { StufenCardModel } from "../../../shared/model/stufen-card.model";
+import { BreakpointService } from "../../../shared/services/breakpoint/breakpoint.service";
+import { StufenCardModel } from "../stufen-card/stufen-card.model";
 
 @Component({
   selector: "app-stufen-slide-swiper",

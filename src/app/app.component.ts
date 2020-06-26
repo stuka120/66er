@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { BreakpointService } from "./shared/services/breakpoint.service";
+import { BreakpointService } from "./shared/services/breakpoint/breakpoint.service";
 import { untilDestroyed } from "ngx-take-until-destroy";
 import { Observable } from "rxjs";
 import { AlertComponentModel } from "./components/components/alert/alert.component-model";

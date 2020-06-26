@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { State, StufenHeimstundenTimeState } from "./state";
-import { StufenCardModel } from "../../shared/model/stufen-card.model";
+import { StufenCardModel } from "../../components/components/stufen-card/stufen-card.model";
 
 const getError = (state: State): string => state.error;
 const getIsLoading = (state: State): boolean => state.isLoading;

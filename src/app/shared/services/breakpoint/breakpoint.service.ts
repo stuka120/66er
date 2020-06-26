@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { fromEvent, Observable } from "rxjs";
 import { distinctUntilChanged, map, shareReplay, startWith } from "rxjs/operators";
-import { BreakpointMatches } from "../pipes/breakpoint.pipe";
+import { BreakpointMatches } from "../../pipes/breakpoint.pipe";
 
 const QUERY: Map<"xs" | "sm" | "md" | "lg" | "xl", string> = new Map([
   ["xl", "(min-width: 1200px)"],

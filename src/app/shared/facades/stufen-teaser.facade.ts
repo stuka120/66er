@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
 import { Store } from "@ngrx/store";
 import { RootState } from "../../root-store/root-state";
-import { WordpressService } from "../services/wordpress.service";
+import { WordpressService } from "../services/wordpress/wordpress.service";
 import { forkJoin, Observable, throwError } from "rxjs";
 import { catchError, filter, map, share, startWith, switchMap, tap } from "rxjs/operators";
-import { StufenCardCollection, StufenCardModel } from "../model/stufen-card.model";
+import { StufenCardModel } from "../../components/components/stufen-card/stufen-card.model";
 import {
   selectBiberTeaser,
   selectCaExTeaser,
@@ -23,12 +23,13 @@ import { WordpressCategoryEnum } from "../dictionary/wordpress-category.enum";
 import { WordpressTagEnum } from "../dictionary/wordpress-tag.enum";
 import { muteFirst } from "../utils/rxjs/mute-first.util";
 import { removeHtmlTags } from "../utils/html-string/remove-html-tags.util";
+import { StufenCardCollectionModel } from "../../components/components/stufen-card-collection/stufen-card-collection.model";
 
 @Injectable()
 export class StufenTeaserFacade {
   constructor(private store$: Store<RootState>, private wordpressService: WordpressService) {}
 
-  private requireStufenTeasers$: Observable<StufenCardCollection> = this.store$
+  private requireStufenTeasers$: Observable<StufenCardCollectionModel> = this.store$
     .select(selectStufenInfosNeedTeaser)
     .pipe(
       filter((needTeasers) => needTeasers),
@@ -72,7 +73,7 @@ export class StufenTeaserFacade {
       gusp: getStufenCardModel(WordpressCategoryEnum.Gusp, ["stufe", "gusp"]),
       caex: getStufenCardModel(WordpressCategoryEnum.Caex, ["stufe", "caex"]),
       raro: getStufenCardModel(WordpressCategoryEnum.Raro, ["stufe", "raro"])
-    }).pipe(map((stufenCardCollection) => <StufenCardCollection>stufenCardCollection));
+    }).pipe(map((stufenCardCollection) => <StufenCardCollectionModel>stufenCardCollection));
   }
 
   public stufenTeasersAll$ = muteFirst(

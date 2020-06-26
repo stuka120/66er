@@ -7,11 +7,11 @@ import { selectStufenInfosIsLoading } from "../../../root-store/stufen-info-stor
 import { HeroBannerComponentModel } from "../../components/hero-banner/hero-banner.component-model";
 import { UpcomingEventCollectionComponentModel } from "../../components/upcoming-event-collection/upcoming-event-collection.component-model";
 import { Router } from "@angular/router";
-import { PostResponseModel } from "../../../shared/model/responses/post.model";
+import { WordpressPostResponseModel } from "../../../shared/model/responses/wordpress/wordpress-post-response.model";
 import { MyFacebookFacade } from "../../../shared/facades/my-facebook.facade";
 import { StufenTeaserFacade } from "../../../shared/facades/stufen-teaser.facade";
 import { CalendarFacade } from "../../../shared/facades/calendar-facade.service";
-import { StufenCardModel } from "../../../shared/model/stufen-card.model";
+import { StufenCardModel } from "../../components/stufen-card/stufen-card.model";
 import { StufenDescriptionFacade } from "../../../shared/facades/stufen-description-facade.service";
 import { MyWordpressFacade } from "../../../shared/facades/my-wordpress.facade";
 import { WordpressCategoryEnum } from "../../../shared/dictionary/wordpress-category.enum";
@@ -22,7 +22,7 @@ import { WordpressCategoryEnum } from "../../../shared/dictionary/wordpress-cate
   styleUrls: ["./start-dashboard.component.css"]
 })
 export class StartDashboardComponent implements OnInit {
-  posts$: Observable<PostResponseModel[]>;
+  posts$: Observable<WordpressPostResponseModel[]>;
 
   stufenCardModels$: Observable<StufenCardModel[]>;
   isLoadingPosts$: Observable<boolean>;

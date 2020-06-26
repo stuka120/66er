@@ -1,11 +1,11 @@
 import { createAction, props } from "@ngrx/store";
-import { PostResponseModel } from "../../shared/model/responses/post.model";
+import { WordpressPostResponseModel } from "../../shared/model/responses/wordpress/wordpress-post-response.model";
 
 export const loadNewsAction = createAction("[Posts] Load posts");
 
 export const loadNewsSuccessAction = createAction(
   "[Posts] Load posts success",
-  props<{ payload: { posts: PostResponseModel[] } }>()
+  props<{ payload: { posts: WordpressPostResponseModel[] } }>()
 );
 
 export const loadNewsErrorAction = createAction("[Posts] Load posts error", props<{ payload: { error: string } }>());

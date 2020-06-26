@@ -7,7 +7,7 @@ import { TeamCardCollectionComponentModel } from "../../components/team-card-col
 import { DownloadsCardComponentModel } from "../../components/downloads-card/downloads-card.component-model";
 import { ActivatedRoute } from "@angular/router";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
-import { StufenCardModel } from "../../../shared/model/stufen-card.model";
+import { StufenCardModel } from "../../components/stufen-card/stufen-card.model";
 import { StufenFacadeInterface } from "../../../shared/facades/stufen-facades/stufen-facade.interface";
 
 @Component({

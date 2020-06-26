@@ -1,11 +1,11 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
-import { WordpressMediaResponseModel } from "../model/responses/wordpress-media-response.model";
+import { WordpressMediaResponseModel } from "../../model/responses/wordpress/wordpress-media-response.model";
 import { filter, map } from "rxjs/operators";
-import { WordpressPostResponseModel } from "./WordpressResponseModel.model";
-import { WordpressCategoryEnum } from "../dictionary/wordpress-category.enum";
-import { WordpressTagEnum } from "../dictionary/wordpress-tag.enum";
+import { WordpressPostResponseModel } from "../../model/responses/wordpress/wordpress-response.model";
+import { WordpressCategoryEnum } from "../../dictionary/wordpress-category.enum";
+import { WordpressTagEnum } from "../../dictionary/wordpress-tag.enum";
 
 @Injectable()
 export class WordpressService {

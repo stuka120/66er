@@ -1,4 +1,4 @@
-export interface EventResponseModel {
+export interface SummerEventResponseModel {
   id: number;
   name: string;
   summary: string;

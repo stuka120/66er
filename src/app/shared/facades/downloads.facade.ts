@@ -1,7 +1,10 @@
 import { Injectable } from "@angular/core";
-import { WordpressService } from "../services/wordpress.service";
+import { WordpressService } from "../services/wordpress/wordpress.service";
 import { Observable } from "rxjs";
-import { DownloadModel, WordpressMediaResponseModel } from "../model/responses/wordpress-media-response.model";
+import {
+  DownloadModel,
+  WordpressMediaResponseModel
+} from "../model/responses/wordpress/wordpress-media-response.model";
 import { filter, map } from "rxjs/operators";
 import { WordpressDownloadTagEnum } from "../dictionary/wordpress-download-tag.enum";
 import { removeHtmlTags } from "../utils/html-string/remove-html-tags.util";

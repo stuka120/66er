@@ -1,10 +1,10 @@
 import { Injectable } from "@angular/core";
-import { GoogleCalenderService } from "../services/google-calender.service";
+import { GoogleCalenderService } from "../services/google-calendar/google-calender.service";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { UpcomingEventCollectionComponentModel } from "../../components/components/upcoming-event-collection/upcoming-event-collection.component-model";
 import { compareDates } from "../utils/date/compare-dates.util";
-import { GoogleCalenderEventResponseModel } from "../model/responses/google-calender-event-response.model";
+import { GoogleCalenderEventResponseModel } from "../model/responses/google-calendar/google-calender-event-response.model";
 
 @Injectable({
   providedIn: "root"

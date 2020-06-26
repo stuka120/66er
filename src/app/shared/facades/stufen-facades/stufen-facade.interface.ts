@@ -1,5 +1,5 @@
 import { Observable } from "rxjs";
-import { StufenCardModel } from "../../model/stufen-card.model";
+import { StufenCardModel } from "../../../components/components/stufen-card/stufen-card.model";
 import { TeamCardCollectionComponentModel } from "../../../components/components/team-card-collection/team-card-collection.component-model";
 import { DownloadsCardComponentModel } from "../../../components/components/downloads-card/downloads-card.component-model";
 import { HeimstundenTimeModel } from "../../../components/routing-views/stufen-overview/stufen-overview-dashboard.component";

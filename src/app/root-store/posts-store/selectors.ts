@@ -1,10 +1,10 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { State } from "./state";
-import { PostResponseModel } from "../../shared/model/responses/post.model";
+import { WordpressPostResponseModel } from "../../shared/model/responses/wordpress/wordpress-post-response.model";
 
 const getError = (state: State): string => state.error;
 const getIsLoading = (state: State): boolean => state.isLoading;
-const getPosts = (state: State): PostResponseModel[] => state.posts;
+const getPosts = (state: State): WordpressPostResponseModel[] => state.posts;
 const getNeedPosts = (state: State): boolean => state.needPosts;
 
 const selectStartDashboardFeatureSelector = createFeatureSelector("posts");

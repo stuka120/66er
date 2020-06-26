@@ -4,7 +4,7 @@ import { Observable } from "rxjs";
 import {
   GoogleCalenderEventCollectionResponseModel,
   GoogleCalenderEventResponseModel
-} from "../model/responses/google-calender-event-response.model";
+} from "../../model/responses/google-calendar/google-calender-event-response.model";
 import { map } from "rxjs/operators";
 
 @Injectable({

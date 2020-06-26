@@ -1,16 +1,16 @@
-import { AppConfig } from "../model/config/app.config";
+import { AppConfig } from "../../model/config/app.config";
 import { HttpClient } from "@angular/common/http";
 import { catchError, switchMap, tap } from "rxjs/operators";
 import { Injectable } from "@angular/core";
 import { from, Observable, of } from "rxjs";
 import { Store } from "@ngrx/store";
-import { RootState } from "../../root-store/root-state";
+import { RootState } from "../../../root-store/root-state";
 import {
   loadConfigAction,
   loadConfigErrorAction,
   loadConfigSuccessAction
-} from "../../root-store/config-store/actions";
-import { selectConfig } from "../../root-store/config-store/selectors";
+} from "../../../root-store/config-store/actions";
+import { selectConfig } from "../../../root-store/config-store/selectors";
 
 @Injectable()
 export class ConfigurationService {

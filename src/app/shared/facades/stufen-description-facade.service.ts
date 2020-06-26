@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { forkJoin, Observable, throwError } from "rxjs";
-import { StufenCardCollection, StufenCardModel } from "../model/stufen-card.model";
+import { StufenCardModel } from "../../components/components/stufen-card/stufen-card.model";
 import {
   selectBiberStufenInfos,
   selectCaExStufenInfos,
@@ -17,17 +17,18 @@ import {
 } from "../../root-store/stufen-info-store/actions";
 import { RootState } from "../../root-store/root-state";
 import { Store } from "@ngrx/store";
-import { WordpressService } from "../services/wordpress.service";
+import { WordpressService } from "../services/wordpress/wordpress.service";
 import { WordpressCategoryEnum } from "../dictionary/wordpress-category.enum";
 import { WordpressTagEnum } from "../dictionary/wordpress-tag.enum";
 import { muteFirst } from "../utils/rxjs/mute-first.util";
 import { flatMultipleLineBreaks } from "../utils/html-string/flat-multiple-line-breaks.util";
+import { StufenCardCollectionModel } from "../../components/components/stufen-card-collection/stufen-card-collection.model";
 
 @Injectable()
 export class StufenDescriptionFacade {
   constructor(private store$: Store<RootState>, private wordpressService: WordpressService) {}
 
-  private requireStufenInfos$: Observable<StufenCardCollection> = this.store$
+  private requireStufenInfos$: Observable<StufenCardCollectionModel> = this.store$
     .select(selectStufenInfosNeedStufenInfos)
     .pipe(
       filter((needStufenInfos) => needStufenInfos),
@@ -49,7 +50,7 @@ export class StufenDescriptionFacade {
       share()
     );
 
-  private getStufenInfos$(): Observable<StufenCardCollection> {
+  private getStufenInfos$(): Observable<StufenCardCollectionModel> {
     const getStufenCardModel = (
       category: WordpressCategoryEnum,
       link: string[],
@@ -95,7 +96,7 @@ export class StufenDescriptionFacade {
         ["stufe", "raro"],
         "https://www.66er.net/wp-content/uploads/raro.png"
       )
-    }).pipe(map((stufenCardCollection) => <StufenCardCollection>stufenCardCollection));
+    }).pipe(map((stufenCardCollection) => <StufenCardCollectionModel>stufenCardCollection));
   }
 
   public stufenInfoBiber$ = muteFirst(

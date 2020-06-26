@@ -2,7 +2,7 @@ import { NgModule } from "@angular/core";
 import { BreakpointPipe } from "./breakpoint.pipe";
 import { RemoveHtmlPipe } from "./remove-html.pipe";
 import { RemoveMultipleBreaksPipe } from "./remove-multiple-breaks.pipe";
-import { BreakpointService } from "../services/breakpoint.service";
+import { BreakpointService } from "../services/breakpoint/breakpoint.service";
 
 @NgModule({
   declarations: [BreakpointPipe, RemoveHtmlPipe, RemoveMultipleBreaksPipe],
