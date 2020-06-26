@@ -1,7 +1,4 @@
-<nav
-  id="navbar"
-  class="navbar navbar-expand-lg navbar-collapse navbar-light bg-light sticky-top flex-grow-0"
->
+<nav id="navbar" class="navbar navbar-expand-lg navbar-collapse navbar-light bg-light sticky-top flex-grow-0">
   <!-- adding stickiness -->
   <div class="container">
     <div class="d-flex flex-grow-1">
@@ -21,10 +18,7 @@
           (click)="calendarButtonClicked.emit()"
         />
       </a>
-      <a
-        class="navbar-brand-two mx-auto d-lg-none d-inline-block"
-        [routerLink]="['']"
-      >
+      <a class="navbar-brand-two mx-auto d-lg-none d-inline-block" [routerLink]="['']">
         <img
           src="https://www.66er.net/wp-content/uploads/logo.svg"
           style="height: 3rem;"
@@ -32,35 +26,24 @@
         />
       </a>
       <div class="w-100 text-right">
-        <button
-          class="navbar-toggler"
-          type="button"
-          (click)="isMenuCollapsed = !isMenuCollapsed"
-        >
+        <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
           <span class="navbar-toggler-icon"></span>
         </button>
       </div>
     </div>
-    <div
-      [ngbCollapse]="isMenuCollapsed"
-      class="collapse navbar-collapse flex-grow-1 text-right"
-      id="myNavbar"
-    >
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
       <ul class="navbar-nav ml-auto flex-nowrap">
         <li class="nav-item">
           <b
             class="nav-link m-2 menu-item nav-active text-black-50"
-            style="cursor: pointer"
+            style="cursor: pointer;"
             [routerLink]="['sommer-2020']"
             (click)="isMenuCollapsed = !isMenuCollapsed"
-          >Sommer 2020</b
+            >Sommer 2020</b
           >
         </li>
         <li class="nav-item">
-          <a
-            class="nav-link m-2 menu-item nav-active"
-            [routerLink]="['']"
-            (click)="isMenuCollapsed = !isMenuCollapsed"
+          <a class="nav-link m-2 menu-item nav-active" [routerLink]="['']" (click)="isMenuCollapsed = !isMenuCollapsed"
             >News</a
           >
         </li>
@@ -76,36 +59,11 @@
             Stufen
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a
-              class="dropdown-item"
-              [routerLink]="['stufe', 'biber']"
-              (click)="isMenuCollapsed = true"
-              >Biber</a
-            >
-            <a
-              class="dropdown-item"
-              [routerLink]="['stufe', 'wiwoe']"
-              (click)="isMenuCollapsed = true"
-              >WiWö</a
-            >
-            <a
-              class="dropdown-item"
-              [routerLink]="['stufe', 'gusp']"
-              (click)="isMenuCollapsed = true"
-              >GuSp</a
-            >
-            <a
-              class="dropdown-item"
-              [routerLink]="['stufe', 'caex']"
-              (click)="isMenuCollapsed = true"
-              >CaEx</a
-            >
-            <a
-              class="dropdown-item"
-              [routerLink]="['stufe', 'raro']"
-              (click)="isMenuCollapsed = true"
-              >RaRo</a
-            >
+            <a class="dropdown-item" [routerLink]="['stufe', 'biber']" (click)="isMenuCollapsed = true">Biber</a>
+            <a class="dropdown-item" [routerLink]="['stufe', 'wiwoe']" (click)="isMenuCollapsed = true">WiWö</a>
+            <a class="dropdown-item" [routerLink]="['stufe', 'gusp']" (click)="isMenuCollapsed = true">GuSp</a>
+            <a class="dropdown-item" [routerLink]="['stufe', 'caex']" (click)="isMenuCollapsed = true">CaEx</a>
+            <a class="dropdown-item" [routerLink]="['stufe', 'raro']" (click)="isMenuCollapsed = true">RaRo</a>
           </div>
         </li>
         <!--          <li class="nav-item">-->

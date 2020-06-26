@@ -1,10 +1,7 @@
 <div class="card mb-3 rounded-0 shadow">
   <ngb-carousel
     *ngIf="!!post.full_picture"
-    [showNavigationArrows]="
-      post.full_picture &&
-      (post.attachments?.data)[0]?.subattachments?.data.length > 1
-    "
+    [showNavigationArrows]="post.full_picture && (post.attachments?.data)[0]?.subattachments?.data.length > 1"
     [showNavigationIndicators]="!!post.full_picture"
     [interval]="0"
   >
@@ -16,7 +13,8 @@
       "
     >
       <div *isLoading="post.full_picture" class="picsum-img-wrapper">
-        <app-loading-image class="d-block w-100"
+        <app-loading-image
+          class="d-block w-100"
           [height]="30"
           [objectFit]="'contain'"
           [src]="post.full_picture"
@@ -24,10 +22,7 @@
         ></app-loading-image>
       </div>
     </ng-template>
-    <ng-template
-      ngbSlide
-      *ngFor="let image of (post.attachments?.data)[0].subattachments?.data"
-    >
+    <ng-template ngbSlide *ngFor="let image of (post.attachments?.data)[0].subattachments?.data">
       <div class="picsum-img-wrapper">
         <app-loading-image
           class="d-block w-100"
@@ -42,11 +37,7 @@
   <div class="card-body my-n1">
     <markdown [data]="post.message"></markdown>
   </div>
-  <div
-    class="card-footer"
-    data-toggle="collapse"
-    [attr.href]="'#commandsOfPost' + cardId"
-  >
+  <div class="card-footer" data-toggle="collapse" [attr.href]="'#commandsOfPost' + cardId">
     <div class="d-flex">
       <div class="card-link">
         <fa-icon [icon]="faCommend" class="mr-1"></fa-icon>
@@ -56,21 +47,15 @@
       </div>
       <fa-icon [icon]="faShare" class="mx-2"></fa-icon>
       <div class="card-link mr-auto">
-        {{ post.shares ? post.shares.count : 0 }} Share{{
-          post.shares && post.shares.count == 1 ? "" : "s"
-        }}
+        {{ post.shares ? post.shares.count : 0 }} Share{{ post.shares && post.shares.count == 1 ? "" : "s" }}
       </div>
       <div *ngIf="post.comments?.data" class="card-link">
         <fa-icon [icon]="faChevronDown"></fa-icon>
       </div>
     </div>
   </div>
-  <div
-    *ngIf="post.comments?.data"
-    class="collapse multi-collapse"
-    [attr.id]="'commandsOfPost' + cardId"
-  >
-    <div class="card-footer " *ngFor="let comment of post.comments.data">
+  <div *ngIf="post.comments?.data" class="collapse multi-collapse" [attr.id]="'commandsOfPost' + cardId">
+    <div class="card-footer" *ngFor="let comment of post.comments.data">
       {{ comment.message }}
     </div>
   </div>

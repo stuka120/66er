@@ -4,7 +4,7 @@ import { loadConfigAction, loadConfigErrorAction, loadConfigSuccessAction } from
 
 export const configReducer = createReducer(
   initialState,
-  on(loadConfigAction, state => ({
+  on(loadConfigAction, (state) => ({
     ...state,
     isLoading: true
   })),
@@ -15,7 +15,7 @@ export const configReducer = createReducer(
       ...action.payload.config
     }
   })),
-  on(loadConfigErrorAction, state => ({
+  on(loadConfigErrorAction, (state) => ({
     ...state,
     config: null,
     isLoading: false

@@ -3,37 +3,38 @@ import { APP_INITIALIZER, NgModule } from "@angular/core";
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
-import { MyFacebookService } from "./services/my-facebook.service";
+import { MyFacebookService } from "./shared/services/my-facebook.service";
 import { HttpClientModule } from "@angular/common/http";
 import { NgbModalModule, NgbModule } from "@ng-bootstrap/ng-bootstrap";
-import { WordpressService } from "./services/wordpress.service";
+import { WordpressService } from "./shared/services/wordpress.service";
 import { FormsModule } from "@angular/forms";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RootStoreModule } from "./root-store";
-import { StufenDescriptionFacade } from "./facades/stufen-description-facade.service";
-import { MyFacebookFacade } from "./facades/my-facebook.facade";
-import { DownloadsFacade } from "./facades/downloads.facade";
-import { WiwoeDashboardFacade } from "./facades/stufen-facades/impl/wiwoe-dashboard.facade";
-import { BiberDashboardFacade } from "./facades/stufen-facades/impl/biber-dashboard.facade";
-import { GuspDashboardFacade } from "./facades/stufen-facades/impl/gusp-dashboard.facade";
-import { CaexDashboardFacade } from "./facades/stufen-facades/impl/caex-dashboard.facade";
-import { RaroDashboardFacade } from "./facades/stufen-facades/impl/raro-dashboard.facade";
-import { CalendarFacade } from "./facades/calendar-facade.service";
+import { StufenDescriptionFacade } from "./shared/facades/stufen-description-facade.service";
+import { MyFacebookFacade } from "./shared/facades/my-facebook.facade";
+import { DownloadsFacade } from "./shared/facades/downloads.facade";
+import { WiwoeDashboardFacade } from "./shared/facades/stufen-facades/impl/wiwoe-dashboard.facade";
+import { BiberDashboardFacade } from "./shared/facades/stufen-facades/impl/biber-dashboard.facade";
+import { GuspDashboardFacade } from "./shared/facades/stufen-facades/impl/gusp-dashboard.facade";
+import { CaexDashboardFacade } from "./shared/facades/stufen-facades/impl/caex-dashboard.facade";
+import { RaroDashboardFacade } from "./shared/facades/stufen-facades/impl/raro-dashboard.facade";
+import { CalendarFacade } from "./shared/facades/calendar-facade.service";
 import { registerLocaleData } from "@angular/common";
 import localeDeAt from "@angular/common/locales/de-AT";
-import { BreakpointService } from "./services/breakpoint.service";
+import { BreakpointService } from "./shared/services/breakpoint.service";
 import { SWIPER_CONFIG, SwiperConfigInterface } from "ngx-swiper-wrapper";
 import { RoutingViewsModule } from "./components/routing-views/routing-views.module";
 import { ComponentsModule } from "./components/components/components.module";
 import { LoadingSpinner } from "./components/components/loading-spinner/loading-spinner.component";
 import { SidebarModule } from "ng-sidebar";
 import { EntriesModule } from "./components/entries/entries.module";
-import { ConfigurationService } from "./services/configuration.service";
-import { StufenTeaserFacade } from "./facades/stufen-teaser.facade";
-import { StufenTeamPostFacade } from "./facades/stufen-team-post.facade";
-import { StufenHeimstundenTimeFacade } from "./facades/stufen-heimstunden-time.facade";
-import {MarkdownModule, MarkedOptions} from "ngx-markdown";
-import {EventService} from "./services/event.service";
+import { ConfigurationService } from "./shared/services/configuration.service";
+import { StufenTeaserFacade } from "./shared/facades/stufen-teaser.facade";
+import { StufenTeamPostFacade } from "./shared/facades/stufen-team-post.facade";
+import { StufenHeimstundenTimeFacade } from "./shared/facades/stufen-heimstunden-time.facade";
+import { MarkdownModule, MarkedOptions } from "ngx-markdown";
+import { EventService } from "./shared/services/event.service";
+import { OverlayModule } from "./components/overlay/overlay.module";
 
 registerLocaleData(localeDeAt, "de-AT");
 const DEFAULT_SWIPER_CONFIG: SwiperConfigInterface = {
@@ -65,6 +66,7 @@ export function initializeApp(configurationService: ConfigurationService) {
     HttpClientModule,
     NgbModule,
     RootStoreModule,
+    OverlayModule,
     ComponentsModule,
     RoutingViewsModule,
     EntriesModule,
@@ -77,11 +79,10 @@ export function initializeApp(configurationService: ConfigurationService) {
           breaks: true,
           pedantic: false,
           smartLists: true,
-          smartypants: false,
-        },
-      },
+          smartypants: false
+        }
       }
-    )
+    })
   ],
   declarations: [AppComponent],
   providers: [

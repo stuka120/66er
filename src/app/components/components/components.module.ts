@@ -13,7 +13,6 @@ import { UpcomingEventCollectionComponent } from "./upcoming-event-collection/up
 import { UpcomingEventComponent } from "./upcoming-event/upcoming-event.component";
 import { StufenSlideComponent } from "./stufen-slide/stufen-slide.component";
 import { StufenSlideSwiperComponent } from "./stufen-slide-swiper/stufen-slide-swiper.component";
-import { EventClickedModalComponent } from "./modal/event-clicked-modal/event-clicked-modal.component";
 import { FooterComponent } from "./footer/footer.component";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { CommonModule } from "@angular/common";
@@ -21,15 +20,15 @@ import { BrowserModule } from "@angular/platform-browser";
 import { SwiperModule } from "ngx-swiper-wrapper";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { RouterModule } from "@angular/router";
-import { PipeModule } from "../../pipes/pipe.module";
 import { IframeComponent } from "./iframe/iframe.component";
 import { LoadingSpinner } from "./loading-spinner/loading-spinner.component";
-import { DirectivesModule } from "../../directives/directives.module";
 import { LoadingImage } from "./loading-image/loading-image.component";
 import { NavbarComponent } from "./navbar/navbar.component";
 import { AlertComponent } from "./alert/alert.component";
-import {MarkdownModule} from "ngx-markdown";
-import {EventCardComponent} from "./event-card/event-card.component";
+import { MarkdownModule } from "ngx-markdown";
+import { EventCardComponent } from "./event-card/event-card.component";
+import { PipeModule } from "../../shared/pipes/pipe.module";
+import { DirectivesModule } from "../../shared/directives/directives.module";
 
 @NgModule({
   imports: [
@@ -58,7 +57,6 @@ import {EventCardComponent} from "./event-card/event-card.component";
     UpcomingEventComponent,
     StufenSlideComponent,
     StufenSlideSwiperComponent,
-    EventClickedModalComponent,
     FooterComponent,
     IframeComponent,
     LoadingSpinner,
@@ -82,7 +80,6 @@ import {EventCardComponent} from "./event-card/event-card.component";
     UpcomingEventComponent,
     StufenSlideComponent,
     StufenSlideSwiperComponent,
-    EventClickedModalComponent,
     FooterComponent,
     IframeComponent,
     LoadingSpinner,

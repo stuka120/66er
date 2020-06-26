@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { StickyNoteComponent } from './sticky-note.component';
+import { StickyNoteComponent } from "./sticky-note.component";
 
-describe('StickyNoteComponent', () => {
+describe("StickyNoteComponent", () => {
   let component: StickyNoteComponent;
   let fixture: ComponentFixture<StickyNoteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StickyNoteComponent ]
-    })
-    .compileComponents();
+      declarations: [StickyNoteComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('StickyNoteComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

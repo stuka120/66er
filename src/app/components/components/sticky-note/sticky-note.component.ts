@@ -10,14 +10,14 @@ export class StickyNoteComponent implements OnInit {
   isRotated: boolean = false;
 
   @Input()
-  rotateDirection: 'clockwise' | 'anticlockwise' = 'anticlockwise'
+  rotateDirection: "clockwise" | "anticlockwise" = "anticlockwise";
 
   @Input()
   isZoomingOnHover: boolean = false;
 
   @Input()
-  backgroundColor: string = '#ffc'
-  
+  backgroundColor: string = "#ffc";
+
   constructor() {}
 
   ngOnInit() {}

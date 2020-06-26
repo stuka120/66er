@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { AppConfig } from "../../model/config/app.config";
+import { AppConfig } from "../../shared/model/config/app.config";
 
 export const loadConfigAction = createAction("[Config] loadConfigFromServer");
 

@@ -1,13 +1,9 @@
-import {Component, OnInit, Input, ViewChild, Inject} from "@angular/core";
-import {StufenCardModel} from "../../../model/stufen-card.model";
-import {
-  SWIPER_CONFIG,
-  SwiperConfigInterface,
-  SwiperDirective
-} from "ngx-swiper-wrapper";
-import {Observable} from "rxjs";
-import {BreakpointService} from "../../../services/breakpoint.service";
-import {map} from "rxjs/operators";
+import { Component, OnInit, Input, ViewChild, Inject } from "@angular/core";
+import { SWIPER_CONFIG, SwiperConfigInterface, SwiperDirective } from "ngx-swiper-wrapper";
+import { Observable } from "rxjs";
+import { map } from "rxjs/operators";
+import { BreakpointService } from "../../../shared/services/breakpoint.service";
+import { StufenCardModel } from "../../../shared/model/stufen-card.model";
 
 @Component({
   selector: "app-stufen-slide-swiper",
@@ -21,13 +17,14 @@ export class StufenSlideSwiperComponent implements OnInit {
 
   config$: Observable<SwiperConfigInterface>;
 
-  constructor(@Inject(SWIPER_CONFIG) public config: SwiperConfigInterface, private breakpointService: BreakpointService) {
-    this.config$ = this.breakpointService.isBreakpointMatched("md-down").pipe(
-      map(isMatched => ({...config, autoplay: isMatched} as SwiperConfigInterface))
-    );
+  constructor(
+    @Inject(SWIPER_CONFIG) public config: SwiperConfigInterface,
+    private breakpointService: BreakpointService
+  ) {
+    this.config$ = this.breakpointService
+      .isBreakpointMatched("md-down")
+      .pipe(map((isMatched) => ({ ...config, autoplay: isMatched } as SwiperConfigInterface)));
   }
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

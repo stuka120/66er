@@ -1,5 +1,4 @@
 export interface HeroBannerComponentModel {
-
   /**
    * Die fixe Höhe des Bilder. NULLABLE. Die Standardhöhe beträgt 35rem.
    */

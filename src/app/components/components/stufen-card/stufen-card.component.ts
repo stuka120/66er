@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { StufenCardModel } from "src/app/model/stufen-card.model";
+import { StufenCardModel } from "../../../shared/model/stufen-card.model";
 
 @Component({
   selector: "app-stufen-card",

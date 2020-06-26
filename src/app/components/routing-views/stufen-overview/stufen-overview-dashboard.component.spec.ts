@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { StufenOverviewDashboardComponent } from './stufen-overview-dashboard.component';
+import { StufenOverviewDashboardComponent } from "./stufen-overview-dashboard.component";
 
-describe('StufenOverviewDashboardComponent', () => {
+describe("StufenOverviewDashboardComponent", () => {
   let component: StufenOverviewDashboardComponent;
   let fixture: ComponentFixture<StufenOverviewDashboardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StufenOverviewDashboardComponent ]
-    })
-    .compileComponents();
+      declarations: [StufenOverviewDashboardComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('StufenOverviewDashboardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

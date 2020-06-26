@@ -1,6 +1,6 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 import { State, StufenHeimstundenTimeState } from "./state";
-import { StufenCardModel } from "../../model/stufen-card.model";
+import { StufenCardModel } from "../../shared/model/stufen-card.model";
 
 const getError = (state: State): string => state.error;
 const getIsLoading = (state: State): boolean => state.isLoading;
@@ -9,24 +9,16 @@ const getBiberStufenInfos = (state: State): StufenCardModel =>
   state.stufenInfos ? state.stufenInfos.biber : undefined;
 const getWiWoeStufenInfos = (state: State): StufenCardModel =>
   state.stufenInfos ? state.stufenInfos.wiwoe : undefined;
-const getGuSpStufenInfos = (state: State): StufenCardModel =>
-  state.stufenInfos ? state.stufenInfos.gusp : undefined;
-const getCaExStufenInfos = (state: State): StufenCardModel =>
-  state.stufenInfos ? state.stufenInfos.caex : undefined;
-const getRaRoStufenInfos = (state: State): StufenCardModel =>
-  state.stufenInfos ? state.stufenInfos.raro : undefined;
+const getGuSpStufenInfos = (state: State): StufenCardModel => (state.stufenInfos ? state.stufenInfos.gusp : undefined);
+const getCaExStufenInfos = (state: State): StufenCardModel => (state.stufenInfos ? state.stufenInfos.caex : undefined);
+const getRaRoStufenInfos = (state: State): StufenCardModel => (state.stufenInfos ? state.stufenInfos.raro : undefined);
 const getNeedStufenInfos = (state: State): boolean => state.needStufenInfos;
 
-const getBiberTeaser = (state: State): StufenCardModel =>
-  state.stufenInfos ? state.stufenTeaser.biber : undefined;
-const getWiWoeTeaser = (state: State): StufenCardModel =>
-  state.stufenInfos ? state.stufenTeaser.wiwoe : undefined;
-const getGuSpTeaser = (state: State): StufenCardModel =>
-  state.stufenInfos ? state.stufenTeaser.gusp : undefined;
-const getCaExTeaser = (state: State): StufenCardModel =>
-  state.stufenInfos ? state.stufenTeaser.caex : undefined;
-const getRaRoTeaser = (state: State): StufenCardModel =>
-  state.stufenInfos ? state.stufenTeaser.raro : undefined;
+const getBiberTeaser = (state: State): StufenCardModel => (state.stufenInfos ? state.stufenTeaser.biber : undefined);
+const getWiWoeTeaser = (state: State): StufenCardModel => (state.stufenInfos ? state.stufenTeaser.wiwoe : undefined);
+const getGuSpTeaser = (state: State): StufenCardModel => (state.stufenInfos ? state.stufenTeaser.gusp : undefined);
+const getCaExTeaser = (state: State): StufenCardModel => (state.stufenInfos ? state.stufenTeaser.caex : undefined);
+const getRaRoTeaser = (state: State): StufenCardModel => (state.stufenInfos ? state.stufenTeaser.raro : undefined);
 const getNeedTeaser = (state: State): boolean => state.needStufenTeaser;
 
 const getBiberHeimstundenInfos = (state: State): StufenHeimstundenTimeState =>
@@ -39,35 +31,19 @@ const getCaExHeimstundenInfos = (state: State): StufenHeimstundenTimeState =>
   state.heimstundenInfos ? state.heimstundenInfos.caex : undefined;
 const getRaRoHeimstundenInfos = (state: State): StufenHeimstundenTimeState =>
   state.heimstundenInfos ? state.heimstundenInfos.raro : undefined;
-const getNeedHeimstundenInfos = (state: State): boolean =>
-  state.needHeimstundenInfos;
+const getNeedHeimstundenInfos = (state: State): boolean => state.needHeimstundenInfos;
 
 const selectStufenInfosFeatureSelector = createFeatureSelector("stufenInfos");
 
-export const selectBiberStufenInfos = createSelector(
-  selectStufenInfosFeatureSelector,
-  getBiberStufenInfos
-);
+export const selectBiberStufenInfos = createSelector(selectStufenInfosFeatureSelector, getBiberStufenInfos);
 
-export const selectWiWoeStufenInfos = createSelector(
-  selectStufenInfosFeatureSelector,
-  getWiWoeStufenInfos
-);
+export const selectWiWoeStufenInfos = createSelector(selectStufenInfosFeatureSelector, getWiWoeStufenInfos);
 
-export const selectGuSpStufenInfos = createSelector(
-  selectStufenInfosFeatureSelector,
-  getGuSpStufenInfos
-);
+export const selectGuSpStufenInfos = createSelector(selectStufenInfosFeatureSelector, getGuSpStufenInfos);
 
-export const selectCaExStufenInfos = createSelector(
-  selectStufenInfosFeatureSelector,
-  getCaExStufenInfos
-);
+export const selectCaExStufenInfos = createSelector(selectStufenInfosFeatureSelector, getCaExStufenInfos);
 
-export const selectRaRoStufenInfos = createSelector(
-  selectStufenInfosFeatureSelector,
-  getRaRoStufenInfos
-);
+export const selectRaRoStufenInfos = createSelector(selectStufenInfosFeatureSelector, getRaRoStufenInfos);
 
 export const selectStufenInfosAll = createSelector(
   selectBiberStufenInfos,
@@ -84,41 +60,20 @@ export const selectStufenInfosAll = createSelector(
   })
 );
 
-export const selectStufenInfosIsLoading = createSelector(
-  selectStufenInfosFeatureSelector,
-  getIsLoading
-);
+export const selectStufenInfosIsLoading = createSelector(selectStufenInfosFeatureSelector, getIsLoading);
 
-export const selectStufenInfosNeedStufenInfos = createSelector(
-  selectStufenInfosFeatureSelector,
-  getNeedStufenInfos
-);
+export const selectStufenInfosNeedStufenInfos = createSelector(selectStufenInfosFeatureSelector, getNeedStufenInfos);
 
 // Teaser part
-export const selectBiberTeaser = createSelector(
-  selectStufenInfosFeatureSelector,
-  getBiberTeaser
-);
+export const selectBiberTeaser = createSelector(selectStufenInfosFeatureSelector, getBiberTeaser);
 
-export const selectWiWoeTeaser = createSelector(
-  selectStufenInfosFeatureSelector,
-  getWiWoeTeaser
-);
+export const selectWiWoeTeaser = createSelector(selectStufenInfosFeatureSelector, getWiWoeTeaser);
 
-export const selectGuSpTeaser = createSelector(
-  selectStufenInfosFeatureSelector,
-  getGuSpTeaser
-);
+export const selectGuSpTeaser = createSelector(selectStufenInfosFeatureSelector, getGuSpTeaser);
 
-export const selectCaExTeaser = createSelector(
-  selectStufenInfosFeatureSelector,
-  getCaExTeaser
-);
+export const selectCaExTeaser = createSelector(selectStufenInfosFeatureSelector, getCaExTeaser);
 
-export const selectRaRoTeaser = createSelector(
-  selectStufenInfosFeatureSelector,
-  getRaRoTeaser
-);
+export const selectRaRoTeaser = createSelector(selectStufenInfosFeatureSelector, getRaRoTeaser);
 
 export const selectTeasersAll = createSelector(
   selectBiberTeaser,
@@ -135,36 +90,18 @@ export const selectTeasersAll = createSelector(
   })
 );
 
-export const selectStufenInfosNeedTeaser = createSelector(
-  selectStufenInfosFeatureSelector,
-  getNeedTeaser
-);
+export const selectStufenInfosNeedTeaser = createSelector(selectStufenInfosFeatureSelector, getNeedTeaser);
 
 // Heimstunden part
-export const selectBiberHeimstundenInfos = createSelector(
-  selectStufenInfosFeatureSelector,
-  getBiberHeimstundenInfos
-);
+export const selectBiberHeimstundenInfos = createSelector(selectStufenInfosFeatureSelector, getBiberHeimstundenInfos);
 
-export const selectWiWoeHeimstundenInfos = createSelector(
-  selectStufenInfosFeatureSelector,
-  getWiWoeHeimstundenInfos
-);
+export const selectWiWoeHeimstundenInfos = createSelector(selectStufenInfosFeatureSelector, getWiWoeHeimstundenInfos);
 
-export const selectGuSpHeimstundenInfos = createSelector(
-  selectStufenInfosFeatureSelector,
-  getGuSpHeimstundenInfos
-);
+export const selectGuSpHeimstundenInfos = createSelector(selectStufenInfosFeatureSelector, getGuSpHeimstundenInfos);
 
-export const selectCaExHeimstundenInfos = createSelector(
-  selectStufenInfosFeatureSelector,
-  getCaExHeimstundenInfos
-);
+export const selectCaExHeimstundenInfos = createSelector(selectStufenInfosFeatureSelector, getCaExHeimstundenInfos);
 
-export const selectRaRoHeimstundenInfos = createSelector(
-  selectStufenInfosFeatureSelector,
-  getRaRoHeimstundenInfos
-);
+export const selectRaRoHeimstundenInfos = createSelector(selectStufenInfosFeatureSelector, getRaRoHeimstundenInfos);
 
 export const selectHeimstundenInfosAll = createSelector(
   selectBiberHeimstundenInfos,

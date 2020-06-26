@@ -16,8 +16,7 @@ import { HeroBannerComponentModel } from "./hero-banner.component-model";
   templateUrl: "./hero-banner.component.html",
   styleUrls: ["./hero-banner.component.css"]
 })
-export class HeroBannerComponent
-  implements OnInit, AfterViewInit, AfterViewChecked {
+export class HeroBannerComponent implements OnInit, AfterViewInit, AfterViewChecked {
   constructor() {
     this.morphextInitialized = true;
   }

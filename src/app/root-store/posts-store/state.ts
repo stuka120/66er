@@ -1,4 +1,4 @@
-import { PostResponseModel } from "../../model/responses/post.model";
+import { PostResponseModel } from "../../shared/model/responses/post.model";
 
 export interface State {
   needPosts: boolean;

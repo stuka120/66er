@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { DownloadsDashboardComponent } from './downloads-dashboard.component';
+import { DownloadsDashboardComponent } from "./downloads-dashboard.component";
 
-describe('DownloadsComponent', () => {
+describe("DownloadsComponent", () => {
   let component: DownloadsDashboardComponent;
   let fixture: ComponentFixture<DownloadsDashboardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DownloadsDashboardComponent ]
-    })
-    .compileComponents();
+      declarations: [DownloadsDashboardComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('DownloadsComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

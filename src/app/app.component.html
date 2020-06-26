@@ -1,22 +1,16 @@
 <ng-sidebar-container class="min-vh-100">
-  <ng-sidebar
-    [closeOnClickBackdrop]="true"
-    [closeOnClickOutside]="true"
-    [(opened)]="sidebarOpened"
-  >
+  <ng-sidebar [closeOnClickBackdrop]="true" [closeOnClickOutside]="true" [(opened)]="sidebarOpened">
     <app-sidebar (sidebarCloseClicked)="sidebarOpened = false"></app-sidebar>
   </ng-sidebar>
   <div class="h-100" ng-sidebar-content>
-    <div class="d-flex flex-column" style="min-height: 100%!important;">
+    <div class="d-flex flex-column" style="min-height: 100% !important;">
       <app-navbar (calendarButtonClicked)="toggleSidebar()"></app-navbar>
       <app-alert
         *ngIf="alertModel$ | async as alertModel"
         [model]="alertModel"
-        [class.position-absolute.align-top]="
-          alertModel.presentationMode === 'overlay'
-        "
+        [class.position-absolute.align-top]="alertModel.presentationMode === 'overlay'"
         class="w-100"
-        style="z-index: 500"
+        style="z-index: 500;"
       ></app-alert>
       <div class="flex-grow-1">
         <router-outlet></router-outlet>

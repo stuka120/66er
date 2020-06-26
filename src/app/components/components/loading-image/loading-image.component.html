@@ -2,11 +2,10 @@
   <img
     *ngIf="src"
     [src]="src"
-    (load)="imageLoaded = true;"
+    (load)="imageLoaded = true"
     class="w-100 h-100"
     [style.object-fit]="objectFit"
-    [class.d-none]="!imageLoaded">
-  <app-loading-spinner *ngIf="!imageLoaded">
-
-  </app-loading-spinner>
+    [class.d-none]="!imageLoaded"
+  />
+  <app-loading-spinner *ngIf="!imageLoaded"> </app-loading-spinner>
 </div>

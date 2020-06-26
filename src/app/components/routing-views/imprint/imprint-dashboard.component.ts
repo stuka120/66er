@@ -1,9 +1,7 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  templateUrl: './imprint-dashboard.component.html',
-  styleUrls: ['./imprint-dashboard.component.css']
+  templateUrl: "./imprint-dashboard.component.html",
+  styleUrls: ["./imprint-dashboard.component.css"]
 })
-export class ImprintDashboardComponent {
-
-}
+export class ImprintDashboardComponent {}

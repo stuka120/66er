@@ -1,16 +1,15 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { StufenCardComponent } from './stufen-card.component';
+import { StufenCardComponent } from "./stufen-card.component";
 
-describe('StufenCardComponent', () => {
+describe("StufenCardComponent", () => {
   let component: StufenCardComponent;
   let fixture: ComponentFixture<StufenCardComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StufenCardComponent ]
-    })
-    .compileComponents();
+      declarations: [StufenCardComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('StufenCardComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

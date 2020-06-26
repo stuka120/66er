@@ -1,36 +1,41 @@
 <div class="card rounded-0 mb-4" *ngIf="model">
-  <app-loading-image class="center-card-image" [objectFit]="'contain'"
-                     [src]="model.imageUrl"></app-loading-image>
+  <app-loading-image class="center-card-image" [objectFit]="'contain'" [src]="model.imageUrl"></app-loading-image>
   <div class="card-body">
-    <h5 class="card-title">{{model.name}}</h5>
-    <p class="card-text">{{model.summary}}</p>
+    <h5 class="card-title">{{ model.name }}</h5>
+    <p class="card-text">{{ model.summary }}</p>
     <div *ngIf="isExpanded">
-      <hr class="mx-n3">
-      <p class="card-text">{{model.description}}</p>
+      <hr class="mx-n3" />
+      <p class="card-text">{{ model.description }}</p>
     </div>
     <div class="text-center">
-      <fa-icon [icon]="isExpanded ? faChevronUp : faChevronDown" (click)="isExpanded = !isExpanded"></fa-icon>
+      <fa-icon
+        class="w-50 cursor-pointer"
+        [icon]="isExpanded ? faChevronUp : faChevronDown"
+        (click)="isExpanded = !isExpanded"
+      ></fa-icon>
+      <div *ngIf="isExpanded" class="text-center mt-2">
+        <button class="btn btn-success">Anmelden</button>
+      </div>
     </div>
-
   </div>
   <div class="card-footer text-muted">
     <div class="row text-center">
       <div class="col px-1 border-right">
         <div class="d-flex flex-column">
           <fa-icon [icon]="faList"></fa-icon>
-          <a>{{model.stufen}}</a>
+          <a>{{ model.stufen }}</a>
         </div>
       </div>
       <div class="col-auto">
         <div class="d-flex flex-column">
           <fa-icon [icon]="faClock"></fa-icon>
-          <a>{{model.eventStartTime | date : 'HH:mm'}} - {{model.eventEndTime | date : 'HH:mm'}}</a>
+          <a>{{ model.eventStartTime | date: "HH:mm" }} - {{ model.eventEndTime | date: "HH:mm" }}</a>
         </div>
       </div>
       <div class="col border-left">
         <div class="d-flex flex-column">
           <fa-icon [icon]="faCalendar"></fa-icon>
-          <a>{{model.eventDate | date : 'dd.MM.yyyy'}}</a>
+          <a>{{ model.eventDate | date: "dd.MM.yyyy" }}</a>
         </div>
       </div>
     </div>

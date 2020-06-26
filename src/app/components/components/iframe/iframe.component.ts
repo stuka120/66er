@@ -1,5 +1,5 @@
-import {AfterViewInit, Component, ElementRef, Input, ViewChild} from "@angular/core";
-import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import { AfterViewInit, Component, ElementRef, Input, ViewChild } from "@angular/core";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
 @Component({
   selector: "app-iframe",
@@ -16,7 +16,7 @@ export class IframeComponent implements AfterViewInit {
 
   @Input()
   set url(value: string) {
-   this.safeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(value);
+    this.safeResourceUrl = this.sanitizer.bypassSecurityTrustResourceUrl(value);
   }
 
   get url(): string {
@@ -32,6 +32,6 @@ export class IframeComponent implements AfterViewInit {
   constructor(private sanitizer: DomSanitizer) {}
 
   ngAfterViewInit(): void {
-    this.iframeContent.nativeElement.onload = () => this.iframeLoaded = true;
+    this.iframeContent.nativeElement.onload = () => (this.iframeLoaded = true);
   }
 }

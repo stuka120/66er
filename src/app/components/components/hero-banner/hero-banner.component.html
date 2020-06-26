@@ -10,10 +10,7 @@
   <div class="overlay"></div>
 
   <!-- Wrapper for slides -->
-  <div
-    class="carousel-inner"
-    [style.height.rem]="model.imageHeight ? model.imageHeight : 35"
-  >
+  <div class="carousel-inner" [style.height.rem]="model.imageHeight ? model.imageHeight : 35">
     <div class="item slides active">
       <div class="slide-1">
         <app-loading-image
@@ -26,8 +23,7 @@
       <div class="hero">
         <div>
           <h1 [hidden]="!morphextInitialized">
-            {{ model.morphextPrefix
-            }}<span #morphextElement>{{ model.morpext }}</span>
+            {{ model.morphextPrefix }}<span #morphextElement>{{ model.morpext }}</span>
           </h1>
         </div>
 

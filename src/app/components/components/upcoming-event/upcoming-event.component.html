@@ -2,9 +2,7 @@
   <div class="d-flex">
     <div class="mx-3">
       <h1 class="display-5">
-          <span class="badge badge-secondary">{{
-            upcomingEvent.dateTime | date: "dd"
-            }}</span>
+        <span class="badge badge-secondary">{{ upcomingEvent.dateTime | date: "dd" }}</span>
       </h1>
       <h5 class="mb-0 text-center">
         {{ upcomingEvent.dateTime | date: "MMM":undefined:"de-AT" }}
@@ -19,15 +17,14 @@
           <fa-icon [icon]="faClock"></fa-icon>
           {{ upcomingEvent.dateTime | date: "EEEE HH:mm":undefined:"de-AT" }}
           -
-          {{upcomingEvent.endDateTime | date : untilDateFormattingString : undefined:"de-AT"}}
+          {{ upcomingEvent.endDateTime | date: untilDateFormattingString:undefined:"de-AT" }}
         </li>
       </ul>
     </div>
   </div>
-  <hr *ngIf="upcomingEvent.place" class="m-1">
+  <hr *ngIf="upcomingEvent.place" class="m-1" />
   <div class="ml-3" *ngIf="upcomingEvent.place">
     <fa-icon [icon]="faLocationArrow" class="mr-2"></fa-icon>
-    <i class="fa fa-location-arrow" aria-hidden="true"></i
-    >{{ upcomingEvent.place }}
+    <i class="fa fa-location-arrow" aria-hidden="true"></i>{{ upcomingEvent.place }}
   </div>
 </div>

@@ -1,5 +1,5 @@
 import { createAction, props } from "@ngrx/store";
-import { PostResponseModel } from "../../model/responses/post.model";
+import { PostResponseModel } from "../../shared/model/responses/post.model";
 
 export const loadNewsAction = createAction("[Posts] Load posts");
 
@@ -8,7 +8,4 @@ export const loadNewsSuccessAction = createAction(
   props<{ payload: { posts: PostResponseModel[] } }>()
 );
 
-export const loadNewsErrorAction = createAction(
-  "[Posts] Load posts error",
-  props<{ payload: { error: string } }>()
-);
+export const loadNewsErrorAction = createAction("[Posts] Load posts error", props<{ payload: { error: string } }>());

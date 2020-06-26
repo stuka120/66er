@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
-import { DownloadModel } from "../../../model/responses/wordpress-media-response.model";
+import { DownloadModel } from "../../../shared/model/responses/wordpress-media-response.model";
 
 @Component({
   selector: "app-downloads-card-item",

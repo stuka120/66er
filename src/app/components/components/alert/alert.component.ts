@@ -1,9 +1,6 @@
 import { Component, Input } from "@angular/core";
 import { AlertComponentModel } from "./alert.component-model";
-import {
-  faExclamationTriangle,
-  faInfoCircle
-} from "@fortawesome/free-solid-svg-icons";
+import { faExclamationTriangle, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-alert",
@@ -17,9 +14,7 @@ export class AlertComponent {
   isExpanded: boolean = false;
 
   getAlertIconForActiveMode() {
-    return this.model.alertMode === "info"
-      ? faInfoCircle
-      : faExclamationTriangle;
+    return this.model.alertMode === "info" ? faInfoCircle : faExclamationTriangle;
   }
 
   getIconColorForActiveMode() {
@@ -39,11 +34,15 @@ export class AlertComponent {
 
   getExpandButtonText() {
     if (this.isExpanded && !!this.model.expandableSection) {
-      return !!this.model?.expandableSection?.collapseButtonText ? this.model?.expandableSection?.collapseButtonText : "Weitere Infos!"
+      return !!this.model?.expandableSection?.collapseButtonText
+        ? this.model?.expandableSection?.collapseButtonText
+        : "Weitere Infos!";
     }
 
     if (!this.isExpanded && !!this.model.expandableSection) {
-      return !!this.model.expandableSection.expandButtonText ? this.model.expandableSection.expandButtonText : "Zuklappen!";
+      return !!this.model.expandableSection.expandButtonText
+        ? this.model.expandableSection.expandButtonText
+        : "Zuklappen!";
     }
 
     return "Weitere Infos!";

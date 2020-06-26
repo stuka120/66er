@@ -6,20 +6,14 @@ import { StufenOverviewDashboardComponent } from "./stufen-overview/stufen-overv
 import { DownloadsDashboardComponent } from "./downloads/downloads-dashboard.component";
 import { CommonModule } from "@angular/common";
 import { ComponentsModule } from "../components/components.module";
-import { PipeModule } from "../../pipes/pipe.module";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { ContactViewComponent } from "./contact/contact-view.component";
-import { DirectivesModule } from "../../directives/directives.module";
-import {EventRegistrationDashboardComponent} from "./event-registration/event-registration-dashboard.component";
+import { EventRegistrationDashboardComponent } from "./event-registration/event-registration-dashboard.component";
+import { PipeModule } from "../../shared/pipes/pipe.module";
+import { DirectivesModule } from "../../shared/directives/directives.module";
 
 @NgModule({
-  imports: [
-    CommonModule,
-    ComponentsModule,
-    PipeModule,
-    FontAwesomeModule,
-    DirectivesModule
-  ],
+  imports: [CommonModule, ComponentsModule, PipeModule, FontAwesomeModule, DirectivesModule],
   declarations: [
     ContactViewComponent,
     DatenschutzDashboardComponent,

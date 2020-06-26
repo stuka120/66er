@@ -1,4 +1,4 @@
-import { AppConfig } from "../../model/config/app.config";
+import { AppConfig } from "../../shared/model/config/app.config";
 
 export const initialState: State = {
   config: undefined,

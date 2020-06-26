@@ -1,5 +1,5 @@
-import {createAction, props} from "@ngrx/store";
-import {GoogleCalenderEventResponseModel} from "../../model/responses/google-calender-event-response.model";
+import { createAction, props } from "@ngrx/store";
+import { GoogleCalenderEventResponseModel } from "../../shared/model/responses/google-calender-event-response.model";
 
 export const loadEventsAction = createAction("[Calendar] Load events");
 

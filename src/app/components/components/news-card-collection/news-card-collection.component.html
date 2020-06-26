@@ -1,7 +1,3 @@
 <div *ngIf="posts">
-  <app-news-card
-    [post]="post"
-    *ngFor="let post of posts; index as i"
-    [cardId]="i"
-  ></app-news-card>
+  <app-news-card [post]="post" *ngFor="let post of posts; index as i" [cardId]="i"></app-news-card>
 </div>

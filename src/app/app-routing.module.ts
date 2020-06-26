@@ -1,17 +1,17 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { StartDashboardComponent } from "./components/routing-views/start/start-dashboard.component";
-import { DownloadsDashboardComponent } from "./components/routing-views/downloads/downloads-dashboard.component";
-import { StufenOverviewDashboardComponent } from "./components/routing-views/stufen-overview/stufen-overview-dashboard.component";
-import { WiwoeDashboardFacade } from "./facades/stufen-facades/impl/wiwoe-dashboard.facade";
-import { BiberDashboardFacade } from "./facades/stufen-facades/impl/biber-dashboard.facade";
-import { GuspDashboardFacade } from "./facades/stufen-facades/impl/gusp-dashboard.facade";
-import { CaexDashboardFacade } from "./facades/stufen-facades/impl/caex-dashboard.facade";
-import { RaroDashboardFacade } from "./facades/stufen-facades/impl/raro-dashboard.facade";
+import { BiberDashboardFacade } from "./shared/facades/stufen-facades/impl/biber-dashboard.facade";
 import { ImprintDashboardComponent } from "./components/routing-views/imprint/imprint-dashboard.component";
-import { DatenschutzDashboardComponent } from "./components/routing-views/datenschutz/datenschutz-dashboard.component";
+import { EventRegistrationDashboardComponent } from "./components/routing-views/event-registration/event-registration-dashboard.component";
+import { StartDashboardComponent } from "./components/routing-views/start/start-dashboard.component";
+import { StufenOverviewDashboardComponent } from "./components/routing-views/stufen-overview/stufen-overview-dashboard.component";
+import { GuspDashboardFacade } from "./shared/facades/stufen-facades/impl/gusp-dashboard.facade";
+import { RaroDashboardFacade } from "./shared/facades/stufen-facades/impl/raro-dashboard.facade";
+import { CaexDashboardFacade } from "./shared/facades/stufen-facades/impl/caex-dashboard.facade";
 import { ContactViewComponent } from "./components/routing-views/contact/contact-view.component";
-import {EventRegistrationDashboardComponent} from "./components/routing-views/event-registration/event-registration-dashboard.component";
+import { DownloadsDashboardComponent } from "./components/routing-views/downloads/downloads-dashboard.component";
+import { WiwoeDashboardFacade } from "./shared/facades/stufen-facades/impl/wiwoe-dashboard.facade";
+import { DatenschutzDashboardComponent } from "./components/routing-views/datenschutz/datenschutz-dashboard.component";
 
 const routes: Routes = [
   {

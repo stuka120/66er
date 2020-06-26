@@ -1,29 +1,22 @@
 import { createReducer, on } from "@ngrx/store";
 import { initialState } from "./state";
-import { PostResponseModel } from "../../model/responses/post.model";
-import {
-  loadNewsAction,
-  loadNewsErrorAction,
-  loadNewsSuccessAction
-} from "./actions";
+import { loadNewsAction, loadNewsErrorAction, loadNewsSuccessAction } from "./actions";
+import { PostResponseModel } from "../../shared/model/responses/post.model";
 
 const myReducer = createReducer(
   initialState,
-  on(loadNewsAction, state => ({
+  on(loadNewsAction, (state) => ({
     ...state,
     isLoading: true,
     error: undefined,
     needPosts: true
   })),
-  on(
-    loadNewsSuccessAction,
-    (state, action: { payload: { posts: PostResponseModel[] } }) => ({
-      posts: action.payload.posts,
-      isLoading: false,
-      error: null,
-      needPosts: false
-    })
-  ),
+  on(loadNewsSuccessAction, (state, action: { payload: { posts: PostResponseModel[] } }) => ({
+    posts: action.payload.posts,
+    isLoading: false,
+    error: null,
+    needPosts: false
+  })),
   on(loadNewsErrorAction, (state, action: { payload: { error: string } }) => ({
     ...state,
     isLoading: false,

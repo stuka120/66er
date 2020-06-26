@@ -14,7 +14,7 @@ import {
 
 const myReducer = createReducer(
   initialState,
-  on(loadAllStufenAction, state => ({
+  on(loadAllStufenAction, (state) => ({
     ...state,
     isLoading: true,
     error: undefined,
@@ -40,7 +40,7 @@ const myReducer = createReducer(
     error: action.payload.error,
     needStufenInfos: false
   })),
-  on(loadAllStufenTeasersAction, state => ({
+  on(loadAllStufenTeasersAction, (state) => ({
     ...state,
     isLoading: true,
     error: undefined,
@@ -66,7 +66,7 @@ const myReducer = createReducer(
     error: action.payload.error,
     needStufenTeaser: false
   })),
-  on(loadAllHeimstundenAction, state => ({
+  on(loadAllHeimstundenAction, (state) => ({
     ...state,
     isLoading: true,
     error: undefined,

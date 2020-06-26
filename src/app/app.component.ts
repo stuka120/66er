@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
-import { BreakpointService } from "./services/breakpoint.service";
+import { BreakpointService } from "./shared/services/breakpoint.service";
 import { untilDestroyed } from "ngx-take-until-destroy";
 import { Observable } from "rxjs";
 import { AlertComponentModel } from "./components/components/alert/alert.component-model";
-import { ConfigFacade } from "./facades/config.facade";
+import { ConfigFacade } from "./shared/facades/config.facade";
 
 @Component({
   selector: "app-root",
@@ -21,10 +21,7 @@ export class AppComponent implements OnInit, OnDestroy {
    */
   alertModel$: Observable<AlertComponentModel | undefined>;
 
-  constructor(
-    private breakpointPipe: BreakpointService,
-    private configFacade: ConfigFacade
-  ) {
+  constructor(private breakpointPipe: BreakpointService, private configFacade: ConfigFacade) {
     this.alertModel$ = this.configFacade.getAlertModel$();
   }
 
@@ -38,7 +35,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.breakpointPipe
       .isBreakpointMatched("md-up")
       .pipe(untilDestroyed(this))
-      .subscribe(value => {
+      .subscribe((value) => {
         this.isDektop = value;
         if (this.isDektop) {
           this.sidebarOpened = false;
