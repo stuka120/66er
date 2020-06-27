@@ -14,7 +14,7 @@
         (click)="isExpanded = !isExpanded"
       ></fa-icon>
       <div *ngIf="isExpanded" class="text-center mt-2">
-        <button class="btn btn-success">Anmelden</button>
+        <button class="btn btn-success" (click)="registerClicked.emit(model)">Anmelden</button>
       </div>
     </div>
   </div>
@@ -35,7 +35,7 @@
       <div class="col border-left">
         <div class="d-flex flex-column">
           <fa-icon [icon]="faCalendar"></fa-icon>
-          <a>{{ model.eventDate | date: "dd.MM.yyyy" }}</a>
+          <a>{{ model.eventDate | date: "dd.MM" }}</a>
         </div>
       </div>
     </div>

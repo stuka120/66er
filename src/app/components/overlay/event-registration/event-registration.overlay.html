@@ -1,0 +1,89 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">
+      <markdown>
+        Für `{{eventModel?.name}}` anmelden
+      </markdown>
+    </h4>
+    <button type="button" class="close" aria-label="Close" (click)="crossClicked()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formGroup" novalidate="novalidate" id="formSignUp">
+      <div id="errorSignUp"></div>
+
+      <div class="form-group">
+        <label class="control-label" for="firstname">Vorname (von Pfadfinder*In)</label>
+        <div class="input-group">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+          <div class="d-flex flex-column">
+            <input
+              class="form-control"
+              formControlName="firstname"
+              placeholder="Vorname"
+              name="firstname"
+              id="firstname"
+              type="text"
+            />
+            <small *ngIf="hasErrorToDisplay(firstnameControl)" class="text-danger">
+              Vorname ist erforderlich
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="lastname">Nachname (von Pfadfinder*In)</label>
+        <div class="input-group">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+          <div class="d-flex flex-column">
+            <input
+              class="form-control"
+              formControlName="lastname"
+              placeholder="Nachname"
+              name="lastname"
+              id="lastname"
+              type="text"
+            />
+            <small *ngIf="hasErrorToDisplay(lastnameControl)" class="text-danger">
+              Nachname ist erforderlich
+            </small>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label class="control-label" for="contactEmail">Kontakt-Email</label>
+        <div class="input-group">
+          <span class="input-group-addon"><span class="glyphicon glyphicon-user"></span></span>
+          <div class="d-flex flex-column">
+            <input
+              class="form-control"
+              placeholder="email@example.com"
+              name="contactEmail"
+              formControlName="contactEmail"
+              id="contactEmail"
+              type="email"
+            />
+            <div *ngIf="hasErrorToDisplay(emailControl)" class="d-flex flex-column">
+              <small *ngIf="emailControl.errors.email" class="text-danger">Keine gültige Email</small>
+              <small *ngIf="emailControl.errors.required" class="text-danger">Email ist erforderlich</small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        (click)="registerClicked()"
+        [disabled]="formGroup.invalid"
+        id="btnSignUp"
+        class="btn btn-primary"
+        style="width: 127px;"
+      >
+        Anmelden
+      </button>
+    </form>
+  </div>
+</div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { faCalendar, faChevronDown, faChevronUp, faClock, faList } from "@fortawesome/free-solid-svg-icons";
 import { EventCardComponentModel } from "./event-card.component-model";
 
@@ -10,6 +10,9 @@ import { EventCardComponentModel } from "./event-card.component-model";
 export class EventCardComponent implements OnInit {
   @Input()
   model: EventCardComponentModel;
+
+  @Output()
+  registerClicked = new EventEmitter<EventCardComponentModel>();
 
   // @ts-ignore
   faList = faList;
