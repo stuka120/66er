@@ -2,7 +2,7 @@ import { Component, Input } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { EventCardComponentModel } from "../../components/event-card/event-card.component-model";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { EventRegistrationResultEnum } from "./event-registration-result.enum";
+import { EventRegistrationResultEnum, EventRegistrationResultModel } from "./event-registration-result.model";
 
 @Component({
   templateUrl: "./event-registration.overlay.html",
@@ -41,11 +41,22 @@ export class EventRegistrationOverlayComponent {
       return;
     }
 
-    this.activeModal.close(EventRegistrationResultEnum.Success);
+    this.activeModal.close(<EventRegistrationResultModel>{
+      modalResult: EventRegistrationResultEnum.Success,
+      payload: {
+        firstname: this.firstnameControl.value,
+        lastname: this.lastnameControl.value,
+        email: this.emailControl.value,
+        eventId: this.eventModel.id
+      }
+    });
   }
 
   crossClicked() {
-    this.activeModal.close(EventRegistrationResultEnum.Fail);
+    this.activeModal.close(<EventRegistrationResultModel>{
+      modalResult: EventRegistrationResultEnum.Fail,
+      payload: undefined
+    });
   }
 
   hasErrorToDisplay(formControl: FormControl): boolean {

@@ -1,4 +1,5 @@
 export interface EventCardComponentModel {
+  id: number;
   name: string;
   summary: string;
   description: string;

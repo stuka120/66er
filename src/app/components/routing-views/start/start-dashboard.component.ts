@@ -8,12 +8,12 @@ import { HeroBannerComponentModel } from "../../components/hero-banner/hero-bann
 import { UpcomingEventCollectionComponentModel } from "../../components/upcoming-event-collection/upcoming-event-collection.component-model";
 import { Router } from "@angular/router";
 import { WordpressPostResponseModel } from "../../../shared/model/responses/wordpress/wordpress-post-response.model";
-import { MyFacebookFacade } from "../../../shared/facades/my-facebook.facade";
+import { MyFacebookFacade } from "../../../shared/facades/facebook/my-facebook.facade";
 import { StufenTeaserFacade } from "../../../shared/facades/stufen-teaser.facade";
-import { CalendarFacade } from "../../../shared/facades/calendar-facade.service";
+import { CalendarFacade } from "../../../shared/facades/google-calendar/calendar-facade.service";
 import { StufenCardModel } from "../../components/stufen-card/stufen-card.model";
 import { StufenDescriptionFacade } from "../../../shared/facades/stufen-description-facade.service";
-import { MyWordpressFacade } from "../../../shared/facades/my-wordpress.facade";
+import { MyWordpressFacade } from "../../../shared/facades/wordpress/my-wordpress.facade";
 import { WordpressCategoryEnum } from "../../../shared/dictionary/wordpress-category.enum";
 
 @Component({

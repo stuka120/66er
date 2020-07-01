@@ -1,12 +1,12 @@
 import { Injectable } from "@angular/core";
 import { catchError, map, startWith } from "rxjs/operators";
-import { WordpressService } from "../services/wordpress/wordpress.service";
+import { WordpressService } from "../../services/wordpress/wordpress.service";
 import { Observable, of } from "rxjs";
-import { HeroBannerComponentModel } from "../../components/components/hero-banner/hero-banner.component-model";
-import { WordpressCategoryEnum } from "../dictionary/wordpress-category.enum";
-import { WordpressTagEnum } from "../dictionary/wordpress-tag.enum";
-import { SummerEventService } from "../services/summer-event/summer-event.service";
-import { EventCardComponentModel } from "../../components/components/event-card/event-card.component-model";
+import { HeroBannerComponentModel } from "../../../components/components/hero-banner/hero-banner.component-model";
+import { WordpressCategoryEnum } from "../../dictionary/wordpress-category.enum";
+import { WordpressTagEnum } from "../../dictionary/wordpress-tag.enum";
+import { SummerEventService } from "../../services/summer-event/summer-event.service";
+import { EventCardComponentModel } from "../../../components/components/event-card/event-card.component-model";
 
 @Injectable({
   providedIn: "root"
@@ -33,25 +33,6 @@ export class MyWordpressFacade {
     return this.wordpressService.getWordpressPostByCategoryAndTag$(categoryId, WordpressTagEnum.BannerImage).pipe(
       catchError(() => of(undefined)),
       map((post) => (post ? post._embedded["wp:featuredmedia"][0].source_url : undefined))
-    );
-  }
-
-  getEvents$(): Observable<EventCardComponentModel[]> {
-    return this.eventService.getEvents$().pipe(
-      map((response) =>
-        response.map((item) => ({
-          name: item.name,
-          summary: item.summary,
-          stufen: item.stufen,
-          description: item.description,
-          imageUrl: item.imageUrl,
-          eventDate: item.eventDate,
-          eventStartTime: item.eventStartTime,
-          eventEndTime: item.eventEndTime,
-          registrationFrom: item.registrationFrom,
-          registrationTo: item.registrationTo
-        }))
-      )
     );
   }
 }

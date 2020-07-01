@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
-import { WordpressPostResponseModel } from "../model/responses/wordpress/wordpress-post-response.model";
-import { RootState } from "../../root-store/root-state";
+import { WordpressPostResponseModel } from "../../model/responses/wordpress/wordpress-post-response.model";
+import { RootState } from "../../../root-store/root-state";
 import { Store } from "@ngrx/store";
-import { selectPostsNeedPosts, selectPostsPosts } from "../../root-store/posts-store/selectors";
+import { selectPostsNeedPosts, selectPostsPosts } from "../../../root-store/posts-store/selectors";
 import {
   catchError,
   distinctUntilChanged,
@@ -15,8 +15,8 @@ import {
   tap,
   withLatestFrom
 } from "rxjs/operators";
-import { loadNewsAction, loadNewsErrorAction, loadNewsSuccessAction } from "../../root-store/posts-store/actions";
-import { MyFacebookService } from "../services/facebook/my-facebook.service";
+import { loadNewsAction, loadNewsErrorAction, loadNewsSuccessAction } from "../../../root-store/posts-store/actions";
+import { MyFacebookService } from "../../services/facebook/my-facebook.service";
 
 @Injectable()
 export class MyFacebookFacade {
