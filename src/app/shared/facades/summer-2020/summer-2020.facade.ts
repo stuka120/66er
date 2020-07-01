@@ -1,13 +1,14 @@
-import { Injectable } from "@angular/core";
+import { Inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { EventCardComponentModel } from "../../../components/components/event-card/event-card.component-model";
 import { map } from "rxjs/operators";
 import { SummerEventService } from "../../services/summer-event/summer-event.service";
 import { EventRegistrationModalPayload } from "../../../components/overlay/event-registration/event-registration-result.model";
+import { WINDOW } from "ngx-window-token";
 
 @Injectable()
 export class Summer2020Facade {
-  constructor(private summerEventService: SummerEventService) {}
+  constructor(private summerEventService: SummerEventService, @Inject(WINDOW) private window: Window) {}
 
   getEvents$(): Observable<EventCardComponentModel[]> {
     return this.summerEventService.getEvents$().pipe(
@@ -19,6 +20,7 @@ export class Summer2020Facade {
           stufen: item.stufen,
           description: item.description,
           imageUrl: item.imageUrl,
+          pdfUrl: item.pdfUrl,
           eventDate: item.eventDate,
           eventStartTime: item.eventStartTime,
           eventEndTime: item.eventEndTime,
@@ -37,5 +39,9 @@ export class Summer2020Facade {
         lastName: eventRegistration.lastname
       })
       .subscribe();
+  }
+
+  downloadDetailsPdf(eventPdfUrl: string) {
+    this.window.open(eventPdfUrl, "_blank");
   }
 }

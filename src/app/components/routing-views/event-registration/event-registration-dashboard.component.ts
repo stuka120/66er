@@ -54,4 +54,8 @@ export class EventRegistrationDashboardComponent implements OnInit {
   }
 
   private handleModalError() {}
+
+  downloadDetailsPdf(eventModel: EventCardComponentModel) {
+    this.summer2020Facade.downloadDetailsPdf(eventModel.pdfUrl);
+  }
 }

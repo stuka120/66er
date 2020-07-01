@@ -1,7 +1,7 @@
 <div class="container" *ngIf="events$ | async as events">
   <div class="row">
     <div *ngFor="let event of events" class="col-12 col-lg-4">
-      <app-event-card (registerClicked)="registerEventClicked($event)" [model]="event"></app-event-card>
+      <app-event-card (registerClicked)="registerEventClicked($event)" (downloadDetailsPdfClicked)="downloadDetailsPdf($event)" [model]="event"></app-event-card>
     </div>
   </div>
 </div>

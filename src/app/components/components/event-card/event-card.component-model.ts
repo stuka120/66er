@@ -10,4 +10,5 @@ export interface EventCardComponentModel {
   registrationFrom: Date;
   registrationTo: Date;
   imageUrl: string;
+  pdfUrl: string;
 }

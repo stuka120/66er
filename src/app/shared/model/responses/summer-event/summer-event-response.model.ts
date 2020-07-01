@@ -10,4 +10,5 @@ export interface SummerEventResponseModel {
   registrationFrom: Date | undefined;
   registrationTo: Date | undefined;
   imageUrl: string;
+  pdfUrl: string;
 }

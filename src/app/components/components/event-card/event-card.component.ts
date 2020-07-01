@@ -14,6 +14,9 @@ export class EventCardComponent implements OnInit {
   @Output()
   registerClicked = new EventEmitter<EventCardComponentModel>();
 
+  @Output()
+  downloadDetailsPdfClicked = new EventEmitter<EventCardComponentModel>();
+
   // @ts-ignore
   faList = faList;
   faClock = faClock;
