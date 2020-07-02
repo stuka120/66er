@@ -1,8 +1,13 @@
-import { Component, Input } from "@angular/core";
+import { Component, Inject, Input } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { EventCardComponentModel } from "../../components/event-card/event-card.component-model";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
-import { EventRegistrationResultEnum, EventRegistrationResultModel } from "./event-registration-result.model";
+import {
+  EventRegistrationModalPayload,
+  EventRegistrationResultEnum,
+  EventRegistrationResultModel
+} from "./event-registration-result.model";
+import { EventRegistrationAsyncValidator } from "../../../shared/validators/event-registration.validator";
 
 @Component({
   templateUrl: "./event-registration.overlay.html",
@@ -17,7 +22,11 @@ export class EventRegistrationOverlayComponent {
   emailControl: FormControl;
   formGroup: FormGroup;
 
-  constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder) {
+  constructor(
+    public activeModal: NgbActiveModal,
+    private formBuilder: FormBuilder,
+    private validator: EventRegistrationAsyncValidator
+  ) {
     this.firstnameControl = this.formBuilder.control(undefined, Validators.required);
     this.lastnameControl = this.formBuilder.control(undefined, Validators.required);
     this.emailControl = this.formBuilder.control(undefined, {
@@ -31,7 +40,8 @@ export class EventRegistrationOverlayComponent {
         contactEmail: this.emailControl
       },
       {
-        updateOn: "change"
+        updateOn: "change",
+        asyncValidators: this.validator.validator()
       }
     );
   }
@@ -57,6 +67,14 @@ export class EventRegistrationOverlayComponent {
       modalResult: EventRegistrationResultEnum.Fail,
       payload: undefined
     });
+  }
+
+  setFormGroupValues(formGroupValues: EventRegistrationModalPayload) {
+    if (!!formGroupValues) {
+      this.firstnameControl.setValue(formGroupValues.firstname);
+      this.lastnameControl.setValue(formGroupValues.lastname);
+      this.emailControl.setValue(formGroupValues.email);
+    }
   }
 
   hasErrorToDisplay(formControl: FormControl): boolean {

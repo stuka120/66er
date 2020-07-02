@@ -38,6 +38,7 @@
     "ngx-markdown": "^9.1.1",
     "ngx-swiper-wrapper": "^9.0.0",
     "ngx-take-until-destroy": "^5.4.0",
+    "ngx-webstorage-service": "^4.1.0",
     "ngx-window-token": "^3.0.0",
     "popper.js": "^1.16.0",
     "rrule": "^2.6.2",
