@@ -7,9 +7,11 @@
       <app-navbar (calendarButtonClicked)="toggleSidebar()"></app-navbar>
       <app-alert
         *ngIf="alertModel$ | async as alertModel"
+        (closeClicked)="closeAlertClicked()"
         [model]="alertModel"
         [class.position-absolute.align-top]="alertModel.presentationMode === 'overlay'"
-        class="w-100"
+        [class.d-none]="isAlertClosed"
+        class="w-100 mt-3"
         style="z-index: 500;"
       ></app-alert>
       <div class="flex-grow-1">

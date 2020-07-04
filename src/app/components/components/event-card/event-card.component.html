@@ -14,7 +14,7 @@
         (click)="isExpanded = !isExpanded"
       ></fa-icon>
       <div *ngIf="isExpanded" class="d-flex justify-content-around mt-2">
-        <button class="btn btn-success" (click)="registerClicked.emit(model)">Vormerken</button>
+        <button class="btn btn-success" (click)="registerClicked.emit(model)">Anmelden</button>
         <button *ngIf="!!model.pdfUrl" class="btn btn-info ml-2" (click)="downloadDetailsPdfClicked.emit(model)">
           Details im PDF
         </button>

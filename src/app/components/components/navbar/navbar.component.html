@@ -19,12 +19,8 @@
         />
       </a>
       <div class="d-flex flex-grow-1 d-lg-none justify-content-center align-items-center">
-        <a class="navbar-brand-two mr-2" [routerLink]="['']">
-          <img
-            src="https://www.66er.net/wp-content/uploads/logo.svg"
-            style="height: 3rem;"
-            (click)="calendarButtonClicked.emit()"
-          />
+        <a class="navbar-brand-two mr-2" [routerLink]="['/']">
+          <img src="https://www.66er.net/wp-content/uploads/logo.svg" style="height: 3rem;" [routerLink]="['']" />
         </a>
         <b class="text-danger text-center ml-2" style="cursor: pointer;" [routerLink]="['sommer-2020']">Sommer 2020</b>
       </div>

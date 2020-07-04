@@ -1,6 +1,6 @@
 <div
   *ngIf="!!model && model.isActive"
-  class="row m-0 justify-content-center app-alert-info my-3"
+  class="row m-0 justify-content-center app-alert-info"
   [className]="getBackgroundColorClassForActiveMode()"
 >
   <div class="col info-box rounded-0 border-info col-lg-10 col-xl-8 p-4">
@@ -9,7 +9,10 @@
         <fa-icon [style.color]="getIconColorForActiveMode()" [icon]="getAlertIconForActiveMode()"></fa-icon>
       </div>
       <div class="col-12 col-sm-10 pl-sm-0 mb-2">
-        <h4 [innerHTML]="model.headlineText"></h4>
+        <div class="d-flex">
+          <h4 class="flex-grow-1" [innerHTML]="model.headlineText"></h4>
+          <fa-icon (click)="closeClicked.emit()" [size]="'lg'" [icon]="faCross" style="cursor: pointer;"></fa-icon>
+        </div>
         <markdown [data]="model.bodyText"></markdown>
       </div>
     </div>

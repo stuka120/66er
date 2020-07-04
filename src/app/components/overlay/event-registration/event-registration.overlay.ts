@@ -58,7 +58,8 @@ export class EventRegistrationOverlayComponent {
         lastname: this.lastnameControl.value,
         email: this.emailControl.value,
         eventId: this.eventModel.id
-      }
+      },
+      associatedEventCard: this.eventModel
     });
   }
 

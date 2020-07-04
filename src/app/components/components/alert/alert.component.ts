@@ -1,6 +1,6 @@
-import { Component, Input } from "@angular/core";
+import { Component, EventEmitter, Input, Output } from "@angular/core";
 import { AlertComponentModel } from "./alert.component-model";
-import { faExclamationTriangle, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faExclamationTriangle, faInfoCircle, faWindowClose } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-alert",
@@ -11,7 +11,12 @@ export class AlertComponent {
   @Input()
   model: AlertComponentModel;
 
-  isExpanded: boolean = false;
+  @Output()
+  closeClicked = new EventEmitter<void>();
+
+  faCross = faWindowClose;
+
+  isExpanded = false;
 
   getAlertIconForActiveMode() {
     return this.model.alertMode === "info" ? faInfoCircle : faExclamationTriangle;
@@ -50,5 +55,9 @@ export class AlertComponent {
 
   private scrollToTop() {
     document.getElementById("navbar").scrollIntoView();
+  }
+
+  closeIconClicked() {
+    this.closeClicked.emit();
   }
 }

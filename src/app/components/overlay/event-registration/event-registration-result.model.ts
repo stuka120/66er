@@ -1,3 +1,5 @@
+import { EventCardComponentModel } from "../../components/event-card/event-card.component-model";
+
 export enum EventRegistrationResultEnum {
   Success,
   Fail
@@ -13,4 +15,5 @@ export interface EventRegistrationModalPayload {
 export interface EventRegistrationResultModel {
   modalResult: EventRegistrationResultEnum;
   payload: EventRegistrationModalPayload | undefined;
+  associatedEventCard: EventCardComponentModel;
 }

@@ -10,6 +10,8 @@ import {
 } from "../../overlay/event-registration/event-registration-result.model";
 import { Summer2020Facade } from "../../../shared/facades/summer-2020/summer-2020.facade";
 import { SESSION_STORAGE, StorageService, StorageTranscoders } from "ngx-webstorage-service";
+// tslint:disable-next-line:max-line-length
+import { EventRegistrationConfirmationOverlayComponent } from "../../overlay/event-registration-confirmation/event-registration-confirmation.overlay";
 
 @Component({
   templateUrl: "./event-registration-dashboard.component.html",
@@ -52,9 +54,14 @@ export class EventRegistrationDashboardComponent implements OnInit {
 
   private handleModalSuccess(modalResult: EventRegistrationResultModel) {
     if (isModalResultSuccess()) {
-      this.summer2020Facade.createEventRegistration(modalResult.payload);
+      this.summer2020Facade.createEventRegistration$(modalResult.payload).subscribe(() => {
+        this.storageService.set(this.sessionStorageKey, modalResult.payload, StorageTranscoders.JSON);
 
-      this.storageService.set(this.sessionStorageKey, modalResult.payload, StorageTranscoders.JSON);
+        const component = this.modalService.open(EventRegistrationConfirmationOverlayComponent, this.modalOptions);
+        const componentInstance = <EventRegistrationConfirmationOverlayComponent>component.componentInstance;
+        componentInstance.eventModel = modalResult.associatedEventCard;
+        componentInstance.eventRegistrationPayload = modalResult.payload;
+      });
     }
 
     function isModalResultSuccess() {

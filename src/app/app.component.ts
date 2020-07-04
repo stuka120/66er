@@ -15,6 +15,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   isDektop = false;
 
+  isAlertClosed = false;
+
   /**
    * this is the model that contains special config flags...
    * For instance this is for enabling the special news model (corona instance f.i.)
@@ -44,4 +46,8 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {}
+
+  closeAlertClicked() {
+    this.isAlertClosed = true;
+  }
 }

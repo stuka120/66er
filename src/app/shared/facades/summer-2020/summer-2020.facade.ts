@@ -38,14 +38,12 @@ export class Summer2020Facade {
     );
   }
 
-  createEventRegistration(eventRegistration: EventRegistrationModalPayload) {
-    this.summerEventService
-      .registerForEvent$({
-        eventId: eventRegistration.eventId,
-        firstName: eventRegistration.firstname,
-        lastName: eventRegistration.lastname
-      })
-      .subscribe();
+  createEventRegistration$(eventRegistration: EventRegistrationModalPayload) {
+    return this.summerEventService.registerForEvent$({
+      eventId: eventRegistration.eventId,
+      firstName: eventRegistration.firstname,
+      lastName: eventRegistration.lastname
+    });
   }
 
   downloadDetailsPdf(eventPdfUrl: string) {
