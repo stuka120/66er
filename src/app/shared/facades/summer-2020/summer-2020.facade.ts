@@ -3,6 +3,7 @@ import { Observable } from "rxjs";
 import { EventCardComponentModel } from "../../../components/components/event-card/event-card.component-model";
 import { map } from "rxjs/operators";
 import { SummerEventService } from "../../services/summer-event/summer-event.service";
+// tslint:disable-next-line:max-line-length
 import { EventRegistrationModalPayload } from "../../../components/overlay/event-registration/event-registration-result.model";
 import { WINDOW } from "ngx-window-token";
 
@@ -13,20 +14,26 @@ export class Summer2020Facade {
   getEvents$(): Observable<EventCardComponentModel[]> {
     return this.summerEventService.getEvents$().pipe(
       map((response) =>
-        response.map((item) => ({
-          id: item.id,
-          name: item.name,
-          summary: item.summary,
-          stufen: item.stufen,
-          description: item.description,
-          imageUrl: item.imageUrl,
-          pdfUrl: item.pdfUrl,
-          eventDate: item.eventDate,
-          eventStartTime: item.eventStartTime,
-          eventEndTime: item.eventEndTime,
-          registrationFrom: item.registrationFrom,
-          registrationTo: item.registrationTo
-        }))
+        response
+          .map((item) => ({
+            id: item.id,
+            name: item.name,
+            summary: item.summary,
+            stufen: item.stufen,
+            description: item.description,
+            imageUrl: item.imageUrl,
+            pdfUrl: item.pdfUrl,
+            eventDate: new Date(item.eventDate),
+            eventStartTime: new Date(item.eventStartTime),
+            eventEndTime: new Date(item.eventEndTime),
+            registrationFrom: new Date(item.registrationFrom),
+            registrationTo: new Date(item.registrationTo)
+          }))
+          .sort(
+            (a, b) =>
+              a.eventDate.setTime(a.eventStartTime.getTime()).valueOf() -
+              b.eventDate.setTime(b.eventStartTime.getTime()).valueOf()
+          )
       )
     );
   }
