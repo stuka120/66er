@@ -46,7 +46,7 @@ export class EventRegistrationDashboardComponent implements OnInit {
 
     component.result.then(
       (modalResult) => this.handleModalSuccess(modalResult),
-      (modalResult) => this.handleModalError()
+      () => this.handleModalError()
     );
   }
 

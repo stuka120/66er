@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { EventCardComponentModel } from "../../components/event-card/event-card.component-model";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
