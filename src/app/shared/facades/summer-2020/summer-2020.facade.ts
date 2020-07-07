@@ -27,7 +27,8 @@ export class Summer2020Facade {
             eventStartTime: new Date(item.eventStartTime),
             eventEndTime: new Date(item.eventEndTime),
             registrationFrom: new Date(item.registrationFrom),
-            registrationTo: new Date(item.registrationTo)
+            registrationTo: new Date(item.registrationTo),
+            price: item.price ?? undefined
           }))
           .sort(
             (a, b) =>

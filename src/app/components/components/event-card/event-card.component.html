@@ -1,5 +1,9 @@
 <div class="card rounded-0 mb-4" *ngIf="model">
-  <app-loading-image class="center-card-image" [objectFit]="'contain'" [src]="model.imageUrl"></app-loading-image>
+  <app-loading-image
+    class="center-card-image border"
+    [objectFit]="'contain'"
+    [src]="model.imageUrl"
+  ></app-loading-image>
   <div class="card-body">
     <h5 class="card-title">{{ model.name }}</h5>
     <p class="card-text">{{ model.summary }}</p>
@@ -29,17 +33,23 @@
           <a>{{ model.stufen }}</a>
         </div>
       </div>
-      <div class="col-auto">
+      <div class="col-auto px-3">
         <div class="d-flex flex-column">
           <fa-icon [icon]="faClock"></fa-icon>
           <a>{{ model.eventStartTime | date: "HH:mm" }} - {{ model.eventEndTime | date: "HH:mm" }}</a>
         </div>
       </div>
-      <div class="col border-left">
+      <div class="col border-left px-1">
         <div class="d-flex flex-column">
           <fa-icon [icon]="faCalendar"></fa-icon>
-          <a>{{ model.eventDate | date: "dd.MM" }}</a>
+          <a>{{ model.eventDate | date: "E dd.MM":undefined:"de-AT" }}</a>
         </div>
+      </div>
+    </div>
+    <div *ngIf="model.price">
+      <hr style="margin-bottom: 0.75rem;" />
+      <div class="d-flex justify-content-center">
+        Kosten: {{ model.price | currency: "EUR":"symbol":"1.2-2":"de-AT" }}
       </div>
     </div>
   </div>

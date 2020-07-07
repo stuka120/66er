@@ -4,6 +4,7 @@ export interface EventCardComponentModel {
   summary: string;
   description: string;
   stufen: string;
+  price: number | undefined;
   eventDate: Date;
   eventStartTime: Date;
   eventEndTime: Date;
