@@ -8,8 +8,8 @@ export interface EventCardComponentModel {
   eventDate: Date;
   eventStartTime: Date;
   eventEndTime: Date;
-  registrationFrom: Date;
-  registrationTo: Date;
+  registrationFrom?: Date;
+  registrationTo?: Date;
   imageUrl: string;
   pdfUrl: string;
 }

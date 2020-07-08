@@ -6,12 +6,15 @@ import { SummerEventService } from "../../services/summer-event/summer-event.ser
 // tslint:disable-next-line:max-line-length
 import { EventRegistrationModalPayload } from "../../../components/overlay/event-registration/event-registration-result.model";
 import { WINDOW } from "ngx-window-token";
+import * as moment from "moment";
 
 @Injectable()
 export class Summer2020Facade {
   constructor(private summerEventService: SummerEventService, @Inject(WINDOW) private window: Window) {}
 
   getEvents$(): Observable<EventCardComponentModel[]> {
+    const currentMoment = moment();
+
     return this.summerEventService.getEvents$().pipe(
       map((response) =>
         response
@@ -26,10 +29,11 @@ export class Summer2020Facade {
             eventDate: new Date(item.eventDate),
             eventStartTime: new Date(item.eventStartTime),
             eventEndTime: new Date(item.eventEndTime),
-            registrationFrom: new Date(item.registrationFrom),
-            registrationTo: new Date(item.registrationTo),
+            registrationFrom: item.registrationFrom ? new Date(item.registrationFrom) : undefined,
+            registrationTo: item.registrationTo ? new Date(item.registrationTo) : undefined,
             price: item.price ?? undefined
           }))
+          .filter(validateResponseItemVisibility)
           .sort(
             (a, b) =>
               a.eventDate.setTime(a.eventStartTime.getTime()).valueOf() -
@@ -37,6 +41,29 @@ export class Summer2020Facade {
           )
       )
     );
+
+    function validateResponseItemVisibility(model: EventCardComponentModel) {
+      if (!!model.registrationFrom && !!model.registrationTo) {
+        const registrationFromMoment = moment(model.registrationFrom);
+        const registrationToMoment = moment(model.registrationTo);
+
+        return currentMoment.isAfter(registrationFromMoment) && currentMoment.isBefore(registrationToMoment);
+      }
+
+      if (!!model.registrationFrom && !model.registrationTo) {
+        const registrationFromMoment = moment(model.registrationFrom);
+
+        return currentMoment.isAfter(registrationFromMoment);
+      }
+
+      if (!model.registrationFrom && !!model.registrationTo) {
+        const registrationToMoment = moment(model.registrationTo);
+
+        return currentMoment.isBefore(registrationToMoment);
+      }
+
+      return true;
+    }
   }
 
   createEventRegistration$(eventRegistration: EventRegistrationModalPayload) {

@@ -22,7 +22,13 @@
         <a class="navbar-brand-two mr-2" [routerLink]="['/']">
           <img src="https://www.66er.net/wp-content/uploads/logo.svg" style="height: 3rem;" [routerLink]="['']" />
         </a>
-        <b class="text-danger text-center ml-2" style="cursor: pointer;" [routerLink]="['sommer-2020']">Sommer 2020</b>
+        <b
+          *ngIf="isSummer2020Visible$() | async"
+          class="text-danger text-center ml-2"
+          style="cursor: pointer;"
+          [routerLink]="['sommer-2020']"
+          >Sommer 2020</b
+        >
       </div>
       <div class="text-right">
         <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">
@@ -32,7 +38,7 @@
     </div>
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar">
       <ul class="navbar-nav ml-auto flex-nowrap">
-        <li class="nav-item d-none d-lg-block">
+        <li *ngIf="isSummer2020Visible$() | async" class="nav-item d-none d-lg-block">
           <b
             class="nav-link m-2 menu-item nav-active text-danger"
             style="cursor: pointer;"

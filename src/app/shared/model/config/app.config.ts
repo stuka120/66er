@@ -6,6 +6,8 @@ export interface AppConfig {
    * news
    */
   dangerBanner?: InfoBannerModel;
+
+  showSummer2020Events?: boolean;
 }
 
 export interface InfoBannerModel {
