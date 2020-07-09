@@ -7,7 +7,12 @@ export interface AppConfig {
    */
   dangerBanner?: InfoBannerModel;
 
-  showSummer2020Events?: boolean;
+  summer2020?: Summer2020ConfigModel;
+}
+
+export interface Summer2020ConfigModel {
+  displayHeaderLink?: boolean;
+  useRegistrationTimeFrame?: boolean;
 }
 
 export interface InfoBannerModel {

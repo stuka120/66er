@@ -36,6 +36,6 @@ export class ConfigurationService {
   getConfig$(): Observable<AppConfig | null> {
     return this.store$
       .select(selectConfig)
-      .pipe(switchMap((config) => (config === undefined ? from(this.loadConfigFromServer()) : of(config))));
+      .pipe(switchMap((config) => (config == null ? from(this.loadConfigFromServer()) : of(config))));
   }
 }

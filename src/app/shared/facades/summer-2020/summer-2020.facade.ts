@@ -1,22 +1,29 @@
 import { Inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { EventCardComponentModel } from "../../../components/components/event-card/event-card.component-model";
-import { map } from "rxjs/operators";
+import { map, withLatestFrom } from "rxjs/operators";
 import { SummerEventService } from "../../services/summer-event/summer-event.service";
 // tslint:disable-next-line:max-line-length
 import { EventRegistrationModalPayload } from "../../../components/overlay/event-registration/event-registration-result.model";
 import { WINDOW } from "ngx-window-token";
 import * as moment from "moment";
+import { ConfigurationService } from "../../services/configuration/configuration.service";
+import { AppConfig } from "../../model/config/app.config";
 
 @Injectable()
 export class Summer2020Facade {
-  constructor(private summerEventService: SummerEventService, @Inject(WINDOW) private window: Window) {}
+  constructor(
+    private summerEventService: SummerEventService,
+    private configurationService: ConfigurationService,
+    @Inject(WINDOW) private window: Window
+  ) {}
 
   getEvents$(): Observable<EventCardComponentModel[]> {
     const currentMoment = moment();
 
     return this.summerEventService.getEvents$().pipe(
-      map((response) =>
+      withLatestFrom(this.configurationService.getConfig$()),
+      map(([response, config]) =>
         response
           .map((item) => ({
             id: item.id,
@@ -33,7 +40,13 @@ export class Summer2020Facade {
             registrationTo: item.registrationTo ? new Date(item.registrationTo) : undefined,
             price: item.price ?? undefined
           }))
-          .filter(validateResponseItemVisibility)
+          // tslint:disable-next-line
+          .filter(function (event) {
+            return (
+              (config?.summer2020?.useRegistrationTimeFrame && validateResponseItemVisibility(event)) ||
+              !config?.summer2020?.useRegistrationTimeFrame
+            );
+          })
           .sort(
             (a, b) =>
               a.eventDate.setTime(a.eventStartTime.getTime()).valueOf() -

@@ -19,6 +19,8 @@ export class NavbarComponent {
   constructor(private configurationService: ConfigurationService) {}
 
   isSummer2020Visible$() {
-    return this.configurationService.getConfig$().pipe(map((config) => !!config?.showSummer2020Events ?? false));
+    return this.configurationService
+      .getConfig$()
+      .pipe(map((config) => !!config?.summer2020?.displayHeaderLink ?? false));
   }
 }

@@ -31,7 +31,7 @@ export class EventRegistrationOverlayComponent {
     this.lastnameControl = this.formBuilder.control(undefined, Validators.required);
     this.emailControl = this.formBuilder.control(undefined, {
       validators: [Validators.email, Validators.required],
-      updateOn: "blur"
+      updateOn: "change"
     });
     this.formGroup = this.formBuilder.group(
       {

@@ -1,5 +1,8 @@
 {
-  "showSummer2020Events": true,
+  "summer2020": {
+    "displayHeaderLink": true,
+    "useRegistrationTimeFrame": true
+  },
   "dangerBanner": {
     "active": true,
     "mode": "info",
