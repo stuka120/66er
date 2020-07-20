@@ -83,7 +83,8 @@ export class Summer2020Facade {
     return this.summerEventService.registerForEvent$({
       eventId: eventRegistration.eventId,
       firstName: eventRegistration.firstname,
-      lastName: eventRegistration.lastname
+      lastName: eventRegistration.lastname,
+      email: eventRegistration.email
     });
   }
 
