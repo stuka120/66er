@@ -12,7 +12,6 @@ export interface AppConfig {
 
 export interface Summer2020ConfigModel {
   displayHeaderLink?: boolean;
-  useRegistrationTimeFrame?: boolean;
 }
 
 export interface InfoBannerModel {
