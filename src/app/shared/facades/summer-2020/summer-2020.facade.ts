@@ -1,14 +1,12 @@
 import { Inject, Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { EventCardComponentModel } from "../../../components/components/event-card/event-card.component-model";
-import { map, withLatestFrom } from "rxjs/operators";
+import { map } from "rxjs/operators";
 import { SummerEventService } from "../../services/summer-event/summer-event.service";
 // tslint:disable-next-line:max-line-length
 import { EventRegistrationModalPayload } from "../../../components/overlay/event-registration/event-registration-result.model";
 import { WINDOW } from "ngx-window-token";
-import * as moment from "moment";
 import { ConfigurationService } from "../../services/configuration/configuration.service";
-import { AppConfig } from "../../model/config/app.config";
 
 @Injectable()
 export class Summer2020Facade {
@@ -19,11 +17,8 @@ export class Summer2020Facade {
   ) {}
 
   getEvents$(): Observable<EventCardComponentModel[]> {
-    const currentMoment = moment();
-
     return this.summerEventService.getEvents$().pipe(
-      withLatestFrom(this.configurationService.getConfig$()),
-      map(([response, config]) =>
+      map((response) =>
         response
           .map((item) => ({
             id: item.id,
@@ -40,13 +35,6 @@ export class Summer2020Facade {
             registrationTo: item.registrationTo ? new Date(item.registrationTo) : undefined,
             price: item.price ?? undefined
           }))
-          // tslint:disable-next-line
-          .filter(function (event) {
-            return (
-              (config?.summer2020?.useRegistrationTimeFrame && validateResponseItemVisibility(event)) ||
-              !config?.summer2020?.useRegistrationTimeFrame
-            );
-          })
           .sort(
             (a, b) =>
               a.eventDate.setTime(a.eventStartTime.getTime()).valueOf() -
@@ -54,29 +42,6 @@ export class Summer2020Facade {
           )
       )
     );
-
-    function validateResponseItemVisibility(model: EventCardComponentModel) {
-      if (!!model.registrationFrom && !!model.registrationTo) {
-        const registrationFromMoment = moment(model.registrationFrom);
-        const registrationToMoment = moment(model.registrationTo);
-
-        return currentMoment.isAfter(registrationFromMoment) && currentMoment.isBefore(registrationToMoment);
-      }
-
-      if (!!model.registrationFrom && !model.registrationTo) {
-        const registrationFromMoment = moment(model.registrationFrom);
-
-        return currentMoment.isAfter(registrationFromMoment);
-      }
-
-      if (!model.registrationFrom && !!model.registrationTo) {
-        const registrationToMoment = moment(model.registrationTo);
-
-        return currentMoment.isBefore(registrationToMoment);
-      }
-
-      return true;
-    }
   }
 
   createEventRegistration$(eventRegistration: EventRegistrationModalPayload) {
