@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
+import { iif, Observable } from "rxjs";
 import { EventCardComponentModel } from "../../components/event-card/event-card.component-model";
 import { NgbModal, NgbModalOptions } from "@ng-bootstrap/ng-bootstrap";
 import { EventRegistrationOverlayComponent } from "../../overlay/event-registration/event-registration.overlay";
@@ -12,6 +12,7 @@ import { Summer2020Facade } from "../../../shared/facades/summer-2020/summer-202
 import { SESSION_STORAGE, StorageService, StorageTranscoders } from "ngx-webstorage-service";
 // tslint:disable-next-line:max-line-length
 import { EventRegistrationConfirmationOverlayComponent } from "../../overlay/event-registration-confirmation/event-registration-confirmation.overlay";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   templateUrl: "./event-registration-dashboard.component.html",
@@ -26,16 +27,25 @@ export class EventRegistrationDashboardComponent implements OnInit {
     backdrop: true
   };
 
+  private readonly isDisplayingAllEvents = false;
+
   events$: Observable<EventCardComponentModel[]>;
 
   constructor(
     private summer2020Facade: Summer2020Facade,
     private modalService: NgbModal,
+    private activatedRoute: ActivatedRoute,
     @Inject(SESSION_STORAGE) private storageService: StorageService
-  ) {}
+  ) {
+    this.isDisplayingAllEvents = this.activatedRoute.snapshot.data.displayAllEvents ?? false;
+  }
 
   ngOnInit(): void {
-    this.events$ = this.summer2020Facade.getEvents$();
+    this.events$ = iif(
+      () => this.isDisplayingAllEvents,
+      this.summer2020Facade.getAllEvents$(),
+      this.summer2020Facade.getEvents$()
+    );
   }
 
   registerEventClicked(eventToRegister: EventCardComponentModel) {

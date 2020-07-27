@@ -32,6 +32,18 @@ export class EventCardComponent implements OnInit {
 
   ngOnInit() {}
 
+  getRegistrationNotAvailableText() {
+    const currentMoment = moment();
+
+    if (!!this.model.registrationFrom && moment(this.model.registrationFrom).isAfter(currentMoment)) {
+      return "Anmeldung noch nicht verfügbar";
+    }
+
+    if (!!this.model.registrationTo && moment(this.model.registrationTo).isBefore(currentMoment)) {
+      return "Anmeldung geschlossen";
+    }
+  }
+
   isRegistrationOpen() {
     const currentMoment = moment();
 

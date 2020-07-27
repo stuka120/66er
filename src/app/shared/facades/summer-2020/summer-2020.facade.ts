@@ -17,31 +17,39 @@ export class Summer2020Facade {
   ) {}
 
   getEvents$(): Observable<EventCardComponentModel[]> {
-    return this.summerEventService.getEvents$().pipe(
-      map((response) =>
-        response
-          .map((item) => ({
-            id: item.id,
-            name: item.name,
-            summary: item.summary,
-            stufen: item.stufen,
-            description: item.description,
-            imageUrl: item.imageUrl,
-            pdfUrl: item.pdfUrl,
-            eventDate: new Date(item.eventDate),
-            eventStartTime: new Date(item.eventStartTime),
-            eventEndTime: new Date(item.eventEndTime),
-            registrationFrom: item.registrationFrom ? new Date(item.registrationFrom) : undefined,
-            registrationTo: item.registrationTo ? new Date(item.registrationTo) : undefined,
-            price: item.price ?? undefined
-          }))
-          .sort(
-            (a, b) =>
-              a.eventDate.setTime(a.eventStartTime.getTime()).valueOf() -
-              b.eventDate.setTime(b.eventStartTime.getTime()).valueOf()
-          )
-      )
-    );
+    return this.summerEventService.getEvents$().pipe(map(this.mapToOrderedEventsList()));
+  }
+
+  getAllEvents$(): Observable<EventCardComponentModel[]> {
+    return this.summerEventService.getAllEvents$().pipe(map(this.mapToOrderedEventsList()));
+  }
+
+  private mapToOrderedEventsList() {
+    return (response) =>
+      response
+        .map(
+          (item) =>
+            <EventCardComponentModel>{
+              id: item.id,
+              name: item.name,
+              summary: item.summary,
+              stufen: item.stufen,
+              description: item.description,
+              imageUrl: item.imageUrl,
+              pdfUrl: item.pdfUrl,
+              eventDate: new Date(item.eventDate),
+              eventStartTime: new Date(item.eventStartTime),
+              eventEndTime: new Date(item.eventEndTime),
+              registrationFrom: item.registrationFrom ? new Date(item.registrationFrom) : undefined,
+              registrationTo: item.registrationTo ? new Date(item.registrationTo) : undefined,
+              price: item.price ?? undefined
+            }
+        )
+        .sort(
+          (a, b) =>
+            a.eventDate.setTime(a.eventStartTime.getTime()).valueOf() -
+            b.eventDate.setTime(b.eventStartTime.getTime()).valueOf()
+        );
   }
 
   createEventRegistration$(eventRegistration: EventRegistrationModalPayload) {

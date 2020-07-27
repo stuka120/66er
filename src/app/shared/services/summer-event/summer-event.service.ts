@@ -12,6 +12,10 @@ export class SummerEventService {
     return this.httpClient.get<SummerEventResponseModel[]>(`https://www.66er.net/wp-json/66extensions/v1/events`);
   }
 
+  public getAllEvents$(): Observable<SummerEventResponseModel[]> {
+    return this.httpClient.get<SummerEventResponseModel[]>(`https://www.66er.net/wp-json/66extensions/v1/events/all`);
+  }
+
   public registerForEvent$(eventRegistration: EventRegistrationRequestModel) {
     return this.httpClient.post<void>("https://www.66er.net/wp-json/66extensions/v1/registrations", eventRegistration);
   }

@@ -19,13 +19,13 @@
       ></fa-icon>
       <div *ngIf="isExpanded" class="d-flex justify-content-around mt-2">
         <ng-template
-          *ngIf="isRegistrationOpen(); then registrationOpenButton; else registrationClosedButton"
+          *ngIf="isRegistrationOpen(); then registrationOpenButton; else registrationNotAvailableButton"
         ></ng-template>
         <ng-template #registrationOpenButton>
           <button class="btn btn-success" (click)="registerClicked.emit(model)">Anmelden</button>
         </ng-template>
-        <ng-template #registrationClosedButton>
-          <button class="btn btn-info disabled" disabled>Anmeldung geschlossen</button>
+        <ng-template #registrationNotAvailableButton>
+          <button class="btn btn-info disabled" disabled>{{ getRegistrationNotAvailableText() }}</button>
         </ng-template>
         <button *ngIf="!!model.pdfUrl" class="btn btn-info ml-2" (click)="downloadDetailsPdfClicked.emit(model)">
           Details im PDF

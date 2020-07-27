@@ -2,8 +2,10 @@ import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
 import { BiberDashboardFacade } from "./shared/facades/stufen-facades/impl/biber-dashboard.facade";
 import { ImprintDashboardComponent } from "./components/routing-views/imprint/imprint-dashboard.component";
+// tslint:disable-next-line:max-line-length
 import { EventRegistrationDashboardComponent } from "./components/routing-views/event-registration/event-registration-dashboard.component";
 import { StartDashboardComponent } from "./components/routing-views/start/start-dashboard.component";
+// tslint:disable-next-line:max-line-length
 import { StufenOverviewDashboardComponent } from "./components/routing-views/stufen-overview/stufen-overview-dashboard.component";
 import { GuspDashboardFacade } from "./shared/facades/stufen-facades/impl/gusp-dashboard.facade";
 import { RaroDashboardFacade } from "./shared/facades/stufen-facades/impl/raro-dashboard.facade";
@@ -65,6 +67,13 @@ const routes: Routes = [
   {
     path: "kontakt",
     component: ContactViewComponent
+  },
+  {
+    path: "sommer-2020/all",
+    component: EventRegistrationDashboardComponent,
+    data: {
+      displayAllEvents: true
+    }
   },
   {
     path: "sommer-2020",
