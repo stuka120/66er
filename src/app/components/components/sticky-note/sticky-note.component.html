@@ -1,15 +1,13 @@
-<ul>
-  <li>
-    <a
-      [ngClass]="{
-        'rotate-clockwise': rotateDirection === 'clockwise' && isRotated,
-        'rotate-anticlockwise': rotateDirection === 'anticlockwise' && isRotated,
-        zoom: isZoomingOnHover
-      }"
-      [ngStyle]="{ 'background-color': backgroundColor }"
-    >
-      <ng-content select="[header]"></ng-content>
-      <ng-content select="[body]"></ng-content>
-    </a>
-  </li>
-</ul>
+<div class="border shadow-sm bg-white">
+  <a
+    [ngClass]="{
+      'rotate-clockwise': rotateDirection === 'clockwise' && isRotated,
+      'rotate-anticlockwise': rotateDirection === 'anticlockwise' && isRotated,
+      zoom: isZoomingOnHover
+    }"
+    [ngStyle]="{ 'background-color': backgroundColor }"
+  >
+    <ng-content select="[header]"></ng-content>
+    <ng-content select="[body]"></ng-content>
+  </a>
+</div>
