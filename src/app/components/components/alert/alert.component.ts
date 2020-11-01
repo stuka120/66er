@@ -31,10 +31,8 @@ export class AlertComponent {
   }
 
   toggleExpand() {
-    if (this.isExpanded) {
-      this.scrollToTop();
-    }
     this.isExpanded = !this.isExpanded;
+    this.scrollToTop();
   }
 
   getExpandButtonText() {
@@ -55,9 +53,5 @@ export class AlertComponent {
 
   private scrollToTop() {
     document.getElementById("navbar").scrollIntoView();
-  }
-
-  closeIconClicked() {
-    this.closeClicked.emit();
   }
 }

@@ -1,17 +1,18 @@
 {
   "summer2020": {
-    "displayHeaderLink": true
+    "displayHeaderLink": false,
+    "useRegistrationTimeFrame": true
   },
   "dangerBanner": {
     "active": true,
-    "mode": "info",
+    "mode": "danger",
     "presentationMode": "insert",
     "headerText": "Liebe Pfadfinder*innen! Liebe Eltern!",
-    "bodyText": "Endlich ist es so weit! Wir starten wieder mit dem normalen Heimstundenbetrieb!\r\n\r\n\r\n\r\n- WiWö: 17. 6. 2020, 18.00 Uhr – 19.30 Uhr\r\n\r\n- GuSp: 18. 6. 2020, 18.30 Uhr – 20.00 Uhr\r\n\r\n- CaEx: 22. 6. 2020, 19.00 Uhr – 20.30 Uhr\r\n\r\n- RaRo: 16. 6. 2020, 19.00 Uhr – 20.30 Uhr\r\n\r\n\r\n\r\nIn manchen Stufen ist eine Anmeldung zu den Heimstunden verpflichtend, dazu bitte die Ausschreibungen der Stufenteams beachten.\r\n\r\n\r\n\r\nSelbstverständlich müssen wir uns an die gesetzlichen Vorgaben halten, daher gelten für unsere Heimstunden folgende Regeln und Sicherheitsmaßnahmen.",
+    "bodyText": "😷⚠️**Aktualisiert am 01.11.2020**⚠️😷\r\nIn der neuen COVID-19-Ma\u00DFnahmenverodnung (g\u00FCltig ab 03.11.2020) wird die au\u00DFerschulische Kinder- und Jugendarbeit nicht mehr wie bisher unter besonderen Auflagen erlaubt.\r\n\r\nWir haben uns daher aus rechtlichen Gr\u00FCnden, aber vor allem zum Schutz der Kinder und Jugendlichen sowie unseres Leitungsteams, dazu entschieden, unsere Pr\u00E4senz-Heimstunden und Tagesveranstaltungen (beginnend mit 02.11.2020) bis Ende November abzusagen.",
     "expandableSection": {
-      "expandableText": "##### Regeln und Sicherheitsmaßnahmen für den Heimstundenbetrieb\n\n\n\n-   Unsere Heimstunden finden ausschließlich im Freien statt, daher ist das Tragen eines Mund-Nasen-Schutzes nicht notwendig. Trotzdem möchten wir euch bitten, in jede Heimstunde einen Mund-Nasen-Schutz mitzubringen. Sollten wir nämlich aufgrund eines Schlechtwettereinbruchs gezwungen sein, unsere Räumlichkeiten aufzusuchen, besteht dort Mund-Nasen-Schutz-Tragepflicht.\n\n-   Die Sanitäranlagen und das verwendete Material werden vor und nach den Heimstunden desinfiziert.\n\n-   Wir halten die 1m-Abstandregel ein.\n\n-   Wir stellen Handdesinfektionsmittel zur Verfügung, dieses bitte bei der Ankunft im Heim verwenden.\n\n-   Jeder bringt seine eigene Trinkflasche mit.\n\n-   Wer krank ist oder sich krank fühlt, kommt nicht in die Heimstunde.\n\n\n\n #### Sommerlager und Sommeraktionen\n\n\n\nUnsere Sommerlager mussten wir nun leider endgültig absagen. Die Anzahlung wird rückerstattet.\n\n\n\nFLOW: Alle FLOW-Teilnehmer*innen bekommen die Anzahlung bis Ende Juni auf ihr Konto überwiesen.\n\n\n\nWiWö-Lager: Die Anzahlung kann in einer WiWö-Heimstunde abgeholt werden oder wird auf Wunsch überwiesen, dazu bitte ein Mail mit den Kontodaten an unseren Kassier (Kurt Gutlederer: [kurt.gutlederer@aon.at](mailto:kurt.gutlederer@aon.at)) schicken.\n\n\n\nDie berufliche Situation unserer Leiter*innen macht es leider unmöglich in den Lagerwochen ganztägiges Ersatz-Programm anzubieten. Dennoch wollen wir den Kindern und Jugendlichen auch im Sommer Pfadfinderaktivitäten ermöglichen.\n\n\n\nUnsere Heimstunden werden daher in allen Stufen auch in den Sommermonaten stattfinden. Zusätzlich wird es an den Wochenenden 25./26.7.2020 und 29./30.8.2020 stufenübergreifende Aktionen auf Workshopbasis geben. Genauere Informationen dazu folgen in Kürze!\n\n\n\nWir freuen uns auf einen spannenden Pfadfindersommer!\n\n\n\nGut Pfad!\n\n\n\nSabine Gutlederer (Elternratsobfrau)\n\n\n\nSarah Gutlederer (Gruppenleiterin)\n\n\n\nStefan Schwarz (Gruppenleiter)",
-      "expandButtonText": "Weitere Infos!",
-      "collapseButtonText": "Zuklappen!"
+      "expandableText": "Die Heimstunden werden stattdessen in allen Stufen zu den gewohnten Zeiten online \u00FCber Zoom stattfinden. N\u00E4heres dazu erfahrt ihr von den jeweiligen Stufenteams.\r\n\r\nWir hoffen, den normalen Heimstundenbetrieb bald wieder aufnehmen zu k\u00F6nnen!\r\n\r\nGut Pfad!\r\n\r\nSabine Gutlederer (Elternratsobfrau)\r\nSarah Gutlederer (Gruppenleiterin)\r\nStefan Schwarz (Gruppenleiter)",
+      "expandButtonText": "👇👇👇👇👇👇",
+      "collapseButtonText": "👆👆👆👆👆👆"
     }
   }
 }

@@ -4,7 +4,6 @@
   cursor: pointer;
   overflow: hidden;
   position: relative;
-  margin-bottom: 35px;
 }
 
 .team-members .team-avatar {
@@ -18,8 +17,8 @@
   height: 100%;
   content: " ";
   position: absolute;
-  background: rgba(129, 129, 129, 0.1);
-  transition-duration: 300ms;
+  /*background: rgba(129, 129, 129, 0.1);*/
+  transition-duration: 150ms;
   transition-property: all;
   transition-timing-function: cubic-bezier(0.7, 1, 0.7, 1);
 }
@@ -50,7 +49,6 @@
 .team-members .team-desc h4 {
   font-size: 22px;
   font-weight: 600;
-  margin: 0 0 10px;
   color: #fff;
 }
 
