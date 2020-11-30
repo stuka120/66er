@@ -1,0 +1,12 @@
+<div class="card mb-3 rounded-0 shadow">
+  <iframe
+    class="border-0"
+    [src]="getIframeUrl()"
+    [style.height.px]="getIframeHeight()"
+    [style.width.px]="getIframeWidth()"
+  ></iframe>
+  <div class="card-body my-n1">
+    <h3>{{ model.headerMessage }}</h3>
+    <markdown [data]="model.bodyMessage"></markdown>
+  </div>
+</div>

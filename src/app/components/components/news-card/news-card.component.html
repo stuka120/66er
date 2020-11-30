@@ -15,7 +15,6 @@
       <div *isLoading="post.full_picture" class="picsum-img-wrapper">
         <app-loading-image
           class="d-block w-100"
-          [height]="30"
           [objectFit]="'contain'"
           [src]="post.full_picture"
           alt="Random first slide"
@@ -26,7 +25,6 @@
       <div class="picsum-img-wrapper">
         <app-loading-image
           class="d-block w-100"
-          [height]="30"
           [objectFit]="'contain'"
           [src]="image.media.image.src"
           alt="Random first slide"

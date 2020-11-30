@@ -15,6 +15,8 @@ import { StufenCardModel } from "../../components/stufen-card/stufen-card.model"
 import { StufenDescriptionFacade } from "../../../shared/facades/stufen-description-facade.service";
 import { MyWordpressFacade } from "../../../shared/facades/wordpress/my-wordpress.facade";
 import { WordpressCategoryEnum } from "../../../shared/dictionary/wordpress-category.enum";
+import { IframeCardModel } from "../../components/iframe-card/iframe-card.model";
+import * as moment from "moment";
 
 @Component({
   selector: "app-start-dashboard",
@@ -32,6 +34,8 @@ export class StartDashboardComponent implements OnInit {
   heroBannerUrl$: Observable<string>;
 
   upcomingEvents$: Observable<UpcomingEventCollectionComponentModel[]>;
+
+  adventCalenderIframeModel?: IframeCardModel;
 
   constructor(
     private myFacebookFacade: MyFacebookFacade,
@@ -51,6 +55,25 @@ export class StartDashboardComponent implements OnInit {
     this.posts$ = this.myFacebookFacade.posts$;
     this.stufenCardModels$ = this.stufenTeaserFacade.stufenTeasersAll$;
     this.upcomingEvents$ = this.calendarFacade.getUpomingEventsForNextMonth();
+
+    this.adventCalenderIframeModel = this.buildAdventkalenderModelWithin2020Year();
+  }
+
+  private buildAdventkalenderModelWithin2020Year() {
+    const now = moment();
+    const endOf2020 = moment("2020-12-31").endOf("year").endOf("day");
+    if (now.isBefore(endOf2020)) {
+      return {
+        iframe: {
+          url: "https://calendar.myadvent.net?id=50f50d60b9996903030916e0324fc2bd",
+          height: 400
+        },
+        headerMessage: "66er Adventkalender",
+        bodyMessage:
+          "Unser 66er Adventkalender!\nKann [hier](https://calendar.myadvent.net?id=50f50d60b9996903030916e0324fc2bd) im Vollbild geöffnet werden. 🎄🎄🎄"
+      };
+    }
+    return undefined;
   }
 
   heroButtonClicked() {
